@@ -1,4 +1,5 @@
 #include "CApp.h"
+#include "Constants.h"
 
 bool CApp::OnInit()
 {
@@ -7,7 +8,7 @@ bool CApp::OnInit()
         return false;
     }
 
-     if((Window = SDL_CreateWindow("EpicQuest",SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN)) == NULL)
+     if((Window = SDL_CreateWindow("EpicQuest",SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN)) == NULL)
     {
         return false;
     }

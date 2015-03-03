@@ -39,6 +39,7 @@
 			<Add directory="C:/Program Files (x86)/CodeBlocks/SDL/lib" />
 		</Linker>
 		<Unit filename="include/CApp.h" />
+		<Unit filename="include/Constants.h" />
 		<Unit filename="src/CApp.cpp" />
 		<Unit filename="src/CApp_OnCleanup.cpp" />
 		<Unit filename="src/CApp_OnEvent.cpp" />
