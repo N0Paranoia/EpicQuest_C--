@@ -1,6 +1,6 @@
-#include "CApp.h"
+#include "EQ.h"
 
-void CApp::OnCleanup()
+void EQ::Cleanup()
 {
     if(Window)
     {

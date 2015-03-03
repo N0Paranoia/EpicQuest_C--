@@ -1,7 +1,7 @@
-#include "CApp.h"
+#include "EQ.h"
 #include "Constants.h"
 
-bool CApp::OnInit()
+bool EQ::Init()
 {
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
     {

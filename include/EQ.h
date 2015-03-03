@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 
-class CApp
+class EQ
 {
     private:
         bool Running;
@@ -11,16 +11,16 @@ class CApp
         SDL_Window* Window;
 
     public:
-        CApp();
+        EQ();
 
-        int OnExecute();
+        int Execute();
 
     public:
-        bool OnInit();
+        bool Init();
         void OnEvent(SDL_Event* Event);
-        void OnLoop();
-        void OnRender();
-        void OnCleanup();
+        void Loop();
+        void Render();
+        void Cleanup();
 };
 
 #endif // CAPP_H

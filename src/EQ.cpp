@@ -1,15 +1,15 @@
-#include "CApp.h"
+#include "EQ.h"
 
-CApp::CApp()
+EQ::EQ()
 {
     Window = NULL;
 
     Running = true;
 }
 
-int CApp::OnExecute()
+int EQ::Execute()
 {
-    if(OnInit() == false)
+    if(Init() == false)
     {
         return -1;
     }
@@ -23,18 +23,19 @@ int CApp::OnExecute()
             OnEvent(&Event);
         }
 
-        OnLoop();
-        OnRender();
+        Loop();
+        Render();
     }
 
-    OnCleanup();
+    Cleanup();
 
     return 0;
 }
 
 int main(int argc, char* argv[])
 {
-    CApp EpicQuest;
+    EQ EpicQuest;
 
-    return EpicQuest.OnExecute();
+    return EpicQuest.Execute();
 }
+

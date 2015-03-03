@@ -1,6 +1,6 @@
-#include "CApp.h"
+#include "EQ.h"
 
-void CApp::OnEvent(SDL_Event* Event)
+void EQ::OnEvent(SDL_Event* Event)
 {
     if(Event->type == SDL_QUIT)
     {

@@ -337,13 +337,13 @@
 1425384493 source:c:\users\nsmm\c_c++\epicquest\src\capp_onrender.cpp
 	"CApp.h"
 
-1425391210 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp.cpp
+1425393332 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp.cpp
 	"CApp.h"
 
-1425389871 c:\users\nsmm\c_c++\epicquest_cpp\include\capp.h
+1425394491 c:\users\nsmm\c_c++\epicquest_cpp\include\capp.h
 	<SDL.h>
 
-1425389871 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_oncleanup.cpp
+1425391657 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_oncleanup.cpp
 	"CApp.h"
 
 1425389871 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_onevent.cpp
@@ -360,4 +360,26 @@
 	"CApp.h"
 
 1425390435 c:\users\nsmm\c_c++\epicquest_cpp\include\constants.h
+
+1425393472 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_cleanup.cpp
+	"CApp.h"
+
+1425394159 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_event.cpp
+	"CApp.h"
+
+1425393475 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_init.cpp
+	"CApp.h"
+	"Constants.h"
+
+1425393529 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_loop.cpp
+	"CApp.h"
+
+1425393533 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_render.cpp
+	"CApp.h"
+
+1425395189 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
+	"EQ.h"
+
+1425395143 c:\users\nsmm\c_c++\epicquest_cpp\include\eq.h
+	<SDL.h>
 
