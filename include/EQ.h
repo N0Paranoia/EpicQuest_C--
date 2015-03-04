@@ -7,12 +7,10 @@ class EQ
 {
     private:
         bool Running;
-
         SDL_Window* Window;
 
     public:
         EQ();
-
         int Execute();
 
     public:

@@ -386,7 +386,7 @@
 1425408611 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq.cpp
 	"EQ.h"
 
-1425408611 c:\users\tijn\documents\github\epicquest_cpp\include\eq.h
+1425469429 c:\users\tijn\documents\github\epicquest_cpp\include\eq.h
 	<SDL.h>
 
 1425408611 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq_cleanup.cpp
@@ -395,9 +395,10 @@
 1425408611 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq_event.cpp
 	"EQ.h"
 
-1425408611 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq_init.cpp
+1425416066 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq_init.cpp
 	"EQ.h"
 	"Constants.h"
+	<iostream>
 
 1425408611 c:\users\tijn\documents\github\epicquest_cpp\include\constants.h
 

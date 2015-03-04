@@ -5,7 +5,7 @@ void EQ::Cleanup()
     if(Window)
     {
         SDL_DestroyWindow(Window);
-        Window = NULL;
+        Window = nullptr;
     }
     SDL_Quit();
 }
