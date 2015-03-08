@@ -12,13 +12,13 @@ int EQ::Execute()
     {
         return -1;
     }
-    SDL_Event Event;
+    SDL_Event e;
 
     while(Running)
     {
-        while(SDL_PollEvent(&Event))
+        while(SDL_PollEvent(&e))
         {
-            OnEvent(&Event);
+            Event(&e);
         }
         Loop();
         Render();

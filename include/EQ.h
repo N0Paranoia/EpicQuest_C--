@@ -15,7 +15,7 @@ class EQ
 
     public:
         bool Init();
-        void OnEvent(SDL_Event* Event);
+        void Event(SDL_Event* Event);
         void Loop();
         void Render();
         void Cleanup();
