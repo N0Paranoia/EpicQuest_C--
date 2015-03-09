@@ -2,8 +2,8 @@
 
 EQ::EQ()
 {
-    Window = nullptr;
     Running = true;
+    Window = nullptr;
 }
 
 int EQ::Execute()
@@ -12,13 +12,14 @@ int EQ::Execute()
     {
         return -1;
     }
-    SDL_Event e;
+    SDL_Event event;
 
     while(Running)
     {
-        while(SDL_PollEvent(&e))
+        Fps();
+        while(SDL_PollEvent(&event))
         {
-            Event(&e);
+            Event(&event);
         }
         Loop();
         Render();
@@ -32,4 +33,3 @@ int main(int argc, char* argv[])
     EQ EpicQuest;
     return EpicQuest.Execute();
 }
-

@@ -1,9 +1,9 @@
 #ifndef CONSTANTS_H_INCLUDED
 #define CONSTANTS_H_INCLUDED
 
-const int WINDOW_WIDTH = 640;
-const int WINDOW_HEIGHT = 480;
+const int WINDOW_WIDTH = 1024;
+const int WINDOW_HEIGHT = 576;
 
-
+const int TILE_SIZE = 48;
 
 #endif // CONSTANTS_H_INCLUDED

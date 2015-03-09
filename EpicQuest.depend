@@ -72,7 +72,7 @@
 1394937198 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1425415888 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
+1425375087 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
@@ -359,7 +359,7 @@
 1425389871 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_onrender.cpp
 	"CApp.h"
 
-1425390435 c:\users\nsmm\c_c++\epicquest_cpp\include\constants.h
+1425908331 c:\users\nsmm\c_c++\epicquest_cpp\include\constants.h
 
 1425393472 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_cleanup.cpp
 	"CApp.h"
@@ -377,11 +377,15 @@
 1425393533 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_render.cpp
 	"CApp.h"
 
-1425395189 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
+1425914197 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
 	"EQ.h"
 
-1425395143 c:\users\nsmm\c_c++\epicquest_cpp\include\eq.h
+1425914540 c:\users\nsmm\c_c++\epicquest_cpp\include\eq.h
 	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<iostream>
 
 1425812669 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq.cpp
 	"EQ.h"
@@ -408,4 +412,29 @@
 
 1425408611 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq_render.cpp
 	"EQ.h"
+
+1425884896 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_cleanup.cpp
+	"EQ.h"
+
+1425909280 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_event.cpp
+	"EQ.h"
+
+1425914287 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_init.cpp
+	"EQ.h"
+	"Constants.h"
+
+1425395140 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_loop.cpp
+	"EQ.h"
+
+1425912777 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_render.cpp
+	"EQ.h"
+
+1425896184 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_fps.cpp
+	"EQ.h"
+
+1376152742 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
 

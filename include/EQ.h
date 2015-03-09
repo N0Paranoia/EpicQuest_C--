@@ -1,7 +1,13 @@
-#ifndef CAPP_H
-#define CAPP_H
+#ifndef EQ_H
+#define EQ_H
 
 #include <SDL.h>
+#include <SDL_image.h>
+#include <stdio.h>
+#include <string>
+#include <iostream>
+
+using namespace std;
 
 class EQ
 {
@@ -14,11 +20,13 @@ class EQ
         int Execute();
 
     public:
-        bool Init();
         void Event(SDL_Event* Event);
+        void Fps();
+        bool Init();
+        bool LoadMedia();
         void Loop();
         void Render();
         void Cleanup();
 };
 
-#endif // CAPP_H
+#endif // EQ_H

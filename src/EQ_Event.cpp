@@ -1,5 +1,5 @@
 #include "EQ.h"
-#include<iostream>
+
 
 void EQ::Event(SDL_Event* Event)
 {
@@ -9,19 +9,27 @@ void EQ::Event(SDL_Event* Event)
     }
     else if(Event->type == SDL_KEYDOWN)
     {
+        //Define Keyboard inputs
         switch(Event->key.keysym.sym)
         {
+        case SDLK_q:
+            cout << "Quit" << endl;
+            Running = false;
+            break;
         case SDLK_a:
-            std::cout << "Left" << std::endl;
+            cout << "Left" << endl;
             break;
         case SDLK_d:
-            std::cout << "Right" << std::endl;
+            cout << "Right" << endl;
             break;
         case SDLK_w:
-            std::cout << "Up" << std::endl;
+            cout << "Up" << endl;
             break;
         case SDLK_s:
-            std::cout << "Down" << std::endl;
+            cout << "Down" << endl;
+            break;
+        case SDLK_SPACE:
+            cout << "Jump" << endl;
             break;
         }
     }

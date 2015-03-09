@@ -1,6 +1,6 @@
 #include "EQ.h"
 
-void EQ::Render()
+void EQ::Fps()
 {
 
 }
