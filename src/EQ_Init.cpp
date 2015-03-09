@@ -14,5 +14,21 @@ bool EQ::Init()
         cout << "Unable to create SDL_Window! SDL_Error: " << SDL_GetError() << endl;
         return false;
     }
+    //Create renderer for window
+    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED)) == NULL)
+    {
+        cout << "Unable to create SDL_Renderer! SDL_Error: " << SDL_GetError() << endl;
+        return false;
+    }
+    //Initialize renderer color
+    SDL_SetRenderDrawColor(Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    //Initialize PNG Loading
+    int imgFlags = IMG_INIT_PNG;
+    if(!(IMG_Init(imgFlags)& imgFlags))
+    {
+        cout << "Unable to initialize SDL_Image! SDL_Error: " << SDL_GetError() << endl;
+        return false;
+    }
+
     return true;
 }
