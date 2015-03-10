@@ -42,13 +42,6 @@
 		<Unit filename="include/EQ.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="src/EQ.cpp" />
-		<Unit filename="src/EQ_Cleanup.cpp" />
-		<Unit filename="src/EQ_Event.cpp" />
-		<Unit filename="src/EQ_Fps.cpp" />
-		<Unit filename="src/EQ_Init.cpp" />
-		<Unit filename="src/EQ_LoadMedia.cpp" />
-		<Unit filename="src/EQ_Loop.cpp" />
-		<Unit filename="src/EQ_Render.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Extensions>
 			<code_completion />

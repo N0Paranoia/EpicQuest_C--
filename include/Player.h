@@ -10,11 +10,12 @@ class Player
     private:
         int playerX;
         int playerY;
-        int playerW;
-        int playerH;
+        int playerWidth;
+        int playerHeight;
     public:
         Player();
         virtual ~Player();
+        int Test();
         void Render();
     protected:
     private:
