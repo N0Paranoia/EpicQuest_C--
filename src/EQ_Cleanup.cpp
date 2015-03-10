@@ -7,11 +7,17 @@ void EQ::Cleanup()
         SDL_DestroyRenderer(Renderer);
         Renderer = nullptr;
     }
-
+    if(Texture)
+    {
+        SDL_DestroyTexture(Texture);
+        Texture = nullptr;
+    }
     if(Window)
     {
         SDL_DestroyWindow(Window);
         Window = nullptr;
     }
+
+
     SDL_Quit();
 }

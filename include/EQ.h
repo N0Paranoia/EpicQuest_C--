@@ -15,7 +15,6 @@ class EQ
         bool Running = true;
         SDL_Window* Window = nullptr;
         SDL_Renderer* Renderer = nullptr;
-        SDL_Surface* PrimarySurface = nullptr;
         SDL_Texture* Texture = nullptr;
 
     public:

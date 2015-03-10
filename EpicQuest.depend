@@ -377,10 +377,11 @@
 1425393533 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_render.cpp
 	"CApp.h"
 
-1425991265 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
+1425996030 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
 	"EQ.h"
+	"Constants.h"
 
-1425992085 c:\users\nsmm\c_c++\epicquest_cpp\include\eq.h
+1425996030 c:\users\nsmm\c_c++\epicquest_cpp\include\eq.h
 	<SDL.h>
 	<SDL_image.h>
 	<stdio.h>
@@ -415,21 +416,23 @@
 1425933075 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq_render.cpp
 	"EQ.h"
 
-1425985559 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_cleanup.cpp
+1425994035 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_cleanup.cpp
 	"EQ.h"
 
 1425909280 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_event.cpp
 	"EQ.h"
 
-1425992027 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_init.cpp
+1425997310 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_init.cpp
 	"EQ.h"
 	"Constants.h"
 
-1425991875 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_loop.cpp
+1425997310 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_loop.cpp
 	"EQ.h"
 
-1425991854 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_render.cpp
+1425996270 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_render.cpp
 	"EQ.h"
+	"Constants.h"
+	"Player.h"
 
 1425896184 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_fps.cpp
 	"EQ.h"
@@ -449,4 +452,12 @@
 	<stdio.h>
 	<string>
 	<iostream>
+
+1425996170 source:c:\users\nsmm\c_c++\epicquest_cpp\src\player.cpp
+	"Player.h"
+	"Constants.h"
+
+1425997126 c:\users\nsmm\c_c++\epicquest_cpp\include\player.h
+	<SDL.h>
+	<SDL_image.h>
 

@@ -1,4 +1,5 @@
 #include "EQ.h"
+#include "Constants.h"
 
 EQ::EQ()
 {
