@@ -12,9 +12,10 @@ using namespace std;
 class EQ
 {
     private:
-        bool Running;
-        SDL_Window* Window;
-        SDL_Renderer* Renderer;
+        bool Running = true;
+        SDL_Window* Window = nullptr;
+        SDL_Renderer* Renderer = nullptr;
+        SDL_Surface* PrimarySurface = nullptr;
 
     public:
         EQ();
@@ -24,6 +25,7 @@ class EQ
         void Event(SDL_Event* Event);
         void Fps();
         bool Init();
+        bool LoadMedia();
         void Loop();
         void Render();
         void Cleanup();

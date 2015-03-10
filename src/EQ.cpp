@@ -2,9 +2,7 @@
 
 EQ::EQ()
 {
-    Running = true;
-    Window = nullptr;
-    Renderer = nullptr;
+
 }
 
 int EQ::Execute()
