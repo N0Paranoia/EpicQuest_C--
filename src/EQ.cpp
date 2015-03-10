@@ -31,7 +31,7 @@ bool EQ::Init()
     // initialize image loading for PNG
     if(!(IMG_Init(IMG_INIT_PNG)& IMG_INIT_PNG))
     {
-        cout << "Unables to initialize SDL_Image! SDL_Error: " << SDL_GetError() << endl;
+        cout << "Unable to initialize SDL_Image! SDL_Error: " << SDL_GetError() << endl;
         return false;
     }
     return true;
@@ -42,7 +42,7 @@ bool EQ::LoadMedia()
     //Load PNG texture
 	if((Texture = loadTexture("background.png")) == NULL)
 	{
-		cout << "Unables to Load texture image! SDL_Error: " << SDL_GetError() << endl;
+		cout << "Unable to Load texture image! SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
 

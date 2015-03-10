@@ -72,7 +72,7 @@
 1394937198 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1425375087 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
+1425415888 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
@@ -389,10 +389,12 @@
 	<string>
 	<iostream>
 
-1425934695 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq.cpp
+1426022269 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq.cpp
 	"EQ.h"
+	"Player.h"
+	"Constants.h"
 
-1425934698 c:\users\tijn\documents\github\epicquest_cpp\include\eq.h
+1426022373 c:\users\tijn\documents\github\epicquest_cpp\include\eq.h
 	<SDL.h>
 	<SDL_image.h>
 	<stdio.h>
@@ -438,7 +440,7 @@
 1425896184 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_fps.cpp
 	"EQ.h"
 
-1376152742 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_image.h
+1376156342 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -464,4 +466,12 @@
 
 1425997310 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_loadmedia.cpp
 	"EQ.h"
+
+1426016794 c:\users\tijn\documents\github\epicquest_cpp\include\player.h
+	<SDL.h>
+	<SDL_image.h>
+
+1426016794 source:c:\users\tijn\documents\github\epicquest_cpp\src\player.cpp
+	"Player.h"
+	"Constants.h"
 
