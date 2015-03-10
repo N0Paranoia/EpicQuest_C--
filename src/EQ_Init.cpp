@@ -23,7 +23,50 @@ bool EQ::Init()
         return false;
     }
 
-    SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0x00, 0xFF);
+    SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xFF, 0xFF);
 
+    // initialize image loading for PNG
+    if(!(IMG_Init(IMG_INIT_PNG)& IMG_INIT_PNG))
+    {
+        cout << "Unables to initialize SDL_Image! SDL_Error: " << SDL_GetError() << endl;
+        return false;
+    }
     return true;
+}
+
+bool EQ::LoadMedia()
+{
+    //Load PNG texture
+	if((Texture = loadTexture("background.png")) == NULL)
+	{
+		cout << "Unables to Load texture image! SDL_Error: " << SDL_GetError() << endl;
+		return false;
+	}
+
+	return true;
+}
+
+SDL_Texture* EQ::loadTexture( std::string path )
+{
+
+    //The final texture
+    SDL_Texture* newTexture = NULL;
+
+    //Load image at specified path
+    SDL_Surface* loadedSurface = IMG_Load( path.c_str());
+    if( loadedSurface == NULL )
+    {
+        cout << "Unable to load image! SDL_Error: " << path.c_str() << IMG_GetError() << endl;
+    }
+
+    //Create texture from surface pixels
+    if((newTexture = SDL_CreateTextureFromSurface(Renderer, loadedSurface)) == NULL)
+    {
+        cout << "Unable to create texture! SDL_Error: " << path.c_str() << SDL_GetError() << endl;
+    }
+
+    //Get rid of old loaded surface
+    SDL_FreeSurface(loadedSurface );
+
+    return newTexture;
 }

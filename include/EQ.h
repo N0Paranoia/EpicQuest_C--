@@ -16,6 +16,7 @@ class EQ
         SDL_Window* Window = nullptr;
         SDL_Renderer* Renderer = nullptr;
         SDL_Surface* PrimarySurface = nullptr;
+        SDL_Texture* Texture = nullptr;
 
     public:
         EQ();
@@ -26,6 +27,8 @@ class EQ
         void Fps();
         bool Init();
         bool LoadMedia();
+        //Loads individual image as texture
+        SDL_Texture* loadTexture(std::string path);
         void Loop();
         void Render();
         void Cleanup();

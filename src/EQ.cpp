@@ -11,6 +11,10 @@ int EQ::Execute()
     {
         return -1;
     }
+    if(LoadMedia() == false)
+    {
+        return -1;
+    }
     SDL_Event event;
 
     while(Running)
