@@ -10,6 +10,9 @@ Player::Player()
     playerY = 0;
     playerWidth = TILE_SIZE;
     playerHeight = TILE_SIZE*2;
+    Xvel = 0;
+    Yvel = 0;
+    Speed = 1;
 }
 
 Player::~Player()
@@ -17,8 +20,9 @@ Player::~Player()
     //dtor
 }
 
-void Player::Event(SDL_Event* event)
-{
+//void Player::Event(SDL_Event* event)
+void Player::Input()
+{/*
     if(event->type == SDL_KEYDOWN)
     {
         //Define Player Keyboard inputs
@@ -40,7 +44,16 @@ void Player::Event(SDL_Event* event)
             cout << "Jump" << endl;
             break;
         }
-    }
+    }*/
+    keyState = SDL_GetKeyboardState(NULL);
+    if(keyState[SDL_SCANCODE_W])
+        this->Move(left);
+    if(keyState[SDL_SCANCODE_D])
+        this->Move(right);
+    if(keyState[SDL_SCANCODE_W])
+        this->Move(up);
+    if(keyState[SDL_SCANCODE_S])
+        this->Move(down);
 }
 
 int Player::LoadMedia(SDL_Renderer* Renderer)
@@ -60,19 +73,19 @@ void Player::Move(Direction dir)
     {
     case left:
         cout << "Left" << endl;
-        playerX -= 10;
+        playerX -= Speed;
         break;
     case right:
         cout << "Right" << endl;
-        playerX += 10;
+        playerX += Speed;
         break;
     case up:
         cout << "Up" << endl;
-        playerY -= 10;
+        playerY -= Speed;
         break;
     case down:
         cout << "Down" << endl;
-        playerY += 10;
+        playerY += Speed;
         break;
     }
 }

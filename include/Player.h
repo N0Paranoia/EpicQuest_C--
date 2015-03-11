@@ -14,6 +14,10 @@ class Player
         int playerWidth;
         int playerHeight;
         enum Direction {left, right, up, down};
+        const Uint8* keyState;
+        int Xvel;
+        int Yvel;
+        int Speed;
 
     public:
         int playerX;
@@ -21,7 +25,8 @@ class Player
 
         Player();
         virtual ~Player();
-        void Event(SDL_Event* event);
+        //void Event(SDL_Event* event);
+        void Input();
         int LoadMedia(SDL_Renderer* Renderer);
         void Move(Direction dir);
         void Render(SDL_Renderer* Renderer);

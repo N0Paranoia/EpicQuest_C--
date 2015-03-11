@@ -76,7 +76,13 @@ void EQ::Event(SDL_Event* event)
             break;
         }
     }
-    player.Event(event);
+
+    //player.Event(event);
+}
+
+void EQ::Input()
+{
+     player.Input();
 }
 
 void EQ::Loop()
@@ -140,8 +146,9 @@ int EQ::Execute()
     {
         while(SDL_PollEvent(&event))
         {
-            this->Event(&event);
+           this->Event(&event);
         }
+        this->Input();
         this->Loop();
         this->Render();
     }

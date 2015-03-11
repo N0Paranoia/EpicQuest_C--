@@ -29,6 +29,7 @@ class EQ
         bool LoadMedia();
         //Loads individual image as texture
         SDL_Texture* loadTexture(std::string path);
+        void Input();
         void Loop();
         void Render();
         void Cleanup();
