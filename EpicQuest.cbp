@@ -41,8 +41,10 @@
 		<Unit filename="include/Constants.h" />
 		<Unit filename="include/EQ.h" />
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/Texture.h" />
 		<Unit filename="src/EQ.cpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/Texture.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

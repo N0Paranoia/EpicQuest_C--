@@ -4,21 +4,30 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include <iostream>
+
+using namespace std;
 
 class Player
 {
     private:
-        int playerX;
-        int playerY;
         int playerWidth;
         int playerHeight;
+        enum Direction {left, right, up, down};
+
     public:
+        int playerX;
+        int playerY;
+
         Player();
         virtual ~Player();
-        int Test();
-        void Render();
+        void Event(SDL_Event* event);
+        int LoadMedia(SDL_Renderer* Renderer);
+        void Move(Direction dir);
+        void Render(SDL_Renderer* Renderer);
+        void Cleanup();
+
     protected:
-    private:
 };
 
 #endif // PLAYER_H

@@ -12,10 +12,11 @@ using namespace std;
 class EQ
 {
     private:
-        bool Running = true;
-        SDL_Window* Window = nullptr;
-        SDL_Renderer* Renderer = nullptr;
-        SDL_Texture* Texture = nullptr;
+        bool Running;
+        SDL_Window* Window ;
+        SDL_Renderer* Renderer;
+        SDL_Texture* Texture;
+        SDL_Texture* PlayerTexture;
 
     public:
         EQ();
