@@ -53,11 +53,18 @@ bool Texture::LoadFromFile(SDL_Renderer* Renderer, std::string path)
 	return texture != NULL;
 }
 
-void Texture::Render(SDL_Renderer* Renderer,int x ,int y)
+void Texture::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)
 {
     //Set rendering spade en render to screen
     SDL_Rect renderQuad = {x, y, mWidth, mHeight};
-    SDL_RenderCopy(Renderer, texture, NULL, &renderQuad);
+    //Set dimensions
+    if(clip !=NULL)
+    {
+        renderQuad.w = clip->w;
+        renderQuad.h = clip->h;
+    }
+    //Render to screen
+    SDL_RenderCopy(Renderer, texture, clip, &renderQuad);
 }
 
 int Texture::getWidth()

@@ -2,7 +2,9 @@
 #include "Texture.h"
 #include "Constants.h"
 
-Texture playerTexture;
+//Texture playerTexture;
+Texture SpriteSheetTexture;
+
 
 Player::Player()
 {
@@ -13,6 +15,7 @@ Player::Player()
     Xvel = 0;
     Yvel = 0;
     Speed = 1;
+
 }
 
 Player::~Player()
@@ -22,31 +25,9 @@ Player::~Player()
 
 //void Player::Event(SDL_Event* event)
 void Player::Input()
-{/*
-    if(event->type == SDL_KEYDOWN)
-    {
-        //Define Player Keyboard inputs
-        switch(event->key.keysym.sym)
-        {
-        case SDLK_a:
-            this->Move(left);
-            break;
-        case SDLK_d:
-            this->Move(right);
-            break;
-        case SDLK_w:
-            this->Move(up);
-            break;
-        case SDLK_s:
-            this->Move(down);
-            break;
-        case SDLK_SPACE:
-            cout << "Jump" << endl;
-            break;
-        }
-    }*/
+{
     keyState = SDL_GetKeyboardState(NULL);
-    if(keyState[SDL_SCANCODE_W])
+    if(keyState[SDL_SCANCODE_A])
         this->Move(left);
     if(keyState[SDL_SCANCODE_D])
         this->Move(right);
@@ -59,10 +40,37 @@ void Player::Input()
 int Player::LoadMedia(SDL_Renderer* Renderer)
 {
     //Load Player texture
-	if((playerTexture.LoadFromFile(Renderer, "assets/player.png")) == NULL)
+	/*if((playerTexture.LoadFromFile(Renderer, "assets/player.png")) == NULL)
     {
         cout << "Unable to load Player Texture! SDL_Error: " << SDL_GetError() << endl;
         return false;
+    }*/
+    if((SpriteSheetTexture.LoadFromFile(Renderer, "assets/spriteSheet48.png")) == NULL)
+    {
+        cout << "Unable to load Player Texture! SDL_Error: " << SDL_GetError() << endl;
+        return false;
+    }
+    else
+    {
+        PlayerClips[0].x = 0;
+        PlayerClips[0].y = 0;
+        PlayerClips[0].w = 48;
+        PlayerClips[0].h = 96;
+
+        PlayerClips[1].x = 48;
+        PlayerClips[1].y = 0;
+        PlayerClips[1].w = 48;
+        PlayerClips[1].h = 96;
+
+        PlayerClips[2].x = 96;
+        PlayerClips[2].y = 0;
+        PlayerClips[2].w = 48;
+        PlayerClips[2].h = 96;
+
+        PlayerClips[3].x = 144;
+        PlayerClips[3].y = 0;
+        PlayerClips[3].w = 48;
+        PlayerClips[3].h = 96;
     }
     return true;
 }
@@ -92,7 +100,7 @@ void Player::Move(Direction dir)
 
 void Player::Render(SDL_Renderer* Renderer)
 {
-    playerTexture.Render(Renderer, playerX, playerY);
+    SpriteSheetTexture.Render(Renderer, playerX, playerY, &PlayerClips[3]);
 }
 
 void Player::Cleanup()

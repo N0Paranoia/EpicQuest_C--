@@ -3,9 +3,11 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -17,6 +19,7 @@ class EQ
         SDL_Renderer* Renderer;
         SDL_Texture* Texture;
         SDL_Texture* PlayerTexture;
+        TTF_Font* Font;
 
     public:
         EQ();

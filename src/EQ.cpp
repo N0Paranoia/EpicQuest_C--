@@ -14,6 +14,7 @@ EQ::EQ()
     Renderer = nullptr;
     Texture = nullptr;
     PlayerTexture = nullptr;
+    Font = nullptr;
 }
 
 bool EQ::Init()
@@ -92,12 +93,12 @@ void EQ::Loop()
 
 void EQ::Render()
 {
-    //Set Default color
-    SDL_SetRenderDrawColor( Renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+    //Set Default colors
+    SDL_SetRenderDrawColor(Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     //Clear screen
     SDL_RenderClear(Renderer);
     //Render Texture to screen
-    wallpaperTexture.Render(Renderer, 0, 0);
+    wallpaperTexture.Render(Renderer, 0, 0, NULL);
     // Render Player data
     player.Render(Renderer);
 

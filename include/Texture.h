@@ -16,7 +16,7 @@ class Texture
         virtual ~Texture();
         bool LoadFromFile(SDL_Renderer* Renderer, std::string path);
         void Free();
-        void Render(SDL_Renderer* Renderer, int x, int y);
+        void Render(SDL_Renderer* Renderer, int x, int y, SDL_Rect* clip = NULL);
         int getWidth();
         int getHeight();
     protected:

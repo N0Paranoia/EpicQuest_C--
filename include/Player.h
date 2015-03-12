@@ -18,6 +18,7 @@ class Player
         int Xvel;
         int Yvel;
         int Speed;
+        SDL_Rect PlayerClips[4];
 
     public:
         int playerX;
