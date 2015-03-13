@@ -377,13 +377,13 @@
 1425393533 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_render.cpp
 	"CApp.h"
 
-1426171003 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
+1426255020 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
 	"EQ.h"
 	"Player.h"
 	"Texture.h"
 	"Constants.h"
 
-1426168654 c:\users\nsmm\c_c++\epicquest_cpp\include\eq.h
+1426255479 c:\users\nsmm\c_c++\epicquest_cpp\include\eq.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -460,12 +460,12 @@
 	<string>
 	<iostream>
 
-1426170925 source:c:\users\nsmm\c_c++\epicquest_cpp\src\player.cpp
+1426253739 source:c:\users\nsmm\c_c++\epicquest_cpp\src\player.cpp
 	"Player.h"
 	"Texture.h"
 	"Constants.h"
 
-1426170687 c:\users\nsmm\c_c++\epicquest_cpp\include\player.h
+1426256622 c:\users\nsmm\c_c++\epicquest_cpp\include\player.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>

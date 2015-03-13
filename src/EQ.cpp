@@ -31,7 +31,7 @@ bool EQ::Init()
         return false;
     }
 
-    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED)) == NULL)
+    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)) == NULL)
     {
         cout << "Unable to create Renderer! SDL_Error: " << SDL_GetError() << endl;
         return false;
@@ -77,8 +77,6 @@ void EQ::Event(SDL_Event* event)
             break;
         }
     }
-
-    //player.Event(event);
 }
 
 void EQ::Input()

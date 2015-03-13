@@ -18,7 +18,16 @@ class Player
         int Xvel;
         int Yvel;
         int Speed;
-        SDL_Rect PlayerClips[4];
+        int frame;
+        int StartFrameLeft;
+        int EndFrameLeft;
+        int StartFrameRight;
+        int EndFrameRight;
+        int IdleFrameLeft;
+        int IdleFrameRight;
+        SDL_Rect PlayerClips[18];
+        bool WalkingLeft;
+        bool WalkingRight;
 
     public:
         int playerX;
