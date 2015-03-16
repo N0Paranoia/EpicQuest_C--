@@ -197,26 +197,6 @@ void Player::Move(Direction dir)
     }
 }
 
-int Player::GetPlayerPosX()
-{
-    return playerRect.x;
-}
-
-int Player::GetPlayerPosY()
-{
-    return playerRect.y;
-}
-
-int Player::GetPlayerWidth()
-{
-    return playerRect.w;
-}
-
-int Player::GetPlayerHeight()
-{
-    return playerRect.h;
-}
-
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 {
     if(WalkingLeft)

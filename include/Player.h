@@ -38,10 +38,6 @@ class Player
         void Input();
         int LoadMedia(SDL_Renderer* Renderer);
         void Move(Direction dir);
-        int GetPlayerPosX();
-        int GetPlayerPosY();
-        int GetPlayerWidth();
-        int GetPlayerHeight();
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
         void Cleanup();
 

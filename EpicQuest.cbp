@@ -43,12 +43,12 @@
 		<Unit filename="include/EQ.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/Texture.h" />
-		<Unit filename="include/Tiles.h" />
+		<Unit filename="include/Tile.h" />
 		<Unit filename="src/Camera.cpp" />
 		<Unit filename="src/EQ.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/Texture.cpp" />
-		<Unit filename="src/Tiles.cpp" />
+		<Unit filename="src/Tile.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

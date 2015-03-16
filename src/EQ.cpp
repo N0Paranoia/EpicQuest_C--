@@ -2,12 +2,14 @@
 #include "Player.h"
 #include "Texture.h"
 #include "Camera.h"
+#include "Tile.h"
 #include "Constants.h"
 
 Player player;
+Tile tile;
 Camera camera;
 Texture wallpaperTexture;
-//Texture playerTexture;
+Texture tileTexture;
 
 EQ::EQ()
 {
@@ -15,7 +17,6 @@ EQ::EQ()
     Window = nullptr;
     Renderer = nullptr;
     Texture = nullptr;
-    PlayerTexture = nullptr;
     Font = nullptr;
 }
 
@@ -51,6 +52,11 @@ bool EQ::LoadMedia()
 {
     //Load Player texture
     if((player.LoadMedia(Renderer)) == NULL)
+    {
+        return false;
+    }
+    //Load Tile Sheet
+    if((tile.LoadMedia(Renderer)) == NULL)
     {
         return false;
     }
@@ -99,6 +105,8 @@ void EQ::Render()
     SDL_RenderClear(Renderer);
     //Render Texture to screen
     wallpaperTexture.Render(Renderer, 0, 0);
+    // Render Tiles
+    tile.Render(Renderer, &camera.camera);
     // Render Player data
     player.Render(Renderer, &camera.camera);
 
@@ -120,11 +128,6 @@ void EQ::Cleanup()
     {
         SDL_DestroyTexture(Texture);
         Texture = nullptr;
-    }
-    if(PlayerTexture)
-    {
-        SDL_DestroyTexture(PlayerTexture);
-        PlayerTexture = nullptr;
     }
     if(Window)
     {

@@ -38,16 +38,6 @@ void Camera::Follow(SDL_Rect* playerRect)
     }
 }
 
-int Camera::GetCameraX()
-{
-    return camera.x;
-}
-
-int Camera::GetCameraY()
-{
-    return camera.y;
-}
-
 void Camera::Render(SDL_Renderer* Renderer)
 {
     SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xff) ;

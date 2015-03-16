@@ -10,6 +10,8 @@ const int LEVEL_WIDTH = 30;
 const int LEVEL_HEIGHT = 30;
 
 //Set Tile Types
+const int TOTAL_TILES = 900;
+
 const int CLEAR = 0;
 const int SKY = 1;
 const int WALL = 2;

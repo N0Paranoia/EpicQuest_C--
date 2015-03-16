@@ -18,7 +18,6 @@ class EQ
         SDL_Window* Window ;
         SDL_Renderer* Renderer;
         SDL_Texture* Texture;
-        SDL_Texture* PlayerTexture;
         TTF_Font* Font;
 
     public:
