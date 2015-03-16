@@ -359,7 +359,7 @@
 1425389871 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_onrender.cpp
 	"CApp.h"
 
-1425908331 c:\users\nsmm\c_c++\epicquest_cpp\include\constants.h
+1426493481 c:\users\nsmm\c_c++\epicquest_cpp\include\constants.h
 
 1425393472 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_cleanup.cpp
 	"CApp.h"
@@ -377,10 +377,11 @@
 1425393533 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_render.cpp
 	"CApp.h"
 
-1426255020 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
+1426508583 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
 	"EQ.h"
 	"Player.h"
 	"Texture.h"
+	"Camera.h"
 	"Constants.h"
 
 1426255479 c:\users\nsmm\c_c++\epicquest_cpp\include\eq.h
@@ -460,12 +461,12 @@
 	<string>
 	<iostream>
 
-1426253739 source:c:\users\nsmm\c_c++\epicquest_cpp\src\player.cpp
+1426507944 source:c:\users\nsmm\c_c++\epicquest_cpp\src\player.cpp
 	"Player.h"
 	"Texture.h"
 	"Constants.h"
 
-1426256622 c:\users\nsmm\c_c++\epicquest_cpp\include\player.h
+1426508276 c:\users\nsmm\c_c++\epicquest_cpp\include\player.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -505,4 +506,19 @@
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
+
+1426508395 source:c:\users\nsmm\c_c++\epicquest_cpp\src\camera.cpp
+	"Camera.h"
+	"Constants.h"
+	<iostream>
+
+1426508236 c:\users\nsmm\c_c++\epicquest_cpp\include\camera.h
+	<SDL.h>
+
+1426502112 source:c:\users\nsmm\c_c++\epicquest_cpp\src\tiles.cpp
+	"Tiles.h"
+	"Constants.h"
+
+1426502111 c:\users\nsmm\c_c++\epicquest_cpp\include\tiles.h
+	<SDL.h>
 

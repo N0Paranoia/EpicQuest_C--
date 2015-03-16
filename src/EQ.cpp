@@ -1,9 +1,11 @@
 #include "EQ.h"
 #include "Player.h"
 #include "Texture.h"
+#include "Camera.h"
 #include "Constants.h"
 
 Player player;
+Camera camera;
 Texture wallpaperTexture;
 //Texture playerTexture;
 
@@ -31,7 +33,7 @@ bool EQ::Init()
         return false;
     }
 
-    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)) == NULL)
+    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED/* | SDL_RENDERER_PRESENTVSYNC*/)) == NULL)
     {
         cout << "Unable to create Renderer! SDL_Error: " << SDL_GetError() << endl;
         return false;
@@ -86,7 +88,7 @@ void EQ::Input()
 
 void EQ::Loop()
 {
-
+    camera.Follow(&player.playerRect);
 }
 
 void EQ::Render()
@@ -96,9 +98,12 @@ void EQ::Render()
     //Clear screen
     SDL_RenderClear(Renderer);
     //Render Texture to screen
-    wallpaperTexture.Render(Renderer, 0, 0, NULL);
+    wallpaperTexture.Render(Renderer, 0, 0);
     // Render Player data
-    player.Render(Renderer);
+    player.Render(Renderer, &camera.camera);
+
+    //Render Camara outline
+    camera.Render(Renderer);
 
     //Update screen
     SDL_RenderPresent(Renderer);

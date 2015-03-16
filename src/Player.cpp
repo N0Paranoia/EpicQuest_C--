@@ -8,10 +8,10 @@ Texture SpriteSheetTexture;
 
 Player::Player()
 {
-    playerX = 0;
-    playerY = 0;
-    playerWidth = TILE_SIZE;
-    playerHeight = TILE_SIZE*2;
+    playerRect.x = 0;
+    playerRect.y = 0;
+    playerRect.w = TILE_SIZE;
+    playerRect.h = TILE_SIZE*2;
     Xvel = 0;
     Yvel = 0;
     Speed = 4;
@@ -68,95 +68,95 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
     }
     else
     {
-        PlayerClips[0].x = 0 * playerWidth;
-        PlayerClips[0].y = 0 * playerHeight;
-        PlayerClips[0].w = playerWidth;
-        PlayerClips[0].h = playerHeight;
+        PlayerClips[0].x = 0 * playerRect.w;
+        PlayerClips[0].y = 0 * playerRect.h;
+        PlayerClips[0].w = playerRect.w;
+        PlayerClips[0].h = playerRect.h;
 
-        PlayerClips[1].x = 1 * playerWidth;
-        PlayerClips[1].y = 0 * playerHeight;
-        PlayerClips[1].w = playerWidth;
-        PlayerClips[1].h = playerHeight;
+        PlayerClips[1].x = 1 * playerRect.w;
+        PlayerClips[1].y = 0 * playerRect.h;
+        PlayerClips[1].w = playerRect.w;
+        PlayerClips[1].h = playerRect.h;
 
-        PlayerClips[2].x = 2 * playerWidth;
-        PlayerClips[2].y = 0 * playerHeight;
-        PlayerClips[2].w = playerWidth;
-        PlayerClips[2].h = playerHeight;
+        PlayerClips[2].x = 2 * playerRect.w;
+        PlayerClips[2].y = 0 * playerRect.h;
+        PlayerClips[2].w = playerRect.w;
+        PlayerClips[2].h = playerRect.h;
 
-        PlayerClips[3].x = 3 * playerWidth;
-        PlayerClips[3].y = 0 * playerHeight;
-        PlayerClips[3].w = playerWidth;
-        PlayerClips[3].h = playerHeight;
+        PlayerClips[3].x = 3 * playerRect.w;
+        PlayerClips[3].y = 0 * playerRect.h;
+        PlayerClips[3].w = playerRect.w;
+        PlayerClips[3].h = playerRect.h;
 
-        PlayerClips[4].x = 4 * playerWidth;
-        PlayerClips[4].y = 0 * playerHeight;
-        PlayerClips[4].w = playerWidth;
-        PlayerClips[4].h = playerHeight;
+        PlayerClips[4].x = 4 * playerRect.w;
+        PlayerClips[4].y = 0 * playerRect.h;
+        PlayerClips[4].w = playerRect.w;
+        PlayerClips[4].h = playerRect.h;
 
-        PlayerClips[5].x = 5 * playerWidth;
-        PlayerClips[5].y = 0 * playerHeight;
-        PlayerClips[5].w = playerWidth;
-        PlayerClips[5].h = playerHeight;
+        PlayerClips[5].x = 5 * playerRect.w;
+        PlayerClips[5].y = 0 * playerRect.h;
+        PlayerClips[5].w = playerRect.w;
+        PlayerClips[5].h = playerRect.h;
 
-        PlayerClips[6].x = 6 * playerWidth;
-        PlayerClips[6].y = 0 * playerHeight;
-        PlayerClips[6].w = playerWidth;
-        PlayerClips[6].h = playerHeight;
+        PlayerClips[6].x = 6 * playerRect.w;
+        PlayerClips[6].y = 0 * playerRect.h;
+        PlayerClips[6].w = playerRect.w;
+        PlayerClips[6].h = playerRect.h;
 
-        PlayerClips[7].x = 7 * playerWidth;
-        PlayerClips[7].y = 0 * playerHeight;
-        PlayerClips[7].w = playerWidth;
-        PlayerClips[7].h = playerHeight;
+        PlayerClips[7].x = 7 * playerRect.w;
+        PlayerClips[7].y = 0 * playerRect.h;
+        PlayerClips[7].w = playerRect.w;
+        PlayerClips[7].h = playerRect.h;
 
-        PlayerClips[8].x = 8 * playerWidth;
-        PlayerClips[8].y = 0 * playerHeight;
-        PlayerClips[8].w = playerWidth;
-        PlayerClips[8].h = playerHeight;
+        PlayerClips[8].x = 8 * playerRect.w;
+        PlayerClips[8].y = 0 * playerRect.h;
+        PlayerClips[8].w = playerRect.w;
+        PlayerClips[8].h = playerRect.h;
 
-        PlayerClips[9].x = 9 * playerWidth;
-        PlayerClips[9].y = 0 * playerHeight;
-        PlayerClips[9].w = playerWidth;
-        PlayerClips[9].h = playerHeight;
+        PlayerClips[9].x = 9 * playerRect.w;
+        PlayerClips[9].y = 0 * playerRect.h;
+        PlayerClips[9].w = playerRect.w;
+        PlayerClips[9].h = playerRect.h;
 
-        PlayerClips[10].x = 10 * playerWidth;
-        PlayerClips[10].y = 0 * playerHeight;
-        PlayerClips[10].w = playerWidth;
-        PlayerClips[10].h = playerHeight;
+        PlayerClips[10].x = 10 * playerRect.w;
+        PlayerClips[10].y = 0 * playerRect.h;
+        PlayerClips[10].w = playerRect.w;
+        PlayerClips[10].h = playerRect.h;
 
-        PlayerClips[11].x = 11 * playerWidth;
-        PlayerClips[11].y = 0 * playerHeight;
-        PlayerClips[11].w = playerWidth;
-        PlayerClips[11].h = playerHeight;
+        PlayerClips[11].x = 11 * playerRect.w;
+        PlayerClips[11].y = 0 * playerRect.h;
+        PlayerClips[11].w = playerRect.w;
+        PlayerClips[11].h = playerRect.h;
 
-        PlayerClips[12].x = 12 * playerWidth;
-        PlayerClips[12].y = 0 * playerHeight;
-        PlayerClips[12].w = playerWidth;
-        PlayerClips[12].h = playerHeight;
+        PlayerClips[12].x = 12 * playerRect.w;
+        PlayerClips[12].y = 0 * playerRect.h;
+        PlayerClips[12].w = playerRect.w;
+        PlayerClips[12].h = playerRect.h;
 
-        PlayerClips[13].x = 13 * playerWidth;
-        PlayerClips[13].y = 0 * playerHeight;
-        PlayerClips[13].w = playerWidth;
-        PlayerClips[13].h = playerHeight;
+        PlayerClips[13].x = 13 * playerRect.w;
+        PlayerClips[13].y = 0 * playerRect.h;
+        PlayerClips[13].w = playerRect.w;
+        PlayerClips[13].h = playerRect.h;
 
-        PlayerClips[14].x = 14 * playerWidth;
-        PlayerClips[14].y = 0 * playerHeight;
-        PlayerClips[14].w = playerWidth;
-        PlayerClips[14].h = playerHeight;
+        PlayerClips[14].x = 14 * playerRect.w;
+        PlayerClips[14].y = 0 * playerRect.h;
+        PlayerClips[14].w = playerRect.w;
+        PlayerClips[14].h = playerRect.h;
 
-        PlayerClips[15].x = 15 * playerWidth;
-        PlayerClips[15].y = 0 * playerHeight;
-        PlayerClips[15].w = playerWidth;
-        PlayerClips[15].h = playerHeight;
+        PlayerClips[15].x = 15 * playerRect.w;
+        PlayerClips[15].y = 0 * playerRect.h;
+        PlayerClips[15].w = playerRect.w;
+        PlayerClips[15].h = playerRect.h;
 
-        PlayerClips[16].x = 16 * playerWidth;
-        PlayerClips[16].y = 0 * playerHeight;
-        PlayerClips[16].w = playerWidth;
-        PlayerClips[16].h = playerHeight;
+        PlayerClips[16].x = 16 * playerRect.w;
+        PlayerClips[16].y = 0 * playerRect.h;
+        PlayerClips[16].w = playerRect.w;
+        PlayerClips[16].h = playerRect.h;
 
-        PlayerClips[17].x = 17 * playerWidth;
-        PlayerClips[17].y = 0 * playerHeight;
-        PlayerClips[17].w = playerWidth;
-        PlayerClips[17].h = playerHeight;
+        PlayerClips[17].x = 17 * playerRect.w;
+        PlayerClips[17].y = 0 * playerRect.h;
+        PlayerClips[17].w = playerRect.w;
+        PlayerClips[17].h = playerRect.h;
     }
     return true;
 }
@@ -166,21 +166,58 @@ void Player::Move(Direction dir)
     switch(dir)
     {
     case left:
-        playerX -= Speed;
+        playerRect.x -= Speed;
         break;
     case right:
-        playerX += Speed;
+        playerRect.x += Speed;
         break;
     case up:
-        playerY -= Speed;
+        playerRect.y -= Speed;
         break;
     case down:
-        playerY += Speed;
+        playerRect.y += Speed;
         break;
+    }
+    //Temp to keep player in bounds
+    if(playerRect.x < 0)
+    {
+        playerRect.x = 0;
+    }
+    else if(playerRect.x > LEVEL_WIDTH*TILE_SIZE - playerRect.w)
+    {
+        playerRect.x = LEVEL_WIDTH*TILE_SIZE - playerRect.w;
+    }
+    if(playerRect.y < 0)
+    {
+        playerRect.y = 0;
+    }
+    else if(playerRect.y > LEVEL_HEIGHT*TILE_SIZE - playerRect.h)
+    {
+        playerRect.y = LEVEL_HEIGHT*TILE_SIZE - playerRect.h;
     }
 }
 
-void Player::Render(SDL_Renderer* Renderer)
+int Player::GetPlayerPosX()
+{
+    return playerRect.x;
+}
+
+int Player::GetPlayerPosY()
+{
+    return playerRect.y;
+}
+
+int Player::GetPlayerWidth()
+{
+    return playerRect.w;
+}
+
+int Player::GetPlayerHeight()
+{
+    return playerRect.h;
+}
+
+void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 {
     if(WalkingLeft)
     {
@@ -199,7 +236,7 @@ void Player::Render(SDL_Renderer* Renderer)
         }
     }
     //Render Frame
-    SpriteSheetTexture.Render(Renderer, playerX, playerY, &PlayerClips[frame]);
+    SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
 }
 
 void Player::Cleanup()

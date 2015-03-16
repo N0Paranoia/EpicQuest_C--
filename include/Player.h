@@ -11,8 +11,6 @@ using namespace std;
 class Player
 {
     private:
-        int playerWidth;
-        int playerHeight;
         enum Direction {left, right, up, down};
         const Uint8* keyState;
         int Xvel;
@@ -25,13 +23,14 @@ class Player
         int EndFrameRight;
         int IdleFrameLeft;
         int IdleFrameRight;
+        //Render Rect
         SDL_Rect PlayerClips[18];
         bool WalkingLeft;
         bool WalkingRight;
 
     public:
-        int playerX;
-        int playerY;
+        //Collision box
+        SDL_Rect playerRect;
 
         Player();
         virtual ~Player();
@@ -39,7 +38,11 @@ class Player
         void Input();
         int LoadMedia(SDL_Renderer* Renderer);
         void Move(Direction dir);
-        void Render(SDL_Renderer* Renderer);
+        int GetPlayerPosX();
+        int GetPlayerPosY();
+        int GetPlayerWidth();
+        int GetPlayerHeight();
+        void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
         void Cleanup();
 
     protected:
