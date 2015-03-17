@@ -9,12 +9,14 @@ class Camera
 {
     public:
         SDL_Rect camera;
+        SDL_Rect center;
+        SDL_Rect test;
     public:
         Camera();
         virtual ~Camera();
-        void Follow(SDL_Rect* playerRect);
-        int GetCameraX();
-        int GetCameraY();
+        void Center(SDL_Rect* playerRect);
+        void Follow();
+        void Update(SDL_Rect* playerRect);
         void Render(SDL_Renderer* Renderer);
     protected:
     private:

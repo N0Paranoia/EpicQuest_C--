@@ -94,7 +94,7 @@ void EQ::Input()
 
 void EQ::Loop()
 {
-    camera.Follow(&player.playerRect);
+    camera.Center(&player.playerRect);
 }
 
 void EQ::Render()
@@ -109,7 +109,6 @@ void EQ::Render()
     tile.Render(Renderer, &camera.camera);
     // Render Player data
     player.Render(Renderer, &camera.camera);
-
     //Render Camara outline
     camera.Render(Renderer);
 

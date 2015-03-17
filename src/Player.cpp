@@ -216,7 +216,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
         }
     }
     //Render Frame
-    SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
+    SpriteSheetTexture.Render(Renderer, playerRect.x- camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
 }
 
 void Player::Cleanup()
