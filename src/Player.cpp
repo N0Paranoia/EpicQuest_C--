@@ -11,7 +11,7 @@ Player::Player()
     playerRect.x = 0;
     playerRect.y = 0;
     playerRect.w = TILE_SIZE;
-    playerRect.h = TILE_SIZE*2;
+    playerRect.h = 2*TILE_SIZE;
     Xvel = 0;
     Yvel = 0;
     Speed = 4;
@@ -183,17 +183,17 @@ void Player::Move(Direction dir)
     {
         playerRect.x = 0;
     }
-    else if(playerRect.x > LEVEL_WIDTH*TILE_SIZE - playerRect.w)
+    else if(playerRect.x + playerRect.w > LEVEL_WIDTH)
     {
-        playerRect.x = LEVEL_WIDTH*TILE_SIZE - playerRect.w;
+        playerRect.x = LEVEL_WIDTH - playerRect.w;
     }
     if(playerRect.y < 0)
     {
         playerRect.y = 0;
     }
-    else if(playerRect.y > LEVEL_HEIGHT*TILE_SIZE - playerRect.h)
+    else if(playerRect.y + playerRect.h > LEVEL_HEIGHT)
     {
-        playerRect.y = LEVEL_HEIGHT*TILE_SIZE - playerRect.h;
+        playerRect.y = LEVEL_HEIGHT - playerRect.h;
     }
 }
 
@@ -216,7 +216,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
         }
     }
     //Render Frame
-    SpriteSheetTexture.Render(Renderer, playerRect.x- camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
+    SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
 }
 
 void Player::Cleanup()

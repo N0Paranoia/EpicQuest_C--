@@ -8,8 +8,8 @@ using namespace std;
 class Camera
 {
     public:
-        SDL_Rect camera;
-        SDL_Rect center;
+        SDL_Rect cameraRect;
+        SDL_Rect centerRect;
         SDL_Rect test;
     public:
         Camera();

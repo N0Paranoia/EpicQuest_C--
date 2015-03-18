@@ -95,6 +95,7 @@ void EQ::Input()
 void EQ::Loop()
 {
     camera.Center(&player.playerRect);
+    //camera.Follow(&player.playerRect);
 }
 
 void EQ::Render()
@@ -106,9 +107,9 @@ void EQ::Render()
     //Render Texture to screen
     wallpaperTexture.Render(Renderer, 0, 0);
     // Render Tiles
-    tile.Render(Renderer, &camera.camera);
+    tile.Render(Renderer, &camera.cameraRect);
     // Render Player data
-    player.Render(Renderer, &camera.camera);
+    player.Render(Renderer, &camera.cameraRect);
     //Render Camara outline
     camera.Render(Renderer);
 

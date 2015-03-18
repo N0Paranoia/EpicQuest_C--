@@ -110,5 +110,7 @@ SDL_Rect Tile::GetBox()
 void Tile::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 {
     TileSheetTexture.Render(Renderer, TileBox.x - camera->x, TileBox.y - camera->y, &TileClips[WALL]);
-    TileSheetTexture.Render(Renderer, (LEVEL_WIDTH*TILE_SIZE - TILE_SIZE) - camera->x, TileBox.y - camera->y, &TileClips[WALL]);
+    TileSheetTexture.Render(Renderer, (LEVEL_WIDTH - TILE_SIZE) - camera->x, TileBox.y - camera->y, &TileClips[WALL]);
+    TileSheetTexture.Render(Renderer, TileBox.x - camera->x, (LEVEL_HEIGHT - TILE_SIZE) - camera->y, &TileClips[WALL]);
+    TileSheetTexture.Render(Renderer, (LEVEL_WIDTH - TILE_SIZE) - camera->x, (LEVEL_HEIGHT - TILE_SIZE) - camera->y, &TileClips[WALL]);
 }
