@@ -8,18 +8,24 @@ Texture TileSheetTexture;
 
 Tile::Tile()
 {
-    TileBox.x = 0;
-    TileBox.y = 0;
-    TileBox.w = TILE_SIZE;
-    TileBox.h = TILE_SIZE;
 
-    TileType = NULL;
 }
 
 Tile::~Tile()
 {
     //dtor
 }
+
+int Tile::Init(int x, int y, int TileType)
+{
+    TileBox.x = x;
+    TileBox.y = y;
+    TileBox.w = TILE_SIZE;
+    TileBox.h = TILE_SIZE;
+
+    Type = TileType;
+}
+
 
 int Tile::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[])
 {
@@ -120,6 +126,24 @@ bool Tile::SetTiles(Tile* tiles[])
     else
     {
         //Initialize tiles
+        for(int i = 0; i < TOTAL_TILES; i++)
+        {
+            int Type = -1;
+
+            map >> Type;
+
+            if(map.fail())
+            {
+                cout << "Error loading map: Unexpected end of file!" << endl;
+                return false;
+                break;
+            }
+            //if number is valid tile number
+            if((Type >= 0) && (Type < TOTAL_TILE_SPRITES))
+            {
+                cout << Type;
+            }
+        }
 
     }
     return true;
@@ -127,11 +151,11 @@ bool Tile::SetTiles(Tile* tiles[])
 
 int Tile::GetType()
 {
-    return TileType;
+    return Type;
 }
 
 SDL_Rect Tile::GetBox()
-{
+{q
     return TileBox;
 }
 

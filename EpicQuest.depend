@@ -72,7 +72,7 @@
 1394937198 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1425375087 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
+1425415888 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
@@ -394,7 +394,7 @@
 	<iostream>
 	<cmath>
 
-1426532221 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq.cpp
+1426712288 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq.cpp
 	"EQ.h"
 	"Player.h"
 	"Texture.h"
@@ -421,7 +421,7 @@
 	"EQ.h"
 	"Constants.h"
 
-1426532221 c:\users\tijn\documents\github\epicquest_cpp\include\constants.h
+1426709904 c:\users\tijn\documents\github\epicquest_cpp\include\constants.h
 
 1425933075 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq_loop.cpp
 	"EQ.h"
@@ -450,7 +450,7 @@
 1425896184 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_fps.cpp
 	"EQ.h"
 
-1376152742 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_image.h
+1376156342 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -484,7 +484,7 @@
 	<SDL_image.h>
 	<iostream>
 
-1426532221 source:c:\users\tijn\documents\github\epicquest_cpp\src\player.cpp
+1426707212 source:c:\users\tijn\documents\github\epicquest_cpp\src\player.cpp
 	"Player.h"
 	"Texture.h"
 	"Constants.h"
@@ -507,7 +507,7 @@
 1426188250 source:c:\users\tijn\documents\github\epicquest_cpp\src\texture.cpp
 	"Texture.h"
 
-1376152944 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_ttf.h
+1376156544 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
@@ -535,19 +535,30 @@
 1426684137 c:\users\nsmm\c_c++\epicquest_cpp\include\tile.h
 	<SDL.h>
 
-1426540296 source:c:\users\tijn\documents\github\epicquest_cpp\src\camera.cpp
+1426707212 source:c:\users\tijn\documents\github\epicquest_cpp\src\camera.cpp
 	"Camera.h"
 	"Constants.h"
 	<iostream>
 
-1426532221 c:\users\tijn\documents\github\epicquest_cpp\include\camera.h
+1426707212 c:\users\tijn\documents\github\epicquest_cpp\include\camera.h
 	<SDL.h>
 
-1426532221 c:\users\tijn\documents\github\epicquest_cpp\include\tile.h
+1426713613 c:\users\tijn\documents\github\epicquest_cpp\include\tile.h
 	<SDL.h>
 
-1426532221 source:c:\users\tijn\documents\github\epicquest_cpp\src\tile.cpp
+1426713061 source:c:\users\tijn\documents\github\epicquest_cpp\src\tile.cpp
 	"Tile.h"
 	"Constants.h"
 	"Texture.h"
+	<fstream>
+
+1426710653 c:\users\tijn\documents\github\epicquest_cpp\include\level.h
+	<SDL.h>
+
+1426712883 source:c:\users\tijn\documents\github\epicquest_cpp\src\tegel.cpp
+	"Tegel.h"
+	"Constants.h"
+
+1426712864 c:\users\tijn\documents\github\epicquest_cpp\include\tegel.h
+	<SDL.h>
 

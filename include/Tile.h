@@ -1,25 +1,25 @@
 #ifndef TILE_H
 #define TILE_H
-#include <SDL.h>
 
+#include <SDL.h>
 
 class Tile
 {
     public:
         Tile();
         virtual ~Tile();
-        int GetType();
+        int Init(int x, int y, int TileType);
         int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[]);
-        void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
         bool SetTiles(Tile* tiles[]);
-        //Get collision box
+        int GetType();
         SDL_Rect GetBox();
-
+        void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
     protected:
     private:
+    public:
+        int Type;
         SDL_Rect TileBox;
         SDL_Rect TileClips[15];
-        int TileType;
 };
 
-#endif // TILES_H
+#endif // TILE_H

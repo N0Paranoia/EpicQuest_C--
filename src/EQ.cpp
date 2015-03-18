@@ -95,7 +95,6 @@ void EQ::Input()
 void EQ::Loop()
 {
     camera.Center(&player.playerRect);
-    //camera.Follow(&player.playerRect);
 }
 
 void EQ::Render()

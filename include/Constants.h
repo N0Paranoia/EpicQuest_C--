@@ -11,6 +11,7 @@ const int LEVEL_HEIGHT = 30;
 
 //Set Tile Types
 const int TOTAL_TILES = 900;
+const int TOTAL_TILE_SPRITES = 15;
 
 const int CLEAR = 0;
 const int SKY = 1;
