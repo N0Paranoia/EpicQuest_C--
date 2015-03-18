@@ -6,8 +6,8 @@ const int WINDOW_HEIGHT = 576;
 
 const int TILE_SIZE = 48;
 
-const int LEVEL_WIDTH = 30*TILE_SIZE;
-const int LEVEL_HEIGHT = 30*TILE_SIZE;
+const int LEVEL_WIDTH = 30;
+const int LEVEL_HEIGHT = 30;
 
 //Set Tile Types
 const int TOTAL_TILES = 900;

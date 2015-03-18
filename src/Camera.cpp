@@ -50,27 +50,23 @@ void Camera::Follow()
     {
         cameraRect.x = 0;
     }
-    if((cameraRect.x + cameraRect.w) > LEVEL_WIDTH)
+    if((cameraRect.x + cameraRect.w) > LEVEL_WIDTH*TILE_SIZE)
     {
-        cameraRect.x = LEVEL_WIDTH - cameraRect.w;
+        cameraRect.x = LEVEL_WIDTH*TILE_SIZE - cameraRect.w;
     }
     if(cameraRect.y < 0)
     {
         cameraRect.y = 0;
     }
-    if((cameraRect.y + cameraRect.h) > LEVEL_HEIGHT)
+    if((cameraRect.y + cameraRect.h) > LEVEL_HEIGHT*TILE_SIZE)
     {
-        cameraRect.y = LEVEL_HEIGHT - cameraRect.h;
+        cameraRect.y = LEVEL_HEIGHT*TILE_SIZE - cameraRect.h;
     }
 }
 
-
 void Camera::Render(SDL_Renderer* Renderer)
 {
-    cout << "CameraLeft = " << cameraRect.x << " | " << "CameraRight = " << cameraRect.x + cameraRect.w << " | " << "CameraTop = " << cameraRect.y << " | " << "CameraBottom = " << cameraRect.y + cameraRect.h << endl;
-    cout << "CenterLeft = " << centerRect.x << " | " << "CenterRight = " << centerRect.x + centerRect.w << " | " << "CenterTop = " << centerRect.y << " | " << "CenterBottom = " << centerRect.y + centerRect.h << endl;
-
-    SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xff);
+    SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0x00, 0xff);
     test = {centerRect.x - cameraRect.x, centerRect.y - cameraRect.y, centerRect.w, centerRect.h};
     SDL_RenderDrawRect(Renderer, &test);
 }

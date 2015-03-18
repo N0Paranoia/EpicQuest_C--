@@ -56,7 +56,7 @@ bool EQ::LoadMedia()
         return false;
     }
     //Load Tile Sheet
-    if((tile.LoadMedia(Renderer)) == NULL)
+    if((tile.LoadMedia(Renderer, NULL)) == NULL)
     {
         return false;
     }

@@ -9,8 +9,9 @@ class Tile
         Tile();
         virtual ~Tile();
         int GetType();
-        int LoadMedia(SDL_Renderer* Renderer);
+        int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[]);
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
+        bool SetTiles(Tile* tiles[]);
         //Get collision box
         SDL_Rect GetBox();
 

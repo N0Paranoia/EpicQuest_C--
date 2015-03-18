@@ -1,6 +1,7 @@
 #include "Tile.h"
 #include "Constants.h"
 #include "Texture.h"
+#include <fstream>
 
 //Texture playerTexture;
 Texture TileSheetTexture;
@@ -20,9 +21,15 @@ Tile::~Tile()
     //dtor
 }
 
-int Tile::LoadMedia(SDL_Renderer* Renderer)
+int Tile::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[])
 {
-        //Load Player spritesheet
+    //Load Tilemap
+    if(!SetTiles(tiles))
+    {
+        cout << "Unable to load Tile Map! SDL_Error: " << SDL_GetError() << endl;
+        return false;
+    }
+    //Load Player spritesheet
     if((TileSheetTexture.LoadFromFile(Renderer, "assets/tileSheet48.png")) == NULL)
     {
         cout << "Unable to load Tile Texture! SDL_Error: " << SDL_GetError() << endl;
@@ -30,6 +37,7 @@ int Tile::LoadMedia(SDL_Renderer* Renderer)
     }
     else
     {
+        //All tile textures
         TileClips[CLEAR].x = -TILE_SIZE;
         TileClips[CLEAR].y = -TILE_SIZE;
         TileClips[CLEAR].w = TILE_SIZE;
@@ -97,6 +105,26 @@ int Tile::LoadMedia(SDL_Renderer* Renderer)
     }
 }
 
+bool Tile::SetTiles(Tile* tiles[])
+{
+    int x = 0;
+    int y = 0;
+
+    std::ifstream map("assets/level.map");
+
+    if (map == NULL)
+    {
+        cout << "Unable to load Tile Map file!" << endl;
+        return false;
+    }
+    else
+    {
+        //Initialize tiles
+
+    }
+    return true;
+}
+
 int Tile::GetType()
 {
     return TileType;
@@ -109,8 +137,16 @@ SDL_Rect Tile::GetBox()
 
 void Tile::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 {
-    TileSheetTexture.Render(Renderer, TileBox.x - camera->x, TileBox.y - camera->y, &TileClips[WALL]);
-    TileSheetTexture.Render(Renderer, (LEVEL_WIDTH - TILE_SIZE) - camera->x, TileBox.y - camera->y, &TileClips[WALL]);
-    TileSheetTexture.Render(Renderer, TileBox.x - camera->x, (LEVEL_HEIGHT - TILE_SIZE) - camera->y, &TileClips[WALL]);
-    TileSheetTexture.Render(Renderer, (LEVEL_WIDTH - TILE_SIZE) - camera->x, (LEVEL_HEIGHT - TILE_SIZE) - camera->y, &TileClips[WALL]);
+    for(int y = 0; y < LEVEL_HEIGHT; y++)
+    {
+        for(int x = 0; x < LEVEL_WIDTH; x++)
+        {
+            TileSheetTexture.Render(Renderer, x*TILE_SIZE - camera->x, y*TILE_SIZE - camera->y, &TileClips[WOOD]);
+
+        }
+    }
+    //TileSheetTexture.Render(Renderer, TileBox.x - camera->x, TileBox.y - camera->y, &TileClips[WALL]);
+    //TileSheetTexture.Render(Renderer, (LEVEL_WIDTH*TILE_SIZE - TILE_SIZE) - camera->x, TileBox.y - camera->y, &TileClips[WALL]);
+    //TileSheetTexture.Render(Renderer, TileBox.x - camera->x, (LEVEL_HEIGHT*TILE_SIZE - TILE_SIZE) - camera->y, &TileClips[WALL]);
+    //TileSheetTexture.Render(Renderer, (LEVEL_WIDTH*TILE_SIZE - TILE_SIZE) - camera->x, (LEVEL_HEIGHT*TILE_SIZE - TILE_SIZE) - camera->y, &TileClips[WALL]);
 }

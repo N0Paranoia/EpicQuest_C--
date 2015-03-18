@@ -183,17 +183,17 @@ void Player::Move(Direction dir)
     {
         playerRect.x = 0;
     }
-    else if(playerRect.x + playerRect.w > LEVEL_WIDTH)
+    else if(playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE)
     {
-        playerRect.x = LEVEL_WIDTH - playerRect.w;
+        playerRect.x = LEVEL_WIDTH*TILE_SIZE - playerRect.w;
     }
     if(playerRect.y < 0)
     {
         playerRect.y = 0;
     }
-    else if(playerRect.y + playerRect.h > LEVEL_HEIGHT)
+    else if(playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE)
     {
-        playerRect.y = LEVEL_HEIGHT - playerRect.h;
+        playerRect.y = LEVEL_HEIGHT*TILE_SIZE - playerRect.h;
     }
 }
 
