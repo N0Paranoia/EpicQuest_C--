@@ -2,11 +2,11 @@
 #include "Player.h"
 #include "Texture.h"
 #include "Camera.h"
-#include "Tile.h"
+#include "World.h"
 #include "Constants.h"
 
 Player player;
-Tile tile;
+World world;
 Camera camera;
 Texture wallpaperTexture;
 Texture tileTexture;
@@ -50,13 +50,15 @@ bool EQ::Init()
 
 bool EQ::LoadMedia()
 {
+    //The level tiles
+    Tile* tileSet[ TOTAL_TILES ];
     //Load Player texture
     if((player.LoadMedia(Renderer)) == NULL)
     {
         return false;
     }
     //Load Tile Sheet
-    if((tile.LoadMedia(Renderer, NULL)) == NULL)
+    if((world.LoadMedia(Renderer, tileSet)) == NULL)
     {
         return false;
     }
@@ -106,12 +108,11 @@ void EQ::Render()
     //Render Texture to screen
     wallpaperTexture.Render(Renderer, 0, 0);
     // Render Tiles
-    tile.Render(Renderer, &camera.cameraRect);
+    world.Render(Renderer, &camera.cameraRect);
     // Render Player data
     player.Render(Renderer, &camera.cameraRect);
     //Render Camara outline
     camera.Render(Renderer);
-
     //Update screen
     SDL_RenderPresent(Renderer);
 }

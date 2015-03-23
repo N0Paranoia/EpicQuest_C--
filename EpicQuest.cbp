@@ -44,11 +44,13 @@
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/Texture.h" />
 		<Unit filename="include/Tile.h" />
+		<Unit filename="include/World.h" />
 		<Unit filename="src/Camera.cpp" />
 		<Unit filename="src/EQ.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/Texture.cpp" />
 		<Unit filename="src/Tile.cpp" />
+		<Unit filename="src/World.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
