@@ -9,7 +9,8 @@ Player player;
 World world;
 Camera camera;
 Texture wallpaperTexture;
-Texture tileTexture;
+
+Tile* tileSet[TOTAL_TILES];
 
 EQ::EQ()
 {
@@ -50,8 +51,8 @@ bool EQ::Init()
 
 bool EQ::LoadMedia()
 {
+//    Tile* tileSet[TOTAL_TILES];
     //The level tiles
-    Tile* tileSet[ TOTAL_TILES ];
     //Load Player texture
     if((player.LoadMedia(Renderer)) == NULL)
     {
@@ -108,7 +109,7 @@ void EQ::Render()
     //Render Texture to screen
     wallpaperTexture.Render(Renderer, 0, 0);
     // Render Tiles
-    world.Render(Renderer, &camera.cameraRect);
+    world.Render(Renderer, &camera.cameraRect, tileSet);
     // Render Player data
     player.Render(Renderer, &camera.cameraRect);
     //Render Camara outline
@@ -139,6 +140,7 @@ void EQ::Cleanup()
 
 int EQ::Execute()
 {
+
     if(this->Init() == false)
     {
         return -1;

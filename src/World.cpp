@@ -145,14 +145,14 @@ bool World::SetTiles(Tile* tiles[])
                return false;
                break;
             }
-            x += 1;
+            x += TILE_SIZE;
 			//If we've gone too far
 			if(x >= LEVEL_WIDTH)
 			{
                 //Move back
 				x = 0;
 				//Move to the next row
-				y += 1;
+				y += TILE_SIZE;
 			}
         }
 
@@ -160,18 +160,12 @@ bool World::SetTiles(Tile* tiles[])
     return true;
 }
 
-void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
+void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[])
 {
-    /*
-    for(int y = 0; y < LEVEL_HEIGHT; y++)
+    for(int i = 0; i < TOTAL_TILE_SPRITES; i++)
     {
-        for(int x = 0; x < LEVEL_WIDTH; x++)
-        {
-            TileSheetTexture.Render(Renderer, x*TILE_SIZE - camera->x, y*TILE_SIZE - camera->y, &TileClips[WOOD]);
-        }
-    }*/
-    //TileSheetTexture.Render(Renderer, TileBox.x - camera->x, TileBox.y - camera->y, &TileClips[WALL]);
-    //TileSheetTexture.Render(Renderer, (LEVEL_WIDTH*TILE_SIZE - TILE_SIZE) - camera->x, TileBox.y - camera->y, &TileClips[WALL]);
-    //TileSheetTexture.Render(Renderer, TileBox.x - camera->x, (LEVEL_HEIGHT*TILE_SIZE - TILE_SIZE) - camera->y, &TileClips[WALL]);
-    //TileSheetTexture.Render(Renderer, (LEVEL_WIDTH*TILE_SIZE - TILE_SIZE) - camera->x, (LEVEL_HEIGHT*TILE_SIZE - TILE_SIZE) - camera->y, &TileClips[WALL]);
+//        TileSheetTexture.Render(Renderer, tiles.TileBox->x - camera->x, i*TILE_SIZE - camera->y, &TileClips[i]);
+        TileSheetTexture.Render(Renderer, i*TILE_SIZE - camera->x, i*TILE_SIZE - camera->y, &TileClips[i]);
+    }
+
 }

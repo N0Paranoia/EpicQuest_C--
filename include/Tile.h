@@ -8,7 +8,6 @@ class Tile
     public:
         Tile(int x, int y, int Type);
         virtual ~Tile();
-        void Render();
     protected:
     private:
     public:

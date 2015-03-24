@@ -2,6 +2,7 @@
 #define WORLD_H
 
 #include <SDL.h>
+#include "Constants.h"
 #include "Tile.h"
 
 class World
@@ -12,11 +13,11 @@ class World
         int Init(int x, int y, int TileType);
         int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[]);
         bool SetTiles(Tile* tiles[]);
-        void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
+        void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[]);
     protected:
     private:
     public:
-        SDL_Rect TileClips[15];
+        SDL_Rect TileClips[TOTAL_TILE_SPRITES];
 };
 
 #endif // WORLD_H

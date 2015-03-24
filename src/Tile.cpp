@@ -16,8 +16,3 @@ Tile::~Tile()
 {
     //dtor
 }
-
-void Tile::Render()
-{
-
-}
