@@ -18,6 +18,7 @@ class World
     private:
     public:
         SDL_Rect TileClips[TOTAL_TILE_SPRITES];
+        int Type;
 };
 
 #endif // WORLD_H

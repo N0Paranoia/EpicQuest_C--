@@ -1,6 +1,6 @@
 #include "EQ.h"
 #include "Player.h"
-#include "Texture.h"
+#include "Textures.h"
 #include "Camera.h"
 #include "World.h"
 #include "Constants.h"
@@ -8,8 +8,7 @@
 Player player;
 World world;
 Camera camera;
-Texture wallpaperTexture;
-
+Textures wallpaperTexture;
 Tile* tileSet[TOTAL_TILES];
 
 EQ::EQ()

@@ -1,9 +1,9 @@
 #include "Player.h"
-#include "Texture.h"
+#include "Textures.h"
 #include "Constants.h"
 
 //Texture playerTexture;
-Texture SpriteSheetTexture;
+Textures SpriteSheetTexture;
 
 
 Player::Player()

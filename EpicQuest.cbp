@@ -39,16 +39,18 @@
 			<Add directory="C:/Program Files (x86)/CodeBlocks/SDL/lib" />
 		</Linker>
 		<Unit filename="include/Camera.h" />
+		<Unit filename="include/Collision.h" />
 		<Unit filename="include/Constants.h" />
 		<Unit filename="include/EQ.h" />
 		<Unit filename="include/Player.h" />
-		<Unit filename="include/Texture.h" />
+		<Unit filename="include/Textures.h" />
 		<Unit filename="include/Tile.h" />
 		<Unit filename="include/World.h" />
 		<Unit filename="src/Camera.cpp" />
+		<Unit filename="src/Collision.cpp" />
 		<Unit filename="src/EQ.cpp" />
 		<Unit filename="src/Player.cpp" />
-		<Unit filename="src/Texture.cpp" />
+		<Unit filename="src/Textures.cpp" />
 		<Unit filename="src/Tile.cpp" />
 		<Unit filename="src/World.cpp" />
 		<Extensions>

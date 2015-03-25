@@ -1,15 +1,15 @@
 #include "World.h"
 #include "Constants.h"
-#include "Texture.h"
+#include "Textures.h"
 #include "Tile.h"
 #include <fstream>
 
 //Texture playerTexture;
-Texture TileSheetTexture;
+Textures TileSheetTexture;
 
 World::World()
 {
-
+    Type = 0;
 }
 
 World::~World()
@@ -80,17 +80,17 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[])
         TileClips[WATER].w = TILE_SIZE;
         TileClips[WATER].h = TILE_SIZE;
 
-        TileClips[PLATFORM].x = 2 * TILE_SIZE;
+        TileClips[PLATFORM].x = 1 * TILE_SIZE;
         TileClips[PLATFORM].y = 2 * TILE_SIZE;
         TileClips[PLATFORM].w = TILE_SIZE;
         TileClips[PLATFORM].h = TILE_SIZE;
 
-        TileClips[LADDER].x = 3 * TILE_SIZE;
+        TileClips[LADDER].x = 2 * TILE_SIZE;
         TileClips[LADDER].y = 2 * TILE_SIZE;
         TileClips[LADDER].w = TILE_SIZE;
         TileClips[LADDER].h = TILE_SIZE;
 
-        TileClips[LADDER_TOP].x = 4 * TILE_SIZE;
+        TileClips[LADDER_TOP].x = 3 * TILE_SIZE;
         TileClips[LADDER_TOP].y = 2 * TILE_SIZE;
         TileClips[LADDER_TOP].w = TILE_SIZE;
         TileClips[LADDER_TOP].h = TILE_SIZE;
@@ -124,7 +124,7 @@ bool World::SetTiles(Tile* tiles[])
         //Initialize tiles
         for(int i = 0; i < TOTAL_TILES; i++)
         {
-            int Type = -1;
+            //int Type = -1;
 
             map >> Type;
 
@@ -147,7 +147,7 @@ bool World::SetTiles(Tile* tiles[])
             }
             x += TILE_SIZE;
 			//If we've gone too far
-			if(x >= LEVEL_WIDTH)
+			if(x >= LEVEL_WIDTH*TILE_SIZE)
 			{
                 //Move back
 				x = 0;
@@ -162,10 +162,8 @@ bool World::SetTiles(Tile* tiles[])
 
 void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[])
 {
-    for(int i = 0; i < TOTAL_TILE_SPRITES; i++)
+    for(int i = 0; i < TOTAL_TILES; i++)
     {
-//        TileSheetTexture.Render(Renderer, tiles.TileBox->x - camera->x, i*TILE_SIZE - camera->y, &TileClips[i]);
-        TileSheetTexture.Render(Renderer, i*TILE_SIZE - camera->x, i*TILE_SIZE - camera->y, &TileClips[i]);
+        tiles[i]->Render(&TileSheetTexture, &TileClips[Type-2], Renderer, camera);
     }
-
 }

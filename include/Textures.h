@@ -1,5 +1,5 @@
-#ifndef TEXTURE_H
-#define TEXTURE_H
+#ifndef TEXTURES_H
+#define TEXTURES_H
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -9,11 +9,11 @@
 
 using namespace std;
 
-class Texture
+class Textures
 {
     public:
-        Texture();
-        virtual ~Texture();
+        Textures();
+        virtual ~Textures();
         bool LoadFromFile(SDL_Renderer* Renderer, std::string path);
         void Free();
         void Render(SDL_Renderer* Renderer, int x, int y, SDL_Rect* clip = NULL);
@@ -28,4 +28,4 @@ class Texture
         int mHeight;
 };
 
-#endif // TEXTURE_H
+#endif // TEXTURES_H

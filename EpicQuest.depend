@@ -359,7 +359,7 @@
 1425389871 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_onrender.cpp
 	"CApp.h"
 
-1427199725 c:\users\nsmm\c_c++\epicquest_cpp\include\constants.h
+1427291446 c:\users\nsmm\c_c++\epicquest_cpp\include\constants.h
 
 1425393472 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_cleanup.cpp
 	"CApp.h"
@@ -377,10 +377,10 @@
 1425393533 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_render.cpp
 	"CApp.h"
 
-1427203116 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
+1427294773 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
 	"EQ.h"
 	"Player.h"
-	"Texture.h"
+	"Textures.h"
 	"Camera.h"
 	"World.h"
 	"Constants.h"
@@ -466,9 +466,9 @@
 	<string>
 	<iostream>
 
-1426678355 source:c:\users\nsmm\c_c++\epicquest_cpp\src\player.cpp
+1427284656 source:c:\users\nsmm\c_c++\epicquest_cpp\src\player.cpp
 	"Player.h"
-	"Texture.h"
+	"Textures.h"
 	"Constants.h"
 
 1426509204 c:\users\nsmm\c_c++\epicquest_cpp\include\player.h
@@ -512,7 +512,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1426678303 source:c:\users\nsmm\c_c++\epicquest_cpp\src\camera.cpp
+1427294983 source:c:\users\nsmm\c_c++\epicquest_cpp\src\camera.cpp
 	"Camera.h"
 	"Constants.h"
 	<iostream>
@@ -527,13 +527,15 @@
 1426502111 c:\users\nsmm\c_c++\epicquest_cpp\include\tiles.h
 	<SDL.h>
 
-1427193747 source:c:\users\nsmm\c_c++\epicquest_cpp\src\tile.cpp
+1427294946 source:c:\users\nsmm\c_c++\epicquest_cpp\src\tile.cpp
 	"Tile.h"
 	"Constants.h"
-	"Texture.h"
+	"Textures.h"
+	"Collision.h"
 
-1427193754 c:\users\nsmm\c_c++\epicquest_cpp\include\tile.h
+1427292903 c:\users\nsmm\c_c++\epicquest_cpp\include\tile.h
 	<SDL.h>
+	"Textures.h"
 
 1426707212 source:c:\users\tijn\documents\github\epicquest_cpp\src\camera.cpp
 	"Camera.h"
@@ -562,15 +564,30 @@
 1426712864 c:\users\tijn\documents\github\epicquest_cpp\include\tegel.h
 	<SDL.h>
 
-1427203100 c:\users\nsmm\c_c++\epicquest_cpp\include\world.h
+1427288913 c:\users\nsmm\c_c++\epicquest_cpp\include\world.h
 	<SDL.h>
 	"Constants.h"
 	"Tile.h"
 
-1427203098 source:c:\users\nsmm\c_c++\epicquest_cpp\src\world.cpp
+1427294803 source:c:\users\nsmm\c_c++\epicquest_cpp\src\world.cpp
 	"World.h"
 	"Constants.h"
-	"Texture.h"
+	"Textures.h"
 	"Tile.h"
 	<fstream>
+
+1427284616 source:c:\users\nsmm\c_c++\epicquest_cpp\src\textures.cpp
+	"Textures.h"
+
+1427284565 c:\users\nsmm\c_c++\epicquest_cpp\include\textures.h
+	<SDL.h>
+	<SDL_image.h>
+	<string>
+	<iostream>
+
+1427294096 source:c:\users\nsmm\c_c++\epicquest_cpp\src\collision.cpp
+	"Collision.h"
+
+1427294081 c:\users\nsmm\c_c++\epicquest_cpp\include\collision.h
+	<SDL.h>
 

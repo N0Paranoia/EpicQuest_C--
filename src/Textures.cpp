@@ -1,18 +1,18 @@
-#include "Texture.h"
+#include "Textures.h"
 
-Texture::Texture()
+Textures::Textures()
 {
     texture = nullptr;
     mWidth = 0;
     mHeight = 0;
 }
 
-Texture::~Texture()
+Textures::~Textures()
 {
     this->Free();
 }
 
-bool Texture::LoadFromFile(SDL_Renderer* Renderer, std::string path)
+bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)
 {
     //Free textures
     this->Free();
@@ -53,7 +53,7 @@ bool Texture::LoadFromFile(SDL_Renderer* Renderer, std::string path)
 	return texture != NULL;
 }
 
-void Texture::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)
+void Textures::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)
 {
     //Set rendering spade en render to screen
     SDL_Rect renderQuad = {x, y, mWidth, mHeight};
@@ -67,17 +67,17 @@ void Texture::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)
     SDL_RenderCopy(Renderer, texture, clip, &renderQuad);
 }
 
-int Texture::getWidth()
+int Textures::getWidth()
 {
     return mWidth;
 }
 
-int Texture::getHeight()
+int Textures::getHeight()
 {
     return mHeight;
 }
 
-void Texture::Free()
+void Textures::Free()
 {
     //Free texture is exist
     if(texture !=NULL)
