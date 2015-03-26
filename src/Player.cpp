@@ -8,8 +8,8 @@ Textures SpriteSheetTexture;
 
 Player::Player()
 {
-    playerRect.x = 0;
-    playerRect.y = 0;
+    playerRect.x = TILE_SIZE    ;
+    playerRect.y = 2*TILE_SIZE;
     playerRect.w = TILE_SIZE;
     playerRect.h = 2*TILE_SIZE;
     Xvel = 0;
@@ -31,7 +31,6 @@ Player::~Player()
     //dtor
 }
 
-//void Player::Event(SDL_Event* event)
 void Player::Input()
 {
     WalkingLeft = false;
