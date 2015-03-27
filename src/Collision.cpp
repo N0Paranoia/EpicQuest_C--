@@ -40,3 +40,18 @@ bool Collision::CheckCollision(SDL_Rect a, SDL_Rect b)
     }
     return true;
 }
+
+bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])
+{
+    for(int i = 0; i < TOTAL_TILES; i++)
+    {
+        if(tiles[i]->getType() >= WALL)
+        {
+            if(this->CheckCollision(cBox, tiles[i]->getTileBox()))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}

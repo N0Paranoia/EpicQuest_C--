@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
-
+#include "Tile.h"
 #include <iostream>
 
 using namespace std;
@@ -35,9 +35,9 @@ class Player
         Player();
         virtual ~Player();
         //void Event(SDL_Event* event);
-        void Input();
+        void Input(Tile* tiles[]);
         int LoadMedia(SDL_Renderer* Renderer);
-        void Move(Direction dir);
+        void Move(Direction dir, Tile* tiles[]);
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
         void Cleanup();
 

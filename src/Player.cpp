@@ -31,7 +31,7 @@ Player::~Player()
     //dtor
 }
 
-void Player::Input()
+void Player::Input(Tile* tiles[])
 {
     WalkingLeft = false;
     WalkingRight = false;
@@ -39,21 +39,21 @@ void Player::Input()
     keyState = SDL_GetKeyboardState(NULL);
     if(keyState[SDL_SCANCODE_A])
     {
-        this->Move(left);
+        this->Move(left, tiles);
         WalkingLeft = true;
     }
     if(keyState[SDL_SCANCODE_D])
     {
-        this->Move(right);
+        this->Move(right, tiles);
         WalkingRight = true;
     }
     if(keyState[SDL_SCANCODE_W])
     {
-        this->Move(up);
+        this->Move(up, tiles);
     }
     if(keyState[SDL_SCANCODE_S])
     {
-        this->Move(down);
+        this->Move(down, tiles);
     }
 }
 
@@ -160,7 +160,7 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
     return true;
 }
 
-void Player::Move(Direction dir)
+void Player::Move(Direction dir, Tile* tiles[])
 {
     switch(dir)
     {

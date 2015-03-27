@@ -91,7 +91,7 @@ void EQ::Event(SDL_Event* event)
 
 void EQ::Input()
 {
-     player.Input();
+     player.Input(tileSet);
 }
 
 void EQ::Loop()

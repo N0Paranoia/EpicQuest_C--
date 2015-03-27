@@ -1,6 +1,7 @@
 #ifndef COLLISION_H
 #define COLLISION_H
-
+#include "Constants.h"
+#include "Tile.h"
 #include <SDL.h>
 
 
@@ -10,6 +11,7 @@ class Collision
         Collision();
         virtual ~Collision();
         bool CheckCollision(SDL_Rect a, SDL_Rect b);
+        bool WallCollision(SDL_Rect cBox, Tile* tiles[]);
     protected:
     private:
         int leftA, leftB;
