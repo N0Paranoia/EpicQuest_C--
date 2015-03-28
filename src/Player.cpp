@@ -31,32 +31,6 @@ Player::~Player()
     //dtor
 }
 
-void Player::Input(Tile* tiles[])
-{
-    WalkingLeft = false;
-    WalkingRight = false;
-
-    keyState = SDL_GetKeyboardState(NULL);
-    if(keyState[SDL_SCANCODE_A])
-    {
-        this->Move(left, tiles);
-        WalkingLeft = true;
-    }
-    if(keyState[SDL_SCANCODE_D])
-    {
-        this->Move(right, tiles);
-        WalkingRight = true;
-    }
-    if(keyState[SDL_SCANCODE_W])
-    {
-        this->Move(up, tiles);
-    }
-    if(keyState[SDL_SCANCODE_S])
-    {
-        this->Move(down, tiles);
-    }
-}
-
 int Player::LoadMedia(SDL_Renderer* Renderer)
 {
     //Load Player spritesheet
@@ -160,7 +134,37 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
     return true;
 }
 
-void Player::Move(Direction dir, Tile* tiles[])
+void Player::Input(Tile* tiles[])
+{
+    WalkingLeft = false;
+    WalkingRight = false;
+
+    keyState = SDL_GetKeyboardState(NULL);
+    if(keyState[SDL_SCANCODE_A])
+    {
+        Xvel += Speed;
+        this->Move(left, Xvel, tiles);
+        WalkingLeft = true;
+    }
+    if(keyState[SDL_SCANCODE_D])
+    {
+        Xvel -= Speed;
+        this->Move(right, Xvel, tiles);
+        WalkingRight = true;
+    }
+    if(keyState[SDL_SCANCODE_W])
+    {
+        Yvel -=Speed;
+        this->Move(up, Yvel, tiles);
+    }
+    if(keyState[SDL_SCANCODE_S])
+    {
+        Yvel +=Speed;
+        this->Move(down, Yvel, tiles);
+    }
+}
+
+void Player::Move(Direction dir, int vel, Tile* tiles[])
 {
     switch(dir)
     {

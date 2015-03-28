@@ -479,13 +479,13 @@
 1425997310 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_loadmedia.cpp
 	"EQ.h"
 
-1427442052 c:\users\tijn\documents\github\epicquest_cpp\include\player.h
+1427568706 c:\users\tijn\documents\github\epicquest_cpp\include\player.h
 	<SDL.h>
 	<SDL_image.h>
 	"Tile.h"
 	<iostream>
 
-1427439409 source:c:\users\tijn\documents\github\epicquest_cpp\src\player.cpp
+1427568505 source:c:\users\tijn\documents\github\epicquest_cpp\src\player.cpp
 	"Player.h"
 	"Textures.h"
 	"Constants.h"

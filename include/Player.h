@@ -37,7 +37,7 @@ class Player
         //void Event(SDL_Event* event);
         void Input(Tile* tiles[]);
         int LoadMedia(SDL_Renderer* Renderer);
-        void Move(Direction dir, Tile* tiles[]);
+        void Move(Direction dir, int vel, Tile* tiles[]);
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
         void Cleanup();
 
