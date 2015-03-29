@@ -140,64 +140,41 @@ void Player::Input(Tile* tiles[])
     WalkingRight = false;
 
     keyState = SDL_GetKeyboardState(NULL);
+
     if(keyState[SDL_SCANCODE_A])
     {
-        Xvel += Speed;
-        this->Move(left, Xvel, tiles);
+        Xvel = -Speed;
+        this->Move(tiles);
         WalkingLeft = true;
     }
     if(keyState[SDL_SCANCODE_D])
     {
-        Xvel -= Speed;
-        this->Move(right, Xvel, tiles);
+        Xvel = Speed;
+        this->Move(tiles);
         WalkingRight = true;
     }
     if(keyState[SDL_SCANCODE_W])
     {
-        Yvel -=Speed;
-        this->Move(up, Yvel, tiles);
+        Yvel = Speed;
+        this->Move(tiles);
     }
     if(keyState[SDL_SCANCODE_S])
     {
-        Yvel +=Speed;
-        this->Move(down, Yvel, tiles);
+        Yvel = Speed;
+        this->Move(tiles);
     }
 }
 
-void Player::Move(Direction dir, int vel, Tile* tiles[])
+void Player::Move(Tile* tiles[])
 {
-    switch(dir)
-    {
-    case left:
-        playerRect.x -= Speed;
-        break;
-    case right:
-        playerRect.x += Speed;
-        break;
-    case up:
-        playerRect.y -= Speed;
-        break;
-    case down:
-        playerRect.y += Speed;
-        break;
-    }
+    playerRect.x += Xvel;
+    cout << Xvel;
     //Temp to keep player in bounds
-    if(playerRect.x < 0)
+    if(playerRect.x + TILE_SIZE > LEVEL_WIDTH*TILE_SIZE)
     {
-        playerRect.x = 0;
+        playerRect.x = LEVEL_WIDTH*TILE_SIZE - TILE_SIZE;
     }
-    else if(playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE)
-    {
-        playerRect.x = LEVEL_WIDTH*TILE_SIZE - playerRect.w;
-    }
-    if(playerRect.y < 0)
-    {
-        playerRect.y = 0;
-    }
-    else if(playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE)
-    {
-        playerRect.y = LEVEL_HEIGHT*TILE_SIZE - playerRect.h;
-    }
+
 }
 
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
