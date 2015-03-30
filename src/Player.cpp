@@ -1,9 +1,11 @@
 #include "Player.h"
 #include "Textures.h"
 #include "Constants.h"
+#include "Collision.h"
 
 //Texture playerTexture;
 Textures SpriteSheetTexture;
+Collision pCollision;
 
 
 Player::Player()
@@ -144,41 +146,45 @@ void Player::Input(Tile* tiles[])
     if(keyState[SDL_SCANCODE_A])
     {
         Xvel = -Speed;
-        this->Move(tiles);
+        this->Move(left, tiles);
         WalkingLeft = true;
     }
     if(keyState[SDL_SCANCODE_D])
     {
         Xvel = Speed;
-        this->Move(tiles);
+        this->Move(right, tiles);
         WalkingRight = true;
     }
     if(keyState[SDL_SCANCODE_W])
     {
-        Yvel = Speed;
-        this->Move(tiles);
+        Yvel = -Speed;
+        this->Move(up, tiles);
     }
     if(keyState[SDL_SCANCODE_S])
     {
         Yvel = Speed;
-        this->Move(tiles);
+        this->Move(down, tiles);
     }
 }
 
-void Player::Move(Tile* tiles[])
+void Player::Move(int Dir, Tile* tiles[])
 {
-    playerRect.x += Xvel;
-    cout << Xvel;
-    //Temp to keep player in bounds
-    if(playerRect.x + TILE_SIZE > LEVEL_WIDTH*TILE_SIZE)
-    {
-        playerRect.x = LEVEL_WIDTH*TILE_SIZE - TILE_SIZE;
-    }
+    if(Dir == left || Dir == right)
+        playerRect.x += Xvel;
+    // Horizontal collision handling
+    if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles))
+        playerRect.x -= Xvel;
 
+    if(Dir == up || Dir == down)
+        playerRect.y += Yvel;
+    // Vertical collision handling
+    if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
+        playerRect.y -= Yvel;
 }
 
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 {
+    // Walking Animation
     if(WalkingLeft)
     {
         frame --;

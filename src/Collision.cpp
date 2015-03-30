@@ -45,7 +45,7 @@ bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])
 {
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-        if(tiles[i]->getType() >= WALL)
+        if(tiles[i]->getType() == WALL)
         {
             if(this->CheckCollision(cBox, tiles[i]->getTileBox()))
             {
