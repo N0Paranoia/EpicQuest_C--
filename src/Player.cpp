@@ -182,6 +182,11 @@ void Player::Move(int Dir, Tile* tiles[])
         playerRect.y -= Yvel;
 }
 
+void Player::Fall()
+{
+
+}
+
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 {
     // Walking Animation

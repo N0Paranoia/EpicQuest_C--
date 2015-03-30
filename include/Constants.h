@@ -28,4 +28,8 @@ const int SLOPE_RIGHT = 13;
 const int SLOPE_LEFT = 14;
 
 
+
+const int GRAVITY = 8;
+
+
 #endif // CONSTANTS_H_INCLUDED
