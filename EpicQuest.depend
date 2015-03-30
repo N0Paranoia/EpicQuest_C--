@@ -72,7 +72,7 @@
 1394940798 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1425378687 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
+1425419488 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
@@ -421,7 +421,7 @@
 	"EQ.h"
 	"Constants.h"
 
-1427352192 c:\users\tijn\documents\github\epicquest_cpp\include\constants.h
+1427747070 c:\users\tijn\documents\github\epicquest_cpp\include\constants.h
 
 1425933075 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq_loop.cpp
 	"EQ.h"
@@ -450,7 +450,7 @@
 1425896184 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_fps.cpp
 	"EQ.h"
 
-1376156342 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_image.h
+1376159942 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -481,16 +481,17 @@
 1425997310 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_loadmedia.cpp
 	"EQ.h"
 
-1427619733 c:\users\tijn\documents\github\epicquest_cpp\include\player.h
+1427747070 c:\users\tijn\documents\github\epicquest_cpp\include\player.h
 	<SDL.h>
 	<SDL_image.h>
 	"Tile.h"
 	<iostream>
 
-1427568505 source:c:\users\tijn\documents\github\epicquest_cpp\src\player.cpp
+1427747070 source:c:\users\tijn\documents\github\epicquest_cpp\src\player.cpp
 	"Player.h"
 	"Textures.h"
 	"Constants.h"
+	"Collision.h"
 
 1426171274 source:c:\users\nsmm\c_c++\epicquest_cpp\src\texture.cpp
 	"Texture.h"
@@ -510,7 +511,7 @@
 1426188250 source:c:\users\tijn\documents\github\epicquest_cpp\src\texture.cpp
 	"Texture.h"
 
-1376156544 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_ttf.h
+1376160144 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
@@ -623,6 +624,13 @@
 	"Tile.h"
 	<fstream>
 
-1427445009 source:c:\users\tijn\documents\github\epicquest_cpp\src\collision.cpp
+1427747070 source:c:\users\tijn\documents\github\epicquest_cpp\src\collision.cpp
 	"Collision.h"
+
+1427748599 source:c:\users\tijn\documents\github\epicquest_cpp\src\timer.cpp
+	"Timer.h"
+
+1427747997 c:\users\tijn\documents\github\epicquest_cpp\include\timer.h
+	<stdint.h>
+	<SDL.h>
 

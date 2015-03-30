@@ -19,6 +19,7 @@ class EQ
         SDL_Renderer* Renderer;
         SDL_Texture* Texture;
         TTF_Font* Font;
+        int countedFrames;
 
     public:
         EQ();

@@ -1,10 +1,12 @@
 #include "EQ.h"
+#include "Timer.h"
 #include "Player.h"
 #include "Textures.h"
 #include "Camera.h"
 #include "World.h"
 #include "Constants.h"
 
+Timer timer;
 Player player;
 World world;
 Camera camera;
@@ -18,10 +20,13 @@ EQ::EQ()
     Renderer = nullptr;
     Texture = nullptr;
     Font = nullptr;
+
+    countedFrames  = 0;
 }
 
 bool EQ::Init()
 {
+    timer.Start();
     if(SDL_Init(SDL_INIT_VIDEO) < 0)
     {
         cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << endl;
@@ -85,6 +90,25 @@ void EQ::Event(SDL_Event* event)
             Running = false;
             cout << "Quit by keyboard(q)" << endl;
             break;
+        case SDLK_o:
+            if(timer.isStarted())
+            {
+                timer.Stop();
+            }
+            else
+            {
+                timer.Start();
+            }
+            break;
+        case SDLK_p:
+            if(timer.isPaused())
+            {
+                timer.Unpause();
+            }
+            else
+            {
+                timer.Pause();
+            }
         }
     }
 }
@@ -97,6 +121,12 @@ void EQ::Input()
 void EQ::Loop()
 {
     camera.Center(&player.playerRect);
+    float avgFPS = countedFrames / (timer.getTicks() / 1000.f);
+    if(avgFPS > 2000000)
+    {
+        avgFPS = 0;
+    }
+    cout << avgFPS << endl;
 }
 
 void EQ::Render()
@@ -115,6 +145,8 @@ void EQ::Render()
     camera.Render(Renderer);
     //Update screen
     SDL_RenderPresent(Renderer);
+
+    ++countedFrames;
 }
 
 void EQ::Cleanup()

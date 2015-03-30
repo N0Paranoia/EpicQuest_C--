@@ -45,6 +45,7 @@
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/Textures.h" />
 		<Unit filename="include/Tile.h" />
+		<Unit filename="include/Timer.h" />
 		<Unit filename="include/World.h" />
 		<Unit filename="src/Camera.cpp" />
 		<Unit filename="src/Collision.cpp" />
@@ -52,6 +53,7 @@
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/Textures.cpp" />
 		<Unit filename="src/Tile.cpp" />
+		<Unit filename="src/Timer.cpp" />
 		<Unit filename="src/World.cpp" />
 		<Extensions>
 			<code_completion />
