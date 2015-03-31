@@ -16,6 +16,7 @@ Player::Player()
     playerRect.h = 2*TILE_SIZE;
     Xvel = 0;
     Yvel = 0;
+    Jvel = 0;
     Speed = 4;
     frame = 0;
     StartFrameLeft = 7;
@@ -24,8 +25,17 @@ Player::Player()
     EndFrameRight = 17;
     IdleFrameLeft = 8;
     IdleFrameRight = 9;
+
+    jumpSpeed = 4;
+    jumpCount = 0;
+    jumpHeight = 6;
+
     WalkingLeft = false;
     WalkingLeft = false;
+    isFalling = true;
+
+    canJump = true;
+    isJumping = false;
 }
 
 Player::~Player()
@@ -165,6 +175,26 @@ void Player::Input(Tile* tiles[])
         Yvel = Speed;
         this->Move(down, tiles);
     }
+    if(keyState[SDL_SCANCODE_SPACE])
+    {
+        this->Jump(tiles);
+    }
+}
+
+void Player::Jump(Tile* tiles[])
+{
+    Jvel = -jumpSpeed;
+    this->Move(jump, tiles);
+}
+
+void Player::Falling(Tile* tiles[])
+{
+    playerRect.y += GRAVITY;
+    if(pCollision.WallCollision(playerRect, tiles) || pCollision.CloudCollision(playerRect, tiles))
+    {
+        playerRect.y -=GRAVITY;
+        isFalling = false;
+    }
 }
 
 void Player::Move(int Dir, Tile* tiles[])
@@ -177,14 +207,11 @@ void Player::Move(int Dir, Tile* tiles[])
 
     if(Dir == up || Dir == down)
         playerRect.y += Yvel;
+    if(Dir == jump)
+        playerRect.y += Jvel;
     // Vertical collision handling
     if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
         playerRect.y -= Yvel;
-}
-
-void Player::Fall()
-{
-
 }
 
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
@@ -212,5 +239,5 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 
 void Player::Cleanup()
 {
-
+    SpriteSheetTexture.Free();
 }

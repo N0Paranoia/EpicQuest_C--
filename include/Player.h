@@ -11,10 +11,11 @@ using namespace std;
 class Player
 {
     private:
-        enum Direction {left, right, up, down};
+        enum Direction {left, right, up, down, jump};
         const Uint8* keyState;
         int Xvel;
         int Yvel;
+        int Jvel;
         int Speed;
         int frame;
         int StartFrameLeft;
@@ -23,11 +24,17 @@ class Player
         int EndFrameRight;
         int IdleFrameLeft;
         int IdleFrameRight;
-        //Render Rect
-        SDL_Rect PlayerClips[18];
+        int jumpCount;
+        int jumpSpeed;
+        int jumpHeight;
+
         bool WalkingLeft;
         bool WalkingRight;
+        bool isFalling;
+        bool canJump;
+        bool isJumping;
 
+        SDL_Rect PlayerClips[18];
     public:
         //Collision box
         SDL_Rect playerRect;
@@ -38,7 +45,8 @@ class Player
         void Input(Tile* tiles[]);
         int LoadMedia(SDL_Renderer* Renderer);
         void Move(int Dir, Tile* tiles[]);
-        void Fall();
+        void Jump(Tile* tiles[]);
+        void Falling(Tile* tiles[]);
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
         void Cleanup();
 

@@ -6,12 +6,15 @@
 #include "World.h"
 #include "Constants.h"
 
+
 Timer timer;
 Player player;
 World world;
 Camera camera;
-Textures wallpaperTexture;
 Tile* tileSet[TOTAL_TILES];
+
+Textures wallpaperTexture;
+Textures TextTexture;
 
 EQ::EQ()
 {
@@ -19,14 +22,13 @@ EQ::EQ()
     Window = nullptr;
     Renderer = nullptr;
     Texture = nullptr;
-    Font = nullptr;
 
+    textColor = {255,0,0};
     countedFrames  = 0;
 }
 
 bool EQ::Init()
 {
-    timer.Start();
     if(SDL_Init(SDL_INIT_VIDEO) < 0)
     {
         cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << endl;
@@ -39,7 +41,7 @@ bool EQ::Init()
         return false;
     }
 
-    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED/* | SDL_RENDERER_PRESENTVSYNC*/)) == NULL)
+    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED /*| SDL_RENDERER_PRESENTVSYNC*/)) == NULL)
     {
         cout << "Unable to create Renderer! SDL_Error: " << SDL_GetError() << endl;
         return false;
@@ -50,13 +52,15 @@ bool EQ::Init()
         cout << "Unable to initialize SDL_Image! SDL_Error: " << SDL_GetError() << endl;
         return false;
     }
+    if(TTF_Init() == -1)
+    {
+        cout << "Unable to initialize SDL_TTF! SDL_Erro: " << TTF_GetError() << endl;
+    }
     return true;
 }
 
 bool EQ::LoadMedia()
 {
-//    Tile* tileSet[TOTAL_TILES];
-    //The level tiles
     //Load Player texture
     if((player.LoadMedia(Renderer)) == NULL)
     {
@@ -73,6 +77,12 @@ bool EQ::LoadMedia()
 		cout << "Unable to Load texture image! SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
+    Font = TTF_OpenFont("assets/FreePixel.ttf", 14);
+    if(Font == NULL)
+    {
+        cout << "Unable to Load font! SDL_Error: " << TTF_GetError() << endl;
+        return false;
+    }
     return true;
 }
 
@@ -90,26 +100,23 @@ void EQ::Event(SDL_Event* event)
             Running = false;
             cout << "Quit by keyboard(q)" << endl;
             break;
-        case SDLK_o:
-            if(timer.isStarted())
-            {
-                timer.Stop();
-            }
-            else
-            {
-                timer.Start();
-            }
-            break;
-        case SDLK_p:
-            if(timer.isPaused())
-            {
-                timer.Unpause();
-            }
-            else
-            {
-                timer.Pause();
-            }
         }
+    }
+}
+
+void EQ::Fps()
+{
+    float avgFPS = countedFrames / (timer.getTicks() / 1000.f);
+    if(avgFPS > 2000000)
+    {
+        avgFPS = 0;
+    }
+
+    timeText.str("");
+    timeText << avgFPS;
+    if(!TextTexture.LoadFromRenderedText(Renderer, Font, timeText.str().c_str(), textColor))
+    {
+        cout << "Failed to render text texture!" << endl;
     }
 }
 
@@ -121,12 +128,7 @@ void EQ::Input()
 void EQ::Loop()
 {
     camera.Center(&player.playerRect);
-    float avgFPS = countedFrames / (timer.getTicks() / 1000.f);
-    if(avgFPS > 2000000)
-    {
-        avgFPS = 0;
-    }
-    cout << avgFPS << endl;
+    player.Falling(tileSet);
 }
 
 void EQ::Render()
@@ -143,9 +145,13 @@ void EQ::Render()
     player.Render(Renderer, &camera.cameraRect);
     //Render Camara outline
     camera.Render(Renderer);
+    //Render FPS text
+    TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
+
     //Update screen
     SDL_RenderPresent(Renderer);
 
+    // frame counter for FPS
     ++countedFrames;
 }
 
@@ -166,6 +172,9 @@ void EQ::Cleanup()
         SDL_DestroyWindow(Window);
         Window = nullptr;
     }
+    TextTexture.Free();
+    TTF_CloseFont(Font);
+    Font = nullptr;
     SDL_Quit();
 }
 
@@ -181,6 +190,8 @@ int EQ::Execute()
         return -1;
     }
     SDL_Event event;
+    //start FPS timer
+    timer.Start();
 
     while(Running)
     {
@@ -188,6 +199,7 @@ int EQ::Execute()
         {
            this->Event(&event);
         }
+        this->Fps();
         this->Input();
         this->Loop();
         this->Render();

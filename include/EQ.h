@@ -8,8 +8,11 @@
 #include <string>
 #include <iostream>
 #include <cmath>
+#include <sstream>
 
 using namespace std;
+
+std::stringstream timeText;
 
 class EQ
 {
@@ -19,6 +22,7 @@ class EQ
         SDL_Renderer* Renderer;
         SDL_Texture* Texture;
         TTF_Font* Font;
+        SDL_Color textColor;
         int countedFrames;
 
     public:

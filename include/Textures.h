@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 
 #include <string>
 #include <iostream>
@@ -15,6 +16,7 @@ class Textures
         Textures();
         virtual ~Textures();
         bool LoadFromFile(SDL_Renderer* Renderer, std::string path);
+        bool LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor);
         void Free();
         void Render(SDL_Renderer* Renderer, int x, int y, SDL_Rect* clip = NULL);
         int getWidth();
@@ -23,6 +25,7 @@ class Textures
     private:
         //Actual hardware texture
         SDL_Texture* texture;
+
         //image dimensions
         int mWidth;
         int mHeight;

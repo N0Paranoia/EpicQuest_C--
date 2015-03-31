@@ -40,70 +40,70 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[])
     else
     {
         //All tile textures
-        TileClips[CLEAR].x = -TILE_SIZE;
-        TileClips[CLEAR].y = -TILE_SIZE;
-        TileClips[CLEAR].w = TILE_SIZE;
-        TileClips[CLEAR].h = TILE_SIZE;
+        TileClips[TILE_CLEAR].x = -TILE_SIZE;
+        TileClips[TILE_CLEAR].y = -TILE_SIZE;
+        TileClips[TILE_CLEAR].w = TILE_SIZE;
+        TileClips[TILE_CLEAR].h = TILE_SIZE;
 
-        TileClips[SKY].x = 0 * TILE_SIZE;
-        TileClips[SKY].y = 0 * TILE_SIZE;
-        TileClips[SKY].w = TILE_SIZE;
-        TileClips[SKY].h = TILE_SIZE;
+        TileClips[TILE_SKY].x = 0 * TILE_SIZE;
+        TileClips[TILE_SKY].y = 0 * TILE_SIZE;
+        TileClips[TILE_SKY].w = TILE_SIZE;
+        TileClips[TILE_SKY].h = TILE_SIZE;
 
-        TileClips[WALL].x = 1 * TILE_SIZE;
-        TileClips[WALL].y = 0 * TILE_SIZE;
-        TileClips[WALL].w = TILE_SIZE;
-        TileClips[WALL].h = TILE_SIZE;
+        TileClips[TILE_WALL].x = 1 * TILE_SIZE;
+        TileClips[TILE_WALL].y = 0 * TILE_SIZE;
+        TileClips[TILE_WALL].w = TILE_SIZE;
+        TileClips[TILE_WALL].h = TILE_SIZE;
 
-        TileClips[WOOD].x = 2 * TILE_SIZE;
-        TileClips[WOOD].y = 0 * TILE_SIZE;
-        TileClips[WOOD].w = TILE_SIZE;
-        TileClips[WOOD].h = TILE_SIZE;
+        TileClips[TILE_WOOD].x = 2 * TILE_SIZE;
+        TileClips[TILE_WOOD].y = 0 * TILE_SIZE;
+        TileClips[TILE_WOOD].w = TILE_SIZE;
+        TileClips[TILE_WOOD].h = TILE_SIZE;
 
-        TileClips[DOOR].x = 3 * TILE_SIZE;
-        TileClips[DOOR].y = 0 * TILE_SIZE;
-        TileClips[DOOR].w = TILE_SIZE;
-        TileClips[DOOR].h = TILE_SIZE;
+        TileClips[TILE_DOOR].x = 3 * TILE_SIZE;
+        TileClips[TILE_DOOR].y = 0 * TILE_SIZE;
+        TileClips[TILE_DOOR].w = TILE_SIZE;
+        TileClips[TILE_DOOR].h = TILE_SIZE;
 
-        TileClips[LAVA].x = 0 * TILE_SIZE;
-        TileClips[LAVA].y = 1 * TILE_SIZE;
-        TileClips[LAVA].w = TILE_SIZE;
-        TileClips[LAVA].h = TILE_SIZE;
+        TileClips[TILE_LAVA].x = 0 * TILE_SIZE;
+        TileClips[TILE_LAVA].y = 1 * TILE_SIZE;
+        TileClips[TILE_LAVA].w = TILE_SIZE;
+        TileClips[TILE_LAVA].h = TILE_SIZE;
 
-        TileClips[GRASS].x = 1 * TILE_SIZE;
-        TileClips[GRASS].y = 1 * TILE_SIZE;
-        TileClips[GRASS].w = TILE_SIZE;
-        TileClips[GRASS].h = TILE_SIZE;
+        TileClips[TILE_GRASS].x = 1 * TILE_SIZE;
+        TileClips[TILE_GRASS].y = 1 * TILE_SIZE;
+        TileClips[TILE_GRASS].w = TILE_SIZE;
+        TileClips[TILE_GRASS].h = TILE_SIZE;
 
-        TileClips[WATER].x = 2 * TILE_SIZE;
-        TileClips[WATER].y = 1 * TILE_SIZE;
-        TileClips[WATER].w = TILE_SIZE;
-        TileClips[WATER].h = TILE_SIZE;
+        TileClips[TILE_WATER].x = 2 * TILE_SIZE;
+        TileClips[TILE_WATER].y = 1 * TILE_SIZE;
+        TileClips[TILE_WATER].w = TILE_SIZE;
+        TileClips[TILE_WATER].h = TILE_SIZE;
 
-        TileClips[PLATFORM].x = 1 * TILE_SIZE;
-        TileClips[PLATFORM].y = 2 * TILE_SIZE;
-        TileClips[PLATFORM].w = TILE_SIZE;
-        TileClips[PLATFORM].h = TILE_SIZE;
+        TileClips[TILE_PLATFORM].x = 1 * TILE_SIZE;
+        TileClips[TILE_PLATFORM].y = 2 * TILE_SIZE;
+        TileClips[TILE_PLATFORM].w = TILE_SIZE;
+        TileClips[TILE_PLATFORM].h = TILE_SIZE;
 
-        TileClips[LADDER].x = 2 * TILE_SIZE;
-        TileClips[LADDER].y = 2 * TILE_SIZE;
-        TileClips[LADDER].w = TILE_SIZE;
-        TileClips[LADDER].h = TILE_SIZE;
+        TileClips[TILE_LADDER].x = 2 * TILE_SIZE;
+        TileClips[TILE_LADDER].y = 2 * TILE_SIZE;
+        TileClips[TILE_LADDER].w = TILE_SIZE;
+        TileClips[TILE_LADDER].h = TILE_SIZE;
 
-        TileClips[LADDER_TOP].x = 3 * TILE_SIZE;
-        TileClips[LADDER_TOP].y = 2 * TILE_SIZE;
-        TileClips[LADDER_TOP].w = TILE_SIZE;
-        TileClips[LADDER_TOP].h = TILE_SIZE;
+        TileClips[TILE_LADDER_TOP].x = 3 * TILE_SIZE;
+        TileClips[TILE_LADDER_TOP].y = 2 * TILE_SIZE;
+        TileClips[TILE_LADDER_TOP].w = TILE_SIZE;
+        TileClips[TILE_LADDER_TOP].h = TILE_SIZE;
 
-        TileClips[SLOPE_RIGHT].x = 0 * TILE_SIZE;
-        TileClips[SLOPE_RIGHT].y = 3 * TILE_SIZE;
-        TileClips[SLOPE_RIGHT].w = TILE_SIZE;
-        TileClips[SLOPE_RIGHT].h = TILE_SIZE;
+        TileClips[TILE_SLOPE_RIGHT].x = 0 * TILE_SIZE;
+        TileClips[TILE_SLOPE_RIGHT].y = 3 * TILE_SIZE;
+        TileClips[TILE_SLOPE_RIGHT].w = TILE_SIZE;
+        TileClips[TILE_SLOPE_RIGHT].h = TILE_SIZE;
 
-        TileClips[SLOPE_LEFT].x = 1 * TILE_SIZE;
-        TileClips[SLOPE_LEFT].y = 3 * TILE_SIZE;
-        TileClips[SLOPE_LEFT].w = TILE_SIZE;
-        TileClips[SLOPE_LEFT].h = TILE_SIZE;
+        TileClips[TILE_SLOPE_LEFT].x = 1 * TILE_SIZE;
+        TileClips[TILE_SLOPE_LEFT].y = 3 * TILE_SIZE;
+        TileClips[TILE_SLOPE_LEFT].w = TILE_SIZE;
+        TileClips[TILE_SLOPE_LEFT].h = TILE_SIZE;
     }
 }
 

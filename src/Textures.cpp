@@ -21,7 +21,7 @@ bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)
 	SDL_Texture* newTexture = NULL;
 
 	//Load image at specified path
-	SDL_Surface* loadedSurface = IMG_Load( path.c_str());
+	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 	if(loadedSurface == NULL)
 	{
 	    cout << "Unable to load image! SDL_Error: " << path.c_str() << IMG_GetError() << endl;
@@ -51,6 +51,32 @@ bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)
 	//Return success
 	texture = newTexture;
 	return texture != NULL;
+}
+
+bool Textures::LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)
+{
+    this->Free();
+
+    SDL_Surface* textSurface = TTF_RenderText_Solid(Font, textureText.c_str(), textColor);
+    if(textSurface == NULL)
+    {
+        cout << "Unable to render text surface! SDL_ttf Error: " << TTF_GetError() << endl;
+    }
+    else
+    {
+        texture = SDL_CreateTextureFromSurface(Renderer, textSurface);
+        if(texture == NULL)
+        {
+            cout << "Unable to create texture from rendered text! SDL Error: " << SDL_GetError() << endl;
+        }
+        else
+        {
+            mWidth = textSurface->w;
+            mHeight = textSurface->h;
+        }
+        SDL_FreeSurface(textSurface);
+    }
+    return texture != NULL;
 }
 
 void Textures::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)

@@ -13,19 +13,19 @@ const int LEVEL_HEIGHT = 30;
 const int TOTAL_TILES = 900;
 const int TOTAL_TILE_SPRITES = 15;
 
-const int CLEAR = 00;
-const int SKY = 01;
-const int WALL = 02;
-const int WOOD = 03;
-const int DOOR = 04;
-const int LAVA = 05;
-const int GRASS = 06;
-const int WATER = 07;
-const int PLATFORM = 10;
-const int LADDER = 11;
-const int LADDER_TOP = 12;
-const int SLOPE_RIGHT = 13;
-const int SLOPE_LEFT = 14;
+const int TILE_CLEAR = 00;
+const int TILE_SKY = 01;
+const int TILE_WALL = 02;
+const int TILE_WOOD = 03;
+const int TILE_DOOR = 04;
+const int TILE_LAVA = 05;
+const int TILE_GRASS = 06;
+const int TILE_WATER = 07;
+const int TILE_PLATFORM = 10;
+const int TILE_LADDER = 11;
+const int TILE_LADDER_TOP = 12;
+const int TILE_SLOPE_RIGHT = 13;
+const int TILE_SLOPE_LEFT = 14;
 
 
 

@@ -72,7 +72,7 @@
 1394940798 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1425419488 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
+1425378687 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
@@ -359,7 +359,7 @@
 1425389871 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_onrender.cpp
 	"CApp.h"
 
-1427711574 c:\users\nsmm\c_c++\epicquest_cpp\include\constants.h
+1427807872 c:\users\nsmm\c_c++\epicquest_cpp\include\constants.h
 
 1425393472 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_cleanup.cpp
 	"CApp.h"
@@ -377,15 +377,16 @@
 1425393533 source:c:\users\nsmm\c_c++\epicquest_cpp\src\capp_render.cpp
 	"CApp.h"
 
-1427697103 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
+1427806935 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq.cpp
 	"EQ.h"
+	"Timer.h"
 	"Player.h"
 	"Textures.h"
 	"Camera.h"
 	"World.h"
 	"Constants.h"
 
-1426520282 c:\users\nsmm\c_c++\epicquest_cpp\include\eq.h
+1427804847 c:\users\nsmm\c_c++\epicquest_cpp\include\eq.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -393,6 +394,7 @@
 	<string>
 	<iostream>
 	<cmath>
+	<sstream>
 
 1427445685 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq.cpp
 	"EQ.h"
@@ -450,7 +452,7 @@
 1425896184 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_fps.cpp
 	"EQ.h"
 
-1376159942 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_image.h
+1376156342 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -466,13 +468,13 @@
 	<string>
 	<iostream>
 
-1427700608 source:c:\users\nsmm\c_c++\epicquest_cpp\src\player.cpp
+1427808971 source:c:\users\nsmm\c_c++\epicquest_cpp\src\player.cpp
 	"Player.h"
 	"Textures.h"
 	"Constants.h"
 	"Collision.h"
 
-1427700162 c:\users\nsmm\c_c++\epicquest_cpp\include\player.h
+1427809557 c:\users\nsmm\c_c++\epicquest_cpp\include\player.h
 	<SDL.h>
 	<SDL_image.h>
 	"Tile.h"
@@ -511,7 +513,7 @@
 1426188250 source:c:\users\tijn\documents\github\epicquest_cpp\src\texture.cpp
 	"Texture.h"
 
-1376160144 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_ttf.h
+1376156544 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
@@ -574,26 +576,27 @@
 	"Constants.h"
 	"Tile.h"
 
-1427298403 source:c:\users\nsmm\c_c++\epicquest_cpp\src\world.cpp
+1427807848 source:c:\users\nsmm\c_c++\epicquest_cpp\src\world.cpp
 	"World.h"
 	"Constants.h"
 	"Textures.h"
 	"Tile.h"
 	<fstream>
 
-1427288216 source:c:\users\nsmm\c_c++\epicquest_cpp\src\textures.cpp
+1427803073 source:c:\users\nsmm\c_c++\epicquest_cpp\src\textures.cpp
 	"Textures.h"
 
-1427288165 c:\users\nsmm\c_c++\epicquest_cpp\include\textures.h
+1427802939 c:\users\nsmm\c_c++\epicquest_cpp\include\textures.h
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_ttf.h>
 	<string>
 	<iostream>
 
-1427700635 source:c:\users\nsmm\c_c++\epicquest_cpp\src\collision.cpp
+1427808221 source:c:\users\nsmm\c_c++\epicquest_cpp\src\collision.cpp
 	"Collision.h"
 
-1427697103 c:\users\nsmm\c_c++\epicquest_cpp\include\collision.h
+1427808146 c:\users\nsmm\c_c++\epicquest_cpp\include\collision.h
 	"Constants.h"
 	"Tile.h"
 	<SDL.h>
@@ -633,4 +636,11 @@
 1427747997 c:\users\tijn\documents\github\epicquest_cpp\include\timer.h
 	<stdint.h>
 	<SDL.h>
+
+1427792942 c:\users\nsmm\c_c++\epicquest_cpp\include\timer.h
+	<stdint.h>
+	<SDL.h>
+
+1427792942 source:c:\users\nsmm\c_c++\epicquest_cpp\src\timer.cpp
+	"Timer.h"
 
