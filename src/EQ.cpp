@@ -41,7 +41,7 @@ bool EQ::Init()
         return false;
     }
 
-    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED /*| SDL_RENDERER_PRESENTVSYNC*/)) == NULL)
+    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)) == NULL)
     {
         cout << "Unable to create Renderer! SDL_Error: " << SDL_GetError() << endl;
         return false;
@@ -107,6 +107,7 @@ void EQ::Event(SDL_Event* event)
 void EQ::Fps()
 {
     float avgFPS = countedFrames / (timer.getTicks() / 1000.f);
+
     if(avgFPS > 2000000)
     {
         avgFPS = 0;
@@ -180,7 +181,6 @@ void EQ::Cleanup()
 
 int EQ::Execute()
 {
-
     if(this->Init() == false)
     {
         return -1;

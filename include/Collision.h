@@ -12,6 +12,7 @@ class Collision
         virtual ~Collision();
         bool CheckCollision(SDL_Rect a, SDL_Rect b);
         bool CheckCloudCollision(SDL_Rect a, SDL_Rect b);
+        bool VarCollision(SDL_Rect cBox, Tile* tiles[], int type);
         bool WallCollision(SDL_Rect cBox, Tile* tiles[]);
         bool CloudCollision(SDL_Rect cBox, Tile* tiles[]);
     protected:

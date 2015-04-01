@@ -26,13 +26,16 @@ Player::Player()
     IdleFrameLeft = 8;
     IdleFrameRight = 9;
 
-    jumpSpeed = 4;
+    jumpSpeed = 60;
     jumpCount = 0;
-    jumpHeight = 6;
+    jumpHeight = 60;
 
     WalkingLeft = false;
     WalkingLeft = false;
     isFalling = true;
+
+    climbingSpeed = 8;
+    isClimbing = false;
 
     canJump = true;
     isJumping = false;
@@ -157,23 +160,27 @@ void Player::Input(Tile* tiles[])
     {
         Xvel = -Speed;
         this->Move(left, tiles);
+        this->Climb(left, tiles);
         WalkingLeft = true;
     }
     if(keyState[SDL_SCANCODE_D])
     {
         Xvel = Speed;
         this->Move(right, tiles);
+        this->Climb(right, tiles);
         WalkingRight = true;
     }
     if(keyState[SDL_SCANCODE_W])
     {
         Yvel = -Speed;
         this->Move(up, tiles);
+        this->Climb(up, tiles);
     }
     if(keyState[SDL_SCANCODE_S])
     {
         Yvel = Speed;
         this->Move(down, tiles);
+        this->Climb(down, tiles);
     }
     if(keyState[SDL_SCANCODE_SPACE])
     {
@@ -190,10 +197,49 @@ void Player::Jump(Tile* tiles[])
 void Player::Falling(Tile* tiles[])
 {
     playerRect.y += GRAVITY;
+    isFalling = true;
     if(pCollision.WallCollision(playerRect, tiles) || pCollision.CloudCollision(playerRect, tiles))
     {
         playerRect.y -=GRAVITY;
         isFalling = false;
+    }
+
+    //Gravity functions for sloped tiles "y1 = y + (x1 - x)"
+    if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT))
+    {
+        cout << playerRect.y + playerRect.h << endl;
+        playerRect.y -=GRAVITY;
+        isFalling = false;
+    }
+    if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT))
+    {
+        cout << ((playerRect.y + playerRect.h)%TILE_SIZE)<< endl;
+        playerRect.y -=GRAVITY;
+        isFalling = false;
+
+    }
+}
+
+void Player::Climb(int Dir, Tile* tiles[])
+{
+    if(pCollision.VarCollision(playerRect, tiles, TILE_LADDER) || pCollision.VarCollision(playerRect, tiles, TILE_LADDER_TOP))
+    {
+        if(Dir == up)
+        {
+            isClimbing = true;
+            Yvel = -climbingSpeed;
+            cout << "ladder up" << endl;
+        }
+        if(Dir == down)
+        {
+            isClimbing = true;
+            Yvel = climbingSpeed;
+            cout << "ladder down" << endl;
+        }
+        if(Dir == left || Dir == right)
+        {
+            isClimbing = false;
+        }
     }
 }
 
@@ -207,11 +253,15 @@ void Player::Move(int Dir, Tile* tiles[])
 
     if(Dir == up || Dir == down)
         playerRect.y += Yvel;
-    if(Dir == jump)
-        playerRect.y += Jvel;
     // Vertical collision handling
     if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
         playerRect.y -= Yvel;
+
+    if(Dir == jump)
+        playerRect.y += Jvel;
+    //Jumping collision handeling
+    if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
+        playerRect.y -= Jvel;
 }
 
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)

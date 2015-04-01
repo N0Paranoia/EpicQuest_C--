@@ -28,11 +28,15 @@ class Player
         int jumpSpeed;
         int jumpHeight;
 
+        int climbingSpeed;
+
         bool WalkingLeft;
         bool WalkingRight;
         bool isFalling;
         bool canJump;
         bool isJumping;
+
+        bool isClimbing;
 
         SDL_Rect PlayerClips[18];
     public:
@@ -46,6 +50,7 @@ class Player
         int LoadMedia(SDL_Renderer* Renderer);
         void Move(int Dir, Tile* tiles[]);
         void Jump(Tile* tiles[]);
+        void Climb(int Dir, Tile* tiles[]);
         void Falling(Tile* tiles[]);
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
         void Cleanup();

@@ -44,8 +44,8 @@ bool Collision::CheckCollision(SDL_Rect a, SDL_Rect b)
 bool Collision::CheckCloudCollision(SDL_Rect a, SDL_Rect b)
 {
     leftA = a.x;
-    rightA = a.x + a.w - GRAVITY;
-    topA = a.y;
+    rightA = a.x + a.w;
+    topA = a.y  + a.h - GRAVITY;
     bottomA = a.y + a.h;
 
     leftB = b.x;
@@ -70,6 +70,21 @@ bool Collision::CheckCloudCollision(SDL_Rect a, SDL_Rect b)
         return false;
     }
     return true;
+}
+
+bool Collision::VarCollision(SDL_Rect cBox, Tile* tiles[], int type)
+{
+    for(int i = 0; i < TOTAL_TILES; i++)
+    {
+        if(tiles[i]->getType() == type)
+        {
+            if(this->CheckCollision(cBox, tiles[i]->getTileBox()))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])

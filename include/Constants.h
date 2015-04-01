@@ -29,7 +29,7 @@ const int TILE_SLOPE_LEFT = 14;
 
 
 
-const int GRAVITY = 8;
+const int GRAVITY = 4;
 
 
 #endif // CONSTANTS_H_INCLUDED
