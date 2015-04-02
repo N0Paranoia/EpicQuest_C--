@@ -203,8 +203,6 @@ void Player::Falling(Tile* tiles[])
         playerRect.y -=GRAVITY;
         isFalling = false;
     }
-
-    //Gravity functions for sloped tiles "y1 = y + (x1 - x)"
     if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT))
     {
         cout << (TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE) << endl;
