@@ -207,16 +207,21 @@ void Player::Falling(Tile* tiles[])
     //Gravity functions for sloped tiles "y1 = y + (x1 - x)"
     if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT))
     {
-        cout << playerRect.y + playerRect.h << endl;
-        playerRect.y -=GRAVITY;
-        isFalling = false;
+        cout << (TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE) << endl;
+        if(playerRect.y + playerRect.h == (TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+        {
+            playerRect.y -=GRAVITY;
+            isFalling = false;
+        }
     }
     if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT))
     {
-        cout << ((playerRect.y + playerRect.h)%TILE_SIZE)<< endl;
-        playerRect.y -=GRAVITY;
-        isFalling = false;
-
+        cout << ((playerRect.x) % TILE_SIZE) << endl;
+        if(playerRect.y + playerRect.h == (playerRect.x % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+        {
+            playerRect.y -=GRAVITY;
+            isFalling = false;
+        }
     }
 }
 
@@ -256,6 +261,8 @@ void Player::Move(int Dir, Tile* tiles[])
     // Vertical collision handling
     if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
         playerRect.y -= Yvel;
+    //Slanted tiles collision handling
+
 
     if(Dir == jump)
         playerRect.y += Jvel;
@@ -283,6 +290,10 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
             frame = StartFrameRight;
         }
     }
+    //Show collsiion box
+    SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0xff);
+    playerBox = {playerRect.x - camera->x, playerRect.y - camera->y, playerRect.w, playerRect.h};
+    SDL_RenderDrawRect(Renderer, &playerBox);
     //Render Frame
     SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
 }
