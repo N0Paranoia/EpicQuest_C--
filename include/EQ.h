@@ -25,6 +25,9 @@ class EQ
         SDL_Color textColor;
         int countedFrames;
 
+        float avgFPS;
+        int frameTicks;
+
     public:
         EQ();
         int Execute();
@@ -32,6 +35,7 @@ class EQ
     public:
         void Event(SDL_Event* Event);
         void Fps();
+        void FpsCap();
         bool Init();
         bool LoadMedia();
         //Loads individual image as texture

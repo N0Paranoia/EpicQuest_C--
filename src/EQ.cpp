@@ -7,7 +7,8 @@
 #include "Constants.h"
 
 
-Timer timer;
+Timer FPStimer;
+Timer CAPtimer;
 Player player;
 World world;
 Camera camera;
@@ -41,7 +42,7 @@ bool EQ::Init()
         return false;
     }
 
-    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)) == NULL)
+    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED /*| SDL_RENDERER_PRESENTVSYNC*/)) == NULL)
     {
         cout << "Unable to create Renderer! SDL_Error: " << SDL_GetError() << endl;
         return false;
@@ -106,7 +107,7 @@ void EQ::Event(SDL_Event* event)
 
 void EQ::Fps()
 {
-    float avgFPS = countedFrames / (timer.getTicks() / 1000.f);
+    avgFPS = countedFrames / (FPStimer.getTicks() / 1000.f);
 
     if(avgFPS > 2000000)
     {
@@ -118,6 +119,15 @@ void EQ::Fps()
     if(!TextTexture.LoadFromRenderedText(Renderer, Font, timeText.str().c_str(), textColor))
     {
         cout << "Failed to render text texture!" << endl;
+    }
+}
+
+void EQ::FpsCap()
+{
+    frameTicks = CAPtimer.getTicks();
+    if(frameTicks < TICK_PER_FRAME)
+    {
+        SDL_Delay( TICK_PER_FRAME - frameTicks);
     }
 }
 
@@ -154,6 +164,8 @@ void EQ::Render()
 
     // frame counter for FPS
     ++countedFrames;
+
+    this->FpsCap();
 }
 
 void EQ::Cleanup()
@@ -191,10 +203,12 @@ int EQ::Execute()
     }
     SDL_Event event;
     //start FPS timer
-    timer.Start();
+    FPStimer.Start();
 
     while(Running)
     {
+
+        CAPtimer.Start();
         while(SDL_PollEvent(&event))
         {
            this->Event(&event);
