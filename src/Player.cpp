@@ -205,7 +205,6 @@ void Player::Falling(Tile* tiles[])
     }
     if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT))
     {
-        cout << (TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE) << endl;
         if(playerRect.y + playerRect.h == (TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
         {
             playerRect.y -=GRAVITY;
@@ -214,8 +213,7 @@ void Player::Falling(Tile* tiles[])
     }
     if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT))
     {
-        cout << ((playerRect.x) % TILE_SIZE) << endl;
-        if(playerRect.y + playerRect.h == (playerRect.x % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+        if(playerRect.y + playerRect.h == ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h)/ TILE_SIZE)*TILE_SIZE)
         {
             playerRect.y -=GRAVITY;
             isFalling = false;
@@ -230,18 +228,21 @@ void Player::Climb(int Dir, Tile* tiles[])
         if(Dir == up)
         {
             isClimbing = true;
+            isFalling = false;
             Yvel = -climbingSpeed;
-            cout << "ladder up" << endl;
+            cout << "ladder up" << isFalling << endl;
         }
         if(Dir == down)
         {
             isClimbing = true;
+            isFalling = false;
             Yvel = climbingSpeed;
             cout << "ladder down" << endl;
         }
         if(Dir == left || Dir == right)
         {
             isClimbing = false;
+            isFalling = true;
         }
     }
 }
@@ -260,6 +261,20 @@ void Player::Move(int Dir, Tile* tiles[])
     if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
         playerRect.y -= Yvel;
     //Slanted tiles collision handling
+    if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT) && Dir == right)
+    {
+        if(playerRect.y + playerRect.h != (TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+        {
+            playerRect.y = (TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE - Speed;
+        }
+    }
+    if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT) && Dir == left)
+    {
+        if(playerRect.y + playerRect.h != ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+        {
+            playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE - Speed;
+        }
+    }
 
 
     if(Dir == jump)
