@@ -425,7 +425,7 @@
 	"EQ.h"
 	"Constants.h"
 
-1428498799 c:\users\tijn\documents\github\epicquest_cpp\include\constants.h
+1428523532 c:\users\tijn\documents\github\epicquest_cpp\include\constants.h
 
 1425933075 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq_loop.cpp
 	"EQ.h"
@@ -485,13 +485,13 @@
 1425997310 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_loadmedia.cpp
 	"EQ.h"
 
-1428438360 c:\users\tijn\documents\github\epicquest_cpp\include\player.h
+1428521904 c:\users\tijn\documents\github\epicquest_cpp\include\player.h
 	<SDL.h>
 	<SDL_image.h>
 	"Tile.h"
 	<iostream>
 
-1428499414 source:c:\users\tijn\documents\github\epicquest_cpp\src\player.cpp
+1428523463 source:c:\users\tijn\documents\github\epicquest_cpp\src\player.cpp
 	"Player.h"
 	"Textures.h"
 	"Constants.h"

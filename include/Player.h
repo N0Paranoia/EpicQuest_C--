@@ -16,7 +16,8 @@ class Player
         int Xvel;
         int Yvel;
         int Jvel;
-        int Speed;
+        int walkingSpeed;
+        int runningSpeed;
         int frame;
         int StartFrameLeft;
         int EndFrameLeft;
@@ -32,6 +33,7 @@ class Player
 
         bool WalkingLeft;
         bool WalkingRight;
+        bool isRunning;
         bool isFalling;
         bool canJump;
         bool isJumping;

@@ -10,14 +10,14 @@ Collision pCollision;
 
 Player::Player()
 {
-    playerRect.x = 22*TILE_SIZE;
+    playerRect.x = 1*TILE_SIZE;
     playerRect.y = 2*TILE_SIZE;
     playerRect.w = TILE_SIZE;
     playerRect.h = 2*TILE_SIZE;
     Xvel = 0;
     Yvel = 0;
     Jvel = 0;
-    Speed = 4;
+    walkingSpeed = 4;
     frame = 0;
     StartFrameLeft = 7;
     EndFrameLeft = 0;
@@ -32,6 +32,8 @@ Player::Player()
 
     WalkingLeft = false;
     WalkingLeft = false;
+    isRunning = false;
+
     isFalling = true;
 
     climbingSpeed = 8;
@@ -158,27 +160,27 @@ void Player::Input(Tile* tiles[])
 
     if(keyState[SDL_SCANCODE_A])
     {
-        Xvel = -Speed;
+        Xvel = -walkingSpeed;
         this->Move(left, tiles);
         this->Climb(left, tiles);
         WalkingLeft = true;
     }
     if(keyState[SDL_SCANCODE_D])
     {
-        Xvel = Speed;
+        Xvel = walkingSpeed;
         this->Move(right, tiles);
         this->Climb(right, tiles);
         WalkingRight = true;
     }
     if(keyState[SDL_SCANCODE_W])
     {
-        Yvel = -Speed;
+        Yvel = -walkingSpeed;
         this->Move(up, tiles);
         this->Climb(up, tiles);
     }
     if(keyState[SDL_SCANCODE_S])
     {
-        Yvel = Speed;
+        Yvel = walkingSpeed;
         this->Move(down, tiles);
         this->Climb(down, tiles);
     }
@@ -196,27 +198,30 @@ void Player::Jump(Tile* tiles[])
 
 void Player::Falling(Tile* tiles[])
 {
-    playerRect.y += GRAVITY;
-    isFalling = true;
-    if(pCollision.WallCollision(playerRect, tiles) || pCollision.CloudCollision(playerRect, tiles))
+    if(!isClimbing)
     {
-        playerRect.y -=GRAVITY;
-        isFalling = false;
-    }
-    if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT))
-    {
-        if(playerRect.y + playerRect.h >= (TILE_SIZE - ((playerRect.x-1) + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+        playerRect.y += GRAVITY;
+        isFalling = true;
+        if(pCollision.WallCollision(playerRect, tiles) || pCollision.CloudCollision(playerRect, tiles))
         {
             playerRect.y -=GRAVITY;
             isFalling = false;
         }
-    }
-    if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT))
-    {
-        if(playerRect.y + playerRect.h >= ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h)/ TILE_SIZE)*TILE_SIZE)
+        if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT))
         {
-            playerRect.y -=GRAVITY;
-            isFalling = false;
+            if(playerRect.y + playerRect.h >= (TILE_SIZE - ((playerRect.x-1) + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+            {
+                playerRect.y -=GRAVITY;
+                isFalling = false;
+            }
+        }
+        if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT))
+        {
+            if(playerRect.y + playerRect.h >= ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h)/ TILE_SIZE)*TILE_SIZE)
+            {
+                playerRect.y -=GRAVITY;
+                isFalling = false;
+            }
         }
     }
 }
@@ -230,20 +235,22 @@ void Player::Climb(int Dir, Tile* tiles[])
             isClimbing = true;
             isFalling = false;
             Yvel = -climbingSpeed;
-            cout << "ladder up" << isFalling << endl;
         }
         if(Dir == down)
         {
             isClimbing = true;
             isFalling = false;
             Yvel = climbingSpeed;
-            cout << "ladder down" << endl;
         }
         if(Dir == left || Dir == right)
         {
             isClimbing = false;
             isFalling = true;
         }
+    }
+    else
+    {
+        isClimbing = false;
     }
 }
 
