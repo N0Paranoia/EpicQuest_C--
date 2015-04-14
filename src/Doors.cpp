@@ -24,15 +24,11 @@ void Doors::Connection(SDL_Rect* player, int z)
     {
         if(player->x >= doorA[i].x - TILE_SIZE/2 && player->x <= doorA[i].x + TILE_SIZE/2 && player->y >= doorA[i].y - TILE_SIZE/2 && player->y <= doorA[i].y)
         {
-            cout << doorB[i].x << endl;
-            cout << doorB[i].y << endl;
             player->x = doorB[i].x;
             player->y = doorB[i].y;
         }
-        if(player->x >= doorB[i].x - (TILE_SIZE/2) && player->x <= doorB[i].x + (TILE_SIZE/2) && player->y == doorB[i].y)
+        else if(player->x >= doorB[i].x - TILE_SIZE/2 && player->x <= doorB[i].x + TILE_SIZE/2 && player->y >= doorB[i].y - TILE_SIZE/2 && player->y <= doorB[i].y)
         {
-            cout << doorA[i].x << endl;
-            cout << doorA[i].y << endl;
             player->x = doorA[i].x;
             player->y = doorA[i].y;
         }

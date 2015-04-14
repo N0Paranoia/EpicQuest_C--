@@ -30,7 +30,7 @@ Player::Player()
     frameSpeed = 12;
     frameSwitch = 60;
 
-    jumpSpeed = 60;
+    jumpSpeed = 8;
     jumpCount = 0;
     jumpHeight = 60;
 
@@ -185,9 +185,12 @@ void Player::Input(Tile* tiles[])
     if(keyState[SDL_SCANCODE_W])
     {
         Yvel = -walkingSpeed;
-        this->Move(up, tiles);
         this->Climb(up, tiles);
         this->GoTroughDoor(tiles);
+    }
+    else
+    {
+        canEnterDoor = true;
     }
     if(keyState[SDL_SCANCODE_S])
     {
@@ -197,14 +200,17 @@ void Player::Input(Tile* tiles[])
     }
     if(keyState[SDL_SCANCODE_SPACE])
     {
+        Jvel = -jumpSpeed;
         this->Jump(tiles);
     }
 }
 
 void Player::Jump(Tile* tiles[])
 {
-    Jvel = -jumpSpeed;
-    this->Move(jump, tiles);
+    playerRect.y += Jvel;
+    //Jumping collision handeling
+    if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
+        playerRect.y -= Jvel;
 }
 
 void Player::Falling(Tile* tiles[])
@@ -241,15 +247,13 @@ void Player::Climb(int Dir, Tile* tiles[])
 {
     if(pCollision.VarCollision(playerRect, tiles, TILE_LADDER) || pCollision.VarCollision(playerRect, tiles, TILE_LADDER_TOP))
     {
-        if(Dir == up)
+        if(Dir == up || down)
         {
+            playerRect.y += Yvel;
             isClimbing = true;
             isFalling = false;
-        }
-        if(Dir == down)
-        {
-            isClimbing = true;
-            isFalling = false;
+            if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
+                playerRect.y -= Yvel;
         }
         if(Dir == left || Dir == right)
         {
@@ -269,7 +273,8 @@ void Player::GoTroughDoor(Tile* tiles[])
     {
         if(canEnterDoor)
         {
-           pDoors.Connection(&playerRect, NULL);
+            pDoors.Connection(&playerRect, NULL);
+            canEnterDoor = false;
         }
     }
 }
@@ -310,12 +315,6 @@ void Player::Move(int Dir, Tile* tiles[])
             playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
         }
     }
-
-    if(Dir == jump)
-        playerRect.y += Jvel;
-    //Jumping collision handeling
-    if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
-        playerRect.y -= Jvel;
 }
 
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
@@ -366,6 +365,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
     SDL_RenderDrawRect(Renderer, &playerBox);
     //Render Frame
     SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
+    //cout << "Player X = " << playerRect.x << " | " << "PlayerY = " << playerRect.y << endl;
 }
 
 void Player::Cleanup()
