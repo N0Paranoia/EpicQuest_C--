@@ -19,6 +19,7 @@ Player::Player()
     Yvel = 0;
     Jvel = 0;
     walkingSpeed = 4;
+    runningSpeed = 8;
     frame = 0;
     StartFrameLeft = 7;
     EndFrameLeft = 0;
@@ -166,7 +167,10 @@ void Player::Input(Tile* tiles[])
 
     if(keyState[SDL_SCANCODE_A])
     {
-        Xvel = -walkingSpeed;
+        if(isRunning)
+            Xvel = -runningSpeed;
+        else
+            Xvel = -walkingSpeed;
         this->Move(left, tiles);
         this->Climb(left, tiles);
         WalkingLeft = true;
@@ -175,7 +179,10 @@ void Player::Input(Tile* tiles[])
     }
     if(keyState[SDL_SCANCODE_D])
     {
-        Xvel = walkingSpeed;
+        if(isRunning)
+            Xvel = runningSpeed;
+        else
+            Xvel = walkingSpeed;
         this->Move(right, tiles);
         this->Climb(right, tiles);
         WalkingRight = true;
@@ -203,14 +210,27 @@ void Player::Input(Tile* tiles[])
         Jvel = -jumpSpeed;
         this->Jump(tiles);
     }
+    if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
+    {
+        cout << "RUN" << endl;
+        isRunning = true;
+    }
+    else
+    {
+        isRunning = false;
+    }
 }
 
 void Player::Jump(Tile* tiles[])
 {
-    playerRect.y += Jvel;
-    //Jumping collision handeling
-    if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
-        playerRect.y -= Jvel;
+    if(isRunning)
+    {
+        playerRect.y += Jvel;
+        isClimbing = false;
+        //Jumping collision handeling
+        if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
+            playerRect.y -= Jvel;
+    }
 }
 
 void Player::Falling(Tile* tiles[])
@@ -365,7 +385,6 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
     SDL_RenderDrawRect(Renderer, &playerBox);
     //Render Frame
     SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
-    //cout << "Player X = " << playerRect.x << " | " << "PlayerY = " << playerRect.y << endl;
 }
 
 void Player::Cleanup()
