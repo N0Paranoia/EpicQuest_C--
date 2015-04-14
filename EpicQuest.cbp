@@ -41,6 +41,7 @@
 		<Unit filename="include/Camera.h" />
 		<Unit filename="include/Collision.h" />
 		<Unit filename="include/Constants.h" />
+		<Unit filename="include/Doors.h" />
 		<Unit filename="include/EQ.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/Textures.h" />
@@ -49,6 +50,7 @@
 		<Unit filename="include/World.h" />
 		<Unit filename="src/Camera.cpp" />
 		<Unit filename="src/Collision.cpp" />
+		<Unit filename="src/Doors.cpp" />
 		<Unit filename="src/EQ.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/Textures.cpp" />

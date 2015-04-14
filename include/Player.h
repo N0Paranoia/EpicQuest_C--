@@ -18,6 +18,7 @@ class Player
         int Jvel;
         int walkingSpeed;
         int runningSpeed;
+
         int frame;
         int StartFrameLeft;
         int EndFrameLeft;
@@ -25,6 +26,10 @@ class Player
         int EndFrameRight;
         int IdleFrameLeft;
         int IdleFrameRight;
+        int frameCounter;
+        int frameSpeed;
+        int frameSwitch;
+
         int jumpCount;
         int jumpSpeed;
         int jumpHeight;
@@ -33,11 +38,14 @@ class Player
 
         bool WalkingLeft;
         bool WalkingRight;
+        bool FacingLeft;
+        bool FacingRight;
         bool isRunning;
         bool isFalling;
         bool canJump;
         bool isJumping;
 
+        bool canEnterDoor;
         bool isClimbing;
 
         SDL_Rect PlayerClips[18];
@@ -55,6 +63,7 @@ class Player
         void Jump(Tile* tiles[]);
         void Climb(int Dir, Tile* tiles[]);
         void Falling(Tile* tiles[]);
+        void GoTroughDoor(Tile* tiles[]);
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
         void Cleanup();
 

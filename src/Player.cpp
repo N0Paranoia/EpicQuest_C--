@@ -2,11 +2,12 @@
 #include "Textures.h"
 #include "Constants.h"
 #include "Collision.h"
+#include "Doors.h"
 
 //Texture playerTexture;
 Textures SpriteSheetTexture;
 Collision pCollision;
-
+Doors pDoors;
 
 Player::Player()
 {
@@ -25,6 +26,9 @@ Player::Player()
     EndFrameRight = 17;
     IdleFrameLeft = 8;
     IdleFrameRight = 9;
+    frameCounter = 0;
+    frameSpeed = 12;
+    frameSwitch = 60;
 
     jumpSpeed = 60;
     jumpCount = 0;
@@ -32,12 +36,14 @@ Player::Player()
 
     WalkingLeft = false;
     WalkingLeft = false;
+    FacingLeft = false;
+    FacingRight = true;
     isRunning = false;
 
     isFalling = true;
 
-    climbingSpeed = 8;
     isClimbing = false;
+    canEnterDoor = true;
 
     canJump = true;
     isJumping = false;
@@ -164,6 +170,8 @@ void Player::Input(Tile* tiles[])
         this->Move(left, tiles);
         this->Climb(left, tiles);
         WalkingLeft = true;
+        FacingRight = false;
+        FacingLeft = true;
     }
     if(keyState[SDL_SCANCODE_D])
     {
@@ -171,12 +179,15 @@ void Player::Input(Tile* tiles[])
         this->Move(right, tiles);
         this->Climb(right, tiles);
         WalkingRight = true;
+        FacingLeft = false;
+        FacingRight = true;
     }
     if(keyState[SDL_SCANCODE_W])
     {
         Yvel = -walkingSpeed;
         this->Move(up, tiles);
         this->Climb(up, tiles);
+        this->GoTroughDoor(tiles);
     }
     if(keyState[SDL_SCANCODE_S])
     {
@@ -234,13 +245,11 @@ void Player::Climb(int Dir, Tile* tiles[])
         {
             isClimbing = true;
             isFalling = false;
-            Yvel = -climbingSpeed;
         }
         if(Dir == down)
         {
             isClimbing = true;
             isFalling = false;
-            Yvel = climbingSpeed;
         }
         if(Dir == left || Dir == right)
         {
@@ -251,6 +260,17 @@ void Player::Climb(int Dir, Tile* tiles[])
     else
     {
         isClimbing = false;
+    }
+}
+
+void Player::GoTroughDoor(Tile* tiles[])
+{
+    if(pCollision.VarCollision(playerRect, tiles, TILE_DOOR))
+    {
+        if(canEnterDoor)
+        {
+           pDoors.Connection(&playerRect, NULL);
+        }
     }
 }
 
@@ -300,21 +320,44 @@ void Player::Move(int Dir, Tile* tiles[])
 
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 {
-    // Walking Animation
-    if(WalkingLeft)
+    frameCounter += frameSpeed;
+    if(frameCounter > frameSwitch)
     {
-        frame --;
-        if(frame < EndFrameLeft)
+        // Walking Animation
+        if(WalkingLeft)
         {
-            frame = StartFrameLeft;
+
+            frame --;
+            frameCounter = 0;
+            if(frame < EndFrameLeft || frame > StartFrameLeft)
+            {
+                frame = StartFrameLeft;
+            }
         }
-    }
-    if(WalkingRight)
-    {
-        frame ++;
-        if(frame  > EndFrameRight)
+        else
         {
-            frame = StartFrameRight;
+            //Idle frame left
+            if(FacingLeft)
+            {
+                frame = IdleFrameLeft;
+            }
+        }
+        if(WalkingRight)
+        {
+            frame ++;
+            frameCounter = 0;
+            if(frame  > EndFrameRight || frame < StartFrameRight)
+            {
+                frame = StartFrameRight;
+            }
+        }
+        else
+        {
+            //Idle frame right
+            if(FacingRight)
+            {
+                frame = IdleFrameRight;
+            }
         }
     }
     //Show collsiion box

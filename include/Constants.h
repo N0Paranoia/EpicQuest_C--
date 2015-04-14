@@ -30,7 +30,7 @@ const int TILE_LADDER_TOP = 12;
 const int TILE_SLOPE_RIGHT = 13;
 const int TILE_SLOPE_LEFT = 14;
 
-
+const int TOTAL_DOORS = 2;
 
 const int GRAVITY = 4;
 
