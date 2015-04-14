@@ -72,7 +72,7 @@
 1394940798 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1425378687 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
+1425419488 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
@@ -425,7 +425,7 @@
 	"EQ.h"
 	"Constants.h"
 
-1428523532 c:\users\tijn\documents\github\epicquest_cpp\include\constants.h
+1429039393 c:\users\tijn\documents\github\epicquest_cpp\include\constants.h
 
 1425933075 source:c:\users\tijn\documents\github\epicquest_cpp\src\eq_loop.cpp
 	"EQ.h"
@@ -454,7 +454,7 @@
 1425896184 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_fps.cpp
 	"EQ.h"
 
-1376156342 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_image.h
+1376159942 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -486,7 +486,7 @@
 1425997310 source:c:\users\nsmm\c_c++\epicquest_cpp\src\eq_loadmedia.cpp
 	"EQ.h"
 
-1428521904 c:\users\tijn\documents\github\epicquest_cpp\include\player.h
+1429039393 c:\users\tijn\documents\github\epicquest_cpp\include\player.h
 	<SDL.h>
 	<SDL_image.h>
 	"Tile.h"
@@ -516,7 +516,7 @@
 1426188250 source:c:\users\tijn\documents\github\epicquest_cpp\src\texture.cpp
 	"Texture.h"
 
-1376156544 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_ttf.h
+1376160144 c:\program files (x86)\codeblocks\sdl\include\sdl2\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
@@ -652,6 +652,14 @@
 	"Doors.h"
 
 1428582519 c:\users\nsmm\c_c++\epicquest_cpp\include\doors.h
+	<SDL.h>
+	<iostream>
+	"Constants.h"
+
+1429039393 source:c:\users\tijn\documents\github\epicquest_cpp\src\doors.cpp
+	"Doors.h"
+
+1429039393 c:\users\tijn\documents\github\epicquest_cpp\include\doors.h
 	<SDL.h>
 	<iostream>
 	"Constants.h"
