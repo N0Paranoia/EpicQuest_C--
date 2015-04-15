@@ -48,6 +48,12 @@ Player::Player()
 
     canJump = true;
     isJumping = false;
+
+    isAttacking = false;
+    isBlocking = false;
+
+    maxHealth = 100;
+    maxStamina = 100;
 }
 
 Player::~Player()
@@ -218,6 +224,14 @@ void Player::Input(Tile* tiles[])
     {
         isRunning = false;
     }
+    if(keyState[SDL_SCANCODE_L])
+    {
+        this->Attack();
+    }
+    if(keyState[SDL_SCANCODE_K])
+    {
+        this->Block();
+    }
 }
 
 void Player::Jump(Tile* tiles[])
@@ -298,49 +312,79 @@ void Player::GoTroughDoor(Tile* tiles[])
     }
 }
 
+void Player::Attack()
+{
+    //cout << "Attack" << endl;
+    for(int i = 0; i < 600; i++)
+    {
+        cout << "Attack" << endl;
+        isAttacking = true;
+    }
+    //isAttacking = false;
+}
+
+void Player::Block()
+{
+    cout << "Block" << endl;
+    isBlocking = true;
+}
+
 void Player::Move(int Dir, Tile* tiles[])
 {
-    if(Dir == left || Dir == right)
-        playerRect.x += Xvel;
-    // Horizontal collision handling
-    if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles))
-        playerRect.x -= Xvel;
+    if(!isAttacking)
+    {
+        if(Dir == left || Dir == right)
+            playerRect.x += Xvel;
+        // Horizontal collision handling
+        if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles))
+            playerRect.x -= Xvel;
 
-    if(Dir == up || Dir == down)
-        playerRect.y += Yvel;
-    // Vertical collision handling
-    if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
-        playerRect.y -= Yvel;
-    //Slanted tiles collision handling
-    if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT) && Dir == right)
-    {
-        if((playerRect.x + playerRect.w) % TILE_SIZE == 0)
+        if(Dir == up || Dir == down)
+            playerRect.y += Yvel;
+        // Vertical collision handling
+        if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
+            playerRect.y -= Yvel;
+        //Slanted tiles collision handling
+        if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT) && Dir == right)
         {
-            //Counters that the sum is 0 because he is entering the next tile (the playerRect.x -1 as used in the fall method leads to other collision problems)
-            playerRect.y = TILE_SIZE - (TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+            if((playerRect.x + playerRect.w) % TILE_SIZE == 0)
+            {
+                //Counters that the sum is 0 because he is entering the next tile (the playerRect.x -1 as used in the fall method leads to other collision problems)
+                playerRect.y = TILE_SIZE - (TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+            }
+            else if(TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE == 4)
+            {
+                //Counters going to fast and colliding in to next block
+                playerRect.y = ((playerRect.y / TILE_SIZE) * TILE_SIZE)-4;
+            }
+            else if(playerRect.y + playerRect.h != (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+            {
+                playerRect.y = (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+            }
         }
-        else if(TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE == 4)
+        if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT) && Dir == left)
         {
-            //Counters going to fast and colliding in to next block
-            playerRect.y = ((playerRect.y / TILE_SIZE) * TILE_SIZE)-4;
-        }
-        else if(playerRect.y + playerRect.h != (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
-        {
-            playerRect.y = (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+            if((playerRect.x) % TILE_SIZE == 4)
+            {
+                //Counters getting stuck when running
+                playerRect.y = ((playerRect.x-4) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+            }
+            else if(playerRect.y + playerRect.h != ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+            {
+                playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+            }
         }
     }
-    if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT) && Dir == left)
-    {
-        if((playerRect.x) % TILE_SIZE == 4)
-        {
-            //Counters getting stuck when running
-            playerRect.y = ((playerRect.x-4) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-        }
-        else if(playerRect.y + playerRect.h != ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
-        {
-            playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-        }
-    }
+}
+
+int Player::Health()
+{
+    return maxHealth;
+}
+
+int Player::Stamina()
+{
+    return maxStamina;
 }
 
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
@@ -391,6 +435,11 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
     SDL_RenderDrawRect(Renderer, &playerBox);
     //Render Frame
     SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
+    HealthBar = {0, 0, this->Health(), 10};
+    StaminBar = {0, 10, this->Stamina(), 10};
+    SDL_RenderFillRect(Renderer, &HealthBar);
+    SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
+    SDL_RenderFillRect(Renderer, &StaminBar);
 }
 
 void Player::Cleanup()

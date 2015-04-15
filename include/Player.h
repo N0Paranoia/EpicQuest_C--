@@ -48,7 +48,15 @@ class Player
         bool canEnterDoor;
         bool isClimbing;
 
+        bool isAttacking;
+        bool isBlocking;
+
+        int maxStamina;
+        int maxHealth;
+
         SDL_Rect PlayerClips[18];
+        SDL_Rect HealthBar;
+        SDL_Rect StaminBar;
     public:
         //Collision box
         SDL_Rect playerRect;
@@ -60,10 +68,14 @@ class Player
         void Input(Tile* tiles[]);
         int LoadMedia(SDL_Renderer* Renderer);
         void Move(int Dir, Tile* tiles[]);
+        void Attack();
+        void Block();
         void Jump(Tile* tiles[]);
         void Climb(int Dir, Tile* tiles[]);
         void Falling(Tile* tiles[]);
         void GoTroughDoor(Tile* tiles[]);
+        int Health();
+        int Stamina();
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
         void Cleanup();
 
