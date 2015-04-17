@@ -171,67 +171,110 @@ void Player::Input(Tile* tiles[])
 
     keyState = SDL_GetKeyboardState(NULL);
 
-    if(keyState[SDL_SCANCODE_A])
+    int _state = state_idle;
+
+    switch(_state)
     {
-        if(isRunning)
-            Xvel = -runningSpeed;
+        case state_idle:
+            if(keyState[SDL_SCANCODE_A])
+            {
+                if(isRunning)
+                {
+                    Xvel = -runningSpeed;
+                }
+                else
+                {
+                    Xvel = -walkingSpeed;
+                    this->Move(left, tiles);
+                    this->Climb(left, tiles);
+                    WalkingLeft = true;
+                    FacingRight = false;
+                    FacingLeft = true;
+                }
+            }
+            if(keyState[SDL_SCANCODE_D])
+            {
+                if(isRunning)
+                {
+                    Xvel = runningSpeed;
+                }
+                else
+                {
+                    Xvel = walkingSpeed;
+                    this->Move(right, tiles);
+                    this->Climb(right, tiles);
+                    WalkingRight = true;
+                    FacingLeft = false;
+                    FacingRight = true;
+                }
+            }
+            if(keyState[SDL_SCANCODE_S])
+            {
+                _state = state_climbing;
+                Yvel = walkingSpeed;
+                this->Move(down, tiles);
+                this->Climb(down, tiles);
+            }
+            break;
+        case state_walking:
+
+            break;
+        case state_jumping:
+
+            break;
+        case state_climbing:
+
+            break;
+        case state_attacking:
+
+            break;
+        case state_blocking:
+
+            break;
+
+        if(keyState[SDL_SCANCODE_W])
+        {
+            Yvel = -walkingSpeed;
+            this->Climb(up, tiles);
+            this->GoTroughDoor(tiles);
+        }
+        if(!keyState[SDL_SCANCODE_W])
+        {
+            canEnterDoor = true;
+        }
+        if(keyState[SDL_SCANCODE_SPACE])
+        {
+            Jvel = -jumpSpeed;
+            this->Jump(tiles);
+        }
+        if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
+        {
+            isRunning = true;
+        }
         else
-            Xvel = -walkingSpeed;
-        this->Move(left, tiles);
-        this->Climb(left, tiles);
-        WalkingLeft = true;
-        FacingRight = false;
-        FacingLeft = true;
+        {
+            isRunning = false;
+        }
+        if(keyState[SDL_SCANCODE_L])
+        {
+            isAttacking = true;
+            this->Attack();
+        }
+        if(!keyState[SDL_SCANCODE_L])
+        {
+            isAttacking = false;
+        }
+        if(keyState[SDL_SCANCODE_K])
+        {
+            isBlocking = true;
+            this->Block();
+        }
+        if(!keyState[SDL_SCANCODE_K])
+        {
+            isBlocking = false;
+        }
     }
-    if(keyState[SDL_SCANCODE_D])
-    {
-        if(isRunning)
-            Xvel = runningSpeed;
-        else
-            Xvel = walkingSpeed;
-        this->Move(right, tiles);
-        this->Climb(right, tiles);
-        WalkingRight = true;
-        FacingLeft = false;
-        FacingRight = true;
-    }
-    if(keyState[SDL_SCANCODE_W])
-    {
-        Yvel = -walkingSpeed;
-        this->Climb(up, tiles);
-        this->GoTroughDoor(tiles);
-    }
-    else
-    {
-        canEnterDoor = true;
-    }
-    if(keyState[SDL_SCANCODE_S])
-    {
-        Yvel = walkingSpeed;
-        this->Move(down, tiles);
-        this->Climb(down, tiles);
-    }
-    if(keyState[SDL_SCANCODE_SPACE])
-    {
-        Jvel = -jumpSpeed;
-        this->Jump(tiles);
-    }
-    if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
-    {
-        isRunning = true;
-    }
-    else
-    {
-        isRunning = false;
-    }
-    if(keyState[SDL_SCANCODE_L])
-    {
-        this->Attack();
-    }
-    if(keyState[SDL_SCANCODE_K])
-    {
-        this->Block();
-    }
+    cout << _state << endl;
 }
 
 void Player::Jump(Tile* tiles[])
@@ -288,11 +331,12 @@ void Player::Climb(int Dir, Tile* tiles[])
             if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
                 playerRect.y -= Yvel;
         }
-        if(Dir == left || Dir == right)
+       /* if(Dir == left || Dir == right)
         {
             isClimbing = false;
             isFalling = true;
         }
+        */
     }
     else
     {
@@ -318,7 +362,6 @@ void Player::Attack()
     for(int i = 0; i < 600; i++)
     {
         cout << "Attack" << endl;
-        isAttacking = true;
     }
     //isAttacking = false;
 }
@@ -326,7 +369,6 @@ void Player::Attack()
 void Player::Block()
 {
     cout << "Block" << endl;
-    isBlocking = true;
 }
 
 void Player::Move(int Dir, Tile* tiles[])
@@ -435,8 +477,8 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
     SDL_RenderDrawRect(Renderer, &playerBox);
     //Render Frame
     SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
-    HealthBar = {0, 0, this->Health(), 10};
-    StaminBar = {0, 10, this->Stamina(), 10};
+    HealthBar = {10, 10, this->Health(), 10};
+    StaminBar = {10, 25, this->Stamina(), 10};
     SDL_RenderFillRect(Renderer, &HealthBar);
     SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
     SDL_RenderFillRect(Renderer, &StaminBar);

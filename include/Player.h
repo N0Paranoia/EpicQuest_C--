@@ -11,7 +11,26 @@ using namespace std;
 class Player
 {
     private:
-        enum Direction {left, right, up, down, jump};
+        enum State
+        {
+            state_idle,
+            state_jumping,
+            state_walking,
+            state_running,
+            state_attacking,
+            state_blocking,
+            state_climbing
+        };
+
+        enum Direction
+        {
+            left,
+            right,
+            up,
+            down,
+            jump
+        };
+
         const Uint8* keyState;
         int Xvel;
         int Yvel;
