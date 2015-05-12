@@ -17,7 +17,7 @@ bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)
     //Free textures
     this->Free();
 
-	w//The final texture
+	//The final texture
 	SDL_Texture* newTexture = NULL;
 
 	//Load image at specified path
