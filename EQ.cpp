@@ -55,7 +55,7 @@ bool EQ::Init()
     }
     if(TTF_Init() == -1)
     {
-        cout << "Unable to initialize SDL_TTF! SDL_Erro: " << TTF_GetError() << endl;
+        cout << "Unable to initialize SDL_TTF! SDL_Error: " << TTF_GetError() << endl;
     }
     return true;
 }
@@ -73,12 +73,12 @@ bool EQ::LoadMedia()
         return false;
     }
     //Load PNG background texture
-    if((wallpaperTexture.LoadFromFile(Renderer, "assets/background.png")) == NULL)
+    if((wallpaperTexture.LoadFromFile(Renderer, "../assets/background.png")) == NULL)
 	{
 		cout << "Unable to Load texture image! SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
-    Font = TTF_OpenFont("assets/FreePixel.ttf", 14);
+    Font = TTF_OpenFont("../assets/FreePixel.ttf", 14);
     if(Font == NULL)
     {
         cout << "Unable to Load font! SDL_Error: " << TTF_GetError() << endl;
