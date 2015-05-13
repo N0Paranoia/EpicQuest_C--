@@ -30,7 +30,9 @@ class Player
             down,
             jump
         };
-
+		
+		int _state;
+		
         const Uint8* keyState;
         int Xvel;
         int Yvel;

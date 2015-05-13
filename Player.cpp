@@ -54,6 +54,8 @@ Player::Player()
 
     maxHealth = 100;
     maxStamina = 100;
+	
+	int _state = state_idle;
 }
 
 Player::~Player()
@@ -71,95 +73,95 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
     }
     else
     {
-        PlayerClips[0].x = 0 * playerRect.w;
-        PlayerClips[0].y = 0 * playerRect.h;
-        PlayerClips[0].w = playerRect.w;
-        PlayerClips[0].h = playerRect.h;
+		PlayerClips[0].x = 0 * playerRect.w;
+		PlayerClips[0].y = 0 * playerRect.h;
+		PlayerClips[0].w = playerRect.w;
+		PlayerClips[0].h = playerRect.h;
 
-        PlayerClips[1].x = 1 * playerRect.w;
-        PlayerClips[1].y = 0 * playerRect.h;
-        PlayerClips[1].w = playerRect.w;
-        PlayerClips[1].h = playerRect.h;
+		PlayerClips[1].x = 1 * playerRect.w;
+		PlayerClips[1].y = 0 * playerRect.h;
+		PlayerClips[1].w = playerRect.w;
+		PlayerClips[1].h = playerRect.h;
 
-        PlayerClips[2].x = 2 * playerRect.w;
-        PlayerClips[2].y = 0 * playerRect.h;
-        PlayerClips[2].w = playerRect.w;
-        PlayerClips[2].h = playerRect.h;
+		PlayerClips[2].x = 2 * playerRect.w;
+		PlayerClips[2].y = 0 * playerRect.h;
+		PlayerClips[2].w = playerRect.w;
+		PlayerClips[2].h = playerRect.h;
 
-        PlayerClips[3].x = 3 * playerRect.w;
-        PlayerClips[3].y = 0 * playerRect.h;
-        PlayerClips[3].w = playerRect.w;
-        PlayerClips[3].h = playerRect.h;
+		PlayerClips[3].x = 3 * playerRect.w;
+		PlayerClips[3].y = 0 * playerRect.h;
+		PlayerClips[3].w = playerRect.w;
+		PlayerClips[3].h = playerRect.h;
 
-        PlayerClips[4].x = 4 * playerRect.w;
-        PlayerClips[4].y = 0 * playerRect.h;
-        PlayerClips[4].w = playerRect.w;
-        PlayerClips[4].h = playerRect.h;
+		PlayerClips[4].x = 4 * playerRect.w;
+		PlayerClips[4].y = 0 * playerRect.h;
+		PlayerClips[4].w = playerRect.w;
+		PlayerClips[4].h = playerRect.h;
 
-        PlayerClips[5].x = 5 * playerRect.w;
-        PlayerClips[5].y = 0 * playerRect.h;
-        PlayerClips[5].w = playerRect.w;
-        PlayerClips[5].h = playerRect.h;
+		PlayerClips[5].x = 5 * playerRect.w;
+		PlayerClips[5].y = 0 * playerRect.h;
+		PlayerClips[5].w = playerRect.w;
+		PlayerClips[5].h = playerRect.h;
 
-        PlayerClips[6].x = 6 * playerRect.w;
-        PlayerClips[6].y = 0 * playerRect.h;
-        PlayerClips[6].w = playerRect.w;
-        PlayerClips[6].h = playerRect.h;
+		PlayerClips[6].x = 6 * playerRect.w;
+		PlayerClips[6].y = 0 * playerRect.h;
+		PlayerClips[6].w = playerRect.w;
+		PlayerClips[6].h = playerRect.h;
 
-        PlayerClips[7].x = 7 * playerRect.w;
-        PlayerClips[7].y = 0 * playerRect.h;
-        PlayerClips[7].w = playerRect.w;
-        PlayerClips[7].h = playerRect.h;
+		PlayerClips[7].x = 7 * playerRect.w;
+		PlayerClips[7].y = 0 * playerRect.h;
+		PlayerClips[7].w = playerRect.w;
+		PlayerClips[7].h = playerRect.h;
 
-        PlayerClips[8].x = 8 * playerRect.w;
-        PlayerClips[8].y = 0 * playerRect.h;
-        PlayerClips[8].w = playerRect.w;
-        PlayerClips[8].h = playerRect.h;
+		PlayerClips[8].x = 8 * playerRect.w;
+		PlayerClips[8].y = 0 * playerRect.h;
+		PlayerClips[8].w = playerRect.w;
+		PlayerClips[8].h = playerRect.h;
 
-        PlayerClips[9].x = 9 * playerRect.w;
-        PlayerClips[9].y = 0 * playerRect.h;
-        PlayerClips[9].w = playerRect.w;
-        PlayerClips[9].h = playerRect.h;
+		PlayerClips[9].x = 9 * playerRect.w;
+		PlayerClips[9].y = 0 * playerRect.h;
+		PlayerClips[9].w = playerRect.w;
+		PlayerClips[9].h = playerRect.h;
 
-        PlayerClips[10].x = 10 * playerRect.w;
-        PlayerClips[10].y = 0 * playerRect.h;
-        PlayerClips[10].w = playerRect.w;
-        PlayerClips[10].h = playerRect.h;
+		PlayerClips[10].x = 10 * playerRect.w;
+		PlayerClips[10].y = 0 * playerRect.h;
+		PlayerClips[10].w = playerRect.w;
+		PlayerClips[10].h = playerRect.h;
 
-        PlayerClips[11].x = 11 * playerRect.w;
-        PlayerClips[11].y = 0 * playerRect.h;
-        PlayerClips[11].w = playerRect.w;
-        PlayerClips[11].h = playerRect.h;
+		PlayerClips[11].x = 11 * playerRect.w;
+		PlayerClips[11].y = 0 * playerRect.h;
+		PlayerClips[11].w = playerRect.w;
+		PlayerClips[11].h = playerRect.h;
 
-        PlayerClips[12].x = 12 * playerRect.w;
-        PlayerClips[12].y = 0 * playerRect.h;
-        PlayerClips[12].w = playerRect.w;
-        PlayerClips[12].h = playerRect.h;
+		PlayerClips[12].x = 12 * playerRect.w;
+		PlayerClips[12].y = 0 * playerRect.h;
+		PlayerClips[12].w = playerRect.w;
+		PlayerClips[12].h = playerRect.h;
 
-        PlayerClips[13].x = 13 * playerRect.w;
-        PlayerClips[13].y = 0 * playerRect.h;
-        PlayerClips[13].w = playerRect.w;
-        PlayerClips[13].h = playerRect.h;
+		PlayerClips[13].x = 13 * playerRect.w;
+		PlayerClips[13].y = 0 * playerRect.h;
+		PlayerClips[13].w = playerRect.w;
+		PlayerClips[13].h = playerRect.h;
 
-        PlayerClips[14].x = 14 * playerRect.w;
-        PlayerClips[14].y = 0 * playerRect.h;
-        PlayerClips[14].w = playerRect.w;
-        PlayerClips[14].h = playerRect.h;
+		PlayerClips[14].x = 14 * playerRect.w;
+		PlayerClips[14].y = 0 * playerRect.h;
+		PlayerClips[14].w = playerRect.w;
+		PlayerClips[14].h = playerRect.h;
 
-        PlayerClips[15].x = 15 * playerRect.w;
-        PlayerClips[15].y = 0 * playerRect.h;
-        PlayerClips[15].w = playerRect.w;
-        PlayerClips[15].h = playerRect.h;
+		PlayerClips[15].x = 15 * playerRect.w;
+		PlayerClips[15].y = 0 * playerRect.h;
+		PlayerClips[15].w = playerRect.w;
+		PlayerClips[15].h = playerRect.h;
 
-        PlayerClips[16].x = 16 * playerRect.w;
-        PlayerClips[16].y = 0 * playerRect.h;
-        PlayerClips[16].w = playerRect.w;
-        PlayerClips[16].h = playerRect.h;
+		PlayerClips[16].x = 16 * playerRect.w;
+		PlayerClips[16].y = 0 * playerRect.h;
+		PlayerClips[16].w = playerRect.w;
+		PlayerClips[16].h = playerRect.h;
 
-        PlayerClips[17].x = 17 * playerRect.w;
-        PlayerClips[17].y = 0 * playerRect.h;
-        PlayerClips[17].w = playerRect.w;
-        PlayerClips[17].h = playerRect.h;
+		PlayerClips[17].x = 17 * playerRect.w;
+		PlayerClips[17].y = 0 * playerRect.h;
+		PlayerClips[17].w = playerRect.w;
+		PlayerClips[17].h = playerRect.h;
     }
     return true;
 }
@@ -172,59 +174,108 @@ void Player::Input(Tile* tiles[])
 
     keyState = SDL_GetKeyboardState(NULL);
 
-    int _state = state_idle;
-
     switch(_state)
     {
         case state_idle:
             if(keyState[SDL_SCANCODE_A])
             {
-                if(isRunning)
-                {
-                    Xvel = -runningSpeed;
-                }
-                else
-                {
-                    Xvel = -walkingSpeed;
-                    this->Move(left, tiles);
-                    this->Climb(left, tiles);
-                    WalkingLeft = true;
-                    FacingRight = false;
-                    FacingLeft = true;
-                }
+				_state = state_walking;
             }
             if(keyState[SDL_SCANCODE_D])
             {
-                if(isRunning)
-                {
-                    Xvel = runningSpeed;
-                }
-                else
-                {
-                    Xvel = walkingSpeed;
-                    this->Move(right, tiles);
-                    this->Climb(right, tiles);
-                    WalkingRight = true;
-                    FacingLeft = false;
-                    FacingRight = true;
-                }
+				_state = state_walking;
             }
             if(keyState[SDL_SCANCODE_S])
             {
-                _state = state_climbing;
-                Yvel = walkingSpeed;
-                this->Move(down, tiles);
-                this->Climb(down, tiles);
+				Yvel = walkingSpeed;
+				this->Move(down, tiles);
+				this->Climb(down, tiles);
             }
+			if(keyState[SDL_SCANCODE_W])
+			{
+				this->GoTroughDoor(tiles);
+				this->Climb(up, tiles);
+			}
+			if(!keyState[SDL_SCANCODE_W])
+			{
+				canEnterDoor = true;
+			}
+			if(keyState[SDL_SCANCODE_SPACE])
+			{
+				Jvel = -jumpSpeed;
+				this->Jump(tiles);
+			}
+			if(keyState[SDL_SCANCODE_L])
+			{
+				isAttacking = true;
+				this->Attack();
+			}
+			if(!keyState[SDL_SCANCODE_L])
+			{
+				isAttacking = false;
+			}
+			if(keyState[SDL_SCANCODE_K])
+			{
+				isBlocking = true;
+				this->Block();
+			}
+			if(!keyState[SDL_SCANCODE_K])
+			{
+				isBlocking = false;
+			}
             break;
         case state_walking:
-
+			if(keyState[SDL_SCANCODE_A])
+			{
+				Xvel = -walkingSpeed;
+				this->Move(left, tiles);
+				WalkingLeft = true;
+				FacingRight = false;
+				FacingLeft = true;
+			}
+			else if(keyState[SDL_SCANCODE_D])
+            {
+				Xvel = walkingSpeed;
+				this->Move(right, tiles);
+				WalkingRight = true;
+				FacingLeft = false;
+				FacingRight = true;
+            }
+			else
+			{
+				_state = state_idle;
+			}
+			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
+			{
+				isRunning = true;
+				cout << "run" << endl;
+			}
+			else
+			{
+				isRunning = false;
+			}
             break;
         case state_jumping:
 
             break;
         case state_climbing:
-
+			if(keyState[SDL_SCANCODE_W])
+			{
+				Yvel = -walkingSpeed;
+				this->Move(down, tiles);
+				this->Climb(up, tiles);
+			}
+			else if(keyState[SDL_SCANCODE_S])
+			{
+				Yvel = walkingSpeed;
+				this->Move(down, tiles);
+				this->Climb(down, tiles);
+			}
+			else if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D])
+			{
+				isClimbing = false;
+				_state = state_idle;
+			}
             break;
         case state_attacking:
 
@@ -232,48 +283,6 @@ void Player::Input(Tile* tiles[])
         case state_blocking:
 
             break;
-
-        if(keyState[SDL_SCANCODE_W])
-        {
-            Yvel = -walkingSpeed;
-            this->Climb(up, tiles);
-            this->GoTroughDoor(tiles);
-        }
-        if(!keyState[SDL_SCANCODE_W])
-        {
-            canEnterDoor = true;
-        }
-        if(keyState[SDL_SCANCODE_SPACE])
-        {
-            Jvel = -jumpSpeed;
-            this->Jump(tiles);
-        }
-        if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
-        {
-            isRunning = true;
-        }
-        else
-        {
-            isRunning = false;
-        }
-        if(keyState[SDL_SCANCODE_L])
-        {
-            isAttacking = true;
-            this->Attack();
-        }
-        if(!keyState[SDL_SCANCODE_L])
-        {
-            isAttacking = false;
-        }
-        if(keyState[SDL_SCANCODE_K])
-        {
-            isBlocking = true;
-            this->Block();
-        }
-        if(!keyState[SDL_SCANCODE_K])
-        {
-            isBlocking = false;
-        }
     }
     cout << _state << endl;
 }
@@ -326,18 +335,13 @@ void Player::Climb(int Dir, Tile* tiles[])
     {
         if(Dir == up || down)
         {
+			_state = state_climbing;
             playerRect.y += Yvel;
             isClimbing = true;
             isFalling = false;
             if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
                 playerRect.y -= Yvel;
         }
-       /* if(Dir == left || Dir == right)
-        {
-            isClimbing = false;
-            isFalling = true;
-        }
-        */
     }
     else
     {
