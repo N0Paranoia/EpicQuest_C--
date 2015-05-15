@@ -48,8 +48,10 @@ Player::Player()
 
 	canJump = true;
 	isJumping = false;
-
+	
+	attack = false;
 	isAttacking = false;
+	block = false;
 	isBlocking = false;
 
 	maxHealth = 100;
@@ -301,17 +303,16 @@ void Player::Input(Tile* tiles[])
 		case state_blocking:
 			if(keyState[SDL_SCANCODE_K])
 			{
-				isBlocking = true;
+				block = true;
 				this->Block();
 			}
 			else
 			{
-				isBlocking = false;
+				block = false;
 				this->Block();
 			}
 			break;
 	}
-	cout << _state << endl;
 }
 
 void Player::Jump(Tile* tiles[])
@@ -399,19 +400,27 @@ void Player::Attack()
 
 void Player::Block()
 {
-	if(isBlocking)
+	if(block)
 	{
 		if(Energy(NULL) > 10)
 		{
 			if(FacingLeft)
 			{
 				ShieldBox = {this->playerRect.x - 10, this->playerRect.y, 10, playerRect.h};
-				Energy(5);
+				if(!isBlocking)
+				{
+					Energy(50);
+					isBlocking = true;
+				}
 			}
 			if(FacingRight)
 			{
 				ShieldBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y, 10, playerRect.h};
-				Energy(5);
+				if(!isBlocking)
+				{
+					Energy(50);
+					isBlocking = true;
+				}
 			}
 		}
 		else
@@ -429,6 +438,7 @@ void Player::Block()
 	else
 	{
 		ShieldBox = {NULL, NULL, NULL, NULL};
+		isBlocking = false;
 		_state = state_idle;
 	}
 }
@@ -493,7 +503,6 @@ int Player::Energy(int action)
 			energy ++;
 	}
 	energy = energy - action;
-	cout << energy << endl;
 	return energy;
 }
 

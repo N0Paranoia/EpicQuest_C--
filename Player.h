@@ -69,7 +69,9 @@ class Player
 		bool canEnterDoor;
 		bool isClimbing;
 
+		bool attack;
 		bool isAttacking;
+		bool block;
 		bool isBlocking;
 
 		int maxEnergy;
