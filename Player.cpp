@@ -53,11 +53,12 @@ Player::Player()
 	isAttacking = false;
 	block = false;
 	isBlocking = false;
-
+	
 	maxHealth = 100;
 	health = maxHealth;
 	maxEnergy = 100;
 	energy = maxEnergy;
+	energyRecover = true;
 	
 	int _state = state_idle;
 }
@@ -394,7 +395,7 @@ void Player::Attack()
 	//cout << "Attack" << endl;
 	for(int i = 0; i < 600; i++)
 	{
-		cout << "Attack" << endl;
+		cout << "Attack " << i << endl;
 	}
 }
 
@@ -409,8 +410,9 @@ void Player::Block()
 				ShieldBox = {this->playerRect.x - 10, this->playerRect.y, 10, playerRect.h};
 				if(!isBlocking)
 				{
-					Energy(50);
+					Energy(25);
 					isBlocking = true;
+					energyRecover = false;
 				}
 			}
 			if(FacingRight)
@@ -418,8 +420,9 @@ void Player::Block()
 				ShieldBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y, 10, playerRect.h};
 				if(!isBlocking)
 				{
-					Energy(50);
+					Energy(25);
 					isBlocking = true;
+					energyRecover = false;
 				}
 			}
 		}
@@ -440,6 +443,7 @@ void Player::Block()
 		ShieldBox = {NULL, NULL, NULL, NULL};
 		isBlocking = false;
 		_state = state_idle;
+		energyRecover = true;
 	}
 }
 
@@ -493,12 +497,20 @@ void Player::Move(int Dir, Tile* tiles[])
 
 int Player::Health()
 {
+	if(health <=0)
+	{
+		health =0;
+	}
 	return maxHealth;
 }
 
 int Player::Energy(int action)
 {
-	if(action == NULL && energy < maxEnergy)
+	if(energy <= 0)
+	{
+		energy = 0;
+	}
+	if(energyRecover && action == NULL && energy < maxEnergy)
 	{
 			energy ++;
 	}

@@ -76,6 +76,7 @@ class Player
 
 		int maxEnergy;
 		int energy;
+		bool energyRecover;
 		int maxHealth;
 		int health;
 
