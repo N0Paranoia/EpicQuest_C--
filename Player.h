@@ -73,6 +73,9 @@ class Player
 		bool isAttacking;
 		bool block;
 		bool isBlocking;
+		
+		int attackEnergy;
+		int blockEnergy;
 
 		int maxEnergy;
 		int energy;
@@ -83,6 +86,8 @@ class Player
 		SDL_Rect PlayerClips[18];
 		SDL_Rect ShieldBox;
 		SDL_Rect Shield;
+		SDL_Rect SwordBox;
+		SDL_Rect Sword;
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;
 	public:

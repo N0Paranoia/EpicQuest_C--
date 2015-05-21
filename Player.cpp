@@ -60,6 +60,9 @@ Player::Player()
 	energy = maxEnergy;
 	energyRecover = true;
 	
+	attackEnergy = 25;
+	blockEnergy = 25;
+	
 	int _state = state_idle;
 }
 
@@ -291,13 +294,13 @@ void Player::Input(Tile* tiles[])
 		case state_attacking:
 			if(keyState[SDL_SCANCODE_L])
 			{
-				isAttacking = true;
+				attack = true;
 				this->Attack();
 			}
 			else
 			{
-				isAttacking = false;
-				_state = state_idle;
+				attack = false;
+				this->Attack();
 			}
 			break;
 			
@@ -392,10 +395,43 @@ void Player::GoTroughDoor(Tile* tiles[])
 
 void Player::Attack()
 {
-	//cout << "Attack" << endl;
-	for(int i = 0; i < 600; i++)
+	if(attack)
 	{
-		cout << "Attack " << i << endl;
+		if(Energy(NULL) > attackEnergy)
+		{
+			if(FacingLeft)
+			{
+				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
+			}
+			else if(FacingRight)
+			{
+				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
+			}
+			if(!isAttacking)
+			{
+				Energy(attackEnergy);
+				isAttacking = true;
+				energyRecover = false;
+			}
+		}
+		else
+		{
+			if(FacingLeft)
+			{
+				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE, 10, 10};
+			}
+			else if(facingRight)
+			{
+				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE, 10, 10};
+			}
+		}
+	}
+	else
+	{
+		SwordBox = {NULL, NULL, NULL, NULL};
+		isAttacking = false;
+		_state = state_idle;
+		energyRecover = true;
 	}
 }
 
@@ -403,27 +439,21 @@ void Player::Block()
 {
 	if(block)
 	{
-		if(Energy(NULL) > 10)
+		if(Energy(NULL) > blockEnergy)
 		{
 			if(FacingLeft)
 			{
 				ShieldBox = {this->playerRect.x - 10, this->playerRect.y, 10, playerRect.h};
-				if(!isBlocking)
-				{
-					Energy(25);
-					isBlocking = true;
-					energyRecover = false;
-				}
 			}
-			if(FacingRight)
+			else if(FacingRight)
 			{
 				ShieldBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y, 10, playerRect.h};
-				if(!isBlocking)
-				{
-					Energy(25);
-					isBlocking = true;
-					energyRecover = false;
-				}
+			}
+			if(!isBlocking)
+			{
+				Energy(blockEnergy);
+				isBlocking = true;
+				energyRecover = false;
 			}
 		}
 		else
@@ -564,6 +594,10 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0xff);
 	playerBox = {playerRect.x - camera->x, playerRect.y - camera->y, playerRect.w, playerRect.h};
 	SDL_RenderDrawRect(Renderer, &playerBox);
+	
+	//Create New REctangle for sword for the camera compisation
+	Sword = {SwordBox.x - camera->x, SwordBox.y - camera->y, SwordBox.w, SwordBox.h};
+	SDL_RenderFillRect(Renderer, &Sword);
 	
 	HealthBar = {10, 10, this->Health(), 10};
 	StaminBar = {10, 25, this->Energy(NULL), 10};

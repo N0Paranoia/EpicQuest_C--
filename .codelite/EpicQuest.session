@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="C:\Users\nsmm\C_C++\EpicQuest_cpp\EpicQuest.workspace">
-  <int Value="2" Name="m_selectedTab"/>
-  <wxString Value="C:\Users\nsmm\C_C++\EpicQuest_cpp\EpicQuest.workspace" Name="m_workspaceName"/>
+<Session Name="C:\Users\Tijn\Documents\GitHub\EpicQuest_Cpp\EpicQuest.workspace">
+  <int Value="0" Name="m_selectedTab"/>
+  <wxString Value="C:\Users\Tijn\Documents\GitHub\EpicQuest_Cpp\EpicQuest.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="C:\Users\nsmm\C_C++\EpicQuest_cpp\EQ.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
+      <wxString Value="C:\Users\Tijn\Documents\GitHub\EpicQuest_Cpp\Player.h" Name="FileName"/>
+      <int Value="48" Name="FirstVisibleLine"/>
       <int Value="82" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="C:\Users\nsmm\C_C++\EpicQuest_cpp\Player.h" Name="FileName"/>
-      <int Value="60" Name="FirstVisibleLine"/>
-      <int Value="71" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="C:\Users\nsmm\C_C++\EpicQuest_cpp\Player.cpp" Name="FileName"/>
+      <wxString Value="C:\Users\Tijn\Documents\GitHub\EpicQuest_Cpp\Constants.h" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="27" Name="CurrentLine"/>
+      <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
