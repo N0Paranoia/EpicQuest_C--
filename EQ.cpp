@@ -13,7 +13,6 @@ Player player;
 World world;
 Camera camera;
 Tile* tileSet[TOTAL_TILES];
-
 Textures wallpaperTexture;
 Textures TextTexture;
 
@@ -22,6 +21,7 @@ EQ::EQ()
     Running = true;
     Window = nullptr;
     Renderer = nullptr;
+	
     Texture = nullptr;
 
     textColor = {255,0,0};
@@ -73,12 +73,12 @@ bool EQ::LoadMedia()
         return false;
     }
     //Load PNG background texture
-    if((wallpaperTexture.LoadFromFile(Renderer, "../assets/background.png")) == NULL)
+    if((wallpaperTexture.LoadFromFile(Renderer, "assets/background.png")) == NULL)
 	{
 		cout << "Unable to Load texture image! SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
-    Font = TTF_OpenFont("../assets/FreePixel.ttf", 14);
+    Font = TTF_OpenFont("assets/FreePixel.ttf", 14);
     if(Font == NULL)
     {
         cout << "Unable to Load font! SDL_Error: " << TTF_GetError() << endl;

@@ -74,7 +74,7 @@ Player::~Player()
 int Player::LoadMedia(SDL_Renderer* Renderer)
 {
 	//Load Player spritesheet
-	if((SpriteSheetTexture.LoadFromFile(Renderer, "../assets/spriteSheet48.png")) == NULL)
+	if((SpriteSheetTexture.LoadFromFile(Renderer, "assets/spriteSheet48.png")) == NULL)
 	{
 		cout << "Unable to load Player Texture! SDL_Error: " << SDL_GetError() << endl;
 		return false;
@@ -420,7 +420,7 @@ void Player::Attack()
 			{
 				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE, 10, 10};
 			}
-			else if(facingRight)
+			else if(FacingRight)
 			{
 				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE, 10, 10};
 			}
