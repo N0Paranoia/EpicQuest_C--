@@ -490,7 +490,7 @@ void Player::Move(int Dir, Tile* tiles[])
 		if(Dir == up || Dir == down)
 			playerRect.y += Yvel;
 		// Vertical collision handling
-		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
+		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE || pCollision.WallCollision(playerRect, tiles))
 			playerRect.y -= Yvel;
 		//Slanted tiles collision handling
 		if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT) && Dir == right)
