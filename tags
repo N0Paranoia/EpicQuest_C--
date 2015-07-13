@@ -142,7 +142,7 @@ FpsCap	.\EQ.cpp	/^void EQ::FpsCap()$/;"	f	class:EQ	signature:()
 FpsCap	.\EQ.h	/^        void FpsCap();$/;"	p	class:EQ	access:public	signature:()
 Free	.\Textures.cpp	/^void Textures::Free()$/;"	f	class:Textures	signature:()
 Free	.\Textures.h	/^        void Free();$/;"	p	class:Textures	access:public	signature:()
-GRAVITY	.\Constants.h	/^const int GRAVITY = 4;$/;"	v
+GRAVITY	.\Constants.h	/^const int GRAVITY = 12;$/;"	v
 GoTroughDoor	.\Player.cpp	/^void Player::GoTroughDoor(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
 GoTroughDoor	.\Player.h	/^		void GoTroughDoor(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
 Health	.\Player.cpp	/^int Player::Health()$/;"	f	class:Player	signature:()
@@ -177,11 +177,19 @@ Loop	.\EQ.cpp	/^void EQ::Loop()$/;"	f	class:EQ	signature:()
 Loop	.\EQ.h	/^        void Loop();$/;"	p	class:EQ	access:public	signature:()
 Move	.\Player.cpp	/^void Player::Move(int Dir, Tile* tiles[])$/;"	f	class:Player	signature:(int Dir, Tile* tiles[])
 Move	.\Player.h	/^		void Move(int Dir, Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(int Dir, Tile* tiles[])
+PHYSICS_H	.\Physics.h	2;"	d
 PLAYER_H	.\Player.h	2;"	d
 Pause	.\Timer.cpp	/^void Timer::Pause()$/;"	f	class:Timer	signature:()
 Pause	.\Timer.h	/^        void Pause();$/;"	p	class:Timer	access:public	signature:()
 PauseTicks	.\Timer.h	/^        Uint32 PauseTicks;$/;"	m	class:Timer	access:private
 Paused	.\Timer.h	/^        bool Paused;$/;"	m	class:Timer	access:private
+Physics	.\Physics.cpp	/^Physics::Physics()$/;"	f	class:Physics	signature:()
+Physics	.\Physics.h	/^		Physics();$/;"	p	class:Physics	access:public	signature:()
+Physics	.\Physics.h	/^class Physics$/;"	c
+Physics::Physics	.\Physics.cpp	/^Physics::Physics()$/;"	f	class:Physics	signature:()
+Physics::Physics	.\Physics.h	/^		Physics();$/;"	p	class:Physics	access:public	signature:()
+Physics::~Physics	.\Physics.cpp	/^Physics::~Physics()$/;"	f	class:Physics	signature:()
+Physics::~Physics	.\Physics.h	/^		virtual ~Physics();$/;"	p	class:Physics	access:public	signature:()
 Player	.\Player.cpp	/^Player::Player()$/;"	f	class:Player	signature:()
 Player	.\Player.h	/^		Player();$/;"	p	class:Player	access:public	signature:()
 Player	.\Player.h	/^class Player$/;"	c
@@ -527,6 +535,8 @@ world	.\EQ.cpp	/^World world;$/;"	v
 ~Collision	.\Collision.h	/^        virtual ~Collision();$/;"	p	class:Collision	access:public	signature:()
 ~Doors	.\Doors.cpp	/^Doors::~Doors()$/;"	f	class:Doors	signature:()
 ~Doors	.\Doors.h	/^        virtual ~Doors();$/;"	p	class:Doors	access:public	signature:()
+~Physics	.\Physics.cpp	/^Physics::~Physics()$/;"	f	class:Physics	signature:()
+~Physics	.\Physics.h	/^		virtual ~Physics();$/;"	p	class:Physics	access:public	signature:()
 ~Player	.\Player.cpp	/^Player::~Player()$/;"	f	class:Player	signature:()
 ~Player	.\Player.h	/^		virtual ~Player();$/;"	p	class:Player	access:public	signature:()
 ~Textures	.\Textures.cpp	/^Textures::~Textures()$/;"	f	class:Textures	signature:()

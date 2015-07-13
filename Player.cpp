@@ -321,13 +321,19 @@ void Player::Input(Tile* tiles[])
 
 void Player::Jump(Tile* tiles[])
 {
+	// Make it that you can only jump while running
 	if(isRunning)
 	{
-		playerRect.y += Jvel;
-		isClimbing = false;
-		//Jumping collision handeling
-		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
-			playerRect.y -= Jvel;
+		if(canJump)
+		{
+			playerRect.y += Jvel;
+			isClimbing = false;
+			//Jumping collision handeling
+			if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
+			{
+				playerRect.y -= Jvel;
+			}
+		}
 	}
 }
 
@@ -492,7 +498,22 @@ void Player::Move(int Dir, Tile* tiles[])
 		// Vertical collision handling
 		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE || pCollision.WallCollision(playerRect, tiles))
 			playerRect.y -= Yvel;
-		//Slanted tiles collision handling
+		// Sloped tiles VERTICAL collision handeling
+		if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT))
+		{
+			if(playerRect.y + playerRect.h >= (TILE_SIZE - ((playerRect.x-1) + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+			{
+				playerRect.y -= Yvel;
+			}
+		}
+		if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT))
+		{
+			if(playerRect.y + playerRect.h >= ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h)/ TILE_SIZE)*TILE_SIZE)
+			{
+				playerRect.y -= Yvel;
+			}
+		}
+		// Sloped tiles HORIZONTAL collision handling
 		if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT) && Dir == right)
 		{
 			if((playerRect.x + playerRect.w) % TILE_SIZE == 0)
