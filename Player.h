@@ -65,6 +65,7 @@ class Player
 		bool isFalling;
 		bool canJump;
 		bool isJumping;
+		bool isDucking;
 
 		bool canEnterDoor;
 		bool isClimbing;

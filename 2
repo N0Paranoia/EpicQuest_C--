@@ -50,8 +50,6 @@ Player::Player()
 
 	canJump = true;
 	isJumping = false;
-
-	isDucking = false;
 	
 	attack = false;
 	isAttacking = false;
@@ -199,15 +197,10 @@ void Player::Input(Tile* tiles[])
 			}
 			if(keyState[SDL_SCANCODE_S])
 			{
-				isDucking = true;
 				Yvel = walkingSpeed;
 				this->Move(down, tiles);
 				this->Climb(down, tiles);
-             		}
-			if(!keyState[SDL_SCANCODE_S])
-			{
-				isDucking = false;
-			}
+            }
 			if(keyState[SDL_SCANCODE_W])
 			{
 				this->GoTroughDoor(tiles);
@@ -360,10 +353,10 @@ void Player::Falling(Tile* tiles[])
 		{
 			isFalling = true;
 		}
-		// Correct if object is floating due fast collision
-		if(!isFalling || !isJumping)
+		if(!isFalling)
 		{
-			playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
+			cout << "Player bottom = " << playerRect.y + playerRect.h << endl;
+			cout << "Tile Top = " << ((playerRect.y + playerRect.h+1)/TILE_SIZE) * TILE_SIZE << endl;
 		}
 	}
 }

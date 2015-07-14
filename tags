@@ -145,6 +145,8 @@ Free	.\Textures.h	/^        void Free();$/;"	p	class:Textures	access:public	sign
 GRAVITY	.\Constants.h	/^const int GRAVITY = 12;$/;"	v
 GoTroughDoor	.\Player.cpp	/^void Player::GoTroughDoor(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
 GoTroughDoor	.\Player.h	/^		void GoTroughDoor(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
+Gravity	.\Physics.cpp	/^bool Physics::Gravity(SDL_Rect a, Tile* tiles[])$/;"	f	class:Physics	signature:(SDL_Rect a, Tile* tiles[])
+Gravity	.\Physics.h	/^		bool Gravity(SDL_Rect a, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, Tile* tiles[])
 Health	.\Player.cpp	/^int Player::Health()$/;"	f	class:Player	signature:()
 Health	.\Player.h	/^		int Health();$/;"	p	class:Player	access:public	signature:()
 HealthBar	.\Player.h	/^		SDL_Rect HealthBar;$/;"	m	class:Player	access:private
@@ -183,11 +185,15 @@ Pause	.\Timer.cpp	/^void Timer::Pause()$/;"	f	class:Timer	signature:()
 Pause	.\Timer.h	/^        void Pause();$/;"	p	class:Timer	access:public	signature:()
 PauseTicks	.\Timer.h	/^        Uint32 PauseTicks;$/;"	m	class:Timer	access:private
 Paused	.\Timer.h	/^        bool Paused;$/;"	m	class:Timer	access:private
+PhCollision	.\Physics.cpp	/^Collision PhCollision;$/;"	v
 Physics	.\Physics.cpp	/^Physics::Physics()$/;"	f	class:Physics	signature:()
 Physics	.\Physics.h	/^		Physics();$/;"	p	class:Physics	access:public	signature:()
 Physics	.\Physics.h	/^class Physics$/;"	c
+Physics::Gravity	.\Physics.cpp	/^bool Physics::Gravity(SDL_Rect a, Tile* tiles[])$/;"	f	class:Physics	signature:(SDL_Rect a, Tile* tiles[])
+Physics::Gravity	.\Physics.h	/^		bool Gravity(SDL_Rect a, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, Tile* tiles[])
 Physics::Physics	.\Physics.cpp	/^Physics::Physics()$/;"	f	class:Physics	signature:()
 Physics::Physics	.\Physics.h	/^		Physics();$/;"	p	class:Physics	access:public	signature:()
+Physics::StickToFloor	.\Physics.h	/^		int StickToFloor(SDL_Rect a, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, Tile* tiles[])
 Physics::~Physics	.\Physics.cpp	/^Physics::~Physics()$/;"	f	class:Physics	signature:()
 Physics::~Physics	.\Physics.h	/^		virtual ~Physics();$/;"	p	class:Physics	access:public	signature:()
 Player	.\Player.cpp	/^Player::Player()$/;"	f	class:Player	signature:()
@@ -316,6 +322,7 @@ StartFrameRight	.\Player.h	/^		int StartFrameRight;$/;"	m	class:Player	access:pr
 StartTicks	.\Timer.h	/^        Uint32 StartTicks;$/;"	m	class:Timer	access:private
 Started	.\Timer.h	/^        bool Started;$/;"	m	class:Timer	access:private
 State	.\Player.h	/^		enum State$/;"	g	class:Player	access:private
+StickToFloor	.\Physics.h	/^		int StickToFloor(SDL_Rect a, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, Tile* tiles[])
 Stop	.\Timer.cpp	/^void Timer::Stop()$/;"	f	class:Timer	signature:()
 Stop	.\Timer.h	/^        void Stop();$/;"	p	class:Timer	access:public	signature:()
 Sword	.\Player.h	/^		SDL_Rect Sword;$/;"	m	class:Player	access:private
@@ -505,6 +512,8 @@ maxEnergy	.\Player.h	/^		int maxEnergy;$/;"	m	class:Player	access:private
 maxHealth	.\Player.h	/^		int maxHealth;$/;"	m	class:Player	access:private
 pCollision	.\Player.cpp	/^Collision pCollision;$/;"	v
 pDoors	.\Player.cpp	/^Doors pDoors;$/;"	v
+pPhysics	.\Player.cpp	/^Physics pPhysics;$/;"	v
+physics	.\EQ.cpp	/^Physics physics;$/;"	v
 player	.\EQ.cpp	/^Player player;$/;"	v
 playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player	access:public
 playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player	access:public

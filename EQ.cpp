@@ -1,4 +1,5 @@
 #include "EQ.h"
+#include "Physics.h"
 #include "Timer.h"
 #include "Player.h"
 #include "Textures.h"
@@ -9,6 +10,7 @@
 
 Timer FPStimer;
 Timer CAPtimer;
+Physics physics;
 Player player;
 World world;
 Camera camera;
@@ -96,11 +98,11 @@ void EQ::Event(SDL_Event* event)
     else if(event->type == SDL_KEYDOWN)
     {
         switch(event->key.keysym.sym)
-        {
-        case SDLK_q:
-            Running = false;
-            cout << "Quit by keyboard(q)" << endl;
-            break;
+        {	
+		case SDLK_ESCAPE:
+	            Running = false;
+	            cout << "Quit by keyboard(Esc)" << endl;
+	            break;
         }
     }
 }
