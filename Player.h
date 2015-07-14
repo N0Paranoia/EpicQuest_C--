@@ -94,6 +94,7 @@ class Player
 	public:
 		//Collision box
 		SDL_Rect playerRect;
+		SDL_Rect downCollisionBox;
 		SDL_Rect playerBox;
 
 		Player();

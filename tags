@@ -193,6 +193,7 @@ Physics::Gravity	.\Physics.cpp	/^bool Physics::Gravity(SDL_Rect a, Tile* tiles[]
 Physics::Gravity	.\Physics.h	/^		bool Gravity(SDL_Rect a, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, Tile* tiles[])
 Physics::Physics	.\Physics.cpp	/^Physics::Physics()$/;"	f	class:Physics	signature:()
 Physics::Physics	.\Physics.h	/^		Physics();$/;"	p	class:Physics	access:public	signature:()
+Physics::StickToFloor	.\Physics.cpp	/^int Physics::StickToFloor(SDL_Rect a, Tile* tiles[])$/;"	f	class:Physics	signature:(SDL_Rect a, Tile* tiles[])
 Physics::StickToFloor	.\Physics.h	/^		int StickToFloor(SDL_Rect a, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, Tile* tiles[])
 Physics::~Physics	.\Physics.cpp	/^Physics::~Physics()$/;"	f	class:Physics	signature:()
 Physics::~Physics	.\Physics.h	/^		virtual ~Physics();$/;"	p	class:Physics	access:public	signature:()
@@ -258,6 +259,7 @@ Player::canEnterDoor	.\Player.h	/^		bool canEnterDoor;$/;"	m	class:Player	access
 Player::canJump	.\Player.h	/^		bool canJump;$/;"	m	class:Player	access:private
 Player::climbingSpeed	.\Player.h	/^		int climbingSpeed;$/;"	m	class:Player	access:private
 Player::down	.\Player.h	/^			down,$/;"	e	enum:Player::Direction
+Player::downCollisionBox	.\Player.h	/^		SDL_Rect downCollisionBox;$/;"	m	class:Player	access:public
 Player::energy	.\Player.h	/^		int energy;$/;"	m	class:Player	access:private
 Player::energyRecover	.\Player.h	/^		bool energyRecover;$/;"	m	class:Player	access:private
 Player::frame	.\Player.h	/^		int frame;$/;"	m	class:Player	access:private
@@ -265,9 +267,11 @@ Player::frameCounter	.\Player.h	/^		int frameCounter;$/;"	m	class:Player	access:
 Player::frameSpeed	.\Player.h	/^		int frameSpeed;$/;"	m	class:Player	access:private
 Player::frameSwitch	.\Player.h	/^		int frameSwitch;$/;"	m	class:Player	access:private
 Player::health	.\Player.h	/^		int health;$/;"	m	class:Player	access:private
+Player::horCollisionBox	.\Player.h	/^		SDL_Rect horCollisionBox;$/;"	m	class:Player	access:public
 Player::isAttacking	.\Player.h	/^		bool isAttacking;$/;"	m	class:Player	access:private
 Player::isBlocking	.\Player.h	/^		bool isBlocking;$/;"	m	class:Player	access:private
 Player::isClimbing	.\Player.h	/^		bool isClimbing;$/;"	m	class:Player	access:private
+Player::isDucking	.\Player.h	/^		bool isDucking;$/;"	m	class:Player	access:private
 Player::isFalling	.\Player.h	/^		bool isFalling;$/;"	m	class:Player	access:private
 Player::isJumping	.\Player.h	/^		bool isJumping;$/;"	m	class:Player	access:private
 Player::isRunning	.\Player.h	/^		bool isRunning;$/;"	m	class:Player	access:private
@@ -280,7 +284,6 @@ Player::left	.\Player.h	/^			left,$/;"	e	enum:Player::Direction
 Player::maxEnergy	.\Player.h	/^		int maxEnergy;$/;"	m	class:Player	access:private
 Player::maxHealth	.\Player.h	/^		int maxHealth;$/;"	m	class:Player	access:private
 Player::playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player	access:public
-Player::playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player	access:public
 Player::right	.\Player.h	/^			right,$/;"	e	enum:Player::Direction
 Player::runningSpeed	.\Player.h	/^		int runningSpeed;$/;"	m	class:Player	access:private
 Player::state_attacking	.\Player.h	/^			state_attacking,$/;"	e	enum:Player::State
@@ -322,6 +325,7 @@ StartFrameRight	.\Player.h	/^		int StartFrameRight;$/;"	m	class:Player	access:pr
 StartTicks	.\Timer.h	/^        Uint32 StartTicks;$/;"	m	class:Timer	access:private
 Started	.\Timer.h	/^        bool Started;$/;"	m	class:Timer	access:private
 State	.\Player.h	/^		enum State$/;"	g	class:Player	access:private
+StickToFloor	.\Physics.cpp	/^int Physics::StickToFloor(SDL_Rect a, Tile* tiles[])$/;"	f	class:Physics	signature:(SDL_Rect a, Tile* tiles[])
 StickToFloor	.\Physics.h	/^		int StickToFloor(SDL_Rect a, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, Tile* tiles[])
 Stop	.\Timer.cpp	/^void Timer::Stop()$/;"	f	class:Timer	signature:()
 Stop	.\Timer.h	/^        void Stop();$/;"	p	class:Timer	access:public	signature:()
@@ -468,6 +472,7 @@ countedFrames	.\EQ.h	/^        int countedFrames;$/;"	m	class:EQ	access:private
 doorA	.\Doors.h	/^        SDL_Rect doorA[TOTAL_DOORS];$/;"	m	class:Doors	access:private
 doorB	.\Doors.h	/^        SDL_Rect doorB[TOTAL_DOORS];$/;"	m	class:Doors	access:private
 down	.\Player.h	/^			down,$/;"	e	enum:Player::Direction
+downCollisionBox	.\Player.h	/^		SDL_Rect downCollisionBox;$/;"	m	class:Player	access:public
 energy	.\Player.h	/^		int energy;$/;"	m	class:Player	access:private
 energyRecover	.\Player.h	/^		bool energyRecover;$/;"	m	class:Player	access:private
 frame	.\Player.h	/^		int frame;$/;"	m	class:Player	access:private
@@ -486,9 +491,11 @@ getType	.\Tile.h	/^        int getType();$/;"	p	class:Tile	access:public	signatu
 getWidth	.\Textures.cpp	/^int Textures::getWidth()$/;"	f	class:Textures	signature:()
 getWidth	.\Textures.h	/^        int getWidth();$/;"	p	class:Textures	access:public	signature:()
 health	.\Player.h	/^		int health;$/;"	m	class:Player	access:private
+horCollisionBox	.\Player.h	/^		SDL_Rect horCollisionBox;$/;"	m	class:Player	access:public
 isAttacking	.\Player.h	/^		bool isAttacking;$/;"	m	class:Player	access:private
 isBlocking	.\Player.h	/^		bool isBlocking;$/;"	m	class:Player	access:private
 isClimbing	.\Player.h	/^		bool isClimbing;$/;"	m	class:Player	access:private
+isDucking	.\Player.h	/^		bool isDucking;$/;"	m	class:Player	access:private
 isFalling	.\Player.h	/^		bool isFalling;$/;"	m	class:Player	access:private
 isJumping	.\Player.h	/^		bool isJumping;$/;"	m	class:Player	access:private
 isPaused	.\Timer.cpp	/^bool Timer::isPaused()$/;"	f	class:Timer	signature:()
@@ -516,7 +523,6 @@ pPhysics	.\Player.cpp	/^Physics pPhysics;$/;"	v
 physics	.\EQ.cpp	/^Physics physics;$/;"	v
 player	.\EQ.cpp	/^Player player;$/;"	v
 playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player	access:public
-playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player	access:public
 right	.\Player.h	/^			right,$/;"	e	enum:Player::Direction
 rightA	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision	access:private
 rightB	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision	access:private

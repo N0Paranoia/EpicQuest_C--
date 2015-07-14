@@ -348,6 +348,8 @@ void Player::Jump(Tile* tiles[])
 
 void Player::Falling(Tile* tiles[])
 {
+	// initiolize downCollisionBox
+	downCollisionBox = {playerRect.x, ((playerRect.y + playerRect.h)), playerRect.w, 1};
 	if(!isClimbing)
 	{
 		playerRect.y += GRAVITY;
@@ -361,10 +363,11 @@ void Player::Falling(Tile* tiles[])
 			isFalling = true;
 		}
 		// Correct if object is floating due fast collision
-		if(!isFalling || !isJumping)
+		/*if(!isFalling || isJumping)
 		{
 			playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
-		}
+		}*/
+		cout << pCollision.VarCollision(downCollisionBox, tiles, TILE_WALL) << endl;
 	}
 }
 
@@ -378,8 +381,12 @@ void Player::Climb(int Dir, Tile* tiles[])
 			playerRect.y += Yvel;
 			isClimbing = true;
 			isFalling = false;
+			// Stick to center of ladder (needs tweaking)
+			playerRect.x = ((playerRect.x)/TILE_SIZE)*TILE_SIZE;
 			if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
+			{
 				playerRect.y -= Yvel;
+			}
 		}
 	}
 	else
@@ -616,6 +623,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0xff);
 	playerBox = {playerRect.x - camera->x, playerRect.y - camera->y, playerRect.w, playerRect.h};
 	SDL_RenderDrawRect(Renderer, &playerBox);
+	SDL_RenderDrawRect(Renderer, &downCollisionBox);
 	
 	//Create New REctangle for sword for the camera compisation
 	Sword = {SwordBox.x - camera->x, SwordBox.y - camera->y, SwordBox.w, SwordBox.h};
