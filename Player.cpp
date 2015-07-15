@@ -13,7 +13,7 @@ Doors pDoors;
 
 Player::Player()
 {
-	playerRect.x = 1*TILE_SIZE;
+	playerRect.x = 2*TILE_SIZE;
 	playerRect.y = 2*TILE_SIZE;
 	playerRect.w = TILE_SIZE;
 	playerRect.h = 2*TILE_SIZE;
@@ -349,8 +349,8 @@ void Player::Jump(Tile* tiles[])
 void Player::Falling(Tile* tiles[])
 {
 	// initiolize downCollisionBox
-	downCollisionBox = {playerRect.x, ((playerRect.y + playerRect.h)), playerRect.w, 1};
-	if(!isClimbing)
+	downCollisionBox = {playerRect.x + TILE_SIZE/4, (playerRect.y + playerRect.h), TILE_SIZE/2, 1};
+	if(!isClimbing && !isJumping)
 	{
 		playerRect.y += GRAVITY;
 		if(pPhysics.Gravity(playerRect, tiles))
@@ -362,12 +362,15 @@ void Player::Falling(Tile* tiles[])
 		{
 			isFalling = true;
 		}
-		// Correct if object is floating due fast collision
-		/*if(!isFalling || isJumping)
+		if(!isFalling)
 		{
-			playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
-		}*/
-		cout << pCollision.VarCollision(downCollisionBox, tiles, TILE_WALL) << endl;
+			// Extended gravity ro keep the player grounded
+			if(!pCollision.StickToGround(downCollisionBox, tiles))
+			{
+				cout << "Extended gravity" << endl;
+				playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
+			}
+		}	
 	}
 }
 

@@ -37,12 +37,13 @@ bool Physics::Gravity(SDL_Rect a, Tile* tiles[])
 int Physics::StickToFloor(SDL_Rect a, Tile* tiles[])
 {
 	// Correct if object is floating due fast collision
-	if(!PhCollision.VarCollision(a, tiles, TILE_SLOPE_LEFT) && !PhCollision.VarCollision(a, tiles, TILE_SLOPE_RIGHT))
+	if(!PhCollision.VarCollision(a, tiles, TILE_SLOPE_LEFT) || !PhCollision.VarCollision(a, tiles, TILE_SLOPE_RIGHT))
 	{
 		if(a.y != (((a.y + a.h+(TILE_SIZE/4))/TILE_SIZE)*TILE_SIZE) - a.h)
 		{
 			return (((a.y + a.h+(TILE_SIZE/4))/TILE_SIZE) * TILE_SIZE) - a.h;
 		}
+		return a.y;
 	}
 	else
 	{

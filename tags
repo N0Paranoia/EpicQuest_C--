@@ -54,6 +54,8 @@ Collision::CloudCollision	.\Collision.cpp	/^bool Collision::CloudCollision(SDL_R
 Collision::CloudCollision	.\Collision.h	/^        bool CloudCollision(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Collision::Collision	.\Collision.cpp	/^Collision::Collision()$/;"	f	class:Collision	signature:()
 Collision::Collision	.\Collision.h	/^        Collision();$/;"	p	class:Collision	access:public	signature:()
+Collision::StickToGround	.\Collision.cpp	/^bool Collision::StickToGround(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::StickToGround	.\Collision.h	/^	bool StickToGround(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Collision::VarCollision	.\Collision.cpp	/^bool Collision::VarCollision(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[], int type)
 Collision::VarCollision	.\Collision.h	/^        bool VarCollision(SDL_Rect cBox, Tile* tiles[], int type);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[], int type)
 Collision::WallCollision	.\Collision.cpp	/^bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
@@ -267,7 +269,6 @@ Player::frameCounter	.\Player.h	/^		int frameCounter;$/;"	m	class:Player	access:
 Player::frameSpeed	.\Player.h	/^		int frameSpeed;$/;"	m	class:Player	access:private
 Player::frameSwitch	.\Player.h	/^		int frameSwitch;$/;"	m	class:Player	access:private
 Player::health	.\Player.h	/^		int health;$/;"	m	class:Player	access:private
-Player::horCollisionBox	.\Player.h	/^		SDL_Rect horCollisionBox;$/;"	m	class:Player	access:public
 Player::isAttacking	.\Player.h	/^		bool isAttacking;$/;"	m	class:Player	access:private
 Player::isBlocking	.\Player.h	/^		bool isBlocking;$/;"	m	class:Player	access:private
 Player::isClimbing	.\Player.h	/^		bool isClimbing;$/;"	m	class:Player	access:private
@@ -284,6 +285,7 @@ Player::left	.\Player.h	/^			left,$/;"	e	enum:Player::Direction
 Player::maxEnergy	.\Player.h	/^		int maxEnergy;$/;"	m	class:Player	access:private
 Player::maxHealth	.\Player.h	/^		int maxHealth;$/;"	m	class:Player	access:private
 Player::playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player	access:public
+Player::playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player	access:public
 Player::right	.\Player.h	/^			right,$/;"	e	enum:Player::Direction
 Player::runningSpeed	.\Player.h	/^		int runningSpeed;$/;"	m	class:Player	access:private
 Player::state_attacking	.\Player.h	/^			state_attacking,$/;"	e	enum:Player::State
@@ -327,27 +329,29 @@ Started	.\Timer.h	/^        bool Started;$/;"	m	class:Timer	access:private
 State	.\Player.h	/^		enum State$/;"	g	class:Player	access:private
 StickToFloor	.\Physics.cpp	/^int Physics::StickToFloor(SDL_Rect a, Tile* tiles[])$/;"	f	class:Physics	signature:(SDL_Rect a, Tile* tiles[])
 StickToFloor	.\Physics.h	/^		int StickToFloor(SDL_Rect a, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, Tile* tiles[])
+StickToGround	.\Collision.cpp	/^bool Collision::StickToGround(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+StickToGround	.\Collision.h	/^	bool StickToGround(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Stop	.\Timer.cpp	/^void Timer::Stop()$/;"	f	class:Timer	signature:()
 Stop	.\Timer.h	/^        void Stop();$/;"	p	class:Timer	access:public	signature:()
 Sword	.\Player.h	/^		SDL_Rect Sword;$/;"	m	class:Player	access:private
 SwordBox	.\Player.h	/^		SDL_Rect SwordBox;$/;"	m	class:Player	access:private
 TEXTURES_H	.\Textures.h	2;"	d
 TICK_PER_FRAME	.\Constants.h	/^const int TICK_PER_FRAME = 1000 \/ FPS;$/;"	v
-TILE_CLEAR	.\Constants.h	/^const int TILE_CLEAR = 00;$/;"	v
-TILE_DOOR	.\Constants.h	/^const int TILE_DOOR = 04;$/;"	v
-TILE_GRASS	.\Constants.h	/^const int TILE_GRASS = 06;$/;"	v
+TILE_CLEAR	.\Constants.h	/^const int TILE_CLEAR = 0;$/;"	v
+TILE_DOOR	.\Constants.h	/^const int TILE_DOOR = 4;$/;"	v
+TILE_GRASS	.\Constants.h	/^const int TILE_GRASS = 6;$/;"	v
 TILE_H	.\Tile.h	2;"	d
 TILE_LADDER	.\Constants.h	/^const int TILE_LADDER = 11;$/;"	v
 TILE_LADDER_TOP	.\Constants.h	/^const int TILE_LADDER_TOP = 12;$/;"	v
-TILE_LAVA	.\Constants.h	/^const int TILE_LAVA = 05;$/;"	v
+TILE_LAVA	.\Constants.h	/^const int TILE_LAVA = 5;$/;"	v
 TILE_PLATFORM	.\Constants.h	/^const int TILE_PLATFORM = 10;$/;"	v
 TILE_SIZE	.\Constants.h	/^const int TILE_SIZE = 48;$/;"	v
-TILE_SKY	.\Constants.h	/^const int TILE_SKY = 01;$/;"	v
+TILE_SKY	.\Constants.h	/^const int TILE_SKY = 1;$/;"	v
 TILE_SLOPE_LEFT	.\Constants.h	/^const int TILE_SLOPE_LEFT = 14;$/;"	v
 TILE_SLOPE_RIGHT	.\Constants.h	/^const int TILE_SLOPE_RIGHT = 13;$/;"	v
-TILE_WALL	.\Constants.h	/^const int TILE_WALL = 02;$/;"	v
-TILE_WATER	.\Constants.h	/^const int TILE_WATER = 07;$/;"	v
-TILE_WOOD	.\Constants.h	/^const int TILE_WOOD = 03;$/;"	v
+TILE_WALL	.\Constants.h	/^const int TILE_WALL = 2;$/;"	v
+TILE_WATER	.\Constants.h	/^const int TILE_WATER = 7;$/;"	v
+TILE_WOOD	.\Constants.h	/^const int TILE_WOOD = 3;$/;"	v
 TIMER_H	.\Timer.h	2;"	d
 TOTAL_DOORS	.\Constants.h	/^const int TOTAL_DOORS = 2;$/;"	v
 TOTAL_TILES	.\Constants.h	/^const int TOTAL_TILES = 900;$/;"	v
@@ -491,7 +495,6 @@ getType	.\Tile.h	/^        int getType();$/;"	p	class:Tile	access:public	signatu
 getWidth	.\Textures.cpp	/^int Textures::getWidth()$/;"	f	class:Textures	signature:()
 getWidth	.\Textures.h	/^        int getWidth();$/;"	p	class:Textures	access:public	signature:()
 health	.\Player.h	/^		int health;$/;"	m	class:Player	access:private
-horCollisionBox	.\Player.h	/^		SDL_Rect horCollisionBox;$/;"	m	class:Player	access:public
 isAttacking	.\Player.h	/^		bool isAttacking;$/;"	m	class:Player	access:private
 isBlocking	.\Player.h	/^		bool isBlocking;$/;"	m	class:Player	access:private
 isClimbing	.\Player.h	/^		bool isClimbing;$/;"	m	class:Player	access:private
@@ -523,6 +526,7 @@ pPhysics	.\Player.cpp	/^Physics pPhysics;$/;"	v
 physics	.\EQ.cpp	/^Physics physics;$/;"	v
 player	.\EQ.cpp	/^Player player;$/;"	v
 playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player	access:public
+playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player	access:public
 right	.\Player.h	/^			right,$/;"	e	enum:Player::Direction
 rightA	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision	access:private
 rightB	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision	access:private

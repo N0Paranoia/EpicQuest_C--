@@ -15,6 +15,7 @@ class Collision
         bool VarCollision(SDL_Rect cBox, Tile* tiles[], int type);
         bool WallCollision(SDL_Rect cBox, Tile* tiles[]);
         bool CloudCollision(SDL_Rect cBox, Tile* tiles[]);
+	bool StickToGround(SDL_Rect cBox, Tile* tiles[]);
     protected:
     private:
         int leftA, leftB;
