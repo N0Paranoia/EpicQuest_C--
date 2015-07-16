@@ -331,19 +331,19 @@ void Player::Input(Tile* tiles[])
 void Player::Jump(Tile* tiles[])
 {
 	// Make it that you can only jump while running
-	if(isRunning)
-	{
-		if(canJump)
-		{
-			playerRect.y += Jvel;
+//	if(isRunning)
+//	{
+//		if(canJump)
+//		{
+			playerRect.y += Jvel*4;
 			isClimbing = false;
 			//Jumping collision handeling
 			if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
 			{
 				playerRect.y -= Jvel;
 			}
-		}
-	}
+//		}
+//	}
 }
 
 void Player::Falling(Tile* tiles[])

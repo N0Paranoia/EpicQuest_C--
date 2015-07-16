@@ -43,7 +43,10 @@ int Physics::StickToFloor(SDL_Rect a, Tile* tiles[])
 		{
 			return (((a.y + a.h+(TILE_SIZE/4))/TILE_SIZE) * TILE_SIZE) - a.h;
 		}
+		else
+		{
 		return a.y;
+		}
 	}
 	else
 	{
