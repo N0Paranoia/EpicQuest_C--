@@ -20,7 +20,7 @@ Player::Player()
 	Xvel = 0;
 	Yvel = 0;
 	Jvel = 0;
-	walkingSpeed = 4;
+	walkingSpeed = 1;
 	runningSpeed = 8;
 	frame = 0;
 	StartFrameLeft = 7;
@@ -349,7 +349,7 @@ void Player::Jump(Tile* tiles[])
 void Player::Falling(Tile* tiles[])
 {
 	// initiolize downCollisionBox
-	downCollisionBox = {playerRect.x + TILE_SIZE/4, (playerRect.y + playerRect.h), TILE_SIZE/2, 1};
+	downCollisionBox = {playerRect.x, (playerRect.y + playerRect.h), playerRect.w, 1};
 	if(!isClimbing && !isJumping)
 	{
 		playerRect.y += GRAVITY;
@@ -367,7 +367,6 @@ void Player::Falling(Tile* tiles[])
 			// Extended gravity ro keep the player grounded
 			if(!pCollision.StickToGround(downCollisionBox, tiles))
 			{
-				cout << "Extended gravity" << endl;
 				playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
 			}
 		}	
@@ -524,7 +523,7 @@ void Player::Move(int Dir, Tile* tiles[])
 				playerRect.y -= Yvel;
 			}
 		}
-		// Sloped tiles HORIZONTAL collision handling
+		// Collision handling for the left slopes [/]
 		if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT) && Dir == right)
 		{
 			if((playerRect.x + playerRect.w) % TILE_SIZE == 0)
@@ -542,6 +541,7 @@ void Player::Move(int Dir, Tile* tiles[])
 				playerRect.y = (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
 			}
 		}
+		// Collision handling for the right slopes [\]
 		if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT) && Dir == left)
 		{
 			if((playerRect.x) % TILE_SIZE == 4)
@@ -549,7 +549,7 @@ void Player::Move(int Dir, Tile* tiles[])
 				//Counters getting stuck when running
 				playerRect.y = ((playerRect.x-4) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
 			}
-			else if(playerRect.y + playerRect.h != ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+			else if(playerRect.y != ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE)
 			{
 				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
 			}

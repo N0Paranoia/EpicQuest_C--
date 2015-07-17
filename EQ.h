@@ -13,6 +13,7 @@
 using namespace std;
 
 std::stringstream timeText;
+std::stringstream debugText;
 
 class EQ
 {
@@ -44,6 +45,7 @@ class EQ
         void Loop();
         void Render();
         void Cleanup();
+	void Debug();
 };
 
 #endif // EQ_H

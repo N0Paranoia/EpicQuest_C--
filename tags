@@ -73,6 +73,9 @@ Collision::~Collision	.\Collision.h	/^        virtual ~Collision();$/;"	p	class:
 Connection	.\Doors.cpp	/^void Doors::Connection(SDL_Rect* player, int z)$/;"	f	class:Doors	signature:(SDL_Rect* player, int z)
 Connection	.\Doors.h	/^        void Connection(SDL_Rect* player, int z);$/;"	p	class:Doors	access:public	signature:(SDL_Rect* player, int z)
 DOORS_H	.\Doors.h	2;"	d
+Debug	.\EQ.cpp	/^void EQ::Debug()$/;"	f	class:EQ	signature:()
+Debug	.\EQ.h	/^	void Debug();$/;"	p	class:EQ	access:public	signature:()
+DebugTexture	.\EQ.cpp	/^Textures DebugTexture;$/;"	v
 Direction	.\Player.h	/^		enum Direction$/;"	g	class:Player	access:private
 Doors	.\Doors.cpp	/^Doors::Doors()$/;"	f	class:Doors	signature:()
 Doors	.\Doors.h	/^        Doors();$/;"	p	class:Doors	access:public	signature:()
@@ -90,6 +93,8 @@ EQ	.\EQ.h	/^        EQ();$/;"	p	class:EQ	access:public	signature:()
 EQ	.\EQ.h	/^class EQ$/;"	c
 EQ::Cleanup	.\EQ.cpp	/^void EQ::Cleanup()$/;"	f	class:EQ	signature:()
 EQ::Cleanup	.\EQ.h	/^        void Cleanup();$/;"	p	class:EQ	access:public	signature:()
+EQ::Debug	.\EQ.cpp	/^void EQ::Debug()$/;"	f	class:EQ	signature:()
+EQ::Debug	.\EQ.h	/^	void Debug();$/;"	p	class:EQ	access:public	signature:()
 EQ::EQ	.\EQ.cpp	/^EQ::EQ()$/;"	f	class:EQ	signature:()
 EQ::EQ	.\EQ.h	/^        EQ();$/;"	p	class:EQ	access:public	signature:()
 EQ::Event	.\EQ.cpp	/^void EQ::Event(SDL_Event* event)$/;"	f	class:EQ	signature:(SDL_Event* event)
@@ -473,6 +478,7 @@ centerRect	.\Camera.h	/^        SDL_Rect centerRect;$/;"	m	class:Camera	access:p
 climbingSpeed	.\Player.h	/^		int climbingSpeed;$/;"	m	class:Player	access:private
 collision	.\Tile.cpp	/^Collision collision;$/;"	v
 countedFrames	.\EQ.h	/^        int countedFrames;$/;"	m	class:EQ	access:private
+debugText	.\EQ.h	/^std::stringstream debugText;$/;"	v
 doorA	.\Doors.h	/^        SDL_Rect doorA[TOTAL_DOORS];$/;"	m	class:Doors	access:private
 doorB	.\Doors.h	/^        SDL_Rect doorB[TOTAL_DOORS];$/;"	m	class:Doors	access:private
 down	.\Player.h	/^			down,$/;"	e	enum:Player::Direction
