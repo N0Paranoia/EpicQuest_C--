@@ -31,35 +31,44 @@ Camera::~Camera	.\Camera.cpp	/^Camera::~Camera()$/;"	f	class:Camera	signature:()
 Camera::~Camera	.\Camera.h	/^        virtual ~Camera();$/;"	p	class:Camera	access:public	signature:()
 Center	.\Camera.cpp	/^void Camera::Center(SDL_Rect* playerRect)$/;"	f	class:Camera	signature:(SDL_Rect* playerRect)
 Center	.\Camera.h	/^        void Center(SDL_Rect* playerRect);$/;"	p	class:Camera	access:public	signature:(SDL_Rect* playerRect)
-CheckCloudCollision	.\Collision.cpp	/^bool Collision::CheckCloudCollision(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
-CheckCloudCollision	.\Collision.h	/^        bool CheckCloudCollision(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
-CheckCollision	.\Collision.cpp	/^bool Collision::CheckCollision(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
-CheckCollision	.\Collision.h	/^        bool CheckCollision(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Check	.\Collision.cpp	/^bool Collision::Check(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Check	.\Collision.h	/^        bool Check(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+CheckCloud	.\Collision.cpp	/^bool Collision::CheckCloud(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+CheckCloud	.\Collision.h	/^        bool CheckCloud(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Check_Slope_45_Left	.\Collision.cpp	/^bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Check_Slope_45_Left	.\Collision.h	/^	bool Check_Slope_45_Left(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Check_Slope_45_Right	.\Collision.cpp	/^bool Collision::Check_Slope_45_Right(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Check_Slope_45_Right	.\Collision.h	/^	bool Check_Slope_45_Right(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
 Cleanup	.\EQ.cpp	/^void EQ::Cleanup()$/;"	f	class:EQ	signature:()
 Cleanup	.\EQ.h	/^        void Cleanup();$/;"	p	class:EQ	access:public	signature:()
 Cleanup	.\Player.cpp	/^void Player::Cleanup()$/;"	f	class:Player	signature:()
 Cleanup	.\Player.h	/^		void Cleanup();$/;"	p	class:Player	access:public	signature:()
 Climb	.\Player.cpp	/^void Player::Climb(int Dir, Tile* tiles[])$/;"	f	class:Player	signature:(int Dir, Tile* tiles[])
 Climb	.\Player.h	/^		void Climb(int Dir, Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(int Dir, Tile* tiles[])
-CloudCollision	.\Collision.cpp	/^bool Collision::CloudCollision(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
-CloudCollision	.\Collision.h	/^        bool CloudCollision(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Cloud	.\Collision.cpp	/^bool Collision::Cloud(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Cloud	.\Collision.h	/^        bool Cloud(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Collision	.\Collision.cpp	/^Collision::Collision()$/;"	f	class:Collision	signature:()
 Collision	.\Collision.h	/^        Collision();$/;"	p	class:Collision	access:public	signature:()
 Collision	.\Collision.h	/^class Collision$/;"	c
-Collision::CheckCloudCollision	.\Collision.cpp	/^bool Collision::CheckCloudCollision(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
-Collision::CheckCloudCollision	.\Collision.h	/^        bool CheckCloudCollision(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
-Collision::CheckCollision	.\Collision.cpp	/^bool Collision::CheckCollision(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
-Collision::CheckCollision	.\Collision.h	/^        bool CheckCollision(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
-Collision::CloudCollision	.\Collision.cpp	/^bool Collision::CloudCollision(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
-Collision::CloudCollision	.\Collision.h	/^        bool CloudCollision(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Check	.\Collision.cpp	/^bool Collision::Check(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Check	.\Collision.h	/^        bool Check(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Collision::CheckCloud	.\Collision.cpp	/^bool Collision::CheckCloud(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Collision::CheckCloud	.\Collision.h	/^        bool CheckCloud(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Check_Slope_45_Left	.\Collision.cpp	/^bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Check_Slope_45_Left	.\Collision.h	/^	bool Check_Slope_45_Left(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Check_Slope_45_Right	.\Collision.cpp	/^bool Collision::Check_Slope_45_Right(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Check_Slope_45_Right	.\Collision.h	/^	bool Check_Slope_45_Right(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Cloud	.\Collision.cpp	/^bool Collision::Cloud(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Cloud	.\Collision.h	/^        bool Cloud(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Collision::Collision	.\Collision.cpp	/^Collision::Collision()$/;"	f	class:Collision	signature:()
 Collision::Collision	.\Collision.h	/^        Collision();$/;"	p	class:Collision	access:public	signature:()
-Collision::StickToGround	.\Collision.cpp	/^bool Collision::StickToGround(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
-Collision::StickToGround	.\Collision.h	/^	bool StickToGround(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
-Collision::VarCollision	.\Collision.cpp	/^bool Collision::VarCollision(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[], int type)
-Collision::VarCollision	.\Collision.h	/^        bool VarCollision(SDL_Rect cBox, Tile* tiles[], int type);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[], int type)
-Collision::WallCollision	.\Collision.cpp	/^bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
-Collision::WallCollision	.\Collision.h	/^        bool WallCollision(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Slope_45	.\Collision.h	/^	bool Slope_45(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Stick	.\Collision.cpp	/^bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Stick	.\Collision.h	/^	bool Stick(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Var	.\Collision.cpp	/^bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[], int type)
+Collision::Var	.\Collision.h	/^        bool Var(SDL_Rect cBox, Tile* tiles[], int type);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[], int type)
+Collision::Wall	.\Collision.cpp	/^bool Collision::Wall(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Wall	.\Collision.h	/^        bool Wall(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Collision::bottomA	.\Collision.h	/^        int bottomA, bottomB;$/;"	m	class:Collision	access:private
 Collision::bottomB	.\Collision.h	/^        int bottomA, bottomB;$/;"	m	class:Collision	access:private
 Collision::leftA	.\Collision.h	/^        int leftA, leftB;$/;"	m	class:Collision	access:private
@@ -323,6 +332,7 @@ SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[])$/;"	f	class:World	sig
 SetTiles	.\World.h	/^        bool SetTiles(Tile* tiles[]);$/;"	p	class:World	access:public	signature:(Tile* tiles[])
 Shield	.\Player.h	/^		SDL_Rect Shield;$/;"	m	class:Player	access:private
 ShieldBox	.\Player.h	/^		SDL_Rect ShieldBox;$/;"	m	class:Player	access:private
+Slope_45	.\Collision.h	/^	bool Slope_45(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 SpriteSheetTexture	.\Player.cpp	/^Textures SpriteSheetTexture;$/;"	v
 StaminBar	.\Player.h	/^		SDL_Rect StaminBar;$/;"	m	class:Player	access:private
 Start	.\Timer.cpp	/^void Timer::Start()$/;"	f	class:Timer	signature:()
@@ -332,10 +342,10 @@ StartFrameRight	.\Player.h	/^		int StartFrameRight;$/;"	m	class:Player	access:pr
 StartTicks	.\Timer.h	/^        Uint32 StartTicks;$/;"	m	class:Timer	access:private
 Started	.\Timer.h	/^        bool Started;$/;"	m	class:Timer	access:private
 State	.\Player.h	/^		enum State$/;"	g	class:Player	access:private
+Stick	.\Collision.cpp	/^bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Stick	.\Collision.h	/^	bool Stick(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 StickToFloor	.\Physics.cpp	/^int Physics::StickToFloor(SDL_Rect a, Tile* tiles[])$/;"	f	class:Physics	signature:(SDL_Rect a, Tile* tiles[])
 StickToFloor	.\Physics.h	/^		int StickToFloor(SDL_Rect a, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, Tile* tiles[])
-StickToGround	.\Collision.cpp	/^bool Collision::StickToGround(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
-StickToGround	.\Collision.h	/^	bool StickToGround(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Stop	.\Timer.cpp	/^void Timer::Stop()$/;"	f	class:Timer	signature:()
 Stop	.\Timer.h	/^        void Stop();$/;"	p	class:Timer	access:public	signature:()
 Sword	.\Player.h	/^		SDL_Rect Sword;$/;"	m	class:Player	access:private
@@ -433,15 +443,15 @@ Type	.\World.h	/^        int Type;$/;"	m	class:World	access:public
 Unpause	.\Timer.cpp	/^void Timer::Unpause()$/;"	f	class:Timer	signature:()
 Unpause	.\Timer.h	/^        void Unpause();$/;"	p	class:Timer	access:public	signature:()
 Update	.\Camera.h	/^        void Update(SDL_Rect* playerRect);$/;"	p	class:Camera	access:public	signature:(SDL_Rect* playerRect)
-VarCollision	.\Collision.cpp	/^bool Collision::VarCollision(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[], int type)
-VarCollision	.\Collision.h	/^        bool VarCollision(SDL_Rect cBox, Tile* tiles[], int type);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[], int type)
+Var	.\Collision.cpp	/^bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[], int type)
+Var	.\Collision.h	/^        bool Var(SDL_Rect cBox, Tile* tiles[], int type);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[], int type)
 WINDOW_HEIGHT	.\Constants.h	/^const int WINDOW_HEIGHT = 576;$/;"	v
 WINDOW_WIDTH	.\Constants.h	/^const int WINDOW_WIDTH = 1024;$/;"	v
 WORLD_H	.\World.h	2;"	d
 WalkingLeft	.\Player.h	/^		bool WalkingLeft;$/;"	m	class:Player	access:private
 WalkingRight	.\Player.h	/^		bool WalkingRight;$/;"	m	class:Player	access:private
-WallCollision	.\Collision.cpp	/^bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
-WallCollision	.\Collision.h	/^        bool WallCollision(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Wall	.\Collision.cpp	/^bool Collision::Wall(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Wall	.\Collision.h	/^        bool Wall(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Window	.\EQ.h	/^        SDL_Window* Window ;$/;"	m	class:EQ	access:private
 World	.\World.cpp	/^World::World()$/;"	f	class:World	signature:()
 World	.\World.h	/^        World();$/;"	p	class:World	access:public	signature:()

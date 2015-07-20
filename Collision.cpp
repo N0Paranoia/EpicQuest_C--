@@ -10,7 +10,7 @@ Collision::~Collision()
     //dtor
 }
 
-bool Collision::CheckCollision(SDL_Rect a, SDL_Rect b)
+bool Collision::Check(SDL_Rect a, SDL_Rect b)
 {
     leftA = a.x;
     rightA = a.x + a.w;
@@ -41,11 +41,11 @@ bool Collision::CheckCollision(SDL_Rect a, SDL_Rect b)
     return true;
 }
 
-bool Collision::CheckCloudCollision(SDL_Rect a, SDL_Rect b)
+bool Collision::CheckCloud(SDL_Rect a, SDL_Rect b)
 {
     leftA = a.x;
     rightA = a.x + a.w;
-    topA = a.y  + a.h - GRAVITY;
+    topA = a.y + a.h - GRAVITY;
     bottomA = a.y + a.h;
 
     leftB = b.x;
@@ -72,13 +72,76 @@ bool Collision::CheckCloudCollision(SDL_Rect a, SDL_Rect b)
     return true;
 }
 
-bool Collision::VarCollision(SDL_Rect cBox, Tile* tiles[], int type)
+bool Collision::Check_Slope_45_Right(SDL_Rect a, SDL_Rect b)
+{
+	leftA = a.x;
+	rightA = a.x + a.w;
+	topA = a.y;
+	bottomA = a.y + a.h;
+
+	leftB = b.x;
+	rightB = b.x + b.w;
+	topB = b.y;
+	bottomB = b.y + b.h;
+	//[\]
+    	if(bottomA <= (leftA % TILE_SIZE) + (bottomA/TILE_SIZE)* TILE_SIZE)
+    	{
+		return false;
+    	}
+	if(topA >= bottomB)
+	{
+		return false;
+	}
+	if(rightA <= leftB)
+	{
+		return false;
+	}
+	if(leftA >= (leftA % TILE_SIZE) + (bottomA/TILE_SIZE)* TILE_SIZE)
+	{
+		return false;
+	}
+	return true;
+}
+
+bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)
+{
+	leftA = a.x;
+	rightA = a.x + a.w;
+	topA = a.y;
+	bottomA = a.y + a.h;
+
+	leftB = b.x;
+	rightB = b.x + b.w;
+	topB = b.y;
+	bottomB = b.y + b.h;
+
+	//[/]
+    	if(bottomA <= (TILE_SIZE - (rightA%TILE_SIZE))+(bottomA/TILE_SIZE)*TILE_SIZE)
+    	{
+        	return false;
+    	}
+	if(topA >= bottomB)
+	{
+		return false;
+	}
+	if(rightA <= (TILE_SIZE - (rightA%TILE_SIZE))+(bottomA/TILE_SIZE)*TILE_SIZE)
+	{
+		return false;
+	}
+	if(leftA >= rightB)
+	{
+	        return false;
+	}
+	return true;
+}
+
+bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)
 {
     for(int i = 0; i < TOTAL_TILES; i++)
     {
         if(tiles[i]->getType() == type)
         {
-            if(this->CheckCollision(cBox, tiles[i]->getTileBox()))
+            if(this->Check(cBox, tiles[i]->getTileBox()))
             {
                 return true;
             }
@@ -87,13 +150,13 @@ bool Collision::VarCollision(SDL_Rect cBox, Tile* tiles[], int type)
     return false;
 }
 
-bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])
+bool Collision::Wall(SDL_Rect cBox, Tile* tiles[])
 {
     for(int i = 0; i < TOTAL_TILES; i++)
     {
         if(tiles[i]->getType() == TILE_WALL)
         {
-            if(this->CheckCollision(cBox, tiles[i]->getTileBox()))
+            if(this->Check(cBox, tiles[i]->getTileBox()))
             {
                 return true;
             }
@@ -102,13 +165,13 @@ bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])
     return false;
 }
 
-bool Collision::CloudCollision(SDL_Rect cBox, Tile* tiles[])
+bool Collision::Cloud(SDL_Rect cBox, Tile* tiles[])
 {
     for(int i = 0; i < TOTAL_TILES; i++)
     {
         if(tiles[i]->getType() == TILE_LADDER_TOP || tiles[i]->getType() == TILE_PLATFORM)
         {
-            if(this->CheckCloudCollision(cBox, tiles[i]->getTileBox()))
+            if(this->CheckCloud(cBox, tiles[i]->getTileBox()))
             {
                 return true;
             }
@@ -117,23 +180,33 @@ bool Collision::CloudCollision(SDL_Rect cBox, Tile* tiles[])
     return false;
 }
 
-bool Collision::StickToGround(SDL_Rect cBox, Tile* tiles[])
+bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])
 {
-    for(int i = 0; i < TOTAL_TILES; i++)
-    {
-        if(tiles[i]->getType() == TILE_WALL || 
+	for(int i = 0; i < TOTAL_TILES; i++)
+	{
+        	if(tiles[i]->getType() == TILE_WALL || 
 			tiles[i]->getType() == TILE_LADDER_TOP || 
-			tiles[i]->getType() == TILE_PLATFORM || 
-			tiles[i]->getType() == TILE_SLOPE_RIGHT || 
-			tiles[i]->getType() == TILE_SLOPE_LEFT 
-			)
-        {
-            if(this->CheckCollision(cBox, tiles[i]->getTileBox()))
-            {
-                return true;
-            }
-        }
-    }
-    return false;
+			tiles[i]->getType() == TILE_PLATFORM)
+        	{
+			if(this->Check(cBox, tiles[i]->getTileBox()))
+			{
+                		return true;
+            		}
+		}
+        	else if(tiles[i]->getType() == TILE_SLOPE_LEFT)
+		{
+        		if(this->Check_Slope_45_Left(cBox, tiles[i]->getTileBox()))
+        		{
+               			return true;
+        		}
+		}
+		else if(tiles[i]->getType() == TILE_SLOPE_RIGHT)
+		{
+        		if(this->Check_Slope_45_Right(cBox, tiles[i]->getTileBox()))
+        		{
+               			return true;
+        		}
+		}	
+    	}
+    	return false;
 }
-

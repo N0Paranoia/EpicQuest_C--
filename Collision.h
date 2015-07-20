@@ -10,12 +10,15 @@ class Collision
     public:
         Collision();
         virtual ~Collision();
-        bool CheckCollision(SDL_Rect a, SDL_Rect b);
-        bool CheckCloudCollision(SDL_Rect a, SDL_Rect b);
-        bool VarCollision(SDL_Rect cBox, Tile* tiles[], int type);
-        bool WallCollision(SDL_Rect cBox, Tile* tiles[]);
-        bool CloudCollision(SDL_Rect cBox, Tile* tiles[]);
-	bool StickToGround(SDL_Rect cBox, Tile* tiles[]);
+        bool Check(SDL_Rect a, SDL_Rect b);
+        bool CheckCloud(SDL_Rect a, SDL_Rect b);
+	bool Check_Slope_45_Left(SDL_Rect a, SDL_Rect b);
+	bool Check_Slope_45_Right(SDL_Rect a, SDL_Rect b);
+        bool Var(SDL_Rect cBox, Tile* tiles[], int type);
+        bool Wall(SDL_Rect cBox, Tile* tiles[]);
+        bool Cloud(SDL_Rect cBox, Tile* tiles[]);
+	bool Slope_45(SDL_Rect cBox, Tile* tiles[]);
+	bool Stick(SDL_Rect cBox, Tile* tiles[]);
     protected:
     private:
         int leftA, leftB;
