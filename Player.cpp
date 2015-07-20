@@ -370,6 +370,7 @@ void Player::Falling(Tile* tiles[])
 				playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
 			}
 		}	
+		cout << "Falling = " << isFalling << endl;
 	}
 }
 
