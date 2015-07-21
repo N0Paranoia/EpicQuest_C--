@@ -114,11 +114,10 @@ bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)
 	rightB = b.x + b.w;
 	topB = b.y;
 	bottomB = b.y + b.h;
-
 	//[/]
     	if(bottomA <= (TILE_SIZE - (leftA % TILE_SIZE) + topB))
     	{
-        	return false;
+	       	return false;
     	}
 	if(topA >= bottomB)
 	{

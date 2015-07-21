@@ -20,7 +20,7 @@ Player::Player()
 	Xvel = 0;
 	Yvel = 0;
 	Jvel = 0;
-	walkingSpeed = 1;
+	walkingSpeed = 4;
 	runningSpeed = 8;
 	frame = 0;
 	StartFrameLeft = 7;

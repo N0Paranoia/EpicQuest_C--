@@ -181,7 +181,7 @@ void EQ::Debug()
 	debugText << "| playerBottom = " << player.playerRect.y + player.playerRect.h;
 	debugText << "| left on tile = " << player.playerRect.x % TILE_SIZE;
 	debugText << "| right on tile = " << (player.playerRect.x + player.playerRect.w) % TILE_SIZE;
-
+	
 	if(!DebugTexture.LoadFromRenderedText(Renderer, Font, debugText.str().c_str(), textColor))
 	{
         	cout << "Failed to render text texture!" << endl;
