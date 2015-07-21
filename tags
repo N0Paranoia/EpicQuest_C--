@@ -62,7 +62,10 @@ Collision::Cloud	.\Collision.cpp	/^bool Collision::Cloud(SDL_Rect cBox, Tile* ti
 Collision::Cloud	.\Collision.h	/^        bool Cloud(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Collision::Collision	.\Collision.cpp	/^Collision::Collision()$/;"	f	class:Collision	signature:()
 Collision::Collision	.\Collision.h	/^        Collision();$/;"	p	class:Collision	access:public	signature:()
-Collision::Slope_45	.\Collision.h	/^	bool Slope_45(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Slope_45_Left	.\Collision.cpp	/^bool Collision::Slope_45_Left(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Slope_45_Left	.\Collision.h	/^	bool Slope_45_Left(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Slope_45_Right	.\Collision.cpp	/^bool Collision::Slope_45_Right(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Slope_45_Right	.\Collision.h	/^	bool Slope_45_Right(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Collision::Stick	.\Collision.cpp	/^bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
 Collision::Stick	.\Collision.h	/^	bool Stick(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Collision::Var	.\Collision.cpp	/^bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[], int type)
@@ -332,7 +335,10 @@ SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[])$/;"	f	class:World	sig
 SetTiles	.\World.h	/^        bool SetTiles(Tile* tiles[]);$/;"	p	class:World	access:public	signature:(Tile* tiles[])
 Shield	.\Player.h	/^		SDL_Rect Shield;$/;"	m	class:Player	access:private
 ShieldBox	.\Player.h	/^		SDL_Rect ShieldBox;$/;"	m	class:Player	access:private
-Slope_45	.\Collision.h	/^	bool Slope_45(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Slope_45_Left	.\Collision.cpp	/^bool Collision::Slope_45_Left(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Slope_45_Left	.\Collision.h	/^	bool Slope_45_Left(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Slope_45_Right	.\Collision.cpp	/^bool Collision::Slope_45_Right(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Slope_45_Right	.\Collision.h	/^	bool Slope_45_Right(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 SpriteSheetTexture	.\Player.cpp	/^Textures SpriteSheetTexture;$/;"	v
 StaminBar	.\Player.h	/^		SDL_Rect StaminBar;$/;"	m	class:Player	access:private
 Start	.\Timer.cpp	/^void Timer::Start()$/;"	f	class:Timer	signature:()

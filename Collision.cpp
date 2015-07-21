@@ -84,7 +84,7 @@ bool Collision::Check_Slope_45_Right(SDL_Rect a, SDL_Rect b)
 	topB = b.y;
 	bottomB = b.y + b.h;
 	//[\]
-    	if(bottomA <= (leftA % TILE_SIZE) + (bottomA/TILE_SIZE)* TILE_SIZE)
+    	if(bottomA <= (leftA % TILE_SIZE) + topB)
     	{
 		return false;
     	}
@@ -96,7 +96,7 @@ bool Collision::Check_Slope_45_Right(SDL_Rect a, SDL_Rect b)
 	{
 		return false;
 	}
-	if(leftA >= (leftA % TILE_SIZE) + (bottomA/TILE_SIZE)* TILE_SIZE)
+	if(leftA >= rightB)
 	{
 		return false;
 	}
@@ -116,7 +116,7 @@ bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)
 	bottomB = b.y + b.h;
 
 	//[/]
-    	if(bottomA <= (TILE_SIZE - (rightA%TILE_SIZE))+(bottomA/TILE_SIZE)*TILE_SIZE)
+    	if(bottomA <= (TILE_SIZE - (leftA % TILE_SIZE) + topB))
     	{
         	return false;
     	}
@@ -124,7 +124,7 @@ bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)
 	{
 		return false;
 	}
-	if(rightA <= (TILE_SIZE - (rightA%TILE_SIZE))+(bottomA/TILE_SIZE)*TILE_SIZE)
+	if(rightA <= leftB)
 	{
 		return false;
 	}
@@ -172,6 +172,36 @@ bool Collision::Cloud(SDL_Rect cBox, Tile* tiles[])
         if(tiles[i]->getType() == TILE_LADDER_TOP || tiles[i]->getType() == TILE_PLATFORM)
         {
             if(this->CheckCloud(cBox, tiles[i]->getTileBox()))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Collision::Slope_45_Right(SDL_Rect cBox, Tile* tiles[])
+{
+    for(int i = 0; i < TOTAL_TILES; i++)
+    {
+        if(tiles[i]->getType() == TILE_SLOPE_RIGHT)
+        {
+            if(this->Check_Slope_45_Right(cBox, tiles[i]->getTileBox()))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Collision::Slope_45_Left(SDL_Rect cBox, Tile* tiles[])
+{
+    for(int i = 0; i < TOTAL_TILES; i++)
+    {
+        if(tiles[i]->getType() == TILE_SLOPE_LEFT)
+        {
+            if(this->Check_Slope_45_Left(cBox, tiles[i]->getTileBox()))
             {
                 return true;
             }

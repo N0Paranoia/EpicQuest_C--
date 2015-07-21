@@ -370,7 +370,6 @@ void Player::Falling(Tile* tiles[])
 				playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
 			}
 		}
-		cout << "Falling = " << isFalling << endl;
 	}	
 }
 
@@ -507,55 +506,22 @@ void Player::Move(int Dir, Tile* tiles[])
 		if(Dir == up || Dir == down)
 			playerRect.y += Yvel;
 		// Vertical collision handling
-		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE || pCollision.Wall(playerRect, tiles))
+		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||
+				pCollision.Wall(playerRect, tiles) ||
+				pCollision.Slope_45_Right(playerRect, tiles) ||
+				pCollision.Slope_45_Left(playerRect, tiles)
+		  )
 			playerRect.y -= Yvel;
-		// Sloped tiles VERTICAL collision handeling
-		if(pCollision.Var(playerRect, tiles, TILE_SLOPE_LEFT))
-		{
-			if(playerRect.y + playerRect.h >= (TILE_SIZE - ((playerRect.x-1) + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
-			{
-				playerRect.y -= Yvel;
-			}
-		}
-		if(pCollision.Var(playerRect, tiles, TILE_SLOPE_RIGHT))
-		{
-			if(playerRect.y + playerRect.h >= ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h)/ TILE_SIZE)*TILE_SIZE)
-			{
-				playerRect.y -= Yvel;
-			}
-		}
+
 		// Collision handling for the left slopes [/]
-		if(pCollision.Var(playerRect, tiles, TILE_SLOPE_LEFT)/* && Dir == right*/)
+		if(pCollision.Slope_45_Left(playerRect, tiles))
 		{
-			cout << playerRect.x + playerRect.w % TILE_SIZE << endl;
-			if((playerRect.x + playerRect.w) % TILE_SIZE == 0)
-			{
-				//Counters that the sum is 0 because he is entering the next tile (the playerRect.x -1 as used in the fall method leads to other collision problems)
-				playerRect.y = TILE_SIZE - (TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-			}
-			else if(TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE == 4)
-			{
-				//Counters going to fast and colliding in to next block
-				playerRect.y = ((playerRect.y / TILE_SIZE) * TILE_SIZE)-4;
-			}
-			else if(playerRect.y + playerRect.h != (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
-			{
-				playerRect.y = (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-			}
+			playerRect.y = (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
 		}
 		// Collision handling for the right slopes [\]
-		if(pCollision.Var(playerRect, tiles, TILE_SLOPE_RIGHT)/* && Dir == left*/)
+		if(pCollision.Slope_45_Right(playerRect, tiles))
 		{
-			cout << playerRect.x % TILE_SIZE << endl;
-			if((playerRect.x) % TILE_SIZE == 4)
-			{
-				//Counters getting stuck when running
-				playerRect.y = ((playerRect.x-4) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-			}
-			else if(playerRect.y != ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE)
-			{
-				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-			}
+			playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
 		}
 	}
 }
