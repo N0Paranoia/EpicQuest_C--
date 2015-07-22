@@ -222,7 +222,7 @@ bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])
                 		return true;
             		}
 		}
-        	else if(tiles[i]->getType() == TILE_SLOPE_LEFT)
+		else if(tiles[i]->getType() == TILE_SLOPE_LEFT)
 		{
         		if(this->Check_Slope_45_Left(cBox, tiles[i]->getTileBox()))
         		{

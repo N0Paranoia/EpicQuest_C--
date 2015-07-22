@@ -367,7 +367,7 @@ void Player::Falling(Tile* tiles[])
 			// Extended gravity to keep the player grounded
 			if(!pCollision.Stick(downCollisionBox, tiles))
 			{
-				playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
+//				playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
 			}
 		}
 	}	
@@ -507,22 +507,22 @@ void Player::Move(int Dir, Tile* tiles[])
 			playerRect.y += Yvel;
 		// Vertical collision handling
 		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||
-				pCollision.Wall(playerRect, tiles) ||
-				pCollision.Slope_45_Right(playerRect, tiles) ||
-				pCollision.Slope_45_Left(playerRect, tiles)
+				pCollision.Wall(playerRect, tiles) //||
+//				pCollision.Slope_45_Right(playerRect, tiles) ||
+//				pCollision.Slope_45_Left(playerRect, tiles)
 		  )
 			playerRect.y -= Yvel;
 
 		// Collision handling for the left slopes [/]
-		if(pCollision.Slope_45_Left(playerRect, tiles))
-		{
-			playerRect.y = (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-		}
-		// Collision handling for the right slopes [\]
-		if(pCollision.Slope_45_Right(playerRect, tiles))
-		{
-			playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-		}
+//		if(pCollision.Slope_45_Left(playerRect, tiles))
+//		{
+//			playerRect.y = (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+//		}
+//		// Collision handling for the right slopes [\]
+//		if(pCollision.Slope_45_Right(playerRect, tiles))
+//		{
+//			playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+//		}
 	}
 }
 
