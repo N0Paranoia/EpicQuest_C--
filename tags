@@ -161,7 +161,7 @@ FpsCap	.\EQ.cpp	/^void EQ::FpsCap()$/;"	f	class:EQ	signature:()
 FpsCap	.\EQ.h	/^        void FpsCap();$/;"	p	class:EQ	access:public	signature:()
 Free	.\Textures.cpp	/^void Textures::Free()$/;"	f	class:Textures	signature:()
 Free	.\Textures.h	/^        void Free();$/;"	p	class:Textures	access:public	signature:()
-GRAVITY	.\Constants.h	/^const int GRAVITY = 12;$/;"	v
+GRAVITY	.\Constants.h	/^const int GRAVITY = 4;\/\/12;$/;"	v
 GoTroughDoor	.\Player.cpp	/^void Player::GoTroughDoor(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
 GoTroughDoor	.\Player.h	/^		void GoTroughDoor(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
 Gravity	.\Physics.cpp	/^bool Physics::Gravity(SDL_Rect a, Tile* tiles[])$/;"	f	class:Physics	signature:(SDL_Rect a, Tile* tiles[])
@@ -301,8 +301,12 @@ Player::keyState	.\Player.h	/^		const Uint8* keyState;$/;"	m	class:Player	access
 Player::left	.\Player.h	/^			left,$/;"	e	enum:Player::Direction
 Player::maxEnergy	.\Player.h	/^		int maxEnergy;$/;"	m	class:Player	access:private
 Player::maxHealth	.\Player.h	/^		int maxHealth;$/;"	m	class:Player	access:private
+Player::playerBottom	.\Player.h	/^		int playerLeft, playerRight, playerTop, playerBottom;$/;"	m	class:Player	access:private
 Player::playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player	access:public
+Player::playerLeft	.\Player.h	/^		int playerLeft, playerRight, playerTop, playerBottom;$/;"	m	class:Player	access:private
 Player::playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player	access:public
+Player::playerRight	.\Player.h	/^		int playerLeft, playerRight, playerTop, playerBottom;$/;"	m	class:Player	access:private
+Player::playerTop	.\Player.h	/^		int playerLeft, playerRight, playerTop, playerBottom;$/;"	m	class:Player	access:private
 Player::right	.\Player.h	/^			right,$/;"	e	enum:Player::Direction
 Player::runningSpeed	.\Player.h	/^		int runningSpeed;$/;"	m	class:Player	access:private
 Player::state_attacking	.\Player.h	/^			state_attacking,$/;"	e	enum:Player::State
@@ -547,8 +551,12 @@ pDoors	.\Player.cpp	/^Doors pDoors;$/;"	v
 pPhysics	.\Player.cpp	/^Physics pPhysics;$/;"	v
 physics	.\EQ.cpp	/^Physics physics;$/;"	v
 player	.\EQ.cpp	/^Player player;$/;"	v
+playerBottom	.\Player.h	/^		int playerLeft, playerRight, playerTop, playerBottom;$/;"	m	class:Player	access:private
 playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player	access:public
+playerLeft	.\Player.h	/^		int playerLeft, playerRight, playerTop, playerBottom;$/;"	m	class:Player	access:private
 playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player	access:public
+playerRight	.\Player.h	/^		int playerLeft, playerRight, playerTop, playerBottom;$/;"	m	class:Player	access:private
+playerTop	.\Player.h	/^		int playerLeft, playerRight, playerTop, playerBottom;$/;"	m	class:Player	access:private
 right	.\Player.h	/^			right,$/;"	e	enum:Player::Direction
 rightA	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision	access:private
 rightB	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision	access:private

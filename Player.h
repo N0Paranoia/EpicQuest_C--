@@ -94,7 +94,7 @@ class Player
 	public:
 		//Collision box
 		SDL_Rect playerRect;
-		SDL_Rect downCollisionBox;
+		SDL_Rect bottomCollisionBox;
 		SDL_Rect playerBox;
 
 		Player();
@@ -102,6 +102,7 @@ class Player
 		//void Event(SDL_Event* event);
 		void Input(Tile* tiles[]);
 		int LoadMedia(SDL_Renderer* Renderer);
+
 		void Move(int Dir, Tile* tiles[]);
 		void Attack();
 		void Block();

@@ -106,7 +106,7 @@ bool Collision::Check_Slope_45_Right(SDL_Rect a, SDL_Rect b)
 bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)
 {
 	leftA = a.x;
-	rightA = a.x + a.w;
+	rightA = a.x + (a.w-1); // The -1 counters that the "(rightA % TILE_SIZE)" outcom is 0.
 	topA = a.y;
 	bottomA = a.y + a.h;
 
@@ -115,7 +115,7 @@ bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)
 	topB = b.y;
 	bottomB = b.y + b.h;
 	//[/]
-    	if(bottomA <= (TILE_SIZE - (leftA % TILE_SIZE) + topB))
+    	if(bottomA <= (TILE_SIZE - (rightA % TILE_SIZE) + topB))
     	{
 	       	return false;
     	}

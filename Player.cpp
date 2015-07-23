@@ -17,6 +17,7 @@ Player::Player()
 	playerRect.y = 2*TILE_SIZE;
 	playerRect.w = TILE_SIZE;
 	playerRect.h = 2*TILE_SIZE;
+
 	Xvel = 0;
 	Yvel = 0;
 	Jvel = 0;
@@ -348,8 +349,8 @@ void Player::Jump(Tile* tiles[])
 
 void Player::Falling(Tile* tiles[])
 {
-	// initiolize downCollisionBox
-	downCollisionBox = {playerRect.x, (playerRect.y + playerRect.h), playerRect.w, 1};
+	// initiolize bottomCollisionBox
+	bottomCollisionBox = {playerRect.x, (playerRect.y + playerRect.h), playerRect.w, 1};
 	if(!isClimbing && !isJumping)
 	{
 		playerRect.y += GRAVITY;
@@ -365,9 +366,10 @@ void Player::Falling(Tile* tiles[])
 		if(!isFalling)
 		{
 			// Extended gravity to keep the player grounded
-			if(!pCollision.Stick(downCollisionBox, tiles))
+			if(!pCollision.Stick(bottomCollisionBox, tiles))
 			{
-//				playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
+				cout << pPhysics.StickToFloor(playerRect, tiles) << endl;
+				playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
 			}
 		}
 	}	
@@ -497,32 +499,39 @@ void Player::Move(int Dir, Tile* tiles[])
 {
 	if(!isAttacking)
 	{
+		// Horizontal movement
 		if(Dir == left || Dir == right)
 			playerRect.x += Xvel;
 		// Horizontal collision handling
 		if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.Wall(playerRect, tiles))
 			playerRect.x -= Xvel;
-
+		// Horizontal Slope collision handling
+		if(pCollision.Slope_45_Left(playerRect, tiles))//[/]
+		{
+			if((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) == 1)
+			{
+				// compesate for colliding in to next tile becoude of the playerRect.w -1
+				playerRect.y = ((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE) -1;
+			}
+			else
+			{
+				playerRect.y = (TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+			}
+		}
+		if(pCollision.Slope_45_Right(playerRect, tiles))//[\]
+		{
+			playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+		}
+		// Vertical movement
 		if(Dir == up || Dir == down)
 			playerRect.y += Yvel;
 		// Vertical collision handling
 		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||
-				pCollision.Wall(playerRect, tiles) //||
-//				pCollision.Slope_45_Right(playerRect, tiles) ||
-//				pCollision.Slope_45_Left(playerRect, tiles)
+				pCollision.Wall(playerRect, tiles) ||
+				pCollision.Slope_45_Right(playerRect, tiles) ||
+				pCollision.Slope_45_Left(playerRect, tiles)
 		  )
 			playerRect.y -= Yvel;
-
-		// Collision handling for the left slopes [/]
-//		if(pCollision.Slope_45_Left(playerRect, tiles))
-//		{
-//			playerRect.y = (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-//		}
-//		// Collision handling for the right slopes [\]
-//		if(pCollision.Slope_45_Right(playerRect, tiles))
-//		{
-//			playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-//		}
 	}
 }
 
@@ -594,8 +603,9 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	//Show collsiion box
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0xff);
 	playerBox = {playerRect.x - camera->x, playerRect.y - camera->y, playerRect.w, playerRect.h};
-	SDL_RenderDrawRect(Renderer, &playerBox);
-	SDL_RenderDrawRect(Renderer, &downCollisionBox);
+	SDL_RenderFillRect(Renderer, &playerBox);
+	SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xff, 0xff);
+	SDL_RenderDrawRect(Renderer, &bottomCollisionBox);
 	
 	//Create New REctangle for sword for the camera compisation
 	Sword = {SwordBox.x - camera->x, SwordBox.y - camera->y, SwordBox.w, SwordBox.h};
