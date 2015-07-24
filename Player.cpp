@@ -368,8 +368,7 @@ void Player::Falling(Tile* tiles[])
 			// Extended gravity to keep the player grounded
 			if(!pCollision.Stick(bottomCollisionBox, tiles))
 			{
-				cout << pPhysics.StickToFloor(playerRect, tiles) << endl;
-				playerRect.y = pPhysics.StickToFloor(playerRect, tiles);
+				playerRect.y = pPhysics.StickToFloor(playerRect, bottomCollisionBox, tiles);
 			}
 		}
 	}	
