@@ -349,8 +349,6 @@ void Player::Jump(Tile* tiles[])
 
 void Player::Falling(Tile* tiles[])
 {
-	// initiolize bottomCollisionBox
-	bottomCollisionBox = {playerRect.x, (playerRect.y + playerRect.h), playerRect.w, 1};
 	if(!isClimbing && !isJumping)
 	{
 		playerRect.y += GRAVITY;
@@ -376,7 +374,7 @@ void Player::Falling(Tile* tiles[])
 
 void Player::Climb(int Dir, Tile* tiles[])
 {
-	if(pCollision.Var(playerRect, tiles, TILE_LADDER) || pCollision.Var(playerRect, tiles, TILE_LADDER_TOP))
+	if(pCollision.Var(vertCenterCollisionBox, tiles, TILE_LADDER) || pCollision.Var(vertCenterCollisionBox, tiles, TILE_LADDER_TOP))
 	{
 		if(Dir == up || down)
 		{
@@ -385,7 +383,7 @@ void Player::Climb(int Dir, Tile* tiles[])
 			isClimbing = true;
 			isFalling = false;
 			// Stick to center of ladder (needs tweaking)
-			playerRect.x = ((playerRect.x)/TILE_SIZE)*TILE_SIZE;
+			playerRect.x = ((playerRect.x + (playerRect.w/2))/TILE_SIZE)*TILE_SIZE;
 			if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.Wall(playerRect, tiles))
 			{
 				playerRect.y -= Yvel;
@@ -435,7 +433,7 @@ void Player::Attack()
 		{
 			if(FacingLeft)
 			{
-				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE, 10, 10};
+				SwordBox = {this->playerRect.x - 10, this->playerRect.y + TILE_SIZE, 10, 10};
 			}
 			else if(FacingRight)
 			{
@@ -603,8 +601,6 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0xff);
 	playerBox = {playerRect.x - camera->x, playerRect.y - camera->y, playerRect.w, playerRect.h};
 	SDL_RenderFillRect(Renderer, &playerBox);
-	SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xff, 0xff);
-	SDL_RenderDrawRect(Renderer, &bottomCollisionBox);
 	
 	//Create New REctangle for sword for the camera compisation
 	Sword = {SwordBox.x - camera->x, SwordBox.y - camera->y, SwordBox.w, SwordBox.h};
@@ -621,6 +617,14 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	//Create New Rectangle for shield for the camera compisation
 	Shield = {ShieldBox.x - camera->x, ShieldBox.y - camera->y, ShieldBox.w, ShieldBox.h};
 	SDL_RenderFillRect(Renderer, &Shield);
+}
+
+void Player::Update()
+{
+	// initiolize bottomCollisionBox
+	bottomCollisionBox = {playerRect.x, (playerRect.y + playerRect.h), playerRect.w, 1};
+	// initialize vertCenterCollisionBox
+	vertCenterCollisionBox = {playerRect.x + (playerRect.w/2), playerRect.y, 2, playerRect.h+1};
 }
 
 void Player::Cleanup()

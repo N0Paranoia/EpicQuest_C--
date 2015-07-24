@@ -142,6 +142,7 @@ void EQ::Input()
 void EQ::Loop()
 {
     camera.Center(&player.playerRect);
+    player.Update();
     player.Falling(tileSet);
 }
 

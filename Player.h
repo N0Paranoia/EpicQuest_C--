@@ -95,6 +95,7 @@ class Player
 		//Collision box
 		SDL_Rect playerRect;
 		SDL_Rect bottomCollisionBox;
+		SDL_Rect vertCenterCollisionBox;
 		SDL_Rect playerBox;
 
 		Player();
@@ -112,6 +113,7 @@ class Player
 		void GoTroughDoor(Tile* tiles[]);
 		int Health();
 		int Energy(int action);
+		void Update();
 		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
 		void Cleanup();
 
