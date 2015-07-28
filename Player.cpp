@@ -218,6 +218,10 @@ void Player::Input(Tile* tiles[])
 			{
 				canEnterDoor = true;
 			}
+			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
+			{
+				_state = state_running;
+			}
 			if(keyState[SDL_SCANCODE_L])
 			{
 				_state = state_attacking;
@@ -255,12 +259,7 @@ void Player::Input(Tile* tiles[])
 			}
 			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
 			{
-				isRunning = true;
-				cout << "run" << endl;
-			}
-			else
-			{
-				isRunning = false;
+				_state = state_running;
 			}
 			if(keyState[SDL_SCANCODE_SPACE])
 			{
@@ -274,6 +273,34 @@ void Player::Input(Tile* tiles[])
 			if(keyState[SDL_SCANCODE_K])
 			{
 				_state = state_blocking;
+			}
+			break;
+		case state_running:
+			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
+			{
+				if(keyState[SDL_SCANCODE_A])
+				{
+					Xvel = -runningSpeed;
+					this->Move(left, tiles);
+					isRunning = true;
+					WalkingLeft = true;
+					FacingRight = false;
+					FacingLeft = true;
+				}
+				else if(keyState[SDL_SCANCODE_D])
+	            		{
+					Xvel = runningSpeed;
+					this->Move(right, tiles);
+					isRunning = true;
+					WalkingRight = true;
+					FacingLeft = false;
+					FacingRight = true;
+            			}
+			}
+			else
+			{
+				isRunning = false;
+				_state = state_idle;
 			}
 			break;
 			
@@ -332,19 +359,19 @@ void Player::Input(Tile* tiles[])
 void Player::Jump(Tile* tiles[])
 {
 	// Make it that you can only jump while running
-//	if(isRunning)
-//	{
-//		if(canJump)
-//		{
-			playerRect.y += Jvel*4;
+	if(isRunning)
+	{
+		if(canJump)
+		{
+			playerRect.y += Jvel-GRAVITY;
 			isClimbing = false;
 			//Jumping collision handeling
 			if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.Wall(playerRect, tiles))
 			{
 				playerRect.y -= Jvel;
 			}
-//		}
-//	}
+		}
+	}
 }
 
 void Player::Falling(Tile* tiles[])
@@ -398,7 +425,7 @@ void Player::Climb(int Dir, Tile* tiles[])
 
 void Player::GoTroughDoor(Tile* tiles[])
 {
-	if(pCollision.Var(playerRect, tiles, TILE_DOOR))
+	if(pCollision.Var(vertCenterCollisionBox, tiles, TILE_DOOR))
 	{
 		if(canEnterDoor)
 		{
@@ -510,6 +537,11 @@ void Player::Move(int Dir, Tile* tiles[])
 				// compesate for colliding in to next tile becoude of the playerRect.w -1
 				playerRect.y = ((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE) -1;
 			}
+			else if(isRunning && TILE_SIZE - ((playerRect.x + playerRect.w-1)) % TILE_SIZE <= runningSpeed)
+			{
+				// composate for collidoing in to next tiles becouse of runninf
+				playerRect.y = ((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE) -runningSpeed;
+			}
 			else
 			{
 				playerRect.y = (TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
@@ -517,7 +549,14 @@ void Player::Move(int Dir, Tile* tiles[])
 		}
 		if(pCollision.Slope_45_Right(playerRect, tiles))//[\]
 		{
-			playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+			if(isRunning && ((playerRect.x) % TILE_SIZE) <= runningSpeed)
+			{
+				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE -runningSpeed;
+			}
+			else
+			{
+				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+			}
 		}
 		// Vertical movement
 		if(Dir == up || Dir == down)
