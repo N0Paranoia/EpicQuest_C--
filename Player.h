@@ -31,8 +31,6 @@ class Player
 			jump
 		};
 		
-		int _state;
-		
 		const Uint8* keyState;
 		int Xvel;
 		int Yvel;
@@ -92,6 +90,7 @@ class Player
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;
 	public:
+		int _state;
 		//Collision box
 		SDL_Rect playerRect;
 		SDL_Rect bottomCollisionBox;

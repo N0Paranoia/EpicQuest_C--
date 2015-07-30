@@ -176,7 +176,8 @@ void EQ::Render()
 void EQ::Debug()
 {
     	debugText.str("");
-	debugText << "PlayerLeft = " << player.playerRect.x;
+	debugText << "PlayerState = " << player._state;
+	debugText << "| PlayerLeft = " << player.playerRect.x;
 	debugText << "| PlayerRight = " << player.playerRect.x + player.playerRect.w;
 	debugText << "| PlayerTop = " << player.playerRect.y;
 	debugText << "| playerBottom = " << player.playerRect.y + player.playerRect.h;
