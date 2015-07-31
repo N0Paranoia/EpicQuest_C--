@@ -39,6 +39,7 @@ class EQ
         void FpsCap();
         bool Init();
         bool LoadMedia();
+	bool InitKeys();
         //Loads individual image as texture
         SDL_Texture* loadTexture(std::string path);
         void Input();

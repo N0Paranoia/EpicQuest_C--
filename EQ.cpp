@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "World.h"
 #include "Constants.h"
+#include <fstream>
 
 
 Timer FPStimer;
@@ -18,6 +19,7 @@ Tile* tileSet[TOTAL_TILES];
 Textures wallpaperTexture;
 Textures TextTexture;
 Textures DebugTexture;
+
 
 EQ::EQ()
 {
@@ -33,61 +35,60 @@ EQ::EQ()
 
 bool EQ::Init()
 {
-    if(SDL_Init(SDL_INIT_VIDEO) < 0)
-    {
-        cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << endl;
-        return false;
-    }
-
-    if((Window = SDL_CreateWindow("EpicQuest",SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN)) == NULL)
-    {
-        cout << "Unable to create SDL_Window! SDL_Error: " << SDL_GetError() << endl;
-        return false;
-    }
-
-    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED /*| SDL_RENDERER_PRESENTVSYNC*/)) == NULL)
-    {
-        cout << "Unable to create Renderer! SDL_Error: " << SDL_GetError() << endl;
-        return false;
-    }
-    // initialize image loading for PNG
-    if(!(IMG_Init(IMG_INIT_PNG)& IMG_INIT_PNG))
-    {
-        cout << "Unable to initialize SDL_Image! SDL_Error: " << SDL_GetError() << endl;
-        return false;
-    }
-    if(TTF_Init() == -1)
-    {
-        cout << "Unable to initialize SDL_TTF! SDL_Error: " << TTF_GetError() << endl;
-    }
-    return true;
+	if(SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+		cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << endl;
+		return false;
+	}
+	if((Window = SDL_CreateWindow("EpicQuest",SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN)) == NULL)
+	{
+		cout << "Unable to create SDL_Window! SDL_Error: " << SDL_GetError() << endl;
+		return false;
+	}
+	if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED /*| SDL_RENDERER_PRESENTVSYNC*/)) == NULL)
+	{
+		cout << "Unable to create Renderer! SDL_Error: " << SDL_GetError() << endl;
+		return false;
+	}
+	// initialize image loading for PNG
+	if(!(IMG_Init(IMG_INIT_PNG)& IMG_INIT_PNG))
+	{
+		cout << "Unable to initialize SDL_Image! SDL_Error: " << SDL_GetError() << endl;
+		return false;
+	}
+	if(TTF_Init() == -1)
+	{
+		cout << "Unable to initialize SDL_TTF! SDL_Error: " << TTF_GetError() << endl;
+		return false;
+	}
+	return true;
 }
 
 bool EQ::LoadMedia()
 {
-    //Load Player texture
-    if((player.LoadMedia(Renderer)) == NULL)
-    {
-        return false;
-    }
-    //Load Tile Sheet
-    if((world.LoadMedia(Renderer, tileSet)) == NULL)
-    {
-        return false;
-    }
-    //Load PNG background texture
-    if((wallpaperTexture.LoadFromFile(Renderer, "assets/background.png")) == NULL)
+	//Load Player texture
+	if((player.LoadMedia(Renderer)) == NULL)
+	{
+        	return false;
+	}
+	//Load Tile Sheet
+	if((world.LoadMedia(Renderer, tileSet)) == NULL)
+	{
+		return false;
+	}
+	//Load PNG background texture
+	if((wallpaperTexture.LoadFromFile(Renderer, "assets/background.png")) == NULL)
 	{
 		cout << "Unable to Load texture image! SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
-    Font = TTF_OpenFont("assets/FreePixel.ttf", 14);
-    if(Font == NULL)
-    {
-        cout << "Unable to Load font! SDL_Error: " << TTF_GetError() << endl;
-        return false;
-    }
-    return true;
+	Font = TTF_OpenFont("assets/FreePixel.ttf", 14);
+	if(Font == NULL)
+	{
+        	cout << "Unable to Load font! SDL_Error: " << TTF_GetError() << endl;
+	        return false;
+	}
+	return true;
 }
 
 void EQ::Event(SDL_Event* event)

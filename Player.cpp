@@ -65,6 +65,7 @@ Player::Player()
 	energy = maxEnergy;
 	energyRecover = true;
 	
+	runEnergy = 2;
 	attackEnergy = 25;
 	blockEnergy = 25;
 	
@@ -261,11 +262,6 @@ void Player::Input(Tile* tiles[])
 			{
 				_state = state_running;
 			}
-			if(keyState[SDL_SCANCODE_SPACE])
-			{
-				Jvel = -jumpSpeed;
-				this->Jump(tiles);
-			}
 			if(keyState[SDL_SCANCODE_L])
 			{
 				_state = state_attacking;
@@ -275,6 +271,7 @@ void Player::Input(Tile* tiles[])
 				_state = state_blocking;
 			}
 			break;
+
 		case state_running:
 			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
 			{
@@ -282,6 +279,7 @@ void Player::Input(Tile* tiles[])
 				{
 					Xvel = -runningSpeed;
 					this->Move(left, tiles);
+					this->Energy(runEnergy);
 					isRunning = true;
 					WalkingLeft = true;
 					FacingRight = false;
@@ -291,6 +289,7 @@ void Player::Input(Tile* tiles[])
 	            		{
 					Xvel = runningSpeed;
 					this->Move(right, tiles);
+					this->Energy(runEnergy);
 					isRunning = true;
 					WalkingRight = true;
 					FacingLeft = false;
@@ -300,7 +299,12 @@ void Player::Input(Tile* tiles[])
 			else
 			{
 				isRunning = false;
-				_state = state_idle;
+				_state = state_walking;
+			}
+			if(keyState[SDL_SCANCODE_SPACE])
+			{
+				Jvel = -jumpSpeed;
+				this->Jump(tiles);
 			}
 			break;
 			
@@ -359,10 +363,10 @@ void Player::Input(Tile* tiles[])
 void Player::Jump(Tile* tiles[])
 {
 	// Make it that you can only jump while running
-	if(isRunning)
-	{
-		if(canJump)
-		{
+//	if(isRunning)
+//	{
+//		if(canJump)
+//		{
 			playerRect.y += Jvel-GRAVITY;
 			isClimbing = false;
 			//Jumping collision handeling
@@ -370,8 +374,8 @@ void Player::Jump(Tile* tiles[])
 			{
 				playerRect.y -= Jvel;
 			}
-		}
-	}
+//		}
+//	}
 }
 
 void Player::Falling(Tile* tiles[])
@@ -586,9 +590,12 @@ int Player::Energy(int action)
 	{
 		energy = 0;
 	}
-	if(energyRecover && action == NULL && energy < maxEnergy)
+	if(_state == state_idle || _state == state_walking)
 	{
+		if(energyRecover && action == NULL && energy < maxEnergy)
+		{
 			energy ++;
+		}
 	}
 	energy = energy - action;
 	return energy;

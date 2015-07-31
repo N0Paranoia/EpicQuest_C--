@@ -30,7 +30,7 @@ class Player
 			down,
 			jump
 		};
-		
+
 		const Uint8* keyState;
 		int Xvel;
 		int Yvel;
@@ -60,6 +60,7 @@ class Player
 		bool FacingLeft;
 		bool FacingRight;
 		bool isRunning;
+		bool canRun;
 		bool isFalling;
 		bool canJump;
 		bool isJumping;
@@ -72,7 +73,8 @@ class Player
 		bool isAttacking;
 		bool block;
 		bool isBlocking;
-		
+	
+		int runEnergy;	
 		int attackEnergy;
 		int blockEnergy;
 
