@@ -5,7 +5,6 @@
 #include "Collision.h"
 #include "Doors.h"
 
-//Texture playerTexture;
 Textures SpriteSheetTexture;
 Physics pPhysics;
 Collision pCollision;
@@ -51,6 +50,9 @@ Player::Player()
 
 	canJump = true;
 	isJumping = false;
+
+	canRun = true;
+	isRunning = false;
 
 	isDucking = false;
 	
@@ -183,12 +185,12 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
 
 void Player::Input(Tile* tiles[])
 {
-    WalkingLeft = false;
-    WalkingRight = false;
+	WalkingLeft = false;
+	WalkingRight = false;
 
-    keyState = SDL_GetKeyboardState(NULL);
-
-    switch(_state)
+	keyState = SDL_GetKeyboardState(NULL);
+	//State machine
+	switch(_state)
 	{
 		case state_idle:
 			if(keyState[SDL_SCANCODE_A])
@@ -203,9 +205,9 @@ void Player::Input(Tile* tiles[])
 			{
 				isDucking = true;
 				Yvel = walkingSpeed;
-				this->Move(down, tiles);
+				this->Move(vertical, tiles);
 				this->Climb(down, tiles);
-             		}
+			}
 			if(!keyState[SDL_SCANCODE_S])
 			{
 				isDucking = false;
@@ -236,24 +238,23 @@ void Player::Input(Tile* tiles[])
 				_state = state_blocking;
 			}
 			break;
-			
+
 		case state_walking:
+			this->Move(horizontal, tiles);
 			if(keyState[SDL_SCANCODE_A])
 			{
 				Xvel = -walkingSpeed;
-				this->Move(left, tiles);
 				WalkingLeft = true;
 				FacingRight = false;
 				FacingLeft = true;
 			}
 			else if(keyState[SDL_SCANCODE_D])
-            		{
+			{
 				Xvel = walkingSpeed;
-				this->Move(right, tiles);
 				WalkingRight = true;
 				FacingLeft = false;
 				FacingRight = true;
-            		}
+			}
 			else
 			{
 				_state = state_idle;
@@ -275,30 +276,49 @@ void Player::Input(Tile* tiles[])
 		case state_running:
 			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
 			{
-				if(keyState[SDL_SCANCODE_A])
+				if(Energy(NULL) > runEnergy && canRun)
 				{
-					Xvel = -runningSpeed;
-					this->Move(left, tiles);
-					this->Energy(runEnergy);
+					if(keyState[SDL_SCANCODE_A])
+					{
+						Xvel = -runningSpeed;			
+						WalkingLeft = true;
+						FacingRight = false;
+						FacingLeft = true;
+					}
+					else if(keyState[SDL_SCANCODE_D])
+					{
+						Xvel = runningSpeed;
+						WalkingRight = true;
+						FacingLeft = false;
+						FacingRight = true;
+					}
 					isRunning = true;
-					WalkingLeft = true;
-					FacingRight = false;
-					FacingLeft = true;
 				}
-				else if(keyState[SDL_SCANCODE_D])
-	            		{
-					Xvel = runningSpeed;
-					this->Move(right, tiles);
-					this->Energy(runEnergy);
-					isRunning = true;
-					WalkingRight = true;
-					FacingLeft = false;
-					FacingRight = true;
-            			}
+				else
+				{
+					if(keyState[SDL_SCANCODE_A])
+					{
+						Xvel = -walkingSpeed;
+						WalkingLeft = true;
+						FacingRight = false;
+						FacingLeft = true;
+					}
+					else if(keyState[SDL_SCANCODE_D])
+					{
+						Xvel = walkingSpeed;
+						WalkingRight = true;
+						FacingLeft = false;
+						FacingRight = true;
+					}
+					isRunning = false;
+					canRun = false;
+				}
+				this->Move(horizontal, tiles);
+				this->Energy(runEnergy);
 			}
 			else
 			{
-				isRunning = false;
+				canRun = true;
 				_state = state_walking;
 			}
 			if(keyState[SDL_SCANCODE_SPACE])
@@ -316,13 +336,13 @@ void Player::Input(Tile* tiles[])
 			if(keyState[SDL_SCANCODE_W])
 			{
 				Yvel = -walkingSpeed;
-				this->Move(down, tiles);
+				this->Move(vertical, tiles);
 				this->Climb(up, tiles);
 			}
 			else if(keyState[SDL_SCANCODE_S])
 			{
 				Yvel = walkingSpeed;
-				this->Move(down, tiles);
+				this->Move(vertical, tiles);
 				this->Climb(down, tiles);
 			}
 			else if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D])
@@ -362,20 +382,17 @@ void Player::Input(Tile* tiles[])
 
 void Player::Jump(Tile* tiles[])
 {
-	// Make it that you can only jump while running
-//	if(isRunning)
+// Make it that you can only jump while running
+//	if(canJump)
 //	{
-//		if(canJump)
-//		{
-			playerRect.y += Jvel-GRAVITY;
-			isClimbing = false;
-			//Jumping collision handeling
-			if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.Wall(playerRect, tiles))
-			{
-				playerRect.y -= Jvel;
-			}
-//		}
-//	}
+		playerRect.y += Jvel-GRAVITY;
+		isClimbing = false;
+		//Jumping collision handling
+		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.Wall(playerRect, tiles))
+		{
+			playerRect.y -= Jvel;
+		}
+	// }
 }
 
 void Player::Falling(Tile* tiles[])
@@ -394,7 +411,7 @@ void Player::Falling(Tile* tiles[])
 		}
 		if(!isFalling)
 		{
-			// Extended gravity to keep the player grounded
+			// Hyper gravity to keep the player grounded
 			if(!pCollision.Stick(bottomCollisionBox, tiles))
 			{
 				playerRect.y = pPhysics.StickToFloor(playerRect, bottomCollisionBox, tiles);
@@ -413,7 +430,7 @@ void Player::Climb(int Dir, Tile* tiles[])
 			playerRect.y += Yvel;
 			isClimbing = true;
 			isFalling = false;
-			// Stick to center of ladder (needs tweaking)
+			// Stick to center of ladder
 			playerRect.x = ((playerRect.x + (playerRect.w/2))/TILE_SIZE)*TILE_SIZE;
 			if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.Wall(playerRect, tiles))
 			{
@@ -528,7 +545,7 @@ void Player::Move(int Dir, Tile* tiles[])
 	if(!isAttacking)
 	{
 		// Horizontal movement
-		if(Dir == left || Dir == right)
+		if(Dir == horizontal)
 			playerRect.x += Xvel;
 		// Horizontal collision handling
 		if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.Wall(playerRect, tiles))
@@ -563,13 +580,13 @@ void Player::Move(int Dir, Tile* tiles[])
 			}
 		}
 		// Vertical movement
-		if(Dir == up || Dir == down)
+		if(Dir == vertical)
 			playerRect.y += Yvel;
 		// Vertical collision handling
-		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||
-				pCollision.Wall(playerRect, tiles) ||
-				pCollision.Slope_45_Right(playerRect, tiles) ||
-				pCollision.Slope_45_Left(playerRect, tiles)
+		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE || 
+			pCollision.Wall(playerRect, tiles) ||
+			pCollision.Slope_45_Right(playerRect, tiles) ||
+			pCollision.Slope_45_Left(playerRect, tiles)
 		  )
 			playerRect.y -= Yvel;
 	}
@@ -648,7 +665,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	playerBox = {playerRect.x - camera->x, playerRect.y - camera->y, playerRect.w, playerRect.h};
 	SDL_RenderFillRect(Renderer, &playerBox);
 	
-	//Create New REctangle for sword for the camera compisation
+	//Create New Rectangle for sword for the camera compisation
 	Sword = {SwordBox.x - camera->x, SwordBox.y - camera->y, SwordBox.w, SwordBox.h};
 	SDL_RenderFillRect(Renderer, &Sword);
 	

@@ -24,6 +24,8 @@ class Player
 
 		enum Direction
 		{
+			horizontal,
+			vertical,
 			left,
 			right,
 			up,
