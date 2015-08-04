@@ -22,7 +22,7 @@ class Player
 			state_climbing
 		};
 
-		enum Direction
+		enum Movement
 		{
 			horizontal,
 			vertical,
@@ -34,27 +34,15 @@ class Player
 		};
 
 		const Uint8* keyState;
-		int Xvel;
-		int Yvel;
-		int Jvel;
+
+		int _state;
+		
 		int walkingSpeed;
 		int runningSpeed;
-
-		int frame;
-		int StartFrameLeft;
-		int EndFrameLeft;
-		int StartFrameRight;
-		int EndFrameRight;
-		int IdleFrameLeft;
-		int IdleFrameRight;
-		int frameCounter;
-		int frameSpeed;
-		int frameSwitch;
+		int jumpingSpeed;
 
 		int jumpCount;
-		int jumpSpeed;
 		int jumpHeight;
-
 		int climbingSpeed;
 
 		bool WalkingLeft;
@@ -76,7 +64,8 @@ class Player
 		bool block;
 		bool isBlocking;
 	
-		int runEnergy;	
+		int runEnergy;
+		int jumpEnergy;
 		int attackEnergy;
 		int blockEnergy;
 
@@ -86,6 +75,17 @@ class Player
 		int maxHealth;
 		int health;
 
+		int frame;
+		int StartFrameLeft;
+		int EndFrameLeft;
+		int StartFrameRight;
+		int EndFrameRight;
+		int IdleFrameLeft;
+		int IdleFrameRight;
+		int frameCounter;
+		int frameSpeed;
+		int frameSwitch;
+
 		SDL_Rect PlayerClips[18];
 		SDL_Rect ShieldBox;
 		SDL_Rect Shield;
@@ -94,7 +94,9 @@ class Player
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;
 	public:
-		int _state;
+		
+		int Xvel;
+		int Yvel;
 		//Collision box
 		SDL_Rect playerRect;
 		SDL_Rect bottomCollisionBox;
@@ -107,11 +109,11 @@ class Player
 		void Input(Tile* tiles[]);
 		int LoadMedia(SDL_Renderer* Renderer);
 
-		void Move(int Dir, Tile* tiles[]);
+		void Move(int Movement, Tile* tiles[]);
 		void Attack();
 		void Block();
 		void Jump(Tile* tiles[]);
-		void Climb(int Dir, Tile* tiles[]);
+		void Climb(int Movement, Tile* tiles[]);
 		void Falling(Tile* tiles[]);
 		void GoTroughDoor(Tile* tiles[]);
 		int Health();

@@ -19,9 +19,9 @@ Player::Player()
 
 	Xvel = 0;
 	Yvel = 0;
-	Jvel = 0;
 	walkingSpeed = 4;
 	runningSpeed = 8;
+	jumpingSpeed = 8 + GRAVITY;
 	frame = 0;
 	StartFrameLeft = 7;
 	EndFrameLeft = 0;
@@ -33,9 +33,8 @@ Player::Player()
 	frameSpeed = 12;
 	frameSwitch = 60;
 
-	jumpSpeed = 8;
 	jumpCount = 0;
-	jumpHeight = 60;
+	jumpHeight = 8;
 
 	WalkingLeft = false;
 	WalkingLeft = false;
@@ -68,6 +67,7 @@ Player::Player()
 	energyRecover = true;
 	
 	runEnergy = 2;
+	jumpEnergy = 25;
 	attackEnergy = 25;
 	blockEnergy = 25;
 	
@@ -243,21 +243,60 @@ void Player::Input(Tile* tiles[])
 			this->Move(horizontal, tiles);
 			if(keyState[SDL_SCANCODE_A])
 			{
-				Xvel = -walkingSpeed;
+				// Accelereation
+				if(Xvel > -walkingSpeed)
+				{
+					Xvel --;
+				}
+				else if(Xvel < -walkingSpeed)
+				{
+					Xvel ++;
+				}
+				else
+				{
+					Xvel = -walkingSpeed;
+				}
 				WalkingLeft = true;
 				FacingRight = false;
 				FacingLeft = true;
 			}
 			else if(keyState[SDL_SCANCODE_D])
 			{
-				Xvel = walkingSpeed;
+				// Accelereation
+				if(Xvel < walkingSpeed)
+				{
+					Xvel ++;
+				}
+				else if(Xvel > walkingSpeed)
+				{
+					Xvel --;
+				}
+				else
+				{
+					Xvel = walkingSpeed;
+				}
 				WalkingRight = true;
 				FacingLeft = false;
 				FacingRight = true;
 			}
 			else
 			{
-				_state = state_idle;
+				// Deceleration
+				if(Xvel != 0)
+				{
+					if(FacingLeft)
+					{
+						Xvel += 1;
+					}
+					else if(FacingRight)
+					{
+						Xvel -= 1;
+					}
+				}
+				else
+				{
+					_state = state_idle;
+				}
 			}
 			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
 			{
@@ -280,17 +319,37 @@ void Player::Input(Tile* tiles[])
 				{
 					if(keyState[SDL_SCANCODE_A])
 					{
-						Xvel = -runningSpeed;			
+						// Acceleration
+						if(Xvel > -runningSpeed)
+						{
+							Xvel --;
+						}
+						else
+						{
+							Xvel = -runningSpeed;
+						}			
 						WalkingLeft = true;
 						FacingRight = false;
 						FacingLeft = true;
 					}
 					else if(keyState[SDL_SCANCODE_D])
 					{
-						Xvel = runningSpeed;
+						//Acceleration
+						if(Xvel < runningSpeed)
+						{
+							Xvel ++;
+						}
+						else
+						{
+							Xvel = runningSpeed;
+						}
 						WalkingRight = true;
 						FacingLeft = false;
 						FacingRight = true;
+					}
+					if(keyState[SDL_SCANCODE_SPACE])
+					{
+						_state = state_jumping;
 					}
 					isRunning = true;
 				}
@@ -298,14 +357,30 @@ void Player::Input(Tile* tiles[])
 				{
 					if(keyState[SDL_SCANCODE_A])
 					{
-						Xvel = -walkingSpeed;
+						// Deceleration
+						if(Xvel < -walkingSpeed)
+						{
+							Xvel ++;
+						}
+						else
+						{
+							Xvel = -walkingSpeed;
+						}
 						WalkingLeft = true;
 						FacingRight = false;
 						FacingLeft = true;
 					}
 					else if(keyState[SDL_SCANCODE_D])
 					{
-						Xvel = walkingSpeed;
+						// Deceleration
+						if(Xvel > walkingSpeed)
+						{
+							Xvel --;
+						}
+						else
+						{
+							Xvel = walkingSpeed;
+						}
 						WalkingRight = true;
 						FacingLeft = false;
 						FacingRight = true;
@@ -318,17 +393,22 @@ void Player::Input(Tile* tiles[])
 			}
 			else
 			{
+				isRunning = false;
 				canRun = true;
 				_state = state_walking;
 			}
-			if(keyState[SDL_SCANCODE_SPACE])
-			{
-				Jvel = -jumpSpeed;
-				this->Jump(tiles);
-			}
+
 			break;
 			
 		case state_jumping:
+			if(keyState[SDL_SCANCODE_SPACE])
+			{
+				this->Jump(tiles);
+			}
+			else
+			{
+				_state = state_idle;
+			}
 
 			break;
 			
@@ -380,21 +460,6 @@ void Player::Input(Tile* tiles[])
 	}
 }
 
-void Player::Jump(Tile* tiles[])
-{
-// Make it that you can only jump while running
-//	if(canJump)
-//	{
-		playerRect.y += Jvel-GRAVITY;
-		isClimbing = false;
-		//Jumping collision handling
-		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.Wall(playerRect, tiles))
-		{
-			playerRect.y -= Jvel;
-		}
-	// }
-}
-
 void Player::Falling(Tile* tiles[])
 {
 	if(!isClimbing && !isJumping)
@@ -419,12 +484,44 @@ void Player::Falling(Tile* tiles[])
 		}
 	}	
 }
+// -----------------------------------//
+// ------------NEEDS WORK!------------//
+// -----------------------------------//
+void Player::Jump(Tile* tiles[])
+{
+	if(canJump)
+	{
+		if(jumpingSpeed > GRAVITY)
+		{
+			if(FacingLeft)
+			{
+				Xvel = -runningSpeed;
+			}
+			else if(FacingRight)
+			{
+				Xvel = runningSpeed;
+			}
+			Yvel = -jumpingSpeed;
+			isClimbing = false;
+			this->Energy(jumpEnergy);
+			this->Move(jump, tiles);
+			jumpingSpeed --;
+			// jumpCount ++;
+		}
+		else
+		{
+			jumpCount = 0;
+			jumpingSpeed = 8 + GRAVITY;
+			_state = state_walking;
+		}
+	}
+}
 
-void Player::Climb(int Dir, Tile* tiles[])
+void Player::Climb(int Movement, Tile* tiles[])
 {
 	if(pCollision.Var(vertCenterCollisionBox, tiles, TILE_LADDER) || pCollision.Var(vertCenterCollisionBox, tiles, TILE_LADDER_TOP))
 	{
-		if(Dir == up || down)
+		if(Movement == up || down)
 		{
 			_state = state_climbing;
 			playerRect.y += Yvel;
@@ -540,12 +637,12 @@ void Player::Block()
 	}
 }
 
-void Player::Move(int Dir, Tile* tiles[])
+void Player::Move(int Movement, Tile* tiles[])
 {
 	if(!isAttacking)
 	{
 		// Horizontal movement
-		if(Dir == horizontal)
+		if(Movement == horizontal || Movement == jump)
 			playerRect.x += Xvel;
 		// Horizontal collision handling
 		if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.Wall(playerRect, tiles))
@@ -560,8 +657,13 @@ void Player::Move(int Dir, Tile* tiles[])
 			}
 			else if(isRunning && TILE_SIZE - ((playerRect.x + playerRect.w-1)) % TILE_SIZE <= runningSpeed)
 			{
-				// composate for collidoing in to next tiles becouse of runninf
+				// composate for collidoing in to next tiles becouse of running
 				playerRect.y = ((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE) -runningSpeed;
+			}
+			else if(TILE_SIZE - (playerRect.x + playerRect.w-1) % TILE_SIZE <= walkingSpeed)
+			{
+				// composate for collidoing in to next tiles of decelerating
+				playerRect.y = ((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE) -walkingSpeed;	
 			}
 			else
 			{
@@ -572,7 +674,13 @@ void Player::Move(int Dir, Tile* tiles[])
 		{
 			if(isRunning && ((playerRect.x) % TILE_SIZE) <= runningSpeed)
 			{
+				// composate for collidoing in to next tiles becouse of running
 				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE -runningSpeed;
+			}
+			else if((playerRect.x % TILE_SIZE) <= walkingSpeed)
+			{
+				// composate for collidoing in to next tiles of decelerating
+				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE -walkingSpeed;
 			}
 			else
 			{
@@ -580,7 +688,7 @@ void Player::Move(int Dir, Tile* tiles[])
 			}
 		}
 		// Vertical movement
-		if(Dir == vertical)
+		if(Movement == vertical  || Movement == jump)
 			playerRect.y += Yvel;
 		// Vertical collision handling
 		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE || 
