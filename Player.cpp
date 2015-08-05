@@ -385,8 +385,11 @@ void Player::Input(Tile* tiles[])
 						FacingLeft = false;
 						FacingRight = true;
 					}
-					isRunning = false;
-					canRun = false;
+					else
+					{
+						isRunning = false;
+						canRun = false;
+					}
 				}
 				this->Move(horizontal, tiles);
 				this->Energy(runEnergy);
@@ -680,6 +683,7 @@ void Player::Move(int Movement, Tile* tiles[])
 			else if((playerRect.x % TILE_SIZE) <= walkingSpeed)
 			{
 				// composate for collidoing in to next tiles of decelerating
+				cout << "This is it" << endl;
 				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE -walkingSpeed;
 			}
 			else
