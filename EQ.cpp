@@ -176,13 +176,15 @@ void EQ::Render()
 
 void EQ::Debug()
 {
-    	debugText.str("");
-	debugText << "PlayerLeft = " << player.playerRect.x;
-	debugText << "| PlayerRight = " << player.playerRect.x + player.playerRect.w;
-	debugText << "| PlayerTop = " << player.playerRect.y;
-	debugText << "| playerBottom = " << player.playerRect.y + player.playerRect.h;
-	debugText << "| left on tile = " << player.playerRect.x % TILE_SIZE;
-	debugText << "| right on tile = " << (player.playerRect.x + player.playerRect.w) % TILE_SIZE;
+    debugText.str("");
+    debugText << "State = " << player._state;
+    debugText << "|Xvel = " << player.Xvel;
+	debugText << "|Left = " << player.playerRect.x;
+	debugText << "|Right = " << player.playerRect.x + player.playerRect.w;
+	debugText << "|Top = " << player.playerRect.y;
+	debugText << "|Bottom = " << player.playerRect.y + player.playerRect.h;
+	debugText << "|left on tile = " << player.playerRect.x % TILE_SIZE;
+	debugText << "|right on tile = " << (player.playerRect.x + player.playerRect.w) % TILE_SIZE;
 	
 	if(!DebugTexture.LoadFromRenderedText(Renderer, Font, debugText.str().c_str(), textColor))
 	{

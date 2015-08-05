@@ -13,13 +13,13 @@ class Player
 	private:
 		enum State
 		{
-			state_idle,
-			state_jumping,
-			state_walking,
-			state_running,
-			state_attacking,
-			state_blocking,
-			state_climbing
+			state_idle, // 0
+			state_jumping, // 1
+			state_walking, // 2
+			state_running, // 3
+			state_attacking, //4
+			state_blocking, // 5
+			state_climbing // 6
 		};
 
 		enum Movement
@@ -35,8 +35,6 @@ class Player
 
 		const Uint8* keyState;
 
-		int _state;
-		
 		int walkingSpeed;
 		int runningSpeed;
 		int jumpingSpeed;
@@ -94,7 +92,7 @@ class Player
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;
 	public:
-		
+		int _state;
 		int Xvel;
 		int Yvel;
 		//Collision box

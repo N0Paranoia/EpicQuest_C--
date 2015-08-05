@@ -197,7 +197,7 @@ void Player::Input(Tile* tiles[])
 			{
 				_state = state_walking;
 			}
-			if(keyState[SDL_SCANCODE_D])
+			else if(keyState[SDL_SCANCODE_D])
 			{
 				_state = state_walking;
 			}
@@ -243,60 +243,22 @@ void Player::Input(Tile* tiles[])
 			this->Move(horizontal, tiles);
 			if(keyState[SDL_SCANCODE_A])
 			{
-				// Accelereation
-				if(Xvel > -walkingSpeed)
-				{
-					Xvel --;
-				}
-				else if(Xvel < -walkingSpeed)
-				{
-					Xvel ++;
-				}
-				else
-				{
-					Xvel = -walkingSpeed;
-				}
+				Xvel = -walkingSpeed;
 				WalkingLeft = true;
 				FacingRight = false;
 				FacingLeft = true;
 			}
 			else if(keyState[SDL_SCANCODE_D])
 			{
-				// Accelereation
-				if(Xvel < walkingSpeed)
-				{
-					Xvel ++;
-				}
-				else if(Xvel > walkingSpeed)
-				{
-					Xvel --;
-				}
-				else
-				{
-					Xvel = walkingSpeed;
-				}
+
+				Xvel = walkingSpeed;
 				WalkingRight = true;
 				FacingLeft = false;
 				FacingRight = true;
 			}
 			else
 			{
-				// Deceleration
-				if(Xvel != 0)
-				{
-					if(FacingLeft)
-					{
-						Xvel += 1;
-					}
-					else if(FacingRight)
-					{
-						Xvel -= 1;
-					}
-				}
-				else
-				{
-					_state = state_idle;
-				}
+				_state = state_idle;
 			}
 			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
 			{
@@ -319,30 +281,18 @@ void Player::Input(Tile* tiles[])
 				{
 					if(keyState[SDL_SCANCODE_A])
 					{
-						// Acceleration
-						if(Xvel > -runningSpeed)
-						{
-							Xvel --;
-						}
-						else
-						{
-							Xvel = -runningSpeed;
-						}			
+						Xvel = -runningSpeed;
+						this->Move(horizontal, tiles);
+						this->Energy(runEnergy);
 						WalkingLeft = true;
 						FacingRight = false;
 						FacingLeft = true;
 					}
 					else if(keyState[SDL_SCANCODE_D])
 					{
-						//Acceleration
-						if(Xvel < runningSpeed)
-						{
-							Xvel ++;
-						}
-						else
-						{
-							Xvel = runningSpeed;
-						}
+						Xvel = runningSpeed;
+						this->Move(horizontal, tiles);
+						this->Energy(runEnergy);
 						WalkingRight = true;
 						FacingLeft = false;
 						FacingRight = true;
@@ -355,32 +305,21 @@ void Player::Input(Tile* tiles[])
 				}
 				else
 				{
+					canRun = false;
 					if(keyState[SDL_SCANCODE_A])
 					{
-						// Deceleration
-						if(Xvel < -walkingSpeed)
-						{
-							Xvel ++;
-						}
-						else
-						{
-							Xvel = -walkingSpeed;
-						}
+						Xvel = -walkingSpeed;
+						this->Move(horizontal, tiles);
+						this->Energy(runEnergy);
 						WalkingLeft = true;
 						FacingRight = false;
 						FacingLeft = true;
 					}
 					else if(keyState[SDL_SCANCODE_D])
 					{
-						// Deceleration
-						if(Xvel > walkingSpeed)
-						{
-							Xvel --;
-						}
-						else
-						{
-							Xvel = walkingSpeed;
-						}
+						Xvel = walkingSpeed;
+						this->Move(horizontal, tiles);
+						this->Energy(runEnergy);
 						WalkingRight = true;
 						FacingLeft = false;
 						FacingRight = true;
@@ -391,16 +330,13 @@ void Player::Input(Tile* tiles[])
 						canRun = false;
 					}
 				}
-				this->Move(horizontal, tiles);
-				this->Energy(runEnergy);
 			}
 			else
 			{
 				isRunning = false;
 				canRun = true;
-				_state = state_walking;
+				_state = state_idle;
 			}
-
 			break;
 			
 		case state_jumping:
@@ -646,10 +582,14 @@ void Player::Move(int Movement, Tile* tiles[])
 	{
 		// Horizontal movement
 		if(Movement == horizontal || Movement == jump)
+		{
 			playerRect.x += Xvel;
+		}
 		// Horizontal collision handling
 		if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.Wall(playerRect, tiles))
+		{
 			playerRect.x -= Xvel;
+		}
 		// Horizontal Slope collision handling
 		if(pCollision.Slope_45_Left(playerRect, tiles))//[/]
 		{
@@ -683,7 +623,6 @@ void Player::Move(int Movement, Tile* tiles[])
 			else if((playerRect.x % TILE_SIZE) <= walkingSpeed)
 			{
 				// composate for collidoing in to next tiles of decelerating
-				cout << "This is it" << endl;
 				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE -walkingSpeed;
 			}
 			else
