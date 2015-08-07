@@ -27,6 +27,7 @@ class EQ
         int countedFrames;
 
         float avgFPS;
+        float timeStep;
         int frameTicks;
 
     public:

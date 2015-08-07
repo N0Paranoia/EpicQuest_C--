@@ -93,8 +93,7 @@ class Player
 		SDL_Rect StaminBar;
 	public:
 		int _state;
-		int Xvel;
-		int Yvel;
+		int Xvel, Yvel;
 		//Collision box
 		SDL_Rect playerRect;
 		SDL_Rect bottomCollisionBox;

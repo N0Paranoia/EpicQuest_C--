@@ -111,6 +111,7 @@ void EQ::Event(SDL_Event* event)
 
 void EQ::Fps()
 {
+    // Calculate FPS
     avgFPS = countedFrames / (FPStimer.getTicks() / 1000.f);
 
     if(avgFPS > 2000000)
@@ -145,6 +146,7 @@ void EQ::Loop()
     camera.Center(&player.playerRect);
     player.Update();
     player.Falling(tileSet);
+    // FPStimer.Start();
 }
 
 void EQ::Render()
@@ -228,10 +230,9 @@ int EQ::Execute()
     SDL_Event event;
     //start FPS timer
     FPStimer.Start();
-
+   
     while(Running)
-    {
-
+    {;         
         CAPtimer.Start();
         while(SDL_PollEvent(&event))
         {
