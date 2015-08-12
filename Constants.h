@@ -35,4 +35,13 @@ const int TOTAL_DOORS = 2;
 const int GRAVITY = 12;
 
 
+struct Box
+{
+	float x;
+	float y;
+	float w;
+	float h;
+};
+
+
 #endif // CONSTANTS_H_INCLUDED

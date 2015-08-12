@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include "Constants.h"
 #include "Tile.h"
 #include <iostream>
 
@@ -93,7 +94,10 @@ class Player
 		SDL_Rect StaminBar;
 	public:
 		int _state;
-		int Xvel, Yvel;
+		float Xvel, Yvel;
+		float Xpos, Ypos;
+
+		Box _PlayerBox;
 		//Collision box
 		SDL_Rect playerRect;
 		SDL_Rect bottomCollisionBox;

@@ -1,5 +1,6 @@
 #include "Physics.h"
 #include "Collision.h"
+#include "Constants.h"
 
 Collision PhCollision;
 
@@ -17,6 +18,19 @@ bool Physics::Gravity(SDL_Rect a, Tile* tiles[])
 			PhCollision.Cloud(a, tiles) ||
 			PhCollision.Slope_45_Left(a, tiles) ||
 			PhCollision.Slope_45_Right(a, tiles)
+	  )
+	{
+		return true;
+	}
+	return false;
+}
+
+bool Physics::GravityBox(Box a, Tile* tiles[])
+{
+	if(PhCollision.WallBox(a, tiles) ||
+			PhCollision.CloudBox(a, tiles) ||
+			PhCollision.Slope_45_LeftBox(a, tiles) ||
+			PhCollision.Slope_45_RightBox(a, tiles)
 	  )
 	{
 		return true;

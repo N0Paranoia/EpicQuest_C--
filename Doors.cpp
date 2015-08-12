@@ -34,3 +34,20 @@ void Doors::Connection(SDL_Rect* player, int z)
         }
     }
 }
+
+void Doors::ConnectionBox(Box* player, int z)
+{
+    for(int i = 0; i < TOTAL_DOORS; i++)
+    {
+        if(player->x >= doorA[i].x - TILE_SIZE/2 && player->x <= doorA[i].x + TILE_SIZE/2 && player->y >= doorA[i].y - TILE_SIZE/2 && player->y <= doorA[i].y)
+        {
+            player->x = doorB[i].x;
+            player->y = doorB[i].y;
+        }
+        else if(player->x >= doorB[i].x - TILE_SIZE/2 && player->x <= doorB[i].x + TILE_SIZE/2 && player->y >= doorB[i].y - TILE_SIZE/2 && player->y <= doorB[i].y)
+        {
+            player->x = doorA[i].x;
+            player->y = doorA[i].y;
+        }
+    }
+}

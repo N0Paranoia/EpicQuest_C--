@@ -12,13 +12,6 @@ Doors pDoors;
 
 Player::Player()
 {
-	playerRect.x = 2*TILE_SIZE;
-	playerRect.y = 2*TILE_SIZE;
-	playerRect.w = TILE_SIZE;
-	playerRect.h = 2*TILE_SIZE;
-
-	Xvel = 0;
-	Yvel = 0;
 	walkingSpeed = 4;
 	runningSpeed = 8;
 	jumpHeight = 10;
@@ -36,7 +29,6 @@ Player::Player()
 
 	jumpCount = 0;
 	
-
 	WalkingLeft = false;
 	WalkingLeft = false;
 	FacingLeft = false;
@@ -73,6 +65,16 @@ Player::Player()
 	blockEnergy = 25;
 	
 	int _state = state_idle;
+
+	_PlayerBox.x = 2*TILE_SIZE;
+	_PlayerBox.y = 2*TILE_SIZE;
+	_PlayerBox.w = TILE_SIZE;
+	_PlayerBox.h = 2*TILE_SIZE;
+
+	playerRect.x = 2*TILE_SIZE;
+	playerRect.y = 2*TILE_SIZE;
+	playerRect.w = TILE_SIZE;
+	playerRect.h = 2*TILE_SIZE;
 }
 
 Player::~Player()
@@ -405,10 +407,10 @@ void Player::Falling(Tile* tiles[])
 {
 	if(!isClimbing && !isJumping)
 	{
-		playerRect.y += GRAVITY;
-		if(pPhysics.Gravity(playerRect, tiles))
+		_PlayerBox.y += GRAVITY;
+		if(pPhysics.GravityBox(_PlayerBox, tiles))
 		{
-			playerRect.y -= GRAVITY;
+			_PlayerBox.y -= GRAVITY;
 			isFalling = false;
 		}
 		else
@@ -434,14 +436,6 @@ void Player::Jump(Tile* tiles[])
 	{
 		if(jumpingSpeed > GRAVITY)
 		{
-			// if(FacingLeft)
-			// {
-			// 	Xvel = -runningSpeed;
-			// }
-			// else if(FacingRight)
-			// {
-			// 	Xvel = runningSpeed;
-			// }
 			Yvel = -jumpingSpeed;
 			isClimbing = false;
 			this->Energy(jumpEnergy);
@@ -465,14 +459,14 @@ void Player::Climb(int Movement, Tile* tiles[])
 		if(Movement == up || down)
 		{
 			_state = state_climbing;
-			playerRect.y += Yvel;
+			_PlayerBox.y += Yvel;
 			isClimbing = true;
 			isFalling = false;
 			// Stick to center of ladder
-			playerRect.x = ((playerRect.x + (playerRect.w/2))/TILE_SIZE)*TILE_SIZE;
-			if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.Wall(playerRect, tiles))
+			_PlayerBox.x = (((int)_PlayerBox.x + ((int)_PlayerBox.w/2))/TILE_SIZE)*TILE_SIZE;
+			if(_PlayerBox.y < 0 || _PlayerBox.y + _PlayerBox.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallBox(_PlayerBox, tiles))
 			{
-				playerRect.y -= Yvel;
+				_PlayerBox.y -= Yvel;
 			}
 		}
 	}
@@ -488,7 +482,7 @@ void Player::GoTroughDoor(Tile* tiles[])
 	{
 		if(canEnterDoor)
 		{
-			pDoors.Connection(&playerRect, NULL);
+			pDoors.ConnectionBox(&_PlayerBox, NULL);
 			canEnterDoor = false;
 		}
 	}
@@ -502,11 +496,11 @@ void Player::Attack()
 		{
 			if(FacingLeft)
 			{
-				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
+				SwordBox = {playerRect.x - TILE_SIZE, playerRect.y + TILE_SIZE, TILE_SIZE, 10};
 			}
 			else if(FacingRight)
 			{
-				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
+				SwordBox = {playerRect.x + playerRect.w, playerRect.y + TILE_SIZE, TILE_SIZE, 10};
 			}
 			if(!isAttacking)
 			{
@@ -519,11 +513,11 @@ void Player::Attack()
 		{
 			if(FacingLeft)
 			{
-				SwordBox = {this->playerRect.x - 10, this->playerRect.y + TILE_SIZE, 10, 10};
+				SwordBox = {playerRect.x - 10, playerRect.y + TILE_SIZE, 10, 10};
 			}
 			else if(FacingRight)
 			{
-				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE, 10, 10};
+				SwordBox = {playerRect.x + this->playerRect.w, playerRect.y + TILE_SIZE, 10, 10};
 			}
 		}
 	}
@@ -544,11 +538,11 @@ void Player::Block()
 		{
 			if(FacingLeft)
 			{
-				ShieldBox = {this->playerRect.x - 10, this->playerRect.y, 10, playerRect.h};
+				ShieldBox = {playerRect.x - 10, playerRect.y, 10, playerRect.h};
 			}
 			else if(FacingRight)
 			{
-				ShieldBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y, 10, playerRect.h};
+				ShieldBox = {playerRect.x + this->playerRect.w, playerRect.y, 10, playerRect.h};
 			}
 			if(!isBlocking)
 			{
@@ -561,11 +555,11 @@ void Player::Block()
 		{
 			if(FacingLeft)
 			{
-				ShieldBox = {this->playerRect.x - 2, this->playerRect.y, 2, playerRect.h};
+				ShieldBox = {playerRect.x - 2, playerRect.y, 2, playerRect.h};
 			}
 			if(FacingRight)
 			{
-				ShieldBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y, 2, playerRect.h};
+				ShieldBox = {playerRect.x+ this->playerRect.w, playerRect.y, 2, playerRect.h};
 			}
 		}
 	}
@@ -585,63 +579,65 @@ void Player::Move(int Movement, Tile* tiles[])
 		// Horizontal movement
 		if(Movement == horizontal || Movement == jump)
 		{
-			playerRect.x += Xvel;
+			_PlayerBox.x += Xvel;
+			// playerRect.x += Xvel;
 		}
 		// Horizontal collision handling
-		if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.Wall(playerRect, tiles))
+		if(_PlayerBox.x < 0 || _PlayerBox.x + _PlayerBox.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallBox(_PlayerBox, tiles))
 		{
-			playerRect.x -= Xvel;
+			_PlayerBox.x -= Xvel;
+			// playerRect.x -= Xvel;
 		}
 		// Horizontal Slope collision handling
-		if(pCollision.Slope_45_Left(playerRect, tiles))//[/]
+		if(pCollision.Slope_45_LeftBox(_PlayerBox, tiles))//[/]
 		{
-			if((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) == 1)
+			if((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) == 1)
 			{
 				// compesate for colliding in to next tile becoude of the playerRect.w -1
-				playerRect.y = ((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE) -1;
+				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -1;
 			}
-			else if(isRunning && TILE_SIZE - ((playerRect.x + playerRect.w-1)) % TILE_SIZE <= runningSpeed)
+			else if(isRunning && TILE_SIZE - (((int)_PlayerBox.x + (int)_PlayerBox.w-1)) % TILE_SIZE <= runningSpeed)
 			{
 				// composate for collidoing in to next tiles becouse of running
-				playerRect.y = ((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE) -runningSpeed;
+				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -runningSpeed;
 			}
-			else if(TILE_SIZE - (playerRect.x + playerRect.w-1) % TILE_SIZE <= walkingSpeed)
+			else if(TILE_SIZE - ((int)_PlayerBox.x + (int)_PlayerBox.w-1) % TILE_SIZE <= walkingSpeed)
 			{
 				// composate for collidoing in to next tiles of decelerating
-				playerRect.y = ((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE) -walkingSpeed;	
+				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -walkingSpeed;	
 			}
 			else
 			{
-				playerRect.y = (TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+				_PlayerBox.y = (TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE;
 			}
 		}
-		if(pCollision.Slope_45_Right(playerRect, tiles))//[\]
+		if(pCollision.Slope_45_RightBox(_PlayerBox, tiles))//[\]
 		{
-			if(isRunning && ((playerRect.x) % TILE_SIZE) <= runningSpeed)
+			if(isRunning && (((int)_PlayerBox.x) % TILE_SIZE) <= runningSpeed)
 			{
 				// composate for collidoing in to next tiles becouse of running
-				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE -runningSpeed;
+				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -runningSpeed;
 			}
-			else if((playerRect.x % TILE_SIZE) <= walkingSpeed)
+			else if(((int)_PlayerBox.x % TILE_SIZE) <= walkingSpeed)
 			{
 				// composate for collidoing in to next tiles of decelerating
-				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE -walkingSpeed;
+				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -walkingSpeed;
 			}
 			else
 			{
-				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE;
 			}
 		}
 		// Vertical movement
 		if(Movement == vertical  || Movement == jump)
-			playerRect.y += Yvel;
+			_PlayerBox.y += Yvel;
 		// Vertical collision handling
-		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE || 
-			pCollision.Wall(playerRect, tiles) ||
-			pCollision.Slope_45_Right(playerRect, tiles) ||
-			pCollision.Slope_45_Left(playerRect, tiles)
+		if(_PlayerBox.y < 0 || _PlayerBox.y + _PlayerBox.h > LEVEL_HEIGHT*TILE_SIZE || 
+			pCollision.WallBox(_PlayerBox, tiles) ||
+			pCollision.Slope_45_RightBox(_PlayerBox, tiles) ||
+			pCollision.Slope_45_LeftBox(_PlayerBox, tiles)
 		  )
-			playerRect.y -= Yvel;
+			_PlayerBox.y -= Yvel;
 	}
 }
 
@@ -679,7 +675,6 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 		// Walking Animation
 		if(WalkingLeft)
 		{
-
 			frame --;
 			frameCounter = 0;
 			if(frame < EndFrameLeft || frame > StartFrameLeft)
@@ -728,7 +723,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
 	SDL_RenderFillRect(Renderer, &StaminBar);
 	//Render Frame
-	SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
+	SpriteSheetTexture.Render(Renderer, (int)_PlayerBox.x - camera->x, (int)_PlayerBox.y - camera->y, &PlayerClips[frame]);
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xff, 0xff);
 	//Create New Rectangle for shield for the camera compisation
 	Shield = {ShieldBox.x - camera->x, ShieldBox.y - camera->y, ShieldBox.w, ShieldBox.h};
@@ -738,9 +733,9 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 void Player::Update()
 {
 	// initiolize bottomCollisionBox
-	bottomCollisionBox = {playerRect.x, (playerRect.y + playerRect.h), playerRect.w, 1};
+	bottomCollisionBox = {_PlayerBox.x, (_PlayerBox.y + _PlayerBox.h), _PlayerBox.w, 1};
 	// initialize vertCenterCollisionBox
-	vertCenterCollisionBox = {playerRect.x + (playerRect.w/2), playerRect.y, 2, playerRect.h+1};
+	vertCenterCollisionBox = {_PlayerBox.x + (_PlayerBox.w/2), _PlayerBox.y, 2, _PlayerBox.h+1};
 }
 
 void Player::Cleanup()

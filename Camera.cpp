@@ -20,7 +20,7 @@ Camera::~Camera()
     //dtor
 }
 
-void Camera::Center(SDL_Rect* playerRect)
+void Camera::Center(Box* playerRect)
 {
     if(centerRect.x > playerRect->x)
     {

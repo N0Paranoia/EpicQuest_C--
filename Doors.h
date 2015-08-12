@@ -13,6 +13,7 @@ class Doors
         Doors();
         virtual ~Doors();
         void Connection(SDL_Rect* player, int z);
+        void ConnectionBox(Box* player, int z);
     protected:
     private:
         SDL_Rect doorA[TOTAL_DOORS];

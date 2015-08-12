@@ -143,7 +143,7 @@ void EQ::Input()
 
 void EQ::Loop()
 {
-    camera.Center(&player.playerRect);
+    camera.Center(&player._PlayerBox);
     player.Update();
     player.Falling(tileSet);
     // FPStimer.Start();
