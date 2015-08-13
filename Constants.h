@@ -32,7 +32,7 @@ const int TILE_SLOPE_LEFT = 14;
 
 const int TOTAL_DOORS = 2;
 
-const int GRAVITY = 12;
+const int GRAVITY = 1200;
 
 
 struct Box

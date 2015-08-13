@@ -27,7 +27,7 @@ class EQ
         int countedFrames;
 
         float avgFPS;
-        float timeStep;
+        float TimeStep;
         int frameTicks;
 
     public:
@@ -40,12 +40,12 @@ class EQ
         void FpsCap();
         bool Init();
         bool LoadMedia();
-	bool InitKeys();
+        bool InitKeys();
         //Loads individual image as texture
         SDL_Texture* loadTexture(std::string path);
-        void Input();
-        void Loop();
-        void Render();
+        void Input(float timeStep);
+        void Loop(float timeStep);
+        void Render(float timeStep);
         void Cleanup();
 	void Debug();
 };

@@ -32,7 +32,7 @@ SDL_Rect Tile::getTileBox()
 
 void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
 {
-    if(collision.Check(TileBox, *camera))
+    if(collision.Check_Rect(TileBox, *camera))
     {
         textures->Render(Renderer, TileBox.x - camera->x, TileBox.y - camera->y, &clips[TileType]);
     }

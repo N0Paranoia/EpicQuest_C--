@@ -81,9 +81,9 @@ class Player
 		int EndFrameRight;
 		int IdleFrameLeft;
 		int IdleFrameRight;
-		int frameCounter;
-		int frameSpeed;
-		int frameSwitch;
+		float frameCounter;
+		float frameSpeed;
+		float frameSwitch;
 
 		SDL_Rect PlayerClips[18];
 		SDL_Rect ShieldBox;
@@ -95,11 +95,10 @@ class Player
 	public:
 		int _state;
 		float Xvel, Yvel;
-		float Xpos, Ypos;
 
-		Box _PlayerBox;
 		//Collision box
-		SDL_Rect playerRect;
+		Box _PlayerBox;
+		
 		SDL_Rect bottomCollisionBox;
 		SDL_Rect vertCenterCollisionBox;
 		SDL_Rect playerBox;
@@ -107,7 +106,7 @@ class Player
 		Player();
 		virtual ~Player();
 		//void Event(SDL_Event* event);
-		void Input(Tile* tiles[]);
+		void Input(float timeStep, Tile* tiles[]);
 		int LoadMedia(SDL_Renderer* Renderer);
 
 		void Move(int Movement, Tile* tiles[]);
@@ -120,7 +119,7 @@ class Player
 		int Health();
 		int Energy(int action);
 		void Update();
-		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
+		void Render(float timeStep, SDL_Renderer* Renderer, SDL_Rect* camera);
 		void Cleanup();
 
 	protected:

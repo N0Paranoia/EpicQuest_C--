@@ -10,27 +10,29 @@ class Collision
     public:
         Collision();
         virtual ~Collision();
-        bool Check(SDL_Rect a, SDL_Rect b);
-        bool CheckCloud(SDL_Rect a, SDL_Rect b);
-    	bool Check_Slope_45_Left(SDL_Rect a, SDL_Rect b);
-    	bool Check_Slope_45_Right(SDL_Rect a, SDL_Rect b);
-        bool Var(SDL_Rect cBox, Tile* tiles[], int type);
-        bool Wall(SDL_Rect cBox, Tile* tiles[]);
-        bool Cloud(SDL_Rect cBox, Tile* tiles[]);
-    	bool Slope_45_Right(SDL_Rect cBox, Tile* tiles[]);
-    	bool Slope_45_Left(SDL_Rect cBox, Tile* tiles[]);
-    	bool Stick(SDL_Rect cBox, Tile* tiles[]);
 
-        bool CheckBox(Box a, SDL_Rect b);
-        bool CheckCloudBox(Box a, SDL_Rect b);
-        bool Check_Slope_45_LeftBox(Box a, SDL_Rect b);
-        bool Check_Slope_45_RightBox(Box a, SDL_Rect b);
+        //SDL_Rect collisions (ints)
+        bool Check_Rect(SDL_Rect a, SDL_Rect b);
+        bool CheckCloud_Rect(SDL_Rect a, SDL_Rect b);
+    	bool Check_Slope_45_Left_Rect(SDL_Rect a, SDL_Rect b);
+    	bool Check_Slope_45_Right_Rect(SDL_Rect a, SDL_Rect b);
+        bool Var_Rect(SDL_Rect cBox, Tile* tiles[], int type);
+        bool Wall_Rect(SDL_Rect cBox, Tile* tiles[]);
+        bool Cloud_Rect(SDL_Rect cBox, Tile* tiles[]);
+    	bool Slope_45_Right_Rect(SDL_Rect cBox, Tile* tiles[]);
+    	bool Slope_45_Left_Rect(SDL_Rect cBox, Tile* tiles[]);
+    	bool Stick_Rect(SDL_Rect cBox, Tile* tiles[]);
 
-        bool WallBox(Box cBox, Tile* tiles[]);
-        bool CloudBox(Box cBox, Tile* tiles[]);
-        bool VarBox(Box cBox, Tile* tiles[], int type);
-        bool Slope_45_RightBox(Box cBox, Tile* tiles[]);
-        bool Slope_45_LeftBox(Box cBox, Tile* tiles[]);
+        //Box Collisions (floats)
+        bool Check_Box(Box a, SDL_Rect b);
+        bool CheckCloud_Box(Box a, SDL_Rect b);
+        bool Check_Slope_45_Left_Box(Box a, SDL_Rect b);
+        bool Check_Slope_45_Right_Box(Box a, SDL_Rect b);
+        bool Wall_Box(Box cBox, Tile* tiles[]);
+        bool Cloud_Box(Box cBox, Tile* tiles[]);
+        bool Var_Box(Box cBox, Tile* tiles[], int type);
+        bool Slope_45_Right_Box(Box cBox, Tile* tiles[]);
+        bool Slope_45_Left_Box(Box cBox, Tile* tiles[]);
 
     protected:
     private:

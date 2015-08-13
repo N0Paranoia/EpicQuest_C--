@@ -11,6 +11,7 @@
 
 Timer FPStimer;
 Timer CAPtimer;
+Timer StepTimer;
 Physics physics;
 Player player;
 World world;
@@ -136,22 +137,21 @@ void EQ::FpsCap()
     }
 }
 
-void EQ::Input()
+void EQ::Input(float timeStep)
 {
-     player.Input(tileSet);
+    player.Input(timeStep, tileSet);
 }
 
-void EQ::Loop()
+void EQ::Loop(float timeStep)
 {
     camera.Center(&player._PlayerBox);
     player.Update();
     player.Falling(tileSet);
-    // FPStimer.Start();
 }
 
-void EQ::Render()
+void EQ::Render(float timeStep)
 {
-	//Set Default colors
+    //Set Default colors
 	SDL_SetRenderDrawColor(Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	//Clear screen
 	SDL_RenderClear(Renderer);
@@ -160,7 +160,7 @@ void EQ::Render()
 	// Render Tiles
 	world.Render(Renderer, &camera.cameraRect, tileSet);
 	// Render Player data
-	player.Render(Renderer, &camera.cameraRect);
+	player.Render(timeStep, Renderer, &camera.cameraRect);
 	//Render Camara outline
 	camera.Render(Renderer);
 	//Render FPS text
@@ -169,11 +169,9 @@ void EQ::Render()
 	DebugTexture.Render(Renderer, 3*TILE_SIZE, 0);
 	//Update screen
 	SDL_RenderPresent(Renderer);
-
 	// frame counter for FPS
 	++countedFrames;
-
-	this->FpsCap();
+	// this->FpsCap();
 }
 
 void EQ::Debug()
@@ -181,13 +179,13 @@ void EQ::Debug()
     debugText.str("");
     debugText << "State = " << player._state;
     debugText << "|Xvel = " << player.Xvel;
-	debugText << "|Left = " << player.playerRect.x;
-	debugText << "|Right = " << player.playerRect.x + player.playerRect.w;
-	debugText << "|Top = " << player.playerRect.y;
-	debugText << "|Bottom = " << player.playerRect.y + player.playerRect.h;
-	debugText << "|left on tile = " << player.playerRect.x % TILE_SIZE;
-	debugText << "|right on tile = " << (player.playerRect.x + player.playerRect.w) % TILE_SIZE;
-	
+	debugText << "|Left = " << (int)player._PlayerBox.x;
+	debugText << "|Right = " << (int)player._PlayerBox.x + (int)player._PlayerBox.w;
+	debugText << "|Top = " << (int)player._PlayerBox.y;
+	debugText << "|Bottom = " << (int)player._PlayerBox.y + (int)player._PlayerBox.h;
+	debugText << "|left on tile = " << (int)player._PlayerBox.x % TILE_SIZE;
+	debugText << "|right on tile = " << ((int)player._PlayerBox.x + (int)player._PlayerBox.w) % TILE_SIZE;
+
 	if(!DebugTexture.LoadFromRenderedText(Renderer, Font, debugText.str().c_str(), textColor))
 	{
         	cout << "Failed to render text texture!" << endl;
@@ -239,9 +237,12 @@ int EQ::Execute()
            this->Event(&event);
         }
         this->Fps();
-        this->Input();
-        this->Loop();
-        this->Render();
+        float TimeStep = StepTimer.getTicks()/1000.f;
+        this->Input(TimeStep);        
+        this->Loop(TimeStep);
+        StepTimer.Start();
+        this->Render(TimeStep);
+
 
 	this->Debug();
     }
