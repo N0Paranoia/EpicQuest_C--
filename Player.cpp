@@ -399,14 +399,14 @@ void Player::Input(float timeStep, Tile* tiles[])
 	}
 }
 
-void Player::Falling(Tile* tiles[])
+void Player::Falling(float timeStep, Tile* tiles[])
 {
 	if(!isClimbing && !isJumping)
 	{
-		_PlayerBox.y += GRAVITY;
-		if(pPhysics.Gravity_Box(_PlayerBox, tiles))
+		_PlayerBox.y += (GRAVITY * timeStep);
+		if(pPhysics.Gravity_Box(timeStep, _PlayerBox, tiles))
 		{
-			_PlayerBox.y -= GRAVITY;
+			_PlayerBox.y -= (GRAVITY * timeStep);
 			isFalling = false;
 		}
 		else
@@ -416,7 +416,7 @@ void Player::Falling(Tile* tiles[])
 		if(!isFalling)
 		{
 			// Hyper gravity to keep the player grounded
-			if(!pCollision.Stick_Rect(bottomCollisionBox, tiles))
+			if(!pCollision.Stick_Rect(timeStep, bottomCollisionBox, tiles))
 			{
 				_PlayerBox.y = pPhysics.StickToFloor_Box(_PlayerBox, bottomCollisionBox, tiles);
 			}
@@ -437,7 +437,6 @@ void Player::Jump(Tile* tiles[])
 			this->Energy(jumpEnergy);
 			this->Move(jump, tiles);
 			jumpingSpeed --;
-			// jumpCount ++;
 		}
 		else
 		{
@@ -576,13 +575,11 @@ void Player::Move(int Movement, Tile* tiles[])
 		if(Movement == horizontal || Movement == jump)
 		{
 			_PlayerBox.x += Xvel;
-			// playerRect.x += Xvel;
 		}
 		// Horizontal collision handling
 		if(_PlayerBox.x < 0 || _PlayerBox.x + _PlayerBox.w > LEVEL_WIDTH*TILE_SIZE || pCollision.Wall_Box(_PlayerBox, tiles))
 		{
 			_PlayerBox.x -= Xvel;
-			// playerRect.x -= Xvel;
 		}
 		// Horizontal Slope collision handling
 		if(pCollision.Slope_45_Left_Box(_PlayerBox, tiles))//[/]

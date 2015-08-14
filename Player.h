@@ -114,7 +114,7 @@ class Player
 		void Block();
 		void Jump(Tile* tiles[]);
 		void Climb(int Movement, Tile* tiles[]);
-		void Falling(Tile* tiles[]);
+		void Falling(float timeStep, Tile* tiles[]);
 		void GoTroughDoor(Tile* tiles[]);
 		int Health();
 		int Energy(int action);

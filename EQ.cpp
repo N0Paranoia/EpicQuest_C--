@@ -146,7 +146,7 @@ void EQ::Loop(float timeStep)
 {
     camera.Center(&player._PlayerBox);
     player.Update();
-    player.Falling(tileSet);
+    player.Falling(timeStep, tileSet);
 }
 
 void EQ::Render(float timeStep)
@@ -179,10 +179,10 @@ void EQ::Debug()
     debugText.str("");
     debugText << "State = " << player._state;
     debugText << "|Xvel = " << player.Xvel;
-	debugText << "|Left = " << (int)player._PlayerBox.x;
-	debugText << "|Right = " << (int)player._PlayerBox.x + (int)player._PlayerBox.w;
-	debugText << "|Top = " << (int)player._PlayerBox.y;
-	debugText << "|Bottom = " << (int)player._PlayerBox.y + (int)player._PlayerBox.h;
+	debugText << "|Left = " << player._PlayerBox.x;
+	debugText << "|Right = " << player._PlayerBox.x + player._PlayerBox.w;
+	debugText << "|Top = " << player._PlayerBox.y;
+	debugText << "|Bottom = " << player._PlayerBox.y + player._PlayerBox.h;
 	debugText << "|left on tile = " << (int)player._PlayerBox.x % TILE_SIZE;
 	debugText << "|right on tile = " << ((int)player._PlayerBox.x + (int)player._PlayerBox.w) % TILE_SIZE;
 

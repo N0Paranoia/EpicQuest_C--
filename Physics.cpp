@@ -12,10 +12,10 @@ Physics::~Physics()
 {
 }
 
-bool Physics::Gravity_Rect(SDL_Rect a, Tile* tiles[])
+bool Physics::Gravity_Rect(float timeStep, SDL_Rect a, Tile* tiles[])
 {
 	if(PhCollision.Wall_Rect(a, tiles) ||
-			PhCollision.Cloud_Rect(a, tiles) ||
+			PhCollision.Cloud_Rect(timeStep, a, tiles) ||
 			PhCollision.Slope_45_Left_Rect(a, tiles) ||
 			PhCollision.Slope_45_Right_Rect(a, tiles)
 	  )
@@ -25,10 +25,10 @@ bool Physics::Gravity_Rect(SDL_Rect a, Tile* tiles[])
 	return false;
 }
 
-bool Physics::Gravity_Box(Box a, Tile* tiles[])
+bool Physics::Gravity_Box(float timeStep, Box a, Tile* tiles[])
 {
 	if(PhCollision.Wall_Box(a, tiles) ||
-			PhCollision.Cloud_Box(a, tiles) ||
+			PhCollision.Cloud_Box(timeStep, a, tiles) ||
 			PhCollision.Slope_45_Left_Box(a, tiles) ||
 			PhCollision.Slope_45_Right_Box(a, tiles)
 	  )
@@ -78,6 +78,6 @@ int Physics::StickToFloor_Box(Box a, SDL_Rect b, Tile* tiles[])
 	}
 	else	
 	{
-		return ((((int)a.y + (int)a.h+(TILE_SIZE/4))/TILE_SIZE) * TILE_SIZE) - a.h;
+		return ((((int)a.y + (int)a.h+(TILE_SIZE/4))/TILE_SIZE) * TILE_SIZE) - (int)a.h;
 	}
 }
