@@ -71,6 +71,8 @@ Player::Player()
 	_PlayerBox.y = 2*TILE_SIZE;
 	_PlayerBox.w = TILE_SIZE;
 	_PlayerBox.h = 2*TILE_SIZE;
+
+	playerInt = 0;
 }
 
 Player::~Player()
@@ -205,7 +207,7 @@ void Player::Input(float timeStep, Tile* tiles[])
 			{
 				isDucking = true;
 				Yvel = walkingSpeed * timeStep;
-				this->Move(vertical, tiles);
+				this->Move(timeStep, vertical, tiles);
 				this->Climb(down, tiles);
 			}
 			if(!keyState[SDL_SCANCODE_S])
@@ -240,7 +242,7 @@ void Player::Input(float timeStep, Tile* tiles[])
 			break;
 
 		case state_walking:
-			this->Move(horizontal, tiles);
+			this->Move(timeStep, horizontal, tiles);
 			if(keyState[SDL_SCANCODE_A])
 			{
 				Xvel = -(walkingSpeed * timeStep);
@@ -282,7 +284,7 @@ void Player::Input(float timeStep, Tile* tiles[])
 					if(keyState[SDL_SCANCODE_A])
 					{
 						Xvel = -(runningSpeed * timeStep);
-						this->Move(horizontal, tiles);
+						this->Move(timeStep, horizontal, tiles);
 						this->Energy(runEnergy);
 						WalkingLeft = true;
 						FacingRight = false;
@@ -291,7 +293,7 @@ void Player::Input(float timeStep, Tile* tiles[])
 					else if(keyState[SDL_SCANCODE_D])
 					{
 						Xvel = (runningSpeed * timeStep);
-						this->Move(horizontal, tiles);
+						this->Move(timeStep, horizontal, tiles);
 						this->Energy(runEnergy);
 						WalkingRight = true;
 						FacingLeft = false;
@@ -309,7 +311,7 @@ void Player::Input(float timeStep, Tile* tiles[])
 					if(keyState[SDL_SCANCODE_A])
 					{
 						Xvel = -(walkingSpeed * timeStep);
-						this->Move(horizontal, tiles);
+						this->Move(timeStep, horizontal, tiles);
 						this->Energy(runEnergy);
 						WalkingLeft = true;
 						FacingRight = false;
@@ -318,7 +320,7 @@ void Player::Input(float timeStep, Tile* tiles[])
 					else if(keyState[SDL_SCANCODE_D])
 					{
 						Xvel = (walkingSpeed * timeStep);
-						this->Move(horizontal, tiles);
+						this->Move(timeStep, horizontal, tiles);
 						this->Energy(runEnergy);
 						WalkingRight = true;
 						FacingLeft = false;
@@ -342,7 +344,7 @@ void Player::Input(float timeStep, Tile* tiles[])
 		case state_jumping:
 			if(keyState[SDL_SCANCODE_SPACE])
 			{
-				this->Jump(tiles);
+				this->Jump(timeStep, tiles);
 			}
 			else
 			{
@@ -355,13 +357,13 @@ void Player::Input(float timeStep, Tile* tiles[])
 			if(keyState[SDL_SCANCODE_W])
 			{
 				Yvel = -(walkingSpeed * timeStep);
-				this->Move(vertical, tiles);
+				this->Move(timeStep, vertical, tiles);
 				this->Climb(up, tiles);
 			}
 			else if(keyState[SDL_SCANCODE_S])
 			{
 				Yvel = (walkingSpeed * timeStep);
-				this->Move(vertical, tiles);
+				this->Move(timeStep, vertical, tiles);
 				this->Climb(down, tiles);
 			}
 			else if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D])
@@ -426,7 +428,7 @@ void Player::Falling(float timeStep, Tile* tiles[])
 // -------------------------------------------------//
 // ------------NEEDS WORK, IS OK FOR NOW------------//
 // -------------------------------------------------//
-void Player::Jump(Tile* tiles[])
+void Player::Jump(float timeStep, Tile* tiles[])
 {
 	if(canJump)
 	{
@@ -435,7 +437,7 @@ void Player::Jump(Tile* tiles[])
 			Yvel = -jumpingSpeed;
 			isClimbing = false;
 			this->Energy(jumpEnergy);
-			this->Move(jump, tiles);
+			this->Move(timeStep, jump, tiles);
 			jumpingSpeed --;
 		}
 		else
@@ -567,7 +569,7 @@ void Player::Block()
 	}
 }
 
-void Player::Move(int Movement, Tile* tiles[])
+void Player::Move(float timeStep, int Movement, Tile* tiles[])
 {
 	if(!isAttacking)
 	{
@@ -606,15 +608,16 @@ void Player::Move(int Movement, Tile* tiles[])
 		}
 		if(pCollision.Slope_45_Right_Box(_PlayerBox, tiles))//[\]
 		{
-			if(isRunning && (((int)_PlayerBox.x) % TILE_SIZE) <= runningSpeed)
+			cout << (((int)_PlayerBox.x) % TILE_SIZE) << endl;
+			if(isRunning && (((int)_PlayerBox.x) % TILE_SIZE) <= runningSpeed * timeStep)
 			{
 				// composate for collidoing in to next tiles becouse of running
-				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -(Xvel);
+				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -(runningSpeed * timeStep);
 			}
-			else if(((int)_PlayerBox.x % TILE_SIZE) <= walkingSpeed)
+			else if(((int)_PlayerBox.x % TILE_SIZE) <= walkingSpeed * timeStep)
 			{
 				// composate for collidoing in to next tiles of decelerating
-				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -(Xvel);
+				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -(walkingSpeed * timeStep);
 			}
 			else
 			{

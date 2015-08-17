@@ -93,6 +93,8 @@ class Player
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;
 	public:
+		int playerInt;
+
 		int _state;
 		float Xvel, Yvel;
 
@@ -109,10 +111,10 @@ class Player
 		void Input(float timeStep, Tile* tiles[]);
 		int LoadMedia(SDL_Renderer* Renderer);
 
-		void Move(int Movement, Tile* tiles[]);
+		void Move(float timeStep, int Movement, Tile* tiles[]);
 		void Attack();
 		void Block();
-		void Jump(Tile* tiles[]);
+		void Jump(float timeStep, Tile* tiles[]);
 		void Climb(int Movement, Tile* tiles[]);
 		void Falling(float timeStep, Tile* tiles[]);
 		void GoTroughDoor(Tile* tiles[]);

@@ -380,6 +380,7 @@ bool Collision::Var_Box(Box cBox, Tile* tiles[], int type)
         {
             if(this->Check_Box(cBox, tiles[i]->getTileBox()))
             {
+                // cout << "collission = Var_Box" << endl;
                 return true;
             }
         }
@@ -395,6 +396,7 @@ bool Collision::Wall_Box(Box cBox, Tile* tiles[])
         {
             if(this->Check_Box(cBox, tiles[i]->getTileBox()))
             {
+                // cout << "collission = Wall_Box" << endl;
                 return true;
             }
         }
@@ -410,6 +412,7 @@ bool Collision::Cloud_Box(float timeStep, Box cBox, Tile* tiles[])
         {
             if(this->CheckCloud_Box(timeStep, cBox, tiles[i]->getTileBox()))
             {
+                // cout << "collission = Cloud_Box" << endl;
                 return true;
             }
         }
@@ -425,6 +428,7 @@ bool Collision::Slope_45_Right_Box(Box cBox, Tile* tiles[])
         {
             if(this->Check_Slope_45_Right_Box(cBox, tiles[i]->getTileBox()))
             {
+                // cout << "collission = Slope_45_Right_Box" << endl;
                 return true;
             }
         }
@@ -440,6 +444,7 @@ bool Collision::Slope_45_Left_Box(Box cBox, Tile* tiles[])
         {
             if(this->Check_Slope_45_Left_Box(cBox, tiles[i]->getTileBox()))
             {
+                // cout << "collission = Slope_45_Left_Box" << endl;
                 return true;
             }
         }
