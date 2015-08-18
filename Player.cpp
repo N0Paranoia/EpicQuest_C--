@@ -594,12 +594,12 @@ void Player::Move(float timeStep, int Movement, Tile* tiles[])
 			else if(isRunning && TILE_SIZE - (((int)_PlayerBox.x + (int)_PlayerBox.w-1)) % TILE_SIZE <= runningSpeed)
 			{
 				// composate for collidoing in to next tiles becouse of running
-				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -(Xvel);
+				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -(walkingSpeed * timeStep);
 			}
 			else if(TILE_SIZE - ((int)_PlayerBox.x + (int)_PlayerBox.w-1) % TILE_SIZE <= walkingSpeed)
 			{
 				// composate for collidoing in to next tiles of decelerating
-				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -(Xvel);	
+				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -(walkingSpeed * timeStep);	
 			}
 			else
 			{
@@ -608,14 +608,13 @@ void Player::Move(float timeStep, int Movement, Tile* tiles[])
 		}
 		if(pCollision.Slope_45_Right_Box(_PlayerBox, tiles))//[\]
 		{
-			cout << (((int)_PlayerBox.x) % TILE_SIZE) << endl;
 			if(isRunning && (((int)_PlayerBox.x) % TILE_SIZE) <= runningSpeed * timeStep)
 			{
 				// composate for collidoing in to next tiles becouse of running
-				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -(runningSpeed * timeStep);
+				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -(walkingSpeed * timeStep);
 			}
 			else if(((int)_PlayerBox.x % TILE_SIZE) <= walkingSpeed * timeStep)
-			{
+			{				
 				// composate for collidoing in to next tiles of decelerating
 				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -(walkingSpeed * timeStep);
 			}
@@ -730,7 +729,7 @@ void Player::Render(float timeStep, SDL_Renderer* Renderer, SDL_Rect* camera)
 void Player::Update()
 {
 	// initiolize bottomCollisionBox
-	bottomCollisionBox = {_PlayerBox.x, (_PlayerBox.y + _PlayerBox.h), _PlayerBox.w, 1};
+	bottomCollisionBox = {_PlayerBox.x-1, (_PlayerBox.y + _PlayerBox.h), _PlayerBox.w+2, 1};
 	// initialize vertCenterCollisionBox
 	vertCenterCollisionBox = {_PlayerBox.x + (_PlayerBox.w/2), _PlayerBox.y, 2, _PlayerBox.h+1};
 }
