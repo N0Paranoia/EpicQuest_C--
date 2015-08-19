@@ -586,37 +586,23 @@ void Player::Move(float timeStep, int Movement, Tile* tiles[])
 		// Horizontal Slope collision handling
 		if(pCollision.Slope_45_Left_Box(_PlayerBox, tiles))//[/]
 		{
-			if((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) == 1)
-			{
-				// compesate for colliding in to next tile becoude of the playerRect.w -1
-				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -1;
-			}
-			else if(isRunning && TILE_SIZE - (((int)_PlayerBox.x + (int)_PlayerBox.w-1)) % TILE_SIZE <= runningSpeed)
+			if(TILE_SIZE - (((int)_PlayerBox.x + (int)_PlayerBox.w)) % TILE_SIZE <= runningSpeed * timeStep)
 			{
 				// composate for collidoing in to next tiles becouse of running
-				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -(walkingSpeed * timeStep);
-			}
-			else if(TILE_SIZE - ((int)_PlayerBox.x + (int)_PlayerBox.w-1) % TILE_SIZE <= walkingSpeed)
-			{
-				// composate for collidoing in to next tiles of decelerating
-				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -(walkingSpeed * timeStep);	
+				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -(runningSpeed * timeStep);
 			}
 			else
 			{
-				_PlayerBox.y = (TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w-1)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE;
+				_PlayerBox.y = (TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE;
 			}
 		}
 		if(pCollision.Slope_45_Right_Box(_PlayerBox, tiles))//[\]
 		{
-			if(isRunning && (((int)_PlayerBox.x) % TILE_SIZE) <= runningSpeed * timeStep)
-			{
-				// composate for collidoing in to next tiles becouse of running
-				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -(walkingSpeed * timeStep);
-			}
-			else if(((int)_PlayerBox.x % TILE_SIZE) <= walkingSpeed * timeStep)
+			if(((int)_PlayerBox.x % TILE_SIZE) <= runningSpeed * timeStep)
 			{				
 				// composate for collidoing in to next tiles of decelerating
-				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -(walkingSpeed * timeStep);
+				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -(runningSpeed * timeStep);
+				_PlayerBox.x -= 1;
 			}
 			else
 			{

@@ -85,10 +85,10 @@ bool Collision::Check_Slope_45_Right_Rect(SDL_Rect a, SDL_Rect b)
     i_topB = b.y;
     i_bottomB = b.y + b.h;
     //[\]
-        if(i_bottomA <= (i_leftA % TILE_SIZE) + i_topB)
-        {
-        return false;
-        }
+    if(i_bottomA <= (i_leftA % TILE_SIZE) + i_topB)
+    {
+    return false;
+    }
     if(i_topA >= i_bottomB)
     {
         return false;
@@ -107,7 +107,7 @@ bool Collision::Check_Slope_45_Right_Rect(SDL_Rect a, SDL_Rect b)
 bool Collision::Check_Slope_45_Left_Rect(SDL_Rect a, SDL_Rect b)
 {
     i_leftA = a.x;
-    i_rightA = a.x + (a.w-1); // The -1 counters that the "(i_rightA % TILE_SIZE)" outcom is 0.
+    i_rightA = a.x + a.w; // The -1 counters that the "(i_rightA % TILE_SIZE)" outcom is 0.
     i_topA = a.y;
     i_bottomA = a.y + a.h;
 
@@ -227,7 +227,7 @@ bool Collision::Stick_Rect(float timeStep, SDL_Rect cBox, Tile* tiles[])
                 return true;
             }
         }
-        // Stick Collision for all "45° left Slope" tiles [/]
+        // Stick Collision for all "45Â° left Slope" tiles [/]
         else if(tiles[i]->getType() == TILE_SLOPE_LEFT)
         {
             if(this->Check_Slope_45_Left_Rect(cBox, tiles[i]->getTileBox()))
@@ -235,7 +235,7 @@ bool Collision::Stick_Rect(float timeStep, SDL_Rect cBox, Tile* tiles[])
                 return true;
             }
         }
-        //Stick Collision for all "45° right Slope" tiles [\] 
+        //Stick Collision for all "45Â° right Slope" tiles [\] 
         else if(tiles[i]->getType() == TILE_SLOPE_RIGHT)
         {
             if(this->Check_Slope_45_Right_Rect(cBox, tiles[i]->getTileBox()))
