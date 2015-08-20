@@ -344,7 +344,7 @@ bool Collision::Check_Slope_45_Right_Box(Box a, SDL_Rect b)
 bool Collision::Check_Slope_45_Left_Box(Box a, SDL_Rect b)
 {
     i_leftA = a.x;
-    i_rightA = a.x + (a.w-1); // The -1 counters that the "(i_rightA % TILE_SIZE)" outcom is 0.
+    i_rightA = a.x + a.w; // The -1 counters that the "(i_rightA % TILE_SIZE)" outcom is 0.
     i_topA = a.y;
     i_bottomA = a.y + a.h;
 
