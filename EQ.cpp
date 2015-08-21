@@ -162,7 +162,7 @@ void EQ::Render(float timeStep)
 	// Render Player data
 	player.Render(timeStep, Renderer, &camera.cameraRect);
 	//Render Camara outline
-	camera.Render(Renderer);
+	// camera.Render(Renderer);
 	//Render FPS text
 	TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
 	//Render Debug text

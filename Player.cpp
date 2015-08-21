@@ -586,10 +586,11 @@ void Player::Move(float timeStep, int Movement, Tile* tiles[])
 		// Horizontal Slope collision handling
 		if(pCollision.Slope_45_Left_Box(_PlayerBox, tiles))//[/]
 		{
-			if(TILE_SIZE - (((int)_PlayerBox.x + (int)_PlayerBox.w)) % TILE_SIZE <= runningSpeed * timeStep)
+			if((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w)) % TILE_SIZE)  <= runningSpeed * timeStep)
 			{
 				// composate for collidoing in to next tiles becouse of running
 				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -(runningSpeed * timeStep);
+				_PlayerBox.x += 1;
 			}
 			else
 			{
