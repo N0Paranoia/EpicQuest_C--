@@ -1,7 +1,7 @@
 #ifndef CONSTANTS_H_INCLUDED
 #define CONSTANTS_H_INCLUDED
 
-const int FPS = 60;
+const int FPS = 30;
 const int TICK_PER_FRAME = 1000 / FPS;
 
 const int WINDOW_WIDTH = 1024;

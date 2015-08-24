@@ -171,7 +171,7 @@ void EQ::Render(float timeStep)
 	SDL_RenderPresent(Renderer);
 	// frame counter for FPS
 	++countedFrames;
-	// this->FpsCap();
+	this->FpsCap();
 }
 
 void EQ::Debug()

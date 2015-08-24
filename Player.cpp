@@ -461,7 +461,7 @@ void Player::Climb(int Movement, Tile* tiles[])
 			isFalling = false;
 			// Stick to center of ladder
 			_PlayerBox.x = (((int)_PlayerBox.x + ((int)_PlayerBox.w/2))/TILE_SIZE)*TILE_SIZE;
-			if(_PlayerBox.y < 0 || _PlayerBox.y + _PlayerBox.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.Wall_Box(_PlayerBox, tiles))
+			if(Movement == down && pCollision.Wall_Box(_PlayerBox, tiles))
 			{
 				_PlayerBox.y -= Yvel;
 			}
@@ -470,6 +470,7 @@ void Player::Climb(int Movement, Tile* tiles[])
 	else
 	{
 		isClimbing = false;
+		_state = state_idle;
 	}
 }
 
@@ -586,11 +587,11 @@ void Player::Move(float timeStep, int Movement, Tile* tiles[])
 		// Horizontal Slope collision handling
 		if(pCollision.Slope_45_Left_Box(_PlayerBox, tiles))//[/]
 		{
-			if((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w)) % TILE_SIZE)  <= runningSpeed * timeStep)
+			if((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w)) % TILE_SIZE)  <= (runningSpeed/100))
 			{
-				// composate for collidoing in to next tiles becouse of running
-				_PlayerBox.y = ((TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w)) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE) -(runningSpeed * timeStep);
-				_PlayerBox.x += 1;
+				// composate for collidoing in to next tiles
+				_PlayerBox.y = (((int)_PlayerBox.y-1)/TILE_SIZE)*TILE_SIZE;
+				_PlayerBox.x += (TILE_SIZE - (((int)_PlayerBox.x) + ((int)_PlayerBox.w)) % TILE_SIZE);
 			}
 			else
 			{
@@ -599,11 +600,13 @@ void Player::Move(float timeStep, int Movement, Tile* tiles[])
 		}
 		if(pCollision.Slope_45_Right_Box(_PlayerBox, tiles))//[\]
 		{
-			if(((int)_PlayerBox.x % TILE_SIZE) <= runningSpeed * timeStep)
-			{				
+			cout << ((int)_PlayerBox.x % TILE_SIZE) << endl;
+			if(((int)_PlayerBox.x % TILE_SIZE) <= (runningSpeed/100))
+			{	
+				cout << "test" << endl;			
 				// composate for collidoing in to next tiles of decelerating
-				_PlayerBox.y = (((int)_PlayerBox.x) % TILE_SIZE) + (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE -(runningSpeed * timeStep);
-				_PlayerBox.x -= 1;
+				_PlayerBox.y = (((int)_PlayerBox.y-1)/ TILE_SIZE)*TILE_SIZE;
+				_PlayerBox.x -= ((int)_PlayerBox.x % TILE_SIZE);
 			}
 			else
 			{
