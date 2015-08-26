@@ -106,7 +106,7 @@ bool Collision::Check_Slope_45_Right_Rect(SDL_Rect a, SDL_Rect b)
 bool Collision::Check_Slope_45_Left_Rect(SDL_Rect a, SDL_Rect b)
 {
     i_leftA = a.x;
-    i_rightA = a.x + (a.w-1); // The -1 counters that the "(rightA % TILE_SIZE)" outcom is 0.;
+    i_rightA = a.x + (a.w); // The -1 counters that the "(rightA % TILE_SIZE)" outcom is 0.;
     i_topA = a.y;
     i_bottomA = a.y + a.h;
 
@@ -115,10 +115,10 @@ bool Collision::Check_Slope_45_Left_Rect(SDL_Rect a, SDL_Rect b)
     i_topB = b.y;
     i_bottomB = b.y + b.h;
     //[/]
-        if(i_bottomA <= (TILE_SIZE - (i_rightA % TILE_SIZE) + i_topB))
-        {
-            return false;
-        }
+    if(i_bottomA <= (TILE_SIZE - (i_rightA % TILE_SIZE) + i_topB))
+    {
+        return false;
+    }
     if(i_topA >= i_bottomB)
     {
         return false;
@@ -311,29 +311,29 @@ bool Collision::CheckCloud_Box(float timeStep, Box a, SDL_Rect b)
 
 bool Collision::Check_Slope_45_Right_Box(Box a, SDL_Rect b)
 {
-    i_leftA = a.x;
-    i_rightA = a.x + a.w;
-    i_topA = a.y;
-    i_bottomA = a.y + a.h;
+    f_leftA = a.x;
+    f_rightA = a.x + a.w;
+    f_topA = a.y;
+    f_bottomA = a.y + a.h;
 
-    i_leftB = b.x;
-    i_rightB = b.x + b.w;
-    i_topB = b.y;
-    i_bottomB = b.y + b.h;
+    f_leftB = b.x;
+    f_rightB = b.x + b.w;
+    f_topB = b.y;
+    f_bottomB = b.y + b.h;
     //[\]
-    if(i_bottomA <= (i_leftA % TILE_SIZE) + i_topB)
+    if(f_bottomA <= ((int)f_leftA % TILE_SIZE) + f_topB)
     {
         return false;
     }
-    if(i_topA >= i_bottomB)
+    if(f_topA >=f_bottomB)
     {
         return false;
     }
-    if(i_rightA <= i_leftB)
+    if(f_rightA <= f_leftB)
     {
         return false;
     }
-    if(i_leftA >= i_rightB)
+    if(f_leftA >= f_rightB)
     {
         return false;
     }
@@ -342,29 +342,29 @@ bool Collision::Check_Slope_45_Right_Box(Box a, SDL_Rect b)
 
 bool Collision::Check_Slope_45_Left_Box(Box a, SDL_Rect b)
 {
-    i_leftA = a.x;
-    i_rightA = a.x + (a.w-1); // The -1 counters that the "(rightA % TILE_SIZE)" outcom is 0.;
-    i_topA = a.y;
-    i_bottomA = a.y + a.h;
+    f_leftA = a.x;
+    f_rightA = a.x + (a.w); // The -1 counters that the "(rightA % TILE_SIZE)" outcom is 0.;
+    f_topA = a.y;
+    f_bottomA = a.y + a.h;
 
-    i_leftB = b.x;
-    i_rightB = b.x + b.w;
-    i_topB = b.y;
-    i_bottomB = b.y + b.h;
+    f_leftB = b.x;
+    f_rightB = b.x + b.w;
+    f_topB = b.y;
+    f_bottomB = b.y + b.h;
     //[/]
-    if(i_bottomA <= (TILE_SIZE - (i_rightA % TILE_SIZE) + i_topB))
+    if(f_bottomA <= (TILE_SIZE - ((int)f_rightA % TILE_SIZE) + f_topB))
     {
         return false;
     }
-    if(i_topA >= i_bottomB)
+    if(f_topA >= f_bottomB)
     {
         return false;
     }
-    if(i_rightA <= i_leftB)
+    if(f_rightA <= f_leftB)
     {
         return false;
     }
-    if(i_leftA >= i_rightB)
+    if(f_leftA >= f_rightB)
     {
             return false;
     }
