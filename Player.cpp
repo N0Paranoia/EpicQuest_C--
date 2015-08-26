@@ -21,7 +21,8 @@ Player::Player()
 	Yvel = 0;
 	walkingSpeed = 4;
 	runningSpeed = 8;
-	jumpingSpeed = 8 + GRAVITY;
+	jumpHeight = 10;
+	jumpingSpeed = jumpHeight + GRAVITY;
 	frame = 0;
 	StartFrameLeft = 7;
 	EndFrameLeft = 0;
@@ -34,7 +35,7 @@ Player::Player()
 	frameSwitch = 60;
 
 	jumpCount = 0;
-	jumpHeight = 8;
+	
 
 	WalkingLeft = false;
 	WalkingLeft = false;
@@ -193,6 +194,7 @@ void Player::Input(Tile* tiles[])
 	switch(_state)
 	{
 		case state_idle:
+			Xvel = 0;
 			if(keyState[SDL_SCANCODE_A])
 			{
 				_state = state_walking;
@@ -423,23 +425,23 @@ void Player::Falling(Tile* tiles[])
 		}
 	}	
 }
-// -----------------------------------//
-// ------------NEEDS WORK!------------//
-// -----------------------------------//
+// -------------------------------------------------//
+// ------------NEEDS WORK, IS OK FOR NOW------------//
+// -------------------------------------------------//
 void Player::Jump(Tile* tiles[])
 {
 	if(canJump)
 	{
 		if(jumpingSpeed > GRAVITY)
 		{
-			if(FacingLeft)
-			{
-				Xvel = -runningSpeed;
-			}
-			else if(FacingRight)
-			{
-				Xvel = runningSpeed;
-			}
+			// if(FacingLeft)
+			// {
+			// 	Xvel = -runningSpeed;
+			// }
+			// else if(FacingRight)
+			// {
+			// 	Xvel = runningSpeed;
+			// }
 			Yvel = -jumpingSpeed;
 			isClimbing = false;
 			this->Energy(jumpEnergy);
@@ -450,7 +452,7 @@ void Player::Jump(Tile* tiles[])
 		else
 		{
 			jumpCount = 0;
-			jumpingSpeed = 8 + GRAVITY;
+			jumpingSpeed = jumpHeight + GRAVITY;
 			_state = state_walking;
 		}
 	}
