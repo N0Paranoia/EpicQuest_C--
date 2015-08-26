@@ -83,7 +83,7 @@ bool Collision::Check_Slope_45_Right(SDL_Rect a, SDL_Rect b)
 	rightB = b.x + b.w;
 	topB = b.y;
 	bottomB = b.y + b.h;
-	//[\]
+	//[\]z
     if(bottomA <= (leftA % TILE_SIZE) + topB)
     {
     return false;
@@ -230,7 +230,7 @@ bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])
 				return true;
 			}
 		}
-		// Stick Collision for all "45° left Slope" tiles [/]
+		// Stick Collision for all "45Â° left Slope" tiles [/]
 		else if(tiles[i]->getType() == TILE_SLOPE_LEFT)
 		{
         		if(this->Check_Slope_45_Left(cBox, tiles[i]->getTileBox()))
@@ -238,7 +238,7 @@ bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])
                			return true;
         		}
 		}
-		//Stick Collision for all "45° right Slope" tiles [\] 
+		//Stick Collision for all "45Â° right Slope" tiles [\] 
 		else if(tiles[i]->getType() == TILE_SLOPE_RIGHT)
 		{
         		if(this->Check_Slope_45_Right(cBox, tiles[i]->getTileBox()))
