@@ -159,10 +159,10 @@ void EQ::Render()
 	wallpaperTexture.Render(Renderer, 0, 0);
 	// Render Tiles
 	world.Render(Renderer, &camera.cameraRect, tileSet);
+    //Render Camara outline
+    camera.Render(Renderer);
 	// Render Player data
 	player.Render(Renderer, &camera.cameraRect);
-	//Render Camara outline
-	camera.Render(Renderer);
 	//Render FPS text
 	TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
 	//Render Debug text

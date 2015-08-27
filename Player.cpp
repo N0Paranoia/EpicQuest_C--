@@ -391,6 +391,16 @@ void Player::Input(Tile* tiles[])
 			{
 				block = true;
 				this->Block();
+				if(keyState[SDL_SCANCODE_A])
+				{
+					Xvel = -walkingSpeed/2;
+					this->Move(horizontal, tiles);
+				}
+				else if(keyState[SDL_SCANCODE_D])
+				{
+					Xvel = walkingSpeed/2;
+					this->Move(horizontal, tiles);
+				}
 			}
 			else
 			{
@@ -470,7 +480,7 @@ void Player::Climb(int Movement, Tile* tiles[])
 			isFalling = false;
 			// Stick to center of ladder
 			playerRect.x = ((playerRect.x + (playerRect.w/2))/TILE_SIZE)*TILE_SIZE;
-			if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.Wall(playerRect, tiles))
+			if(Movement == down && pCollision.Wall(playerRect, tiles))
 			{
 				playerRect.y -= Yvel;
 			}
