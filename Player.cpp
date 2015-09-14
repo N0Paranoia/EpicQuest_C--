@@ -36,7 +36,6 @@ Player::Player()
 
 	jumpCount = 0;
 	
-
 	WalkingLeft = false;
 	WalkingLeft = false;
 	FacingLeft = false;
