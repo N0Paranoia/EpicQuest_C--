@@ -9,7 +9,7 @@ class Mobs
         Mobs(int x, int y, int Type);
  		int getType();
  		SDL_Rect getMobBox();
- 		void Render();
+ 		void Render(SDL_Renderer* Renderer);
  		
  		int MobType;
  		SDL_Rect MobBox;

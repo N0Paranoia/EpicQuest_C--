@@ -1,4 +1,6 @@
 #include "Mobs.h"
+#include "Constants.h"
+
 
 Mobs::Mobs(int x, int y, int Type)
 {
@@ -18,7 +20,7 @@ SDL_Rect Mobs::getMobBox()
 	return MobBox;
 }
 
-void Mobs::Render()
+void Mobs::Render(SDL_Renderer* Renderer)
 {
-	
+	SDL_RenderFillRect(Renderer, &MobBox);
 }
