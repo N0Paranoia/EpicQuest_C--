@@ -35,19 +35,19 @@ class EQ
         int Execute();
 
     public:
-        void Event(SDL_Event* Event);
-        void Fps();
-        void FpsCap();
-        bool Init();
-        bool LoadMedia();
-	bool InitKeys();
-        //Loads individual image as texture
-        SDL_Texture* loadTexture(std::string path);
-        void Input();
-        void Loop();
-        void Render();
-        void Cleanup();
-	void Debug();
+       void Event(SDL_Event* Event);
+       void Fps();
+       void FpsCap();
+       bool Init();
+       bool LoadMedia();
+	   bool InitKeys();
+       //Loads individual image as texture
+       SDL_Texture* loadTexture(std::string path);
+       void Input();
+       void Loop();
+       void Render();
+       void Cleanup();
+	   void Debug();
 };
 
 #endif // EQ_H

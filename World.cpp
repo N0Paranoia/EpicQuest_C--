@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include "Textures.h"
 #include "Tile.h"
+#include "Mobs.h"
 #include <fstream>
 
 //Texture playerTexture;
@@ -160,10 +161,17 @@ bool World::SetTiles(Tile* tiles[])
     return true;
 }
 
-void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[])
+void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])
 {
     for(int i = 0; i < TOTAL_TILES; i++)
     {
         tiles[i]->Render(&TileSheetTexture, &TileClips[Type-2], Renderer, camera);
     }
+
+    // -------------
+    // FOR TESTING!!
+    //Render Mobs
+    mobs[1] = new Mobs(TILE_SIZE, TILE_SIZE, NULL);
+    mobs[1]->Render(Renderer, camera);
+    // -------------
 }

@@ -20,7 +20,7 @@ SDL_Rect Mobs::getMobBox()
 	return MobBox;
 }
 
-void Mobs::Render(SDL_Renderer* Renderer)
+void Mobs::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 {
 	SDL_RenderFillRect(Renderer, &MobBox);
 }

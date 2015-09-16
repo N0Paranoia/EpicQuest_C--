@@ -2,6 +2,7 @@
 #include "Physics.h"
 #include "Timer.h"
 #include "Player.h"
+#include "Mobs.h"
 #include "Textures.h"
 #include "Camera.h"
 #include "World.h"
@@ -13,6 +14,7 @@ Timer FPStimer;
 Timer CAPtimer;
 Physics physics;
 Player player;
+Mobs* mobs[TOTAL_TILES];
 World world;
 Camera camera;
 Tile* tileSet[TOTAL_TILES];
@@ -158,7 +160,7 @@ void EQ::Render()
 	//Render Texture to screen
 	wallpaperTexture.Render(Renderer, 0, 0);
 	// Render Tiles
-	world.Render(Renderer, &camera.cameraRect, tileSet);
+	world.Render(Renderer, &camera.cameraRect, tileSet, mobs);
     //Render Camara outline
     camera.Render(Renderer);
 	// Render Player data
