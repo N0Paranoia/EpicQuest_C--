@@ -18,10 +18,10 @@ Mobs* mobs[TOTAL_TILES];
 World world;
 Camera camera;
 Tile* tileSet[TOTAL_TILES];
+
 Textures wallpaperTexture;
 Textures TextTexture;
 Textures DebugTexture;
-
 
 EQ::EQ()
 {
@@ -148,6 +148,7 @@ void EQ::Loop()
     camera.Center(&player.playerRect);
     player.Update();
     player.Falling(tileSet);
+    world.UpdateMobs();
     // FPStimer.Start();
 }
 

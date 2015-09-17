@@ -18,36 +18,36 @@ std::stringstream debugText;
 class EQ
 {
     private:
-        bool Running;
-        SDL_Window* Window ;
-        SDL_Renderer* Renderer;
-        SDL_Texture* Texture;
-        TTF_Font* Font;
-        SDL_Color textColor;
-        int countedFrames;
+      bool Running;
+      SDL_Window* Window ;
+      SDL_Renderer* Renderer;
+      SDL_Texture* Texture;
+      TTF_Font* Font;
+      SDL_Color textColor;
+      int countedFrames;
 
-        float avgFPS;
-        float timeStep;
-        int frameTicks;
-
-    public:
-        EQ();
-        int Execute();
+      float avgFPS;
+      float timeStep;
+      int frameTicks;
 
     public:
-       void Event(SDL_Event* Event);
-       void Fps();
-       void FpsCap();
-       bool Init();
-       bool LoadMedia();
-	   bool InitKeys();
-       //Loads individual image as texture
-       SDL_Texture* loadTexture(std::string path);
-       void Input();
-       void Loop();
-       void Render();
-       void Cleanup();
-	   void Debug();
+      EQ();
+      int Execute();
+
+    public:
+      void Event(SDL_Event* Event);
+      void Fps();
+      void FpsCap();
+      bool Init();
+      bool LoadMedia();
+      bool InitKeys();
+      //Loads individual image as texture
+      SDL_Texture* loadTexture(std::string path);
+      void Input();
+      void Loop();
+      void Render();
+      void Cleanup();
+      void Debug();
 };
 
 #endif // EQ_H

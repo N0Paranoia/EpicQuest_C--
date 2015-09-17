@@ -32,6 +32,11 @@ const int TILE_SLOPE_LEFT = 14;
 
 const int TOTAL_DOORS = 2;
 
+const int TOTAL_MOB_SPRITES = 1;
+
+const int MOB_TYPE_1 = 1;
+// const int MOB_TYPE_2 = 2;
+
 const int GRAVITY = 12;
 
 

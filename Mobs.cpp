@@ -1,13 +1,13 @@
 #include "Mobs.h"
 #include "Constants.h"
-
+#include "Textures.h"
 
 Mobs::Mobs(int x, int y, int Type)
 {
 	MobBox.x = x;
 	MobBox.y = y;
 	MobBox.w = TILE_SIZE;
-	MobBox.h = TILE_SIZE;
+	MobBox.h = 2*TILE_SIZE;
 }
 
 int Mobs::getType()
@@ -20,7 +20,7 @@ SDL_Rect Mobs::getMobBox()
 	return MobBox;
 }
 
-void Mobs::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
+void Mobs::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
 {
-	SDL_RenderFillRect(Renderer, &MobBox);
+    textures->Render(Renderer, MobBox.x - camera->x, MobBox.y - camera->y, &clips[0]);
 }

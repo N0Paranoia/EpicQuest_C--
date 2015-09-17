@@ -3,7 +3,7 @@
 #include "Textures.h"
 #include "Collision.h"
 
-Collision collision;
+Collision tCollision;
 
 Tile::Tile(int x, int y, int Type)
 {
@@ -32,7 +32,7 @@ SDL_Rect Tile::getTileBox()
 
 void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
 {
-    if(collision.Check(TileBox, *camera))
+    if(tCollision.Check(TileBox, *camera))
     {
         textures->Render(Renderer, TileBox.x - camera->x, TileBox.y - camera->y, &clips[TileType]);
     }

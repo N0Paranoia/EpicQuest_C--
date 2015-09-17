@@ -5,6 +5,9 @@
 #include "Constants.h"
 #include "Tile.h"
 #include "Mobs.h"
+#include <iostream>
+
+using namespace std;
 
 class World
 {
@@ -14,11 +17,13 @@ class World
         int Init(int x, int y, int TileType);
         int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[]);
         bool SetTiles(Tile* tiles[]);
+        void UpdateMobs();
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[]);
     protected:
     private:
     public:
         SDL_Rect TileClips[TOTAL_TILE_SPRITES];
+        SDL_Rect MobClips[TOTAL_MOB_SPRITES];
         int Type;
 };
 
