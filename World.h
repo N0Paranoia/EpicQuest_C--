@@ -17,7 +17,7 @@ class World
         int Init(int x, int y, int TileType);
         int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[]);
         bool SetTiles(Tile* tiles[]);
-        void UpdateMobs();
+        int UpdateMobs(Mobs* mobs[]);
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[]);
     protected:
     private:

@@ -173,9 +173,10 @@ bool World::SetTiles(Tile* tiles[])
     return true;
 }
 
-void World::UpdateMobs()
+int  World::UpdateMobs(Mobs* mobs[])
 {
-
+    mobs[0] = new Mobs(1* TILE_SIZE, 2*TILE_SIZE, NULL);
+    return mobs[0]->getMobBox().x;
 }
 
 void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])
@@ -188,7 +189,7 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
     // -------------
     // FOR TESTING!!
     //Render Mobs
-    mobs[1] = new Mobs(2*TILE_SIZE, 2*TILE_SIZE, NULL);
-    mobs[1]->Render(&MobSheetTexture, &MobClips[1], Renderer, camera);
+    mobs[0] = new Mobs(2*TILE_SIZE, 2*TILE_SIZE, NULL);
+    mobs[0]->Render(&MobSheetTexture, &MobClips[1], Renderer, camera);
     // -------------
 }
