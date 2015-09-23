@@ -189,7 +189,10 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
     // -------------
     // FOR TESTING!!
     //Render Mobs
-    mobs[0] = new Mobs(2*TILE_SIZE, 2*TILE_SIZE, NULL);
-    mobs[0]->Render(&MobSheetTexture, &MobClips[1], Renderer, camera);
+    for(int i = 0; i < 2; i++)
+    {
+        mobs[i] = new Mobs(i*TILE_SIZE, 2*TILE_SIZE, NULL);
+        mobs[i]->Render(&MobSheetTexture, &MobClips[1], Renderer, camera);    
+    }
     // -------------
 }

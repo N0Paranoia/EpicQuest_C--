@@ -35,7 +35,7 @@ Player::Player()
 	frameSwitch = 60;
 
 	jumpCount = 0;
-	
+
 	WalkingLeft = false;
 	WalkingLeft = false;
 	FacingLeft = false;
@@ -54,23 +54,23 @@ Player::Player()
 	isRunning = false;
 
 	isDucking = false;
-	
+
 	attack = false;
 	isAttacking = false;
 	block = false;
 	isBlocking = false;
-	
+
 	maxHealth = 100;
 	health = maxHealth;
 	maxEnergy = 100;
 	energy = maxEnergy;
 	energyRecover = true;
-	
+
 	runEnergy = 2;
 	jumpEnergy = 25;
 	attackEnergy = 25;
 	blockEnergy = 25;
-	
+
 	int _state = state_idle;
 }
 
@@ -339,7 +339,7 @@ void Player::Input(Tile* tiles[])
 				_state = state_idle;
 			}
 			break;
-			
+
 		case state_jumping:
 			if(keyState[SDL_SCANCODE_SPACE])
 			{
@@ -351,7 +351,7 @@ void Player::Input(Tile* tiles[])
 			}
 
 			break;
-			
+
 		case state_climbing:
 			if(keyState[SDL_SCANCODE_W])
 			{
@@ -371,7 +371,7 @@ void Player::Input(Tile* tiles[])
 				_state = state_idle;
 			}
 			break;
-			
+
 		case state_attacking:
 			if(keyState[SDL_SCANCODE_L])
 			{
@@ -384,7 +384,7 @@ void Player::Input(Tile* tiles[])
 				this->Attack();
 			}
 			break;
-			
+
 		case state_blocking:
 			if(keyState[SDL_SCANCODE_K])
 			{
@@ -432,7 +432,7 @@ void Player::Falling(Tile* tiles[])
 				playerRect.y = pPhysics.StickToFloor(playerRect, bottomCollisionBox, tiles);
 			}
 		}
-	}	
+	}
 }
 // -------------------------------------------------//
 // ------------NEEDS WORK, IS OK FOR NOW------------//
@@ -617,7 +617,7 @@ void Player::Move(int Movement, Tile* tiles[])
 			else if(TILE_SIZE - (playerRect.x + playerRect.w-1) % TILE_SIZE <= walkingSpeed)
 			{
 				// composate for collidoing in to next tiles of decelerating
-				playerRect.y = ((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE) -walkingSpeed;	
+				playerRect.y = ((TILE_SIZE - ((playerRect.x) + (playerRect.w-1)) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE) -walkingSpeed;
 			}
 			else
 			{
@@ -645,7 +645,7 @@ void Player::Move(int Movement, Tile* tiles[])
 		if(Movement == vertical  || Movement == jump)
 			playerRect.y += Yvel;
 		// Vertical collision handling
-		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE || 
+		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||
 			pCollision.Wall(playerRect, tiles) ||
 			pCollision.Slope_45_Right(playerRect, tiles) ||
 			pCollision.Slope_45_Left(playerRect, tiles)
@@ -726,11 +726,11 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0xff);
 	playerBox = {playerRect.x - camera->x, playerRect.y - camera->y, playerRect.w, playerRect.h};
 	SDL_RenderFillRect(Renderer, &playerBox);
-	
+
 	//Create New Rectangle for sword for the camera compisation
 	Sword = {SwordBox.x - camera->x, SwordBox.y - camera->y, SwordBox.w, SwordBox.h};
 	SDL_RenderFillRect(Renderer, &Sword);
-	
+
 	HealthBar = {10, 10, this->Health(), 10};
 	StaminBar = {10, 25, this->Energy(NULL), 10};
 	SDL_RenderFillRect(Renderer, &HealthBar);

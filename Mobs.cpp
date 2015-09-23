@@ -1,6 +1,9 @@
 #include "Mobs.h"
 #include "Constants.h"
 #include "Textures.h"
+#include "Collision.h"
+
+Collision mCollision;
 
 Mobs::Mobs(int x, int y, int Type)
 {
@@ -22,5 +25,9 @@ SDL_Rect Mobs::getMobBox()
 
 void Mobs::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
 {
-    textures->Render(Renderer, MobBox.x - camera->x, MobBox.y - camera->y, &clips[0]);
+	if(mCollision.Check(MobBox, *camera))
+	{
+    	textures->Render(Renderer, MobBox.x - camera->x, MobBox.y - camera->y, &clips[0]);
+    	textures->Render(Renderer, MobBox.x - camera->x, MobBox.y - camera->y, &clips[1]);
+  }
 }
