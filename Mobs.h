@@ -14,7 +14,7 @@ class Mobs
  		int getType();
  		SDL_Rect getMobBox();
  		void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera);
- 		
+
  		int MobType;
  		SDL_Rect MobBox;
 

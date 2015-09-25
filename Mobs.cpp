@@ -11,6 +11,8 @@ Mobs::Mobs(int x, int y, int Type)
 	MobBox.y = y;
 	MobBox.w = TILE_SIZE;
 	MobBox.h = 2*TILE_SIZE;
+
+	MobType = Type;
 }
 
 int Mobs::getType()
@@ -27,7 +29,6 @@ void Mobs::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, S
 {
 	if(mCollision.Check(MobBox, *camera))
 	{
-    	textures->Render(Renderer, MobBox.x - camera->x, MobBox.y - camera->y, &clips[0]);
-    	textures->Render(Renderer, MobBox.x - camera->x, MobBox.y - camera->y, &clips[1]);
-  }
+    	textures->Render(Renderer, MobBox.x - camera->x, MobBox.y - camera->y, &clips[MobType]);
+	}
 }

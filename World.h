@@ -15,9 +15,10 @@ class World
         World();
         virtual ~World();
         int Init(int x, int y, int TileType);
-        int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[]);
+        int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[]);
         bool SetTiles(Tile* tiles[]);
-        int UpdateMobs(Mobs* mobs[]);
+        bool SetMobs(Mobs* mobs[]);
+        void UpdateMobs(Mobs* mobs[]);
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[]);
     protected:
     private:

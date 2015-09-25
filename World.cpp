@@ -23,12 +23,17 @@ int World::Init(int x, int y, int TileType)
 
 }
 
-int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[])
+int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
 {
     //Load Tilemap
     if(!SetTiles(tiles))
     {
         cout << "Unable to load Tile Map! SDL_Error: " << SDL_GetError() << endl;
+        return false;
+    }
+    if(!SetMobs(mobs))
+    {
+        cout << "Unable to load Mobs! SDL_Error: " << SDL_GetError() << endl;
         return false;
     }
     //Load mobSheet
@@ -173,10 +178,19 @@ bool World::SetTiles(Tile* tiles[])
     return true;
 }
 
-int  World::UpdateMobs(Mobs* mobs[])
+bool World::SetMobs(Mobs* mobs[])
 {
-    mobs[0] = new Mobs(1* TILE_SIZE, 2*TILE_SIZE, NULL);
-    return mobs[0]->getMobBox().x;
+    for(int i = 0; i < 2; i++)
+    {
+        mobs[i] = new Mobs(i*TILE_SIZE, 2*TILE_SIZE, NULL);
+    }
+    return true;
+}
+
+void  World::UpdateMobs(Mobs* mobs[])
+{
+    // ------On to somthing-------
+    cout << mobs[0]->getMobBox().x << endl;
 }
 
 void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])
@@ -191,8 +205,7 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
     //Render Mobs
     for(int i = 0; i < 2; i++)
     {
-        mobs[i] = new Mobs(i*TILE_SIZE, 2*TILE_SIZE, NULL);
-        mobs[i]->Render(&MobSheetTexture, &MobClips[1], Renderer, camera);    
+        mobs[i]->Render(&MobSheetTexture, &MobClips[1], Renderer, camera);
     }
     // -------------
 }

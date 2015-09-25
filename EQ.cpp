@@ -28,7 +28,7 @@ EQ::EQ()
     Running = true;
     Window = nullptr;
     Renderer = nullptr;
-	
+
     Texture = nullptr;
 
     textColor = {255,0,0};
@@ -74,7 +74,7 @@ bool EQ::LoadMedia()
         	return false;
 	}
 	//Load Tile Sheet
-	if((world.LoadMedia(Renderer, tileSet)) == NULL)
+	if((world.LoadMedia(Renderer, tileSet, mobs)) == NULL)
 	{
 		return false;
 	}
@@ -102,7 +102,7 @@ void EQ::Event(SDL_Event* event)
     else if(event->type == SDL_KEYDOWN)
     {
         switch(event->key.keysym.sym)
-        {	
+        {
 		case SDLK_ESCAPE:
 	            Running = false;
 	            cout << "Quit by keyboard(Esc)" << endl;
@@ -190,7 +190,7 @@ void EQ::Debug()
 	debugText << "|Bottom = " << player.playerRect.y + player.playerRect.h;
 	debugText << "|left on tile = " << player.playerRect.x % TILE_SIZE;
 	debugText << "|right on tile = " << (player.playerRect.x + player.playerRect.w) % TILE_SIZE;
-	
+
 	if(!DebugTexture.LoadFromRenderedText(Renderer, Font, debugText.str().c_str(), textColor))
 	{
         	cout << "Failed to render text texture!" << endl;
@@ -233,9 +233,9 @@ int EQ::Execute()
     SDL_Event event;
     //start FPS timer
     FPStimer.Start();
-   
+
     while(Running)
-    {;         
+    {;
         CAPtimer.Start();
         while(SDL_PollEvent(&event))
         {
