@@ -71,7 +71,7 @@ Player::Player()
 	attackEnergy = 25;
 	blockEnergy = 25;
 
-	int _state = state_idle;
+	// int _state = state_idle;
 }
 
 Player::~Player()
@@ -82,7 +82,7 @@ Player::~Player()
 int Player::LoadMedia(SDL_Renderer* Renderer)
 {
 	//Load Player spritesheet
-	if((SpriteSheetTexture.LoadFromFile(Renderer, "assets/spriteSheet48.png")) == NULL)
+	if(!(SpriteSheetTexture.LoadFromFile(Renderer, "assets/spriteSheet48.png")))
 	{
 		cout << "Unable to load Player Texture! SDL_Error: " << SDL_GetError() << endl;
 		return false;
@@ -278,7 +278,7 @@ void Player::Input(Tile* tiles[])
 		case state_running:
 			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
 			{
-				if(Energy(NULL) > runEnergy && canRun)
+				if(Energy(0) > runEnergy && canRun)
 				{
 					if(keyState[SDL_SCANCODE_A])
 					{
@@ -497,7 +497,7 @@ void Player::GoTroughDoor(Tile* tiles[])
 	{
 		if(canEnterDoor)
 		{
-			pDoors.Connection(&playerRect, NULL);
+			pDoors.Connection(&playerRect, 0);
 			canEnterDoor = false;
 		}
 	}
@@ -507,7 +507,7 @@ void Player::Attack()
 {
 	if(attack)
 	{
-		if(Energy(NULL) > attackEnergy)
+		if(Energy(0) > attackEnergy)
 		{
 			if(FacingLeft)
 			{
@@ -538,7 +538,7 @@ void Player::Attack()
 	}
 	else
 	{
-		SwordBox = {NULL, NULL, NULL, NULL};
+		SwordBox = {0, 0, 0, 0};
 		isAttacking = false;
 		_state = state_idle;
 		energyRecover = true;
@@ -549,7 +549,7 @@ void Player::Block()
 {
 	if(block)
 	{
-		if(Energy(NULL) > blockEnergy)
+		if(Energy(0) > blockEnergy)
 		{
 			if(FacingLeft)
 			{
@@ -580,7 +580,7 @@ void Player::Block()
 	}
 	else
 	{
-		ShieldBox = {NULL, NULL, NULL, NULL};
+		ShieldBox = {0, 0, 0, 0};
 		isBlocking = false;
 		_state = state_idle;
 		energyRecover = true;
@@ -671,7 +671,7 @@ int Player::Energy(int action)
 	}
 	if(_state == state_idle || _state == state_walking)
 	{
-		if(energyRecover && action == NULL && energy < maxEnergy)
+		if(energyRecover && action == 0 && energy < maxEnergy)
 		{
 			energy ++;
 		}
@@ -732,7 +732,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	SDL_RenderFillRect(Renderer, &Sword);
 
 	HealthBar = {10, 10, this->Health(), 10};
-	StaminBar = {10, 25, this->Energy(NULL), 10};
+	StaminBar = {10, 25, this->Energy(0), 10};
 	SDL_RenderFillRect(Renderer, &HealthBar);
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
 	SDL_RenderFillRect(Renderer, &StaminBar);

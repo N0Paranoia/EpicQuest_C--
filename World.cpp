@@ -18,11 +18,6 @@ World::~World()
     //dtor
 }
 
-int World::Init(int x, int y, int TileType)
-{
-
-}
-
 int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
 {
     //Load Tilemap
@@ -37,7 +32,7 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
         return false;
     }
     //Load mobSheet
-    if((MobSheetTexture.LoadFromFile(Renderer, "assets/mobSheet.png")) == NULL)
+    if((MobSheetTexture.LoadFromFile(Renderer, "assets/mobSheet.png")) == 0)
     {
         cout << "Unable to load Mob Texture! SDL_Error: " << SDL_GetError() << endl;
         return false;
@@ -51,7 +46,7 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
         MobClips[MOB_TYPE_1].h = 2 * TILE_SIZE;
     }
     //Load tilesheet
-    if((TileSheetTexture.LoadFromFile(Renderer, "assets/tileSheet48.png")) == NULL)
+    if((TileSheetTexture.LoadFromFile(Renderer, "assets/tileSheet48.png")) == 0)
     {
         cout << "Unable to load Tile Texture! SDL_Error: " << SDL_GetError() << endl;
         return false;
@@ -124,6 +119,7 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
         TileClips[TILE_SLOPE_LEFT].w = TILE_SIZE;
         TileClips[TILE_SLOPE_LEFT].h = TILE_SIZE;
     }
+    return true;
 }
 
 bool World::SetTiles(Tile* tiles[])
@@ -182,7 +178,7 @@ bool World::SetMobs(Mobs* mobs[])
 {
     for(int i = 0; i < 2; i++)
     {
-        mobs[i] = new Mobs(i*TILE_SIZE, 2*TILE_SIZE, NULL);
+        mobs[i] = new Mobs(i*TILE_SIZE, 2*TILE_SIZE, 0);
     }
     return true;
 }
@@ -190,7 +186,7 @@ bool World::SetMobs(Mobs* mobs[])
 void  World::UpdateMobs(Mobs* mobs[])
 {
     // ------On to somthing-------
-    cout << mobs[0]->getMobBox().x << endl;
+    cout << "MobBox[0].x = " << mobs[0]->getMobBox().x << endl;
 }
 
 void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])

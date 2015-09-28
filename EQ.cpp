@@ -69,17 +69,17 @@ bool EQ::Init()
 bool EQ::LoadMedia()
 {
 	//Load Player texture
-	if((player.LoadMedia(Renderer)) == NULL)
+	if((player.LoadMedia(Renderer)) == 0)
 	{
         	return false;
 	}
 	//Load Tile Sheet
-	if((world.LoadMedia(Renderer, tileSet, mobs)) == NULL)
+	if((world.LoadMedia(Renderer, tileSet, mobs)) == 0)
 	{
 		return false;
 	}
 	//Load PNG background texture
-	if((wallpaperTexture.LoadFromFile(Renderer, "assets/background.png")) == NULL)
+	if((wallpaperTexture.LoadFromFile(Renderer, "assets/background.png")) == 0)
 	{
 		cout << "Unable to Load texture image! SDL_Error: " << SDL_GetError() << endl;
 		return false;

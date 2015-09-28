@@ -14,7 +14,6 @@ class World
     public:
         World();
         virtual ~World();
-        int Init(int x, int y, int TileType);
         int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[]);
         bool SetTiles(Tile* tiles[]);
         bool SetMobs(Mobs* mobs[]);
