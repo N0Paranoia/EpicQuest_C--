@@ -4,6 +4,9 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+AI_H	.\Ai.h	2;"	d
+Ai	.\Ai.cpp	/^Ai::Ai()$/;"	f	class:Ai
+Ai	.\Ai.h	/^class Ai$/;"	c
 Attack	.\Player.cpp	/^void Player::Attack()$/;"	f	class:Player
 Block	.\Player.cpp	/^void Player::Block()$/;"	f	class:Player
 CAMERA_H	.\Camera.h	2;"	d
@@ -60,6 +63,7 @@ Input	.\Player.cpp	/^void Player::Input(Tile* tiles[])$/;"	f	class:Player
 Jump	.\Player.cpp	/^void Player::Jump(Tile* tiles[])$/;"	f	class:Player
 LEVEL_HEIGHT	.\Constants.h	/^const int LEVEL_HEIGHT = 30;$/;"	v
 LEVEL_WIDTH	.\Constants.h	/^const int LEVEL_WIDTH = 30;$/;"	v
+Left	.\Ai.h	/^        bool Left[2];$/;"	m	class:Ai
 LoadFromFile	.\Textures.cpp	/^bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)$/;"	f	class:Textures
 LoadFromRenderedText	.\Textures.cpp	/^bool Textures::LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)$/;"	f	class:Textures
 LoadMedia	.\EQ.cpp	/^bool EQ::LoadMedia()$/;"	f	class:EQ
@@ -74,6 +78,7 @@ MobSheetTexture	.\World.cpp	/^Textures MobSheetTexture;$/;"	v
 MobType	.\Mobs.h	/^ 		int MobType;$/;"	m	class:Mobs
 Mobs	.\Mobs.cpp	/^Mobs::Mobs(int x, int y, int Type)$/;"	f	class:Mobs
 Mobs	.\Mobs.h	/^class Mobs$/;"	c
+Move	.\Ai.cpp	/^int Ai::Move(Mobs* mobs[])$/;"	f	class:Ai
 Move	.\Player.cpp	/^void Player::Move(int Movement, Tile* tiles[])$/;"	f	class:Player
 Movement	.\Player.h	/^		enum Movement$/;"	g	class:Player
 PHYSICS_H	.\Physics.h	2;"	d
@@ -95,6 +100,7 @@ Render	.\Textures.cpp	/^void Textures::Render(SDL_Renderer* Renderer,int x ,int 
 Render	.\Tile.cpp	/^void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Tile
 Render	.\World.cpp	/^void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])$/;"	f	class:World
 Renderer	.\EQ.h	/^      SDL_Renderer* Renderer;$/;"	m	class:EQ
+Right	.\Ai.h	/^        bool Right[2];$/;"	m	class:Ai
 Running	.\EQ.h	/^      bool Running;$/;"	m	class:EQ
 SetMobs	.\World.cpp	/^bool World::SetMobs(Mobs* mobs[])$/;"	f	class:World
 SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[])$/;"	f	class:World
@@ -257,9 +263,11 @@ topB	.\Collision.h	/^        int topA, topB;$/;"	m	class:Collision
 up	.\Player.h	/^			up,$/;"	e	enum:Player::Movement
 vertCenterCollisionBox	.\Player.h	/^		SDL_Rect vertCenterCollisionBox;$/;"	m	class:Player
 vertical	.\Player.h	/^			vertical,$/;"	e	enum:Player::Movement
+wAi	.\World.cpp	/^Ai wAi;$/;"	v
 walkingSpeed	.\Player.h	/^		int walkingSpeed;$/;"	m	class:Player
 wallpaperTexture	.\EQ.cpp	/^Textures wallpaperTexture;$/;"	v
 world	.\EQ.cpp	/^World world;$/;"	v
+~Ai	.\Ai.cpp	/^Ai::~Ai()$/;"	f	class:Ai
 ~Camera	.\Camera.cpp	/^Camera::~Camera()$/;"	f	class:Camera
 ~Collision	.\Collision.cpp	/^Collision::~Collision()$/;"	f	class:Collision
 ~Doors	.\Doors.cpp	/^Doors::~Doors()$/;"	f	class:Doors

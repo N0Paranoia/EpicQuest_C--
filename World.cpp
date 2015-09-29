@@ -3,7 +3,10 @@
 #include "Textures.h"
 #include "Tile.h"
 #include "Mobs.h"
+#include "Ai.h"
 #include <fstream>
+
+Ai wAi;
 
 Textures MobSheetTexture;
 Textures TileSheetTexture;
@@ -186,8 +189,8 @@ bool World::SetMobs(Mobs* mobs[])
 void  World::UpdateMobs(Mobs* mobs[])
 {
     // ------On to somthing-------
-    cout << "MobBox[0].x = " << mobs[0]->getMobBox().x << endl;
-}
+    // cout << "MobBox[0].x = " << mobs[0]->getMobBox().x << endl;
+    cout << wAi.Move(mobs) << endl;}
 
 void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])
 {
