@@ -1,5 +1,6 @@
 #include "Ai.h"
 #include "Constants.h"
+#include "Collision.h"
 
 Ai::Ai()
 {
@@ -14,5 +15,8 @@ Ai::~Ai()
 
 int Ai::Move(Mobs* mobs[])
 {
-    return Left[1];
+    for(int i = 0; i < 2; i++)
+    {
+        return mobs[i]->getMobBox().x + 1;
+    }
 }

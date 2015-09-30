@@ -189,8 +189,11 @@ bool World::SetMobs(Mobs* mobs[])
 void  World::UpdateMobs(Mobs* mobs[])
 {
     // ------On to somthing-------
-    // cout << "MobBox[0].x = " << mobs[0]->getMobBox().x << endl;
-    cout << wAi.Move(mobs) << endl;}
+    for(int i = 0; i < 2; i++)
+    {
+        mobs[i] = new Mobs(wAi.Move(mobs), 2*TILE_SIZE, 0);
+    }
+}
 
 void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])
 {
