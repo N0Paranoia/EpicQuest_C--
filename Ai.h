@@ -9,7 +9,7 @@ class Ai
     public:
         Ai();
         virtual ~Ai();
-        int Move(Mobs* mobs[]);
+        int Move(Mobs* mobs[], int i);
     protected:
     private:
     public:

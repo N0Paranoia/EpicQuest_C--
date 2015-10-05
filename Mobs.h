@@ -13,6 +13,7 @@ class Mobs
         Mobs(int x, int y, int Type);
  		int getType();
  		SDL_Rect getMobBox();
+        void Update();
  		void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera);
 
  		int MobType;

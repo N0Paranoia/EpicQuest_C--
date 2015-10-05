@@ -191,7 +191,8 @@ void  World::UpdateMobs(Mobs* mobs[])
     // ------On to somthing-------
     for(int i = 0; i < 2; i++)
     {
-        mobs[i] = new Mobs(wAi.Move(mobs), 2*TILE_SIZE, 0);
+        mobs[i] = new Mobs(wAi.Move(mobs, i), 2*TILE_SIZE, 0);
+        // cout << wAi.Move(mobs, i) << endl;
     }
 }
 
@@ -201,7 +202,6 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
     {
         tiles[i]->Render(&TileSheetTexture, &TileClips[Type], Renderer, camera);
     }
-
     // -------------
     // FOR TESTING!!
     //Render Mobs

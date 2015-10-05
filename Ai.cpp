@@ -13,10 +13,7 @@ Ai::~Ai()
     //dtor
 }
 
-int Ai::Move(Mobs* mobs[])
+int Ai::Move(Mobs* mobs[], int i)
 {
-    for(int i = 0; i < 2; i++)
-    {
-        return mobs[i]->getMobBox().x + 1;
-    }
+        return mobs[i]->getMobBox().x +4;
 }

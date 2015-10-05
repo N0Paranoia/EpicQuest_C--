@@ -78,7 +78,7 @@ MobSheetTexture	.\World.cpp	/^Textures MobSheetTexture;$/;"	v
 MobType	.\Mobs.h	/^ 		int MobType;$/;"	m	class:Mobs
 Mobs	.\Mobs.cpp	/^Mobs::Mobs(int x, int y, int Type)$/;"	f	class:Mobs
 Mobs	.\Mobs.h	/^class Mobs$/;"	c
-Move	.\Ai.cpp	/^int Ai::Move(Mobs* mobs[])$/;"	f	class:Ai
+Move	.\Ai.cpp	/^int Ai::Move(Mobs* mobs[], int i)$/;"	f	class:Ai
 Move	.\Player.cpp	/^void Player::Move(int Movement, Tile* tiles[])$/;"	f	class:Player
 Movement	.\Player.h	/^		enum Movement$/;"	g	class:Player
 PHYSICS_H	.\Physics.h	2;"	d
