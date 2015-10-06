@@ -2,6 +2,7 @@
 #define COLLISION_H
 #include "Constants.h"
 #include "Tile.h"
+#include "Mobs.h"
 #include <SDL.h>
 
 
@@ -12,14 +13,15 @@ class Collision
         virtual ~Collision();
         bool Check(SDL_Rect a, SDL_Rect b);
         bool CheckCloud(SDL_Rect a, SDL_Rect b);
-	bool Check_Slope_45_Left(SDL_Rect a, SDL_Rect b);
-	bool Check_Slope_45_Right(SDL_Rect a, SDL_Rect b);
+	    bool Check_Slope_45_Left(SDL_Rect a, SDL_Rect b);
+        bool Check_Slope_45_Right(SDL_Rect a, SDL_Rect b);
         bool Var(SDL_Rect cBox, Tile* tiles[], int type);
         bool Wall(SDL_Rect cBox, Tile* tiles[]);
         bool Cloud(SDL_Rect cBox, Tile* tiles[]);
-	bool Slope_45_Right(SDL_Rect cBox, Tile* tiles[]);
-	bool Slope_45_Left(SDL_Rect cBox, Tile* tiles[]);
-	bool Stick(SDL_Rect cBox, Tile* tiles[]);
+        bool Slope_45_Right(SDL_Rect cBox, Tile* tiles[]);
+        bool Slope_45_Left(SDL_Rect cBox, Tile* tiles[]);
+        bool Stick(SDL_Rect cBox, Tile* tiles[]);
+        bool Ai(Mobs* mobs[], Tile* tiles[]);
     protected:
     private:
         int leftA, leftB;

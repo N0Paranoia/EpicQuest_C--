@@ -148,7 +148,7 @@ void EQ::Loop()
     camera.Center(&player.playerRect);
     player.Update();
     player.Falling(tileSet);
-    world.UpdateMobs(mobs);
+    world.UpdateMobs(mobs, tileSet);
     // FPStimer.Start();
 }
 

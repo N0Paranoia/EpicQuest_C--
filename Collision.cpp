@@ -214,7 +214,7 @@ bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])
 	for(int i = 0; i < TOTAL_TILES; i++)
 	{
 		// Stick Collision for all "Solid" tiles
-        	if(tiles[i]->getType() == TILE_WALL) 
+        	if(tiles[i]->getType() == TILE_WALL)
         	{
 			if(this->Check(cBox, tiles[i]->getTileBox()))
 			{
@@ -223,7 +223,7 @@ bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])
 		}
 		// Stick Collision for all "Cloud" tiles
 		else if(tiles[i]->getType() == TILE_PLATFORM ||
-			tiles[i]->getType() == TILE_LADDER_TOP) 
+			tiles[i]->getType() == TILE_LADDER_TOP)
 		{
 			if(this->CheckCloud(cBox, tiles[i]->getTileBox()))
 			{
@@ -238,14 +238,32 @@ bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])
                			return true;
         		}
 		}
-		//Stick Collision for all "45° right Slope" tiles [\] 
+		//Stick Collision for all "45° right Slope" tiles [\]
 		else if(tiles[i]->getType() == TILE_SLOPE_RIGHT)
 		{
         		if(this->Check_Slope_45_Right(cBox, tiles[i]->getTileBox()))
         		{
                			return true;
         		}
-		}	
+		}
     	}
     	return false;
+}
+
+bool Collision::Ai(Mobs* mobs[], Tile* tiles[])
+{
+    for(int i = 0; i < TOTAL_TILES; i++)
+    {
+        if(tiles[i]->getType() == TILE_WALL)
+        {
+            for(int j = 0; j < 2; j++)
+            {
+                if(this->Check(mobs[j]->getMobBox(), tiles[i]->getTileBox()))
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }

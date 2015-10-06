@@ -61,7 +61,7 @@ class Player
 		bool isAttacking;
 		bool block;
 		bool isBlocking;
-	
+
 		int runEnergy;
 		int jumpEnergy;
 		int attackEnergy;

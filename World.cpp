@@ -186,12 +186,12 @@ bool World::SetMobs(Mobs* mobs[])
     return true;
 }
 
-void  World::UpdateMobs(Mobs* mobs[])
+void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[])
 {
     // ------On to somthing-------
     for(int i = 0; i < 2; i++)
     {
-        mobs[i] = new Mobs(wAi.Move(mobs, i), 2*TILE_SIZE, 0);
+        mobs[i] = new Mobs(wAi.Move(mobs, i, tiles), 2*TILE_SIZE, 0);
         // cout << wAi.Move(mobs, i) << endl;
     }
 }

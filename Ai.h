@@ -3,18 +3,19 @@
 
 #include <SDL.h>
 #include "Mobs.h"
+#include "Tile.h"
 
 class Ai
 {
     public:
         Ai();
         virtual ~Ai();
-        int Move(Mobs* mobs[], int i);
+        int Move(Mobs* mobs[], int i, Tile* tiles[]);
     protected:
     private:
     public:
-        bool Left[2];
-        bool Right[2];
+        bool Left[2] = {false};
+        bool Right[2] = {true, true};
 };
 
 #endif // AI_H
