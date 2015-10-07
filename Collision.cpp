@@ -249,21 +249,3 @@ bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])
     	}
     	return false;
 }
-
-bool Collision::Ai(Mobs* mobs[], Tile* tiles[])
-{
-    for(int i = 0; i < TOTAL_TILES; i++)
-    {
-        if(tiles[i]->getType() == TILE_WALL)
-        {
-            for(int j = 0; j < 2; j++)
-            {
-                if(this->Check(mobs[j]->getMobBox(), tiles[i]->getTileBox()))
-                {
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
-}

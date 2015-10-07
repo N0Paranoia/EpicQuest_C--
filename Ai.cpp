@@ -16,19 +16,18 @@ Ai::~Ai()
 
 int Ai::Move(Mobs* mobs[], int i, Tile* tiles[])
 {
-    if(aiCollision.Ai(mobs, tiles))
+    if(aiCollision.Wall(mobs[i]->getMobBox(), tiles))
     {
-        cout << "test" << endl;
-    }
-    if(mobs[i]->getMobBox().x >= 480)
-    {
-        Right[i] = false;
-        Left[i] = true;
-    }
-    else if(mobs[i]->getMobBox().x <= 0)
-    {
-        Left[i] = false;
-        Right[i] = true;
+        if(Right[i])
+        {
+            Right[i] = false;
+            Left[i] = true;
+        }
+        else if(Left[i])
+        {
+            Left[i] = false;
+            Right[i] = true;
+        }
     }
     if(Right[i])
     {

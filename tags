@@ -7,7 +7,6 @@
 AI_H	.\Ai.h	2;"	d
 Ai	.\Ai.cpp	/^Ai::Ai()$/;"	f	class:Ai
 Ai	.\Ai.h	/^class Ai$/;"	c
-Ai	.\Collision.cpp	/^bool Collision::Ai(Mobs* mobs[], Tile* tiles[])$/;"	f	class:Collision
 Attack	.\Player.cpp	/^void Player::Attack()$/;"	f	class:Player
 Block	.\Player.cpp	/^void Player::Block()$/;"	f	class:Player
 CAMERA_H	.\Camera.h	2;"	d
