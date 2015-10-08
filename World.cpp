@@ -13,7 +13,8 @@ Textures TileSheetTexture;
 
 World::World()
 {
-    Type = 0;
+    Type_Tiles = 0;
+    Type_Mobs = 1;
 }
 
 World::~World()
@@ -24,7 +25,7 @@ World::~World()
 int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
 {
     //Load Tilemap
-    if(!SetTiles(tiles))
+    if(!SetTiles(tiles, mobs))
     {
         cout << "Unable to load Tile Map! SDL_Error: " << SDL_GetError() << endl;
         return false;
@@ -125,7 +126,7 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
     return true;
 }
 
-bool World::SetTiles(Tile* tiles[])
+bool World::SetTiles(Tile* tiles[], Mobs* mobs[])
 {
     int x = 0;
     int y = 0;
@@ -142,9 +143,8 @@ bool World::SetTiles(Tile* tiles[])
         //Initialize tiles
         for(int i = 0; i < TOTAL_TILES; i++)
         {
-            //int Type = -1;
-
-            map >> Type;
+            int Type_Tiles = -1;
+            map >> Type_Tiles;
 
             if(map.fail())
             {
@@ -153,9 +153,9 @@ bool World::SetTiles(Tile* tiles[])
                 break;
             }
             //if number is valid tile number
-            if((Type >= 0) && (Type < TOTAL_TILE_SPRITES))
+            if((Type_Tiles >= 0) && (Type_Tiles < TOTAL_MOB_SPRITES))
             {
-                tiles[i] = new Tile(x, y, Type);
+                tiles[i] = new Tile(x, y, Type_Tiles);
             }
             else
             {
@@ -179,34 +179,78 @@ bool World::SetTiles(Tile* tiles[])
 
 bool World::SetMobs(Mobs* mobs[])
 {
-    for(int i = 0; i < 2; i++)
+    int x = 0;
+    int y = 0;
+
+    std::ifstream mobmap("assets/mob.map");
+
+    if (mobmap == NULL)
     {
-        mobs[i] = new Mobs((i+1)*TILE_SIZE, 2*TILE_SIZE, 0);
+        cout << "Unable to load Tile Map file!" << endl;
+        return false;
+    }
+    else
+    {
+        //Initialize tiles
+        for(int i = 0; i < TOTAL_TILES; i++)
+        {
+            int Type_Mobs = -1;
+            mobmap >> Type_Mobs;
+
+            if(mobmap.fail())
+            {
+                cout << "Error loading map: Unexpected end of file!" << endl;
+                return false;
+                break;
+            }
+            //if number is valid tile number
+            if((Type_Mobs >= 0) && (Type_Mobs < TOTAL_MOB_SPRITES))
+            {
+                mobs[i] = new Mobs(x, y, Type_Mobs);
+            }
+            else
+            {
+               cout << "Error loading map: Invalid tile type!" << endl;
+               return false;
+               break;
+            }
+            x += TILE_SIZE;
+			//If we've gone too far
+			if(x >= LEVEL_WIDTH*TILE_SIZE)
+			{
+                //Move back
+				x = 0;
+				//Move to the next row
+				y += TILE_SIZE;
+			}
+        }
     }
     return true;
+    // for(int i = 0; i < 2; i++)
+    // {
+    //     mobs[i] = new Mobs((i+1)*TILE_SIZE, 1*TILE_SIZE, 0);
+    // }
+    // return true;
 }
 
 void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[])
 {
     // ------On to somthing-------
-    for(int i = 0; i < 2; i++)
+    for(int i = 0; i < TOTAL_MOBS; i++)
     {
-        mobs[i] = new Mobs(wAi.Move(mobs, i, tiles), 2*TILE_SIZE, 0);
+         mobs[i] = new Mobs(wAi.Move(mobs, i, tiles), mobs[i]->getMobBox().y, 49);
     }
 }
-
 void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])
 {
+    //Render Tiles
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-        tiles[i]->Render(&TileSheetTexture, &TileClips[Type], Renderer, camera);
+        tiles[i]->Render(&TileSheetTexture, &TileClips[Type_Tiles], Renderer, camera);
     }
-    // -------------
-    // FOR TESTING!!
     //Render Mobs
-    for(int i = 0; i < 2; i++)
+    for(int i = 0; i < TOTAL_MOBS; i++)
     {
-        mobs[i]->Render(&MobSheetTexture, &MobClips[1], Renderer, camera);
+        mobs[i]->Render(&MobSheetTexture, &MobClips[Type_Mobs], Renderer, camera);
     }
-    // -------------
 }

@@ -15,7 +15,7 @@ class World
         World();
         virtual ~World();
         int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[]);
-        bool SetTiles(Tile* tiles[]);
+        bool SetTiles(Tile* tiles[], Mobs* mobs[]);
         bool SetMobs(Mobs* mobs[]);
         void UpdateMobs(Mobs* mobs[], Tile* tiles[]);
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[]);
@@ -24,7 +24,8 @@ class World
     public:
         SDL_Rect TileClips[TOTAL_TILE_SPRITES];
         SDL_Rect MobClips[TOTAL_MOB_SPRITES];
-        int Type;
+        int Type_Tiles;
+        int Type_Mobs;
 };
 
 #endif // WORLD_H

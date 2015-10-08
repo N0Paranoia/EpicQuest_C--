@@ -71,7 +71,8 @@ LoadMedia	.\Player.cpp	/^int Player::LoadMedia(SDL_Renderer* Renderer)$/;"	f	cla
 LoadMedia	.\World.cpp	/^int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])$/;"	f	class:World
 Loop	.\EQ.cpp	/^void EQ::Loop()$/;"	f	class:EQ
 MOBS_H	.\Mobs.h	2;"	d
-MOB_TYPE_1	.\Constants.h	/^const int MOB_TYPE_1 = 1;$/;"	v
+MOB_TYPE_1	.\Constants.h	/^const int MOB_TYPE_1 = 0 + MOB_TYPE_START;;$/;"	v
+MOB_TYPE_START	.\Constants.h	/^const int MOB_TYPE_START = 50;$/;"	v
 MobBox	.\Mobs.h	/^ 		SDL_Rect MobBox;$/;"	m	class:Mobs
 MobClips	.\World.h	/^        SDL_Rect MobClips[TOTAL_MOB_SPRITES];$/;"	m	class:World
 MobSheetTexture	.\World.cpp	/^Textures MobSheetTexture;$/;"	v
@@ -103,7 +104,7 @@ Renderer	.\EQ.h	/^      SDL_Renderer* Renderer;$/;"	m	class:EQ
 Right	.\Ai.h	/^        bool Right[2] = {true, true};$/;"	m	class:Ai
 Running	.\EQ.h	/^      bool Running;$/;"	m	class:EQ
 SetMobs	.\World.cpp	/^bool World::SetMobs(Mobs* mobs[])$/;"	f	class:World
-SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[])$/;"	f	class:World
+SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[], Mobs* mobs[])$/;"	f	class:World
 Shield	.\Player.h	/^		SDL_Rect Shield;$/;"	m	class:Player
 ShieldBox	.\Player.h	/^		SDL_Rect ShieldBox;$/;"	m	class:Player
 Slope_45_Left	.\Collision.cpp	/^bool Collision::Slope_45_Left(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision
@@ -135,12 +136,14 @@ TILE_SIZE	.\Constants.h	/^const int TILE_SIZE = 48;$/;"	v
 TILE_SKY	.\Constants.h	/^const int TILE_SKY = 1;$/;"	v
 TILE_SLOPE_LEFT	.\Constants.h	/^const int TILE_SLOPE_LEFT = 14;$/;"	v
 TILE_SLOPE_RIGHT	.\Constants.h	/^const int TILE_SLOPE_RIGHT = 13;$/;"	v
+TILE_TYPE_START	.\Constants.h	/^const int TILE_TYPE_START = 0;$/;"	v
 TILE_WALL	.\Constants.h	/^const int TILE_WALL = 2;$/;"	v
 TILE_WATER	.\Constants.h	/^const int TILE_WATER = 7;$/;"	v
 TILE_WOOD	.\Constants.h	/^const int TILE_WOOD = 3;$/;"	v
 TIMER_H	.\Timer.h	2;"	d
 TOTAL_DOORS	.\Constants.h	/^const int TOTAL_DOORS = 2;$/;"	v
-TOTAL_MOB_SPRITES	.\Constants.h	/^const int TOTAL_MOB_SPRITES = 1;$/;"	v
+TOTAL_MOBS	.\Constants.h	/^const int TOTAL_MOBS = 1;$/;"	v
+TOTAL_MOB_SPRITES	.\Constants.h	/^const int TOTAL_MOB_SPRITES = 1 + MOB_TYPE_START;$/;"	v
 TOTAL_TILES	.\Constants.h	/^const int TOTAL_TILES = 900;$/;"	v
 TOTAL_TILE_SPRITES	.\Constants.h	/^const int TOTAL_TILE_SPRITES = 15;$/;"	v
 TextTexture	.\EQ.cpp	/^Textures TextTexture;$/;"	v
@@ -155,7 +158,8 @@ TileSheetTexture	.\World.cpp	/^Textures TileSheetTexture;$/;"	v
 TileType	.\Tile.h	/^        int TileType;$/;"	m	class:Tile
 Timer	.\Timer.cpp	/^Timer::Timer()$/;"	f	class:Timer
 Timer	.\Timer.h	/^class Timer$/;"	c
-Type	.\World.h	/^        int Type;$/;"	m	class:World
+Type_Mobs	.\World.h	/^        int Type_Mobs;$/;"	m	class:World
+Type_Tiles	.\World.h	/^        int Type_Tiles;$/;"	m	class:World
 Unpause	.\Timer.cpp	/^void Timer::Unpause()$/;"	f	class:Timer
 Update	.\Player.cpp	/^void Player::Update()$/;"	f	class:Player
 UpdateMobs	.\World.cpp	/^void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[])$/;"	f	class:World

@@ -15,6 +15,7 @@ const int LEVEL_HEIGHT = 30;
 //Set Tile Types
 const int TOTAL_TILES = 900;
 const int TOTAL_TILE_SPRITES = 15;
+const int TILE_TYPE_START = 0;
 
 const int TILE_CLEAR = 0;
 const int TILE_SKY = 1;
@@ -30,12 +31,14 @@ const int TILE_LADDER_TOP = 12;
 const int TILE_SLOPE_RIGHT = 13;
 const int TILE_SLOPE_LEFT = 14;
 
-const int TOTAL_DOORS = 2;
+const int TOTAL_MOBS = 1;
+const int MOB_TYPE_START = 50;
+const int TOTAL_MOB_SPRITES = 1 + MOB_TYPE_START;
 
-const int TOTAL_MOB_SPRITES = 1;
-
-const int MOB_TYPE_1 = 1;
+const int MOB_TYPE_1 = 0 + MOB_TYPE_START;;
 // const int MOB_TYPE_2 = 2;
+
+const int TOTAL_DOORS = 2;
 
 const int GRAVITY = 12;
 
