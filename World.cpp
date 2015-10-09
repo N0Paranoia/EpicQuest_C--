@@ -153,7 +153,7 @@ bool World::SetTiles(Tile* tiles[], Mobs* mobs[])
                 break;
             }
             //if number is valid tile number
-            if((Type_Tiles >= 0) && (Type_Tiles < TOTAL_MOB_SPRITES))
+            if((Type_Tiles >= 0) && (Type_Tiles < TOTAL_TILE_SPRITES))
             {
                 tiles[i] = new Tile(x, y, Type_Tiles);
             }
@@ -199,18 +199,18 @@ bool World::SetMobs(Mobs* mobs[])
 
             if(mobmap.fail())
             {
-                cout << "Error loading map: Unexpected end of file!" << endl;
+                cout << "Error loading mobmap: Unexpected end of file!" << endl;
                 return false;
                 break;
             }
             //if number is valid tile number
             if((Type_Mobs >= 0) && (Type_Mobs < TOTAL_MOB_SPRITES))
             {
-                mobs[i] = new Mobs(x, y, Type_Mobs);
+                mobs[i] = new Mobs(x, y, 49);
             }
             else
             {
-               cout << "Error loading map: Invalid tile type!" << endl;
+               cout << "Error loading mobmap: Invalid tile type!" << endl;
                return false;
                break;
             }
@@ -225,12 +225,12 @@ bool World::SetMobs(Mobs* mobs[])
 			}
         }
     }
-    return true;
+    // return true;
     // for(int i = 0; i < 2; i++)
     // {
-    //     mobs[i] = new Mobs((i+1)*TILE_SIZE, 1*TILE_SIZE, 0);
+    //     mobs[i] = new Mobs(1*TILE_SIZE, 1*TILE_SIZE, 49);
     // }
-    // return true;
+    return true;
 }
 
 void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[])
@@ -238,7 +238,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[])
     // ------On to somthing-------
     for(int i = 0; i < TOTAL_MOBS; i++)
     {
-         mobs[i] = new Mobs(wAi.Move(mobs, i, tiles), mobs[i]->getMobBox().y, 49);
+        //  mobs[i] = new Mobs(wAi.Move(mobs, i, tiles), mobs[i]->getMobBox().y, 49);
     }
 }
 void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])
