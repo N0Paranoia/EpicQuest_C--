@@ -39,3 +39,8 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[])
     }
     return 0;
 }
+
+int Ai::Fall(Mobs* mobs[], int i, Tile* tiles[])
+{
+    return mobs[i]->getMobBox().y+ GRAVITY;
+}

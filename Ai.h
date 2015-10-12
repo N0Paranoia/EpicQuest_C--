@@ -11,11 +11,13 @@ class Ai
         Ai();
         virtual ~Ai();
         int Move(Mobs* mobs[], int i, Tile* tiles[]);
+        int Fall(Mobs* mobs[], int i, Tile* tiles[]);
     protected:
     private:
     public:
-        bool Left[2] = {false};
+        bool Left[2] = {false, false};
         bool Right[2] = {true, true};
+        bool Falling[2] = {true, true};
 };
 
 #endif // AI_H

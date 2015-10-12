@@ -44,6 +44,11 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
     else
     {
         //All mob textures
+        MobClips[MOB_CLEAR].x = -TILE_SIZE;
+        MobClips[MOB_CLEAR].y = -2*TILE_SIZE;
+        MobClips[MOB_CLEAR].w = TILE_SIZE;
+        MobClips[MOB_CLEAR].h = TILE_SIZE;
+
         MobClips[MOB_TYPE_1].x = 0 * TILE_SIZE;
         MobClips[MOB_TYPE_1].y = 0 * TILE_SIZE;
         MobClips[MOB_TYPE_1].w = 1 * TILE_SIZE;
@@ -206,7 +211,7 @@ bool World::SetMobs(Mobs* mobs[])
             //if number is valid tile number
             if((Type_Mobs >= 0) && (Type_Mobs < TOTAL_MOB_SPRITES))
             {
-                mobs[i] = new Mobs(x, y, 49);
+                mobs[i] = new Mobs(x, y, Type_Mobs);
             }
             else
             {
@@ -236,9 +241,12 @@ bool World::SetMobs(Mobs* mobs[])
 void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[])
 {
     // ------On to somthing-------
-    for(int i = 0; i < TOTAL_MOBS; i++)
+    for(int i = 0; i < TOTAL_TILES; i++)
     {
-        //  mobs[i] = new Mobs(wAi.Move(mobs, i, tiles), mobs[i]->getMobBox().y, 49);
+        if(mobs[i]->getType() == MOB_TYPE_1)
+        {
+            mobs[i] = new Mobs(wAi.Move(mobs, i, tiles), mobs[i]->getMobBox().y, Type_Mobs);
+        }
     }
 }
 void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])
@@ -249,8 +257,8 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
         tiles[i]->Render(&TileSheetTexture, &TileClips[Type_Tiles], Renderer, camera);
     }
     //Render Mobs
-    for(int i = 0; i < TOTAL_MOBS; i++)
+    for(int i = 0; i < TOTAL_TILES; i++)
     {
-        mobs[i]->Render(&MobSheetTexture, &MobClips[Type_Mobs], Renderer, camera);
+        mobs[i]->Render(&MobSheetTexture, &MobClips[Type_Tiles], Renderer, camera);
     }
 }
