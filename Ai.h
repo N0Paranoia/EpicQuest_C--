@@ -2,6 +2,7 @@
 #define AI_H
 
 #include <SDL.h>
+#include "Constants.h"
 #include "Mobs.h"
 #include "Tile.h"
 
@@ -14,10 +15,9 @@ class Ai
         int Fall(Mobs* mobs[], int i, Tile* tiles[]);
     protected:
     private:
-    public:
-        bool Left[2] = {false, false};
-        bool Right[2] = {true, true};
-        bool Falling[2] = {true, true};
+        bool Left[TOTAL_TILES];
+        bool Right[TOTAL_TILES];
+        // bool Falling[TOTAL_MOBS];
 };
 
 #endif // AI_H

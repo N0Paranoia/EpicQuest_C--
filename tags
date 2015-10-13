@@ -45,7 +45,6 @@ FPStimer	.\EQ.cpp	/^Timer FPStimer;$/;"	v
 FacingLeft	.\Player.h	/^		bool FacingLeft;$/;"	m	class:Player
 FacingRight	.\Player.h	/^		bool FacingRight;$/;"	m	class:Player
 Fall	.\Ai.cpp	/^int Ai::Fall(Mobs* mobs[], int i, Tile* tiles[])$/;"	f	class:Ai
-Falling	.\Ai.h	/^        bool Falling[2] = {true, true};$/;"	m	class:Ai
 Falling	.\Player.cpp	/^void Player::Falling(Tile* tiles[])$/;"	f	class:Player
 Follow	.\Camera.cpp	/^void Camera::Follow()$/;"	f	class:Camera
 Font	.\EQ.h	/^      TTF_Font* Font;$/;"	m	class:EQ
@@ -65,7 +64,7 @@ Input	.\Player.cpp	/^void Player::Input(Tile* tiles[])$/;"	f	class:Player
 Jump	.\Player.cpp	/^void Player::Jump(Tile* tiles[])$/;"	f	class:Player
 LEVEL_HEIGHT	.\Constants.h	/^const int LEVEL_HEIGHT = 30;$/;"	v
 LEVEL_WIDTH	.\Constants.h	/^const int LEVEL_WIDTH = 30;$/;"	v
-Left	.\Ai.h	/^        bool Left[2] = {false, false};$/;"	m	class:Ai
+Left	.\Ai.h	/^        bool Left[TOTAL_MOBS] = {true, false};$/;"	m	class:Ai
 LoadFromFile	.\Textures.cpp	/^bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)$/;"	f	class:Textures
 LoadFromRenderedText	.\Textures.cpp	/^bool Textures::LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)$/;"	f	class:Textures
 LoadMedia	.\EQ.cpp	/^bool EQ::LoadMedia()$/;"	f	class:EQ
@@ -103,7 +102,7 @@ Render	.\Textures.cpp	/^void Textures::Render(SDL_Renderer* Renderer,int x ,int 
 Render	.\Tile.cpp	/^void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Tile
 Render	.\World.cpp	/^void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])$/;"	f	class:World
 Renderer	.\EQ.h	/^      SDL_Renderer* Renderer;$/;"	m	class:EQ
-Right	.\Ai.h	/^        bool Right[2] = {true, true};$/;"	m	class:Ai
+Right	.\Ai.h	/^        bool Right[TOTAL_MOBS] = {false, true};$/;"	m	class:Ai
 Running	.\EQ.h	/^      bool Running;$/;"	m	class:EQ
 SetMobs	.\World.cpp	/^bool World::SetMobs(Mobs* mobs[])$/;"	f	class:World
 SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[], Mobs* mobs[])$/;"	f	class:World

@@ -16,6 +16,13 @@ Ai::~Ai()
 
 int Ai::Move(Mobs* mobs[], int i, Tile* tiles[])
 {
+    cout << i << endl;
+    cout << "Left[" << i << "] = " << Left[i] << endl;
+    cout << "Right[" << i << "] = " << Right[i] << endl;
+    // Left[64] = true;
+    // Right[64] = false;
+    // Left[85] = false;
+    // Right[85] = true;
     if(aiCollision.Wall(mobs[i]->getMobBox(), tiles))
     {
         if(Right[i])
@@ -28,19 +35,27 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[])
             Left[i] = false;
             Right[i] = true;
         }
+        else
+        {
+            Left[i] = true;
+            Right[i] = false;
+        }
     }
     if(Right[i])
     {
         return mobs[i]->getMobBox().x +4;
     }
-    if(Left[i])
+    else if(Left[i])
     {
         return mobs[i]->getMobBox().x -4;
     }
-    return 0;
+    else
+    {
+        return mobs[i]->getMobBox().x;
+    }
 }
 
 int Ai::Fall(Mobs* mobs[], int i, Tile* tiles[])
 {
-    return mobs[i]->getMobBox().y+ GRAVITY;
+    return mobs[i]->getMobBox().y;
 }
