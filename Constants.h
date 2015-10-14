@@ -43,5 +43,6 @@ const int TOTAL_DOORS = 2;
 
 const int GRAVITY = 12;
 
+const int AGRO_RANGE = 2 * TILE_SIZE;
 
 #endif // CONSTANTS_H_INCLUDED

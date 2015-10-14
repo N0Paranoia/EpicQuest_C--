@@ -230,22 +230,16 @@ bool World::SetMobs(Mobs* mobs[])
 			}
         }
     }
-    // return true;
-    // for(int i = 0; i < 2; i++)
-    // {
-    //     mobs[i] = new Mobs(1*TILE_SIZE, 1*TILE_SIZE, 49);
-    // }
     return true;
 }
 
-void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[])
+void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
 {
-    // ------On to somthing-------
     for(int i = 0; i < TOTAL_TILES; i++)
     {
         if(mobs[i]->getType() == MOB_TYPE_1)
         {
-            mobs[i] = new Mobs(wAi.Move(mobs, i, tiles), mobs[i]->getMobBox().y, Type_Mobs);
+            mobs[i] = new Mobs(wAi.Update(mobs, i, tiles, playerRect), mobs[i]->getMobBox().y, Type_Mobs);
         }
     }
 }

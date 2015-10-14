@@ -11,8 +11,10 @@ class Ai
     public:
         Ai();
         virtual ~Ai();
-        int Move(Mobs* mobs[], int i, Tile* tiles[]);
+        int Agro(Mobs* mobs[], int i, Tile* tiles[]);
+        int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect);
         int Fall(Mobs* mobs[], int i, Tile* tiles[]);
+        void Debug();
     protected:
     private:
         bool Left[TOTAL_TILES];

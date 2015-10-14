@@ -105,7 +105,6 @@ class Player
 		//void Event(SDL_Event* event);
 		void Input(Tile* tiles[]);
 		int LoadMedia(SDL_Renderer* Renderer);
-
 		void Move(int Movement, Tile* tiles[]);
 		void Attack();
 		void Block();

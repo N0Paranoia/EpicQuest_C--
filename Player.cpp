@@ -182,7 +182,6 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
 	return true;
 }
 
-
 void Player::Input(Tile* tiles[])
 {
 	WalkingLeft = false;

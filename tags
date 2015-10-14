@@ -4,7 +4,9 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+AGRO_RANGE	.\Constants.h	/^const int AGRO_RANGE = 2 * TILE_SIZE;$/;"	v
 AI_H	.\Ai.h	2;"	d
+Agro	.\Ai.cpp	/^int Ai::Agro(Mobs* mobs[], int i, Tile* tiles[])$/;"	f	class:Ai
 Ai	.\Ai.cpp	/^Ai::Ai()$/;"	f	class:Ai
 Ai	.\Ai.h	/^class Ai$/;"	c
 Attack	.\Player.cpp	/^void Player::Attack()$/;"	f	class:Player
@@ -28,6 +30,7 @@ Collision	.\Collision.cpp	/^Collision::Collision()$/;"	f	class:Collision
 Collision	.\Collision.h	/^class Collision$/;"	c
 Connection	.\Doors.cpp	/^void Doors::Connection(SDL_Rect* player, int z)$/;"	f	class:Doors
 DOORS_H	.\Doors.h	2;"	d
+Debug	.\Ai.cpp	/^void Ai::Debug()$/;"	f	class:Ai
 Debug	.\EQ.cpp	/^void EQ::Debug()$/;"	f	class:EQ
 DebugTexture	.\EQ.cpp	/^Textures DebugTexture;$/;"	v
 Doors	.\Doors.cpp	/^Doors::Doors()$/;"	f	class:Doors
@@ -64,7 +67,7 @@ Input	.\Player.cpp	/^void Player::Input(Tile* tiles[])$/;"	f	class:Player
 Jump	.\Player.cpp	/^void Player::Jump(Tile* tiles[])$/;"	f	class:Player
 LEVEL_HEIGHT	.\Constants.h	/^const int LEVEL_HEIGHT = 30;$/;"	v
 LEVEL_WIDTH	.\Constants.h	/^const int LEVEL_WIDTH = 30;$/;"	v
-Left	.\Ai.h	/^        bool Left[TOTAL_MOBS] = {true, false};$/;"	m	class:Ai
+Left	.\Ai.h	/^        bool Left[TOTAL_TILES];$/;"	m	class:Ai
 LoadFromFile	.\Textures.cpp	/^bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)$/;"	f	class:Textures
 LoadFromRenderedText	.\Textures.cpp	/^bool Textures::LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)$/;"	f	class:Textures
 LoadMedia	.\EQ.cpp	/^bool EQ::LoadMedia()$/;"	f	class:EQ
@@ -80,7 +83,6 @@ MobSheetTexture	.\World.cpp	/^Textures MobSheetTexture;$/;"	v
 MobType	.\Mobs.h	/^ 		int MobType;$/;"	m	class:Mobs
 Mobs	.\Mobs.cpp	/^Mobs::Mobs(int x, int y, int Type)$/;"	f	class:Mobs
 Mobs	.\Mobs.h	/^class Mobs$/;"	c
-Move	.\Ai.cpp	/^int Ai::Move(Mobs* mobs[], int i, Tile* tiles[])$/;"	f	class:Ai
 Move	.\Player.cpp	/^void Player::Move(int Movement, Tile* tiles[])$/;"	f	class:Player
 Movement	.\Player.h	/^		enum Movement$/;"	g	class:Player
 PHYSICS_H	.\Physics.h	2;"	d
@@ -102,7 +104,7 @@ Render	.\Textures.cpp	/^void Textures::Render(SDL_Renderer* Renderer,int x ,int 
 Render	.\Tile.cpp	/^void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Tile
 Render	.\World.cpp	/^void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])$/;"	f	class:World
 Renderer	.\EQ.h	/^      SDL_Renderer* Renderer;$/;"	m	class:EQ
-Right	.\Ai.h	/^        bool Right[TOTAL_MOBS] = {false, true};$/;"	m	class:Ai
+Right	.\Ai.h	/^        bool Right[TOTAL_TILES];$/;"	m	class:Ai
 Running	.\EQ.h	/^      bool Running;$/;"	m	class:EQ
 SetMobs	.\World.cpp	/^bool World::SetMobs(Mobs* mobs[])$/;"	f	class:World
 SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[], Mobs* mobs[])$/;"	f	class:World
@@ -143,7 +145,7 @@ TILE_WATER	.\Constants.h	/^const int TILE_WATER = 7;$/;"	v
 TILE_WOOD	.\Constants.h	/^const int TILE_WOOD = 3;$/;"	v
 TIMER_H	.\Timer.h	2;"	d
 TOTAL_DOORS	.\Constants.h	/^const int TOTAL_DOORS = 2;$/;"	v
-TOTAL_MOBS	.\Constants.h	/^const int TOTAL_MOBS = 2;$/;"	v
+TOTAL_MOBS	.\Constants.h	/^const int TOTAL_MOBS = 3;$/;"	v
 TOTAL_MOB_SPRITES	.\Constants.h	/^const int TOTAL_MOB_SPRITES = 2;$/;"	v
 TOTAL_TILES	.\Constants.h	/^const int TOTAL_TILES = 900;$/;"	v
 TOTAL_TILE_SPRITES	.\Constants.h	/^const int TOTAL_TILE_SPRITES = 15;$/;"	v
@@ -162,8 +164,9 @@ Timer	.\Timer.h	/^class Timer$/;"	c
 Type_Mobs	.\World.h	/^        int Type_Mobs;$/;"	m	class:World
 Type_Tiles	.\World.h	/^        int Type_Tiles;$/;"	m	class:World
 Unpause	.\Timer.cpp	/^void Timer::Unpause()$/;"	f	class:Timer
+Update	.\Ai.cpp	/^int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect)$/;"	f	class:Ai
 Update	.\Player.cpp	/^void Player::Update()$/;"	f	class:Player
-UpdateMobs	.\World.cpp	/^void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[])$/;"	f	class:World
+UpdateMobs	.\World.cpp	/^void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)$/;"	f	class:World
 Var	.\Collision.cpp	/^bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision
 WINDOW_HEIGHT	.\Constants.h	/^const int WINDOW_HEIGHT = 576;$/;"	v
 WINDOW_WIDTH	.\Constants.h	/^const int WINDOW_WIDTH = 1024;$/;"	v
@@ -177,6 +180,7 @@ World	.\World.h	/^class World$/;"	c
 Xvel	.\Player.h	/^		int Xvel, Yvel;$/;"	m	class:Player
 Yvel	.\Player.h	/^		int Xvel, Yvel;$/;"	m	class:Player
 _state	.\Player.h	/^		int _state;$/;"	m	class:Player
+ai	.\EQ.cpp	/^Ai ai;$/;"	v
 aiCollision	.\Ai.cpp	/^Collision aiCollision;$/;"	v
 attack	.\Player.h	/^		bool attack;$/;"	m	class:Player
 attackEnergy	.\Player.h	/^		int attackEnergy;$/;"	m	class:Player

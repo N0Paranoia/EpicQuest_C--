@@ -9,6 +9,10 @@
 #include "Constants.h"
 #include <fstream>
 
+//------------------For debugging----------
+#include "Ai.h"
+Ai ai;
+//--------------------------------------------
 
 Timer FPStimer;
 Timer CAPtimer;
@@ -104,9 +108,13 @@ void EQ::Event(SDL_Event* event)
         switch(event->key.keysym.sym)
         {
 		case SDLK_ESCAPE:
-	            Running = false;
-	            cout << "Quit by keyboard(Esc)" << endl;
-	            break;
+            Running = false;
+            cout << "Quit by keyboard(Esc)" << endl;
+            break;
+        // Key For debug purpose
+        case SDLK_BACKQUOTE:
+            ai.Debug();
+            break;
         }
     }
 }
@@ -148,7 +156,7 @@ void EQ::Loop()
     camera.Center(&player.playerRect);
     player.Update();
     player.Falling(tileSet);
-    world.UpdateMobs(mobs, tileSet);
+    world.UpdateMobs(mobs, tileSet, &player.playerRect);
     // FPStimer.Start();
 }
 
