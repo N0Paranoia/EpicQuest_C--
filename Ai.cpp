@@ -6,10 +6,7 @@ Collision aiCollision;
 
 Ai::Ai()
 {
-    // for(int i = 0; i < TOTAL_TILES; i++)
-    // {
-    //     Left[i] = true;
-    // }
+
 }
 
 Ai::~Ai()
@@ -17,66 +14,78 @@ Ai::~Ai()
     //dtor
 }
 
-int Ai::Agro(Mobs* mobs[], int i, Tile* tiles[])
+int Ai::Input(int i)
 {
+    if(movement[i] == left)
+    {
+        return -4;
+    }
+    if(movement[i] == right)
+    {
+        return 4;
+    }
+    if(movement[i] == idle)
+    {
+        return 0;
+    }
     return 0;
 }
 
-int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect)
+void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
 {
-    //----Basic Agro Ai----//
-    if(playerRect->x < mobs[i]->getMobBox().x && playerRect->x > mobs[i]->getMobBox().x - AGRO_RANGE)
+    switch(type)
     {
-        Left[i] = true;
-        Right[i] = false;
-    }
-    else if(playerRect->x > mobs[i]->getMobBox().x && playerRect->x < mobs[i]->getMobBox().x + AGRO_RANGE)
-    {
-        Right[i] = true;
-        Left[i] = false;
-    }
-    else
-    {
-        Left[i] = false;
-        Right[i] = false;
-    }
-    //----Basic Agro Ai----//
-
-    //----Basic Wallcollision Ai----//
-    if(aiCollision.Wall(mobs[i]->getMobBox(), tiles))
-    {
-        if(Right[i])
+        case MOB_TYPE_1:
+        if(playerRect->y > (mobs[i]->getMobBox().y - AGRO_RANGE) && playerRect->y < ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + AGRO_RANGE))
         {
-            Right[i] = false;
-            Left[i] = true;
-        }
-        else if(Left[i])
-        {
-            Left[i] = false;
-            Right[i] = true;
+            if(playerRect->x + playerRect->w < mobs[i]->getMobBox().x && playerRect->x + playerRect->w > mobs[i]->getMobBox().x - AGRO_RANGE)
+            {
+                movement[i] = left;
+            }
+            else if(playerRect->x > (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) && playerRect->x < (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + AGRO_RANGE)
+            {
+                movement[i] = right;
+            }
         }
     }
-    //----Basic Wallcollision Ai----//
-
-    //----Basic Movement Ai----//
-    if(Right[i])
-    {
-        return mobs[i]->getMobBox().x +4;
-    }
-    else if(Left[i])
-    {
-        return mobs[i]->getMobBox().x -4;
-    }
-    else
-    {
-        return mobs[i]->getMobBox().x;
-    }
-    //----Basic Movement Ai----//
 }
 
 int Ai::Fall(Mobs* mobs[], int i, Tile* tiles[])
 {
     return mobs[i]->getMobBox().y;
+}
+
+int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+{
+    //----Basic Wallcollision Ai----//
+    if(aiCollision.Wall(mobs[i]->getMobBox(), tiles))
+    {
+        if(movement[i] == left)
+        {
+            movement[i] = right;
+        }
+        else if(movement[i] == right)
+        {
+            movement[i] = left;
+        }
+    }
+    //----Basic Wallcollision Ai----//
+    return mobs[i]->getMobBox().x + this->Input(i);
+}
+
+int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+{
+    //---- Basic Ai "input"----//
+    this->Input(i);
+    //---- Basic Ai "input"----//
+
+    //----Basic Agro Ai----//
+    this->Agro(mobs, i, tiles, playerRect, type);
+    //----Basic Agro Ai----//
+
+    //----Basic Ai Movement and collision ----//
+    return this->Move(mobs, i, tiles, playerRect, type);
+//----Basic Ai Movement and collision ----//
 }
 
 void Ai::Debug()

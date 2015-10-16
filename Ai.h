@@ -11,15 +11,25 @@ class Ai
     public:
         Ai();
         virtual ~Ai();
-        int Agro(Mobs* mobs[], int i, Tile* tiles[]);
-        int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect);
+        int Input(int i);
+        void Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
+        int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
+        int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
         int Fall(Mobs* mobs[], int i, Tile* tiles[]);
         void Debug();
     protected:
     private:
-        bool Left[TOTAL_TILES];
-        bool Right[TOTAL_TILES];
-        // bool Falling[TOTAL_MOBS];
+
+        enum Movement
+        {
+                idle,
+                left,
+                right
+        };
+        Movement movement[TOTAL_TILES] = {};
+
+        int Xvel[TOTAL_TILES];
+        int Yvel[TOTAL_TILES];
 };
 
 #endif // AI_H

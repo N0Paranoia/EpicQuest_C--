@@ -37,7 +37,7 @@ const int TOTAL_MOB_SPRITES = 2;
 
 const int MOB_CLEAR = 0;
 const int MOB_TYPE_1 = 1;
-// const int MOB_TYPE_2 = 2;
+const int MOB_TYPE_2 = 2;
 
 const int TOTAL_DOORS = 2;
 
