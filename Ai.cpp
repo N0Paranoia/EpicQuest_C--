@@ -6,7 +6,10 @@ Collision aiCollision;
 
 Ai::Ai()
 {
-
+    for(int i = 0; i < TOTAL_TILES; i++)
+    {
+        Falling[i] = true;
+    }
 }
 
 Ai::~Ai()
@@ -52,6 +55,16 @@ void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type
 
 int Ai::Fall(Mobs* mobs[], int i, Tile* tiles[])
 {
+    if(aiCollision.Wall(mobs[i]->getMobBox(), tiles))
+    {
+        Falling[i] = false;
+        return mobs[i]->getMobBox().y - 4;
+    }
+    else
+    {
+        Falling[i]= true;
+        return mobs[i]->getMobBox().y + 4;
+    }
     return mobs[i]->getMobBox().y;
 }
 
@@ -73,19 +86,29 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
     return mobs[i]->getMobBox().x + this->Input(i);
 }
 
-int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)
 {
-    //---- Basic Ai "input"----//
-    this->Input(i);
-    //---- Basic Ai "input"----//
+    switch(axis)
+    {
+        case 0:
+        //---- Basic Ai "input"----//
+        this->Input(i);
+        //---- Basic Ai "input"----//
 
-    //----Basic Agro Ai----//
-    this->Agro(mobs, i, tiles, playerRect, type);
-    //----Basic Agro Ai----//
+        //----Basic Agro Ai----//
+        this->Agro(mobs, i, tiles, playerRect, type);
+        //----Basic Agro Ai----//
 
-    //----Basic Ai Movement and collision ----//
-    return this->Move(mobs, i, tiles, playerRect, type);
-//----Basic Ai Movement and collision ----//
+        //----Basic Ai Movement and collision ----//
+        return this->Move(mobs, i, tiles, playerRect, type);
+        //----Basic Ai Movement and collision ----//
+        break;
+
+        case 1:
+        return this->Fall(mobs, i , tiles);
+        break;
+    }
+    return 0;
 }
 
 void Ai::Debug()

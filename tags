@@ -48,6 +48,7 @@ FPStimer	.\EQ.cpp	/^Timer FPStimer;$/;"	v
 FacingLeft	.\Player.h	/^		bool FacingLeft;$/;"	m	class:Player
 FacingRight	.\Player.h	/^		bool FacingRight;$/;"	m	class:Player
 Fall	.\Ai.cpp	/^int Ai::Fall(Mobs* mobs[], int i, Tile* tiles[])$/;"	f	class:Ai
+Falling	.\Ai.h	/^        bool Falling[TOTAL_TILES];$/;"	m	class:Ai
 Falling	.\Player.cpp	/^void Player::Falling(Tile* tiles[])$/;"	f	class:Player
 Follow	.\Camera.cpp	/^void Camera::Follow()$/;"	f	class:Camera
 Font	.\EQ.h	/^      TTF_Font* Font;$/;"	m	class:EQ
@@ -166,7 +167,7 @@ Timer	.\Timer.h	/^class Timer$/;"	c
 Type_Mobs	.\World.h	/^        int Type_Mobs;$/;"	m	class:World
 Type_Tiles	.\World.h	/^        int Type_Tiles;$/;"	m	class:World
 Unpause	.\Timer.cpp	/^void Timer::Unpause()$/;"	f	class:Timer
-Update	.\Ai.cpp	/^int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai
+Update	.\Ai.cpp	/^int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)$/;"	f	class:Ai
 Update	.\Player.cpp	/^void Player::Update()$/;"	f	class:Player
 UpdateMobs	.\World.cpp	/^void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)$/;"	f	class:World
 Var	.\Collision.cpp	/^bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision
@@ -257,7 +258,7 @@ physics	.\EQ.cpp	/^Physics physics;$/;"	v
 player	.\EQ.cpp	/^Player player;$/;"	v
 playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player
 playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player
-right	.\Ai.h	/^                right$/;"	e	enum:Ai::Movement
+right	.\Ai.h	/^                right,$/;"	e	enum:Ai::Movement
 right	.\Player.h	/^			right,$/;"	e	enum:Player::Movement
 rightA	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision
 rightB	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision

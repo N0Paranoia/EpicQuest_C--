@@ -14,7 +14,7 @@ class Ai
         int Input(int i);
         void Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
         int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
-        int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
+        int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis);
         int Fall(Mobs* mobs[], int i, Tile* tiles[]);
         void Debug();
     protected:
@@ -24,12 +24,14 @@ class Ai
         {
                 idle,
                 left,
-                right
+                right,
         };
         Movement movement[TOTAL_TILES] = {};
 
         int Xvel[TOTAL_TILES];
         int Yvel[TOTAL_TILES];
+
+        bool Falling[TOTAL_TILES];
 };
 
 #endif // AI_H

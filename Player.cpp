@@ -12,7 +12,7 @@ Doors pDoors;
 
 Player::Player()
 {
-	playerRect.x = 2*TILE_SIZE;
+	playerRect.x = 1*TILE_SIZE;
 	playerRect.y = 2*TILE_SIZE;
 	playerRect.w = TILE_SIZE;
 	playerRect.h = 2*TILE_SIZE;
