@@ -1,14 +1,16 @@
 #include "Ai.h"
 #include "Constants.h"
 #include "Collision.h"
+#include "Physics.h"
 
 Collision aiCollision;
+Physics aiPhysics;
 
 Ai::Ai()
 {
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-        Falling[i] = true;
+        isFalling[i] = true;
     }
 }
 
@@ -55,17 +57,16 @@ void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type
 
 int Ai::Fall(Mobs* mobs[], int i, Tile* tiles[])
 {
-    if(aiCollision.Wall(mobs[i]->getMobBox(), tiles))
+    if(aiPhysics.Gravity(mobs[i]->getMobBox(), tiles))
     {
-        Falling[i] = false;
-        return mobs[i]->getMobBox().y - 4;
+        isFalling[i] = false;
+        return mobs[i]->getMobBox().y;
     }
     else
     {
-        Falling[i]= true;
-        return mobs[i]->getMobBox().y + 4;
+        isFalling[i] = true;
+        return mobs[i]->getMobBox().y + GRAVITY;
     }
-    return mobs[i]->getMobBox().y;
 }
 
 int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
@@ -88,23 +89,19 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
 
 int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)
 {
+    //---- Basic Ai "input"----//
+    this->Input(i);
+    //----Basic Agro Ai----//
+    this->Agro(mobs, i, tiles, playerRect, type);
     switch(axis)
     {
         case 0:
-        //---- Basic Ai "input"----//
-        this->Input(i);
-        //---- Basic Ai "input"----//
-
-        //----Basic Agro Ai----//
-        this->Agro(mobs, i, tiles, playerRect, type);
-        //----Basic Agro Ai----//
-
-        //----Basic Ai Movement and collision ----//
+        //----Basic Ai Horizontal Movement and collision ----//
         return this->Move(mobs, i, tiles, playerRect, type);
-        //----Basic Ai Movement and collision ----//
         break;
 
         case 1:
+            //----Basic Ai Vertical Movement and collision ----//
         return this->Fall(mobs, i , tiles);
         break;
     }

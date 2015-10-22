@@ -48,7 +48,6 @@ FPStimer	.\EQ.cpp	/^Timer FPStimer;$/;"	v
 FacingLeft	.\Player.h	/^		bool FacingLeft;$/;"	m	class:Player
 FacingRight	.\Player.h	/^		bool FacingRight;$/;"	m	class:Player
 Fall	.\Ai.cpp	/^int Ai::Fall(Mobs* mobs[], int i, Tile* tiles[])$/;"	f	class:Ai
-Falling	.\Ai.h	/^        bool Falling[TOTAL_TILES];$/;"	m	class:Ai
 Falling	.\Player.cpp	/^void Player::Falling(Tile* tiles[])$/;"	f	class:Player
 Follow	.\Camera.cpp	/^void Camera::Follow()$/;"	f	class:Camera
 Font	.\EQ.h	/^      TTF_Font* Font;$/;"	m	class:EQ
@@ -187,6 +186,7 @@ Yvel	.\Player.h	/^		int Xvel, Yvel;$/;"	m	class:Player
 _state	.\Player.h	/^		int _state;$/;"	m	class:Player
 ai	.\EQ.cpp	/^Ai ai;$/;"	v
 aiCollision	.\Ai.cpp	/^Collision aiCollision;$/;"	v
+aiPhysics	.\Ai.cpp	/^Physics aiPhysics;$/;"	v
 attack	.\Player.h	/^		bool attack;$/;"	m	class:Player
 attackEnergy	.\Player.h	/^		int attackEnergy;$/;"	m	class:Player
 avgFPS	.\EQ.h	/^      float avgFPS;$/;"	m	class:EQ
@@ -228,6 +228,7 @@ isAttacking	.\Player.h	/^		bool isAttacking;$/;"	m	class:Player
 isBlocking	.\Player.h	/^		bool isBlocking;$/;"	m	class:Player
 isClimbing	.\Player.h	/^		bool isClimbing;$/;"	m	class:Player
 isDucking	.\Player.h	/^		bool isDucking;$/;"	m	class:Player
+isFalling	.\Ai.h	/^        bool isFalling[TOTAL_TILES];$/;"	m	class:Ai
 isFalling	.\Player.h	/^		bool isFalling;$/;"	m	class:Player
 isJumping	.\Player.h	/^		bool isJumping;$/;"	m	class:Player
 isPaused	.\Timer.cpp	/^bool Timer::isPaused()$/;"	f	class:Timer

@@ -31,7 +31,7 @@ class Ai
         int Xvel[TOTAL_TILES];
         int Yvel[TOTAL_TILES];
 
-        bool Falling[TOTAL_TILES];
+        bool isFalling[TOTAL_TILES];
 };
 
 #endif // AI_H
