@@ -214,38 +214,53 @@ bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])
 	for(int i = 0; i < TOTAL_TILES; i++)
 	{
 		// Stick Collision for all "Solid" tiles
-        	if(tiles[i]->getType() == TILE_WALL)
-        	{
-			if(this->Check(cBox, tiles[i]->getTileBox()))
-			{
-                		return true;
-            		}
-		}
-		// Stick Collision for all "Cloud" tiles
-		else if(tiles[i]->getType() == TILE_PLATFORM ||
-			tiles[i]->getType() == TILE_LADDER_TOP)
-		{
-			if(this->CheckCloud(cBox, tiles[i]->getTileBox()))
-			{
-				return true;
-			}
-		}
-		// Stick Collision for all "45° left Slope" tiles [/]
-		else if(tiles[i]->getType() == TILE_SLOPE_LEFT)
-		{
-        		if(this->Check_Slope_45_Left(cBox, tiles[i]->getTileBox()))
-        		{
-               			return true;
-        		}
-		}
-		//Stick Collision for all "45° right Slope" tiles [\]
-		else if(tiles[i]->getType() == TILE_SLOPE_RIGHT)
-		{
+    	if(tiles[i]->getType() == TILE_WALL)
+    	{
+    		if(this->Check(cBox, tiles[i]->getTileBox()))
+    		{
+                return true;
+            }
+    	}
+    	// Stick Collision for all "Cloud" tiles
+    	else if(tiles[i]->getType() == TILE_PLATFORM ||
+    		tiles[i]->getType() == TILE_LADDER_TOP)
+    	{
+    		if(this->CheckCloud(cBox, tiles[i]->getTileBox()))
+    		{
+    			return true;
+    		}
+    	}
+    	// Stick Collision for all "45° left Slope" tiles [/]
+    	else if(tiles[i]->getType() == TILE_SLOPE_LEFT)
+    	{
+    		if(this->Check_Slope_45_Left(cBox, tiles[i]->getTileBox()))
+    		{
+       			return true;
+    		}
+    	}
+    	//Stick Collision for all "45° right Slope" tiles [\]
+    	else if(tiles[i]->getType() == TILE_SLOPE_RIGHT)
+    	{
         		if(this->Check_Slope_45_Right(cBox, tiles[i]->getTileBox()))
         		{
                			return true;
         		}
-		}
     	}
-    	return false;
+	}
+	return false;
+}
+
+bool Collision::Mob(SDL_Rect cBox, Mobs* mobs[], int type)
+{
+    for(int i = 0; i < TOTAL_TILES; i++)
+    {
+        if(mobs[i]->getType() == type)
+        {
+            if(this->Check(cBox, mobs[i]->getMobBox()))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
 }

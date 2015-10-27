@@ -21,6 +21,7 @@ class Collision
         bool Slope_45_Right(SDL_Rect cBox, Tile* tiles[]);
         bool Slope_45_Left(SDL_Rect cBox, Tile* tiles[]);
         bool Stick(SDL_Rect cBox, Tile* tiles[]);
+        bool Mob(SDL_Rect cBox, Mobs* mobs[], int type);
     protected:
     private:
         int leftA, leftB;

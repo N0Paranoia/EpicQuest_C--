@@ -55,18 +55,25 @@ void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type
     }
 }
 
-int Ai::Fall(Mobs* mobs[], int i, Tile* tiles[])
+int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])
 {
-    if(aiPhysics.Gravity(mobs[i]->getMobBox(), tiles))
+
+    bottomCollisionBox = { mobs[i]->getMobBox().x, ( mobs[i]->getMobBox().y +  mobs[i]->getMobBox().h),  mobs[i]->getMobBox().w, 1};
+
+    if(!aiCollision.Stick(bottomCollisionBox, tiles))
     {
-        isFalling[i] = false;
-        return mobs[i]->getMobBox().y;
+        return aiPhysics.StickToFloor( mobs[i]->getMobBox(), bottomCollisionBox, tiles);
     }
-    else
+    else if(aiCollision.Slope_45_Left(mobs[i]->getMobBox(), tiles))//[/]
     {
-        isFalling[i] = true;
-        return mobs[i]->getMobBox().y + GRAVITY;
+        // compesate for colliding in to next tile becoude of the playerRect.w -1
+        return ((TILE_SIZE - ((mobs[i]->getMobBox().x) + (mobs[i]->getMobBox().w-1)) % TILE_SIZE) + ((mobs[i]->getMobBox().y-1)/ TILE_SIZE)*TILE_SIZE) -1;
     }
+    else if(aiCollision.Slope_45_Right(mobs[i]->getMobBox(), tiles))//[/])
+    {
+        return ((mobs[i]->getMobBox().x) % TILE_SIZE) + ((mobs[i]->getMobBox().y-1)/ TILE_SIZE)*TILE_SIZE;
+    }
+    return mobs[i]->getMobBox().y;
 }
 
 int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
@@ -87,25 +94,19 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
     return mobs[i]->getMobBox().x + this->Input(i);
 }
 
-int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)
+int Ai::UpdateHorizontal(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
 {
     //---- Basic Ai "input"----//
     this->Input(i);
     //----Basic Agro Ai----//
     this->Agro(mobs, i, tiles, playerRect, type);
-    switch(axis)
-    {
-        case 0:
-        //----Basic Ai Horizontal Movement and collision ----//
-        return this->Move(mobs, i, tiles, playerRect, type);
-        break;
+    //----Basic Ai Horizontal Movement and collision ----//
+    return this->Move(mobs, i, tiles, playerRect, type);
+}
 
-        case 1:
-            //----Basic Ai Vertical Movement and collision ----//
-        return this->Fall(mobs, i , tiles);
-        break;
-    }
-    return 0;
+int Ai::UpdateVertical(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+{
+    return this->Physics(mobs, i , tiles);
 }
 
 void Ai::Debug()

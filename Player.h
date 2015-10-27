@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "Tile.h"
+#include "Mobs.h"
 #include <iostream>
 
 using namespace std;
@@ -91,12 +92,12 @@ class Player
 		SDL_Rect Sword;
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;
+		SDL_Rect bottomCollisionBox;
 	public:
 		int _state;
 		int Xvel, Yvel;
 		//Collision box
 		SDL_Rect playerRect;
-		SDL_Rect bottomCollisionBox;
 		SDL_Rect vertCenterCollisionBox;
 		SDL_Rect playerBox;
 
@@ -114,7 +115,7 @@ class Player
 		void GoTroughDoor(Tile* tiles[]);
 		int Health();
 		int Energy(int action);
-		void Update();
+		void Update(Mobs* mobs[]);
 		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
 		void Cleanup();
 

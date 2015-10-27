@@ -47,7 +47,6 @@ FPS	.\Constants.h	/^const int FPS = 60;$/;"	v
 FPStimer	.\EQ.cpp	/^Timer FPStimer;$/;"	v
 FacingLeft	.\Player.h	/^		bool FacingLeft;$/;"	m	class:Player
 FacingRight	.\Player.h	/^		bool FacingRight;$/;"	m	class:Player
-Fall	.\Ai.cpp	/^int Ai::Fall(Mobs* mobs[], int i, Tile* tiles[])$/;"	f	class:Ai
 Falling	.\Player.cpp	/^void Player::Falling(Tile* tiles[])$/;"	f	class:Player
 Follow	.\Camera.cpp	/^void Camera::Follow()$/;"	f	class:Camera
 Font	.\EQ.h	/^      TTF_Font* Font;$/;"	m	class:EQ
@@ -78,6 +77,7 @@ MOBS_H	.\Mobs.h	2;"	d
 MOB_CLEAR	.\Constants.h	/^const int MOB_CLEAR = 0;$/;"	v
 MOB_TYPE_1	.\Constants.h	/^const int MOB_TYPE_1 = 1;$/;"	v
 MOB_TYPE_2	.\Constants.h	/^const int MOB_TYPE_2 = 2;$/;"	v
+Mob	.\Collision.cpp	/^bool Collision::Mob(SDL_Rect cBox, Mobs* mobs[], int type)$/;"	f	class:Collision
 MobBox	.\Mobs.h	/^ 		SDL_Rect MobBox;$/;"	m	class:Mobs
 MobClips	.\World.h	/^        SDL_Rect MobClips[TOTAL_MOB_SPRITES];$/;"	m	class:World
 MobSheetTexture	.\World.cpp	/^Textures MobSheetTexture;$/;"	v
@@ -94,6 +94,7 @@ Pause	.\Timer.cpp	/^void Timer::Pause()$/;"	f	class:Timer
 PauseTicks	.\Timer.h	/^        Uint32 PauseTicks;$/;"	m	class:Timer
 Paused	.\Timer.h	/^        bool Paused;$/;"	m	class:Timer
 PhCollision	.\Physics.cpp	/^Collision PhCollision;$/;"	v
+Physics	.\Ai.cpp	/^int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])$/;"	f	class:Ai
 Physics	.\Physics.cpp	/^Physics::Physics()$/;"	f	class:Physics
 Physics	.\Physics.h	/^class Physics$/;"	c
 Player	.\Player.cpp	/^Player::Player()$/;"	f	class:Player
@@ -166,9 +167,10 @@ Timer	.\Timer.h	/^class Timer$/;"	c
 Type_Mobs	.\World.h	/^        int Type_Mobs;$/;"	m	class:World
 Type_Tiles	.\World.h	/^        int Type_Tiles;$/;"	m	class:World
 Unpause	.\Timer.cpp	/^void Timer::Unpause()$/;"	f	class:Timer
-Update	.\Ai.cpp	/^int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)$/;"	f	class:Ai
-Update	.\Player.cpp	/^void Player::Update()$/;"	f	class:Player
+Update	.\Player.cpp	/^void Player::Update(Mobs* mobs[])$/;"	f	class:Player
+UpdateHorizontal	.\Ai.cpp	/^int Ai::UpdateHorizontal(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai
 UpdateMobs	.\World.cpp	/^void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)$/;"	f	class:World
+UpdateVertical	.\Ai.cpp	/^int Ai::UpdateVertical(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai
 Var	.\Collision.cpp	/^bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision
 WINDOW_HEIGHT	.\Constants.h	/^const int WINDOW_HEIGHT = 576;$/;"	v
 WINDOW_WIDTH	.\Constants.h	/^const int WINDOW_WIDTH = 1024;$/;"	v
@@ -194,6 +196,7 @@ block	.\Player.h	/^		bool block;$/;"	m	class:Player
 blockEnergy	.\Player.h	/^		int blockEnergy;$/;"	m	class:Player
 bottomA	.\Collision.h	/^        int bottomA, bottomB;$/;"	m	class:Collision
 bottomB	.\Collision.h	/^        int bottomA, bottomB;$/;"	m	class:Collision
+bottomCollisionBox	.\Ai.h	/^        SDL_Rect bottomCollisionBox;$/;"	m	class:Ai
 bottomCollisionBox	.\Player.h	/^		SDL_Rect bottomCollisionBox;$/;"	m	class:Player
 camera	.\EQ.cpp	/^Camera camera;$/;"	v
 cameraRect	.\Camera.h	/^        SDL_Rect cameraRect;$/;"	m	class:Camera
