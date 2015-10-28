@@ -679,6 +679,14 @@ int Player::Energy(int action)
 	return energy;
 }
 
+void Player::MobsCollision(Mobs* mobs[])
+{
+	if(pCollision.Mob(playerRect, mobs, MOB_TYPE_1))
+	{
+		cout << "auw" << endl;
+	}
+}
+
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 {
 	frameCounter += frameSpeed;
@@ -749,10 +757,8 @@ void Player::Update(Mobs* mobs[])
 	bottomCollisionBox = {playerRect.x, (playerRect.y + playerRect.h), playerRect.w, 1};
 	// initialize vertCenterCollisionBox
 	vertCenterCollisionBox = {playerRect.x + (playerRect.w/2), playerRect.y, 2, playerRect.h+1};
-	if(pCollision.Mob(playerRect, mobs, MOB_TYPE_1))
-	{
-		cout << "auw" << endl;
-	}
+
+	this->MobsCollision(mobs);
 }
 
 void Player::Cleanup()

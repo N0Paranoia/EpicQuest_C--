@@ -84,6 +84,7 @@ MobSheetTexture	.\World.cpp	/^Textures MobSheetTexture;$/;"	v
 MobType	.\Mobs.h	/^ 		int MobType;$/;"	m	class:Mobs
 Mobs	.\Mobs.cpp	/^Mobs::Mobs(int x, int y, int Type)$/;"	f	class:Mobs
 Mobs	.\Mobs.h	/^class Mobs$/;"	c
+MobsCollision	.\Player.cpp	/^void Player::MobsCollision(Mobs* mobs[])$/;"	f	class:Player
 Move	.\Ai.cpp	/^int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai
 Move	.\Player.cpp	/^void Player::Move(int Movement, Tile* tiles[])$/;"	f	class:Player
 Movement	.\Ai.h	/^        enum Movement$/;"	g	class:Ai

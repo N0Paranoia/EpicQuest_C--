@@ -115,6 +115,7 @@ class Player
 		void GoTroughDoor(Tile* tiles[]);
 		int Health();
 		int Energy(int action);
+		void MobsCollision(Mobs* mobs[]);
 		void Update(Mobs* mobs[]);
 		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
 		void Cleanup();
