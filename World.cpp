@@ -239,7 +239,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
     {
         if(mobs[i]->getType() == MOB_TYPE_1)
         {
-            mobs[i] = new Mobs(wAi.UpdateHorizontal(mobs, i, tiles, playerRect, Type_Mobs), wAi.UpdateVertical(mobs, i, tiles, playerRect, Type_Mobs), Type_Mobs);
+            mobs[i] = new Mobs(wAi.Update(mobs, i, tiles, playerRect, Type_Mobs, X_AXIS), wAi.Update(mobs, i, tiles, playerRect, Type_Mobs, Y_AXIS), Type_Mobs);
         }
     }
 }

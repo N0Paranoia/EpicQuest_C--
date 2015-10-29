@@ -39,6 +39,9 @@ const int MOB_CLEAR = 0;
 const int MOB_TYPE_1 = 1;
 const int MOB_TYPE_2 = 2;
 
+const int X_AXIS = 0;
+const int Y_AXIS = 1;
+
 const int TOTAL_DOORS = 2;
 
 const int GRAVITY = 12;

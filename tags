@@ -168,10 +168,9 @@ Timer	.\Timer.h	/^class Timer$/;"	c
 Type_Mobs	.\World.h	/^        int Type_Mobs;$/;"	m	class:World
 Type_Tiles	.\World.h	/^        int Type_Tiles;$/;"	m	class:World
 Unpause	.\Timer.cpp	/^void Timer::Unpause()$/;"	f	class:Timer
+Update	.\Ai.cpp	/^int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)$/;"	f	class:Ai
 Update	.\Player.cpp	/^void Player::Update(Mobs* mobs[])$/;"	f	class:Player
-UpdateHorizontal	.\Ai.cpp	/^int Ai::UpdateHorizontal(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai
 UpdateMobs	.\World.cpp	/^void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)$/;"	f	class:World
-UpdateVertical	.\Ai.cpp	/^int Ai::UpdateVertical(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai
 Var	.\Collision.cpp	/^bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision
 WINDOW_HEIGHT	.\Constants.h	/^const int WINDOW_HEIGHT = 576;$/;"	v
 WINDOW_WIDTH	.\Constants.h	/^const int WINDOW_WIDTH = 1024;$/;"	v
@@ -182,8 +181,10 @@ Wall	.\Collision.cpp	/^bool Collision::Wall(SDL_Rect cBox, Tile* tiles[])$/;"	f	
 Window	.\EQ.h	/^      SDL_Window* Window ;$/;"	m	class:EQ
 World	.\World.cpp	/^World::World()$/;"	f	class:World
 World	.\World.h	/^class World$/;"	c
+X_AXIS	.\Constants.h	/^const int X_AXIS = 0;$/;"	v
 Xvel	.\Ai.h	/^        int Xvel[TOTAL_TILES];$/;"	m	class:Ai
 Xvel	.\Player.h	/^		int Xvel, Yvel;$/;"	m	class:Player
+Y_AXIS	.\Constants.h	/^const int Y_AXIS = 1;$/;"	v
 Yvel	.\Ai.h	/^        int Yvel[TOTAL_TILES];$/;"	m	class:Ai
 Yvel	.\Player.h	/^		int Xvel, Yvel;$/;"	m	class:Player
 _state	.\Player.h	/^		int _state;$/;"	m	class:Player

@@ -51,6 +51,10 @@ void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type
             {
                 movement[i] = right;
             }
+            else
+            {
+                movement[i] = idle;
+            }
         }
     }
 }
@@ -94,19 +98,25 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
     return mobs[i]->getMobBox().x + this->Input(i);
 }
 
-int Ai::UpdateHorizontal(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)
 {
     //---- Basic Ai "input"----//
     this->Input(i);
     //----Basic Agro Ai----//
     this->Agro(mobs, i, tiles, playerRect, type);
-    //----Basic Ai Horizontal Movement and collision ----//
-    return this->Move(mobs, i, tiles, playerRect, type);
-}
 
-int Ai::UpdateVertical(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
-{
-    return this->Physics(mobs, i , tiles);
+    switch(axis)
+    {
+        case X_AXIS:
+        //----Basic Ai Horizontal Movement and collision ----//
+        return this->Move(mobs, i, tiles, playerRect, type);
+        break;
+
+        case Y_AXIS:
+        return this->Physics(mobs, i , tiles);
+        break;
+    }
+    return 0;
 }
 
 void Ai::Debug()

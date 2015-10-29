@@ -14,8 +14,7 @@ class Ai
         int Input(int i);
         void Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
         int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
-        int UpdateHorizontal(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
-        int UpdateVertical(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
+        int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis);
         int Physics(Mobs* mobs[], int i, Tile* tiles[]);
         void Debug();
     protected:
