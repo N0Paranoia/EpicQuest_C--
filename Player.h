@@ -46,8 +46,7 @@ class Player
 
 		bool WalkingLeft;
 		bool WalkingRight;
-		bool FacingLeft;
-		bool FacingRight;
+
 		bool isRunning;
 		bool canRun;
 		bool isFalling;
@@ -72,6 +71,7 @@ class Player
 		int energy;
 		bool energyRecover;
 		int maxHealth;
+		int currentHealth;
 		int health;
 
 		int frame;
@@ -92,6 +92,8 @@ class Player
 		SDL_Rect StaminBar;
 		SDL_Rect bottomCollisionBox;
 	public:
+		bool FacingLeft;
+		bool FacingRight;
 		int _state;
 		int Xvel, Yvel;
 		//Collision box
@@ -113,7 +115,7 @@ class Player
 		void Climb(int Movement, Tile* tiles[]);
 		void Falling(Tile* tiles[]);
 		void GoTroughDoor(Tile* tiles[]);
-		int Health();
+		int Health(int damage);
 		int Energy(int action);
 		void MobsCollision(Mobs* mobs[]);
 		void Update(Mobs* mobs[]);

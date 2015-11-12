@@ -80,6 +80,12 @@ int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])
     return mobs[i]->getMobBox().y;
 }
 
+int Ai:: Health(Mobs* mobs[], int i)
+{
+    isDead[i] = false;
+    return isDead[i];
+}
+
 int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
 {
     //----Basic Wallcollision Ai----//

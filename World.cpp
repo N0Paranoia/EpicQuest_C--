@@ -237,9 +237,12 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
 {
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-        if(mobs[i]->getType() == MOB_TYPE_1)
+        if(wAi.Health(mobs, i) == false)
         {
-            mobs[i] = new Mobs(wAi.Update(mobs, i, tiles, playerRect, Type_Mobs, X_AXIS), wAi.Update(mobs, i, tiles, playerRect, Type_Mobs, Y_AXIS), Type_Mobs);
+            if(mobs[i]->getType() == MOB_TYPE_1)
+            {
+                mobs[i] = new Mobs(wAi.Update(mobs, i, tiles, playerRect, Type_Mobs, X_AXIS), wAi.Update(mobs, i, tiles, playerRect, Type_Mobs, Y_AXIS), Type_Mobs);
+            }
         }
     }
 }
@@ -253,6 +256,9 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
     //Render Mobs
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-        mobs[i]->Render(&MobSheetTexture, &MobClips[Type_Tiles], Renderer, camera);
+        if(wAi.Health(mobs, i) == false)
+        {
+            mobs[i]->Render(&MobSheetTexture, &MobClips[Type_Tiles], Renderer, camera);
+        }
     }
 }

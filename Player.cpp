@@ -653,13 +653,14 @@ void Player::Move(int Movement, Tile* tiles[])
 	}
 }
 
-int Player::Health()
+int Player::Health(int damage)
 {
+	health = health - damage;
 	if(health <=0)
 	{
-		health =0;
+		health = 0;
 	}
-	return maxHealth;
+	return health;
 }
 
 int Player::Energy(int action)
@@ -683,7 +684,7 @@ void Player::MobsCollision(Mobs* mobs[])
 {
 	if(pCollision.Mob(playerRect, mobs, MOB_TYPE_1))
 	{
-		cout << "auw" << endl;
+		this->Health(5);
 	}
 }
 
@@ -738,7 +739,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	Sword = {SwordBox.x - camera->x, SwordBox.y - camera->y, SwordBox.w, SwordBox.h};
 	SDL_RenderFillRect(Renderer, &Sword);
 
-	HealthBar = {10, 10, this->Health(), 10};
+	HealthBar = {10, 10, this->Health(0), 10};
 	StaminBar = {10, 25, this->Energy(0), 10};
 	SDL_RenderFillRect(Renderer, &HealthBar);
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );

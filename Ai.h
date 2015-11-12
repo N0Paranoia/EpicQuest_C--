@@ -16,6 +16,7 @@ class Ai
         int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
         int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis);
         int Physics(Mobs* mobs[], int i, Tile* tiles[]);
+        int Health(Mobs* mobs[], int i);
         void Debug();
     protected:
     private:
@@ -33,6 +34,7 @@ class Ai
         int Yvel[TOTAL_TILES];
 
         bool isFalling[TOTAL_TILES];
+        bool isDead[TOTAL_TILES];
 };
 
 #endif // AI_H

@@ -48,6 +48,8 @@ class EQ
       void Render();
       void Cleanup();
       void Debug();
+
+      void Lighting();
 };
 
 #endif // EQ_H

@@ -56,7 +56,8 @@ Free	.\Textures.cpp	/^void Textures::Free()$/;"	f	class:Textures
 GRAVITY	.\Constants.h	/^const int GRAVITY = 12;$/;"	v
 GoTroughDoor	.\Player.cpp	/^void Player::GoTroughDoor(Tile* tiles[])$/;"	f	class:Player
 Gravity	.\Physics.cpp	/^bool Physics::Gravity(SDL_Rect a, Tile* tiles[])$/;"	f	class:Physics
-Health	.\Player.cpp	/^int Player::Health()$/;"	f	class:Player
+Health	.\Ai.cpp	/^int Ai:: Health(Mobs* mobs[], int i)$/;"	f	class:Ai
+Health	.\Player.cpp	/^int Player::Health(int damage)$/;"	f	class:Player
 HealthBar	.\Player.h	/^		SDL_Rect HealthBar;$/;"	m	class:Player
 IdleFrameLeft	.\Player.h	/^		int IdleFrameLeft;$/;"	m	class:Player
 IdleFrameRight	.\Player.h	/^		int IdleFrameRight;$/;"	m	class:Player
@@ -67,6 +68,11 @@ Input	.\Player.cpp	/^void Player::Input(Tile* tiles[])$/;"	f	class:Player
 Jump	.\Player.cpp	/^void Player::Jump(Tile* tiles[])$/;"	f	class:Player
 LEVEL_HEIGHT	.\Constants.h	/^const int LEVEL_HEIGHT = 30;$/;"	v
 LEVEL_WIDTH	.\Constants.h	/^const int LEVEL_WIDTH = 30;$/;"	v
+LIGHT_H	.\Light.h	2;"	d
+Light	.\Light.cpp	/^Light::Light()$/;"	f	class:Light
+Light	.\Light.h	/^class Light$/;"	c
+LightSource	.\Light.h	/^        SDL_Rect LightSource;$/;"	m	class:Light
+Lighting	.\EQ.cpp	/^void EQ::Lighting()$/;"	f	class:EQ
 LoadFromFile	.\Textures.cpp	/^bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)$/;"	f	class:Textures
 LoadFromRenderedText	.\Textures.cpp	/^bool Textures::LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)$/;"	f	class:Textures
 LoadMedia	.\EQ.cpp	/^bool EQ::LoadMedia()$/;"	f	class:EQ
@@ -103,6 +109,7 @@ Player	.\Player.h	/^class Player$/;"	c
 PlayerClips	.\Player.h	/^		SDL_Rect PlayerClips[18];$/;"	m	class:Player
 Render	.\Camera.cpp	/^void Camera::Render(SDL_Renderer* Renderer)$/;"	f	class:Camera
 Render	.\EQ.cpp	/^void EQ::Render()$/;"	f	class:EQ
+Render	.\Light.cpp	/^void Light::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Light
 Render	.\Mobs.cpp	/^void Mobs::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Mobs
 Render	.\Player.cpp	/^void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Player
 Render	.\Textures.cpp	/^void Textures::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)$/;"	f	class:Textures
@@ -207,7 +214,9 @@ canJump	.\Player.h	/^		bool canJump;$/;"	m	class:Player
 canRun	.\Player.h	/^		bool canRun;$/;"	m	class:Player
 centerRect	.\Camera.h	/^        SDL_Rect centerRect;$/;"	m	class:Camera
 climbingSpeed	.\Player.h	/^		int climbingSpeed;$/;"	m	class:Player
+collision	.\EQ.cpp	/^Collision collision;$/;"	v
 countedFrames	.\EQ.h	/^      int countedFrames;$/;"	m	class:EQ
+currentHealth	.\Player.h	/^		int currentHealth;$/;"	m	class:Player
 debugText	.\EQ.h	/^std::stringstream debugText;$/;"	v
 doorA	.\Doors.h	/^        SDL_Rect doorA[TOTAL_DOORS];$/;"	m	class:Doors
 doorB	.\Doors.h	/^        SDL_Rect doorB[TOTAL_DOORS];$/;"	m	class:Doors
@@ -232,6 +241,7 @@ idle	.\Ai.h	/^                idle,$/;"	e	enum:Ai::Movement
 isAttacking	.\Player.h	/^		bool isAttacking;$/;"	m	class:Player
 isBlocking	.\Player.h	/^		bool isBlocking;$/;"	m	class:Player
 isClimbing	.\Player.h	/^		bool isClimbing;$/;"	m	class:Player
+isDead	.\Ai.h	/^        bool isDead[TOTAL_TILES];$/;"	m	class:Ai
 isDucking	.\Player.h	/^		bool isDucking;$/;"	m	class:Player
 isFalling	.\Ai.h	/^        bool isFalling[TOTAL_TILES];$/;"	m	class:Ai
 isFalling	.\Player.h	/^		bool isFalling;$/;"	m	class:Player
@@ -249,6 +259,7 @@ left	.\Ai.h	/^                left,$/;"	e	enum:Ai::Movement
 left	.\Player.h	/^			left,$/;"	e	enum:Player::Movement
 leftA	.\Collision.h	/^        int leftA, leftB;$/;"	m	class:Collision
 leftB	.\Collision.h	/^        int leftA, leftB;$/;"	m	class:Collision
+light	.\EQ.cpp	/^Light light;$/;"	v
 mCollision	.\Mobs.cpp	/^Collision mCollision;$/;"	v
 mHeight	.\Textures.h	/^        int mHeight;$/;"	m	class:Textures
 mWidth	.\Textures.h	/^        int mWidth;$/;"	m	class:Textures
@@ -296,6 +307,7 @@ world	.\EQ.cpp	/^World world;$/;"	v
 ~Camera	.\Camera.cpp	/^Camera::~Camera()$/;"	f	class:Camera
 ~Collision	.\Collision.cpp	/^Collision::~Collision()$/;"	f	class:Collision
 ~Doors	.\Doors.cpp	/^Doors::~Doors()$/;"	f	class:Doors
+~Light	.\Light.cpp	/^Light::~Light()$/;"	f	class:Light
 ~Physics	.\Physics.cpp	/^Physics::~Physics()$/;"	f	class:Physics
 ~Player	.\Player.cpp	/^Player::~Player()$/;"	f	class:Player
 ~Textures	.\Textures.cpp	/^Textures::~Textures()$/;"	f	class:Textures
