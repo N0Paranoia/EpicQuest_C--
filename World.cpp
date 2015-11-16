@@ -246,7 +246,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
         }
     }
 }
-void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])
+void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)
 {
     //Render Tiles
     for(int i = 0; i < TOTAL_TILES; i++)

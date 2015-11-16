@@ -23,6 +23,7 @@ CheckCloud	.\Collision.cpp	/^bool Collision::CheckCloud(SDL_Rect a, SDL_Rect b)$
 Check_Slope_45_Left	.\Collision.cpp	/^bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision
 Check_Slope_45_Right	.\Collision.cpp	/^bool Collision::Check_Slope_45_Right(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision
 Cleanup	.\EQ.cpp	/^void EQ::Cleanup()$/;"	f	class:EQ
+Cleanup	.\Light.cpp	/^void Light::Cleanup()$/;"	f	class:Light
 Cleanup	.\Player.cpp	/^void Player::Cleanup()$/;"	f	class:Player
 Climb	.\Player.cpp	/^void Player::Climb(int Movement, Tile* tiles[])$/;"	f	class:Player
 Cloud	.\Collision.cpp	/^bool Collision::Cloud(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision
@@ -35,6 +36,7 @@ Debug	.\EQ.cpp	/^void EQ::Debug()$/;"	f	class:EQ
 DebugTexture	.\EQ.cpp	/^Textures DebugTexture;$/;"	v
 Doors	.\Doors.cpp	/^Doors::Doors()$/;"	f	class:Doors
 Doors	.\Doors.h	/^class Doors$/;"	c
+DrawShadows	.\Light.cpp	/^int Light::DrawShadows(int locationX,int locationY, SDL_Rect cube)$/;"	f	class:Light
 EQ	.\EQ.cpp	/^EQ::EQ()$/;"	f	class:EQ
 EQ	.\EQ.h	/^class EQ$/;"	c
 EQ_H	.\EQ.h	2;"	d
@@ -62,6 +64,7 @@ HealthBar	.\Player.h	/^		SDL_Rect HealthBar;$/;"	m	class:Player
 IdleFrameLeft	.\Player.h	/^		int IdleFrameLeft;$/;"	m	class:Player
 IdleFrameRight	.\Player.h	/^		int IdleFrameRight;$/;"	m	class:Player
 Init	.\EQ.cpp	/^bool EQ::Init()$/;"	f	class:EQ
+InitShadows	.\Light.cpp	/^void Light::InitShadows(int locationX,int locationY)$/;"	f	class:Light
 Input	.\Ai.cpp	/^int Ai::Input(int i)$/;"	f	class:Ai
 Input	.\EQ.cpp	/^void EQ::Input()$/;"	f	class:EQ
 Input	.\Player.cpp	/^void Player::Input(Tile* tiles[])$/;"	f	class:Player
@@ -71,11 +74,11 @@ LEVEL_WIDTH	.\Constants.h	/^const int LEVEL_WIDTH = 30;$/;"	v
 LIGHT_H	.\Light.h	2;"	d
 Light	.\Light.cpp	/^Light::Light()$/;"	f	class:Light
 Light	.\Light.h	/^class Light$/;"	c
-LightSource	.\Light.h	/^        SDL_Rect LightSource;$/;"	m	class:Light
 Lighting	.\EQ.cpp	/^void EQ::Lighting()$/;"	f	class:EQ
 LoadFromFile	.\Textures.cpp	/^bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)$/;"	f	class:Textures
 LoadFromRenderedText	.\Textures.cpp	/^bool Textures::LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)$/;"	f	class:Textures
 LoadMedia	.\EQ.cpp	/^bool EQ::LoadMedia()$/;"	f	class:EQ
+LoadMedia	.\Light.cpp	/^int Light::LoadMedia(SDL_Renderer* Renderer)$/;"	f	class:Light
 LoadMedia	.\Player.cpp	/^int Player::LoadMedia(SDL_Renderer* Renderer)$/;"	f	class:Player
 LoadMedia	.\World.cpp	/^int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])$/;"	f	class:World
 Loop	.\EQ.cpp	/^void EQ::Loop()$/;"	f	class:EQ
@@ -114,11 +117,14 @@ Render	.\Mobs.cpp	/^void Mobs::Render(Textures* textures, SDL_Rect* clips, SDL_R
 Render	.\Player.cpp	/^void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Player
 Render	.\Textures.cpp	/^void Textures::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)$/;"	f	class:Textures
 Render	.\Tile.cpp	/^void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Tile
-Render	.\World.cpp	/^void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[])$/;"	f	class:World
+Render	.\World.cpp	/^void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)$/;"	f	class:World
 Renderer	.\EQ.h	/^      SDL_Renderer* Renderer;$/;"	m	class:EQ
 Running	.\EQ.h	/^      bool Running;$/;"	m	class:EQ
 SetMobs	.\World.cpp	/^bool World::SetMobs(Mobs* mobs[])$/;"	f	class:World
 SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[], Mobs* mobs[])$/;"	f	class:World
+Shadow2Texture	.\Light.cpp	/^Textures Shadow2Texture;$/;"	v
+Shadow3Texture	.\Light.cpp	/^Textures Shadow3Texture;$/;"	v
+ShadowTexture	.\Light.cpp	/^Textures ShadowTexture;$/;"	v
 Shield	.\Player.h	/^		SDL_Rect Shield;$/;"	m	class:Player
 ShieldBox	.\Player.h	/^		SDL_Rect ShieldBox;$/;"	m	class:Player
 Slope_45_Left	.\Collision.cpp	/^bool Collision::Slope_45_Left(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision
@@ -216,6 +222,7 @@ centerRect	.\Camera.h	/^        SDL_Rect centerRect;$/;"	m	class:Camera
 climbingSpeed	.\Player.h	/^		int climbingSpeed;$/;"	m	class:Player
 collision	.\EQ.cpp	/^Collision collision;$/;"	v
 countedFrames	.\EQ.h	/^      int countedFrames;$/;"	m	class:EQ
+cube	.\Light.h	/^        SDL_Rect cube[TOTAL_TILES];$/;"	m	class:Light
 currentHealth	.\Player.h	/^		int currentHealth;$/;"	m	class:Player
 debugText	.\EQ.h	/^std::stringstream debugText;$/;"	v
 doorA	.\Doors.h	/^        SDL_Rect doorA[TOTAL_DOORS];$/;"	m	class:Doors
@@ -223,11 +230,13 @@ doorB	.\Doors.h	/^        SDL_Rect doorB[TOTAL_DOORS];$/;"	m	class:Doors
 down	.\Player.h	/^			down,$/;"	e	enum:Player::Movement
 energy	.\Player.h	/^		int energy;$/;"	m	class:Player
 energyRecover	.\Player.h	/^		bool energyRecover;$/;"	m	class:Player
+flip	.\Textures.h	/^        SDL_RendererFlip flip;Uint32 *myPixels;$/;"	m	class:Textures
 frame	.\Player.h	/^		int frame;$/;"	m	class:Player
 frameCounter	.\Player.h	/^		int frameCounter;$/;"	m	class:Player
 frameSpeed	.\Player.h	/^		int frameSpeed;$/;"	m	class:Player
 frameSwitch	.\Player.h	/^		int frameSwitch;$/;"	m	class:Player
 frameTicks	.\EQ.h	/^      int frameTicks;$/;"	m	class:EQ
+gRenderer	.\Textures.h	/^        SDL_Renderer* gRenderer;$/;"	m	class:Textures
 getHeight	.\Textures.cpp	/^int Textures::getHeight()$/;"	f	class:Textures
 getMobBox	.\Mobs.cpp	/^SDL_Rect Mobs::getMobBox()$/;"	f	class:Mobs
 getTicks	.\Timer.cpp	/^Uint32 Timer::getTicks()$/;"	f	class:Timer
@@ -268,6 +277,7 @@ maxEnergy	.\Player.h	/^		int maxEnergy;$/;"	m	class:Player
 maxHealth	.\Player.h	/^		int maxHealth;$/;"	m	class:Player
 mobs	.\EQ.cpp	/^Mobs* mobs[TOTAL_TILES];$/;"	v
 movement	.\Ai.h	/^        Movement movement[TOTAL_TILES] = {};$/;"	m	class:Ai
+myPixels	.\Textures.h	/^        SDL_RendererFlip flip;Uint32 *myPixels;$/;"	m	class:Textures
 pCollision	.\Player.cpp	/^Collision pCollision;$/;"	v
 pDoors	.\Player.cpp	/^Doors pDoors;$/;"	v
 pPhysics	.\Player.cpp	/^Physics pPhysics;$/;"	v
@@ -275,6 +285,7 @@ physics	.\EQ.cpp	/^Physics physics;$/;"	v
 player	.\EQ.cpp	/^Player player;$/;"	v
 playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player
 playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player
+radius	.\Textures.h	/^        int radius;$/;"	m	class:Textures
 right	.\Ai.h	/^                right,$/;"	e	enum:Ai::Movement
 right	.\Player.h	/^			right,$/;"	e	enum:Player::Movement
 rightA	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision
@@ -292,6 +303,7 @@ tCollision	.\Tile.cpp	/^Collision tCollision;$/;"	v
 test	.\Camera.h	/^        SDL_Rect test;$/;"	m	class:Camera
 textColor	.\EQ.h	/^      SDL_Color textColor;$/;"	m	class:EQ
 texture	.\Textures.h	/^        SDL_Texture* texture;$/;"	m	class:Textures
+textureRect	.\Textures.h	/^        SDL_Rect textureRect;$/;"	m	class:Textures
 tileSet	.\EQ.cpp	/^Tile* tileSet[TOTAL_TILES];$/;"	v
 timeStep	.\EQ.h	/^      float timeStep;$/;"	m	class:EQ
 topA	.\Collision.h	/^        int topA, topB;$/;"	m	class:Collision

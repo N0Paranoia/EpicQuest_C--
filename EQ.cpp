@@ -161,6 +161,7 @@ void EQ::Loop()
     player.Update(mobs);
     player.Falling(tileSet);
     world.UpdateMobs(mobs, tileSet, &player.playerRect);
+    light.InitShadows(player.playerRect.x, player.playerRect.y);
     // FPStimer.Start();
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -168,39 +169,11 @@ void EQ::Loop()
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 void EQ::Lighting()
 {
-    // int angle = 45;
-    // double pi = 3.14159;
-     SDL_SetRenderDrawColor(Renderer, 0xFF, 0xFF, 0xFF, 0xFF );
-    //  cout << cos(angle*(pi/180))*200 << endl;  //Y
-    //
-    //     SDL_RenderDrawLine(Renderer, (player.playerRect.x + (player.playerRect.w/2)) - camera.cameraRect.x, (player.playerRect.y + (player.playerRect.h/2))  -     camera.cameraRect.y, (player.playerRect.x + (cos((angle)*(pi/180))*200)) - camera.cameraRect.x, (player.playerRect.y - (cos((angle)*(pi/180))*200))- camera.cameraRect.y);
-    //     SDL_RenderDrawLine(Renderer, (player.playerRect.x + (player.playerRect.w/2)) - camera.cameraRect.x, (player.playerRect.y + (player.playerRect.h/2))  -     camera.cameraRect.y, (player.playerRect.x + (cos((angle)*(pi/180))*200)) - camera.cameraRect.x, (player.playerRect.y + (cos((angle)*(pi/180))*200))- camera.cameraRect.y);
-    //     SDL_RenderDrawLine(Renderer, (player.playerRect.x + (player.playerRect.w/2)) - camera.cameraRect.x, (player.playerRect.y + (player.playerRect.h/2))  -     camera.cameraRect.y, (player.playerRect.x - (cos((angle)*(pi/180))*200)) - camera.cameraRect.x, (player.playerRect.y + (cos((angle)*(pi/180))*200))- camera.cameraRect.y);
-    //     SDL_RenderDrawLine(Renderer, (player.playerRect.x + (player.playerRect.w/2)) - camera.cameraRect.x, (player.playerRect.y + (player.playerRect.h/2))  -     camera.cameraRect.y, (player.playerRect.x - (cos((angle)*(pi/180))*200)) - camera.cameraRect.x, (player.playerRect.y - (cos((angle)*(pi/180))*200))- camera.cameraRect.y);
-    for(int i = 0; i < TOTAL_TILES; i ++)
-    {
-        if(tileSet[i]->getTileBox().x > camera.cameraRect.x && tileSet[i]->getTileBox().x < camera.cameraRect.x + WINDOW_WIDTH && tileSet[i]->getTileBox().y > camera.cameraRect.y && tileSet[i]->getTileBox().y < camera.cameraRect.y + WINDOW_HEIGHT)
-        {
-            if(player.FacingRight)
-            {
-                if(tileSet[i]->getTileBox().x >(player.playerRect.x + (player.playerRect.w/2)))
-                {
-                    SDL_RenderDrawLine(Renderer, (player.playerRect.x + (player.playerRect.w/2)) - camera.cameraRect.x, (player.playerRect.y + (player.playerRect.h/2))  -     camera.cameraRect.y, tileSet[i]->getTileBox().x - camera.cameraRect.x, tileSet[i]->getTileBox().y - camera.cameraRect.y);
-                }
-            }
-            else if(player.FacingLeft)
-            {
-                if(tileSet[i]->getTileBox().x < (player.playerRect.x + (player.playerRect.w/2)))
-                {
-                    SDL_RenderDrawLine(Renderer, (player.playerRect.x + (player.playerRect.w/2)) - camera.cameraRect.x, (player.playerRect.y + (player.playerRect.h/2))  -     camera.cameraRect.y, tileSet[i]->getTileBox().x - camera.cameraRect.x, tileSet[i]->getTileBox().y - camera.cameraRect.y);
-                }
-            }
-        }
-    }
- }
- //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
- //-----Test for dynamic lightning------------------------------------------------------------------------------------------------------------------------------------------ //
- //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+//-----Test for dynamic lightning------------------------------------------------------------------------------------------------------------------------------------------ //
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 void EQ::Render()
 {
 	//Set Default colors
@@ -210,7 +183,7 @@ void EQ::Render()
 	//Render Texture to screen
 	wallpaperTexture.Render(Renderer, 0, 0);
 	// Render Tiles
-	world.Render(Renderer, &camera.cameraRect, tileSet, mobs);
+	world.Render(Renderer, &camera.cameraRect, tileSet, mobs, &player.playerRect);
     //Render Camara outline
     camera.Render(Renderer);
 	// Render Player data

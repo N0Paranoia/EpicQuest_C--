@@ -18,7 +18,7 @@ class World
         bool SetTiles(Tile* tiles[], Mobs* mobs[]);
         bool SetMobs(Mobs* mobs[]);
         void UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect);
-        void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[]);
+        void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player);
     protected:
     private:
     public:

@@ -12,6 +12,16 @@ using namespace std;
 
 class Textures
 {
+    private:
+        //Actual hardware texture
+        SDL_Renderer* gRenderer;
+        SDL_Texture* texture;
+        SDL_Rect textureRect;
+        SDL_RendererFlip flip;Uint32 *myPixels;
+        int radius;
+        //image dimensions
+        int mWidth;
+        int mHeight;
     public:
         Textures();
         virtual ~Textures();
@@ -22,13 +32,7 @@ class Textures
         int getWidth();
         int getHeight();
     protected:
-    private:
-        //Actual hardware texture
-        SDL_Texture* texture;
 
-        //image dimensions
-        int mWidth;
-        int mHeight;
 };
 
 #endif // TEXTURES_H
