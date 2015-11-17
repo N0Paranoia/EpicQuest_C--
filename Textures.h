@@ -12,23 +12,19 @@ using namespace std;
 
 class Textures
 {
-    private:
+   private:
         //Actual hardware texture
-        SDL_Renderer* gRenderer;
-        SDL_Texture* texture;
-        SDL_Rect textureRect;
-        SDL_RendererFlip flip;Uint32 *myPixels;
-        int radius;
         //image dimensions
         int mWidth;
         int mHeight;
-    public:
-        Textures();
+		SDL_Texture* texture;
+	public:        
+		Textures();
         virtual ~Textures();
         bool LoadFromFile(SDL_Renderer* Renderer, std::string path);
         bool LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor);
         void Free();
-        void Render(SDL_Renderer* Renderer, int x, int y, SDL_Rect* clip = NULL);
+		void Render(SDL_Renderer* Renderer, int x, int y, SDL_Rect* clip = NULL);
         int getWidth();
         int getHeight();
     protected:

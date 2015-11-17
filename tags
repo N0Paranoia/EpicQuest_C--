@@ -6,142 +6,484 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 AGRO_RANGE	.\Constants.h	/^const int AGRO_RANGE = 2 * TILE_SIZE;$/;"	v
 AI_H	.\Ai.h	2;"	d
-Agro	.\Ai.cpp	/^void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai
-Ai	.\Ai.cpp	/^Ai::Ai()$/;"	f	class:Ai
+Agro	.\Ai.cpp	/^void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+Agro	.\Ai.h	/^        void Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);$/;"	p	class:Ai	access:public	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+Ai	.\Ai.cpp	/^Ai::Ai()$/;"	f	class:Ai	signature:()
+Ai	.\Ai.h	/^        Ai();$/;"	p	class:Ai	access:public	signature:()
 Ai	.\Ai.h	/^class Ai$/;"	c
-Attack	.\Player.cpp	/^void Player::Attack()$/;"	f	class:Player
-Block	.\Player.cpp	/^void Player::Block()$/;"	f	class:Player
+Ai::Agro	.\Ai.cpp	/^void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+Ai::Agro	.\Ai.h	/^        void Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);$/;"	p	class:Ai	access:public	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+Ai::Ai	.\Ai.cpp	/^Ai::Ai()$/;"	f	class:Ai	signature:()
+Ai::Ai	.\Ai.h	/^        Ai();$/;"	p	class:Ai	access:public	signature:()
+Ai::Debug	.\Ai.cpp	/^void Ai::Debug()$/;"	f	class:Ai	signature:()
+Ai::Debug	.\Ai.h	/^        void Debug();$/;"	p	class:Ai	access:public	signature:()
+Ai::Health	.\Ai.cpp	/^int Ai:: Health(Mobs* mobs[], int i)$/;"	f	class:Ai	signature:(Mobs* mobs[], int i)
+Ai::Health	.\Ai.h	/^        int Health(Mobs* mobs[], int i);$/;"	p	class:Ai	access:public	signature:(Mobs* mobs[], int i)
+Ai::Input	.\Ai.cpp	/^int Ai::Input(int i)$/;"	f	class:Ai	signature:(int i)
+Ai::Input	.\Ai.h	/^        int Input(int i);$/;"	p	class:Ai	access:public	signature:(int i)
+Ai::Move	.\Ai.cpp	/^int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+Ai::Move	.\Ai.h	/^        int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);$/;"	p	class:Ai	access:public	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+Ai::Movement	.\Ai.h	/^        enum Movement$/;"	g	class:Ai	access:private
+Ai::Physics	.\Ai.cpp	/^int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])$/;"	f	class:Ai	signature:(Mobs* mobs[], int i, Tile* tiles[])
+Ai::Physics	.\Ai.h	/^        int Physics(Mobs* mobs[], int i, Tile* tiles[]);$/;"	p	class:Ai	access:public	signature:(Mobs* mobs[], int i, Tile* tiles[])
+Ai::Update	.\Ai.cpp	/^int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)$/;"	f	class:Ai	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)
+Ai::Update	.\Ai.h	/^        int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis);$/;"	p	class:Ai	access:public	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)
+Ai::Xvel	.\Ai.h	/^        int Xvel[TOTAL_TILES];$/;"	m	class:Ai	access:private
+Ai::Yvel	.\Ai.h	/^        int Yvel[TOTAL_TILES];$/;"	m	class:Ai	access:private
+Ai::bottomCollisionBox	.\Ai.h	/^        SDL_Rect bottomCollisionBox;$/;"	m	class:Ai	access:private
+Ai::idle	.\Ai.h	/^                idle,$/;"	e	enum:Ai::Movement
+Ai::isDead	.\Ai.h	/^        bool isDead[TOTAL_TILES];$/;"	m	class:Ai	access:private
+Ai::isFalling	.\Ai.h	/^        bool isFalling[TOTAL_TILES];$/;"	m	class:Ai	access:private
+Ai::left	.\Ai.h	/^                left,$/;"	e	enum:Ai::Movement
+Ai::movement	.\Ai.h	/^        Movement movement[TOTAL_TILES] = {};$/;"	m	class:Ai	access:private
+Ai::right	.\Ai.h	/^                right,$/;"	e	enum:Ai::Movement
+Ai::~Ai	.\Ai.cpp	/^Ai::~Ai()$/;"	f	class:Ai	signature:()
+Ai::~Ai	.\Ai.h	/^        virtual ~Ai();$/;"	p	class:Ai	access:public	signature:()
+Attack	.\Player.cpp	/^void Player::Attack()$/;"	f	class:Player	signature:()
+Attack	.\Player.h	/^		void Attack();$/;"	p	class:Player	access:public	signature:()
+Block	.\Player.cpp	/^void Player::Block()$/;"	f	class:Player	signature:()
+Block	.\Player.h	/^		void Block();$/;"	p	class:Player	access:public	signature:()
 CAMERA_H	.\Camera.h	2;"	d
 CAPtimer	.\EQ.cpp	/^Timer CAPtimer;$/;"	v
 COLLISION_H	.\Collision.h	2;"	d
 CONSTANTS_H_INCLUDED	.\Constants.h	2;"	d
-Camera	.\Camera.cpp	/^Camera::Camera()$/;"	f	class:Camera
+Camera	.\Camera.cpp	/^Camera::Camera()$/;"	f	class:Camera	signature:()
+Camera	.\Camera.h	/^        Camera();$/;"	p	class:Camera	access:public	signature:()
 Camera	.\Camera.h	/^class Camera$/;"	c
-Center	.\Camera.cpp	/^void Camera::Center(SDL_Rect* playerRect)$/;"	f	class:Camera
-Check	.\Collision.cpp	/^bool Collision::Check(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision
-CheckCloud	.\Collision.cpp	/^bool Collision::CheckCloud(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision
-Check_Slope_45_Left	.\Collision.cpp	/^bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision
-Check_Slope_45_Right	.\Collision.cpp	/^bool Collision::Check_Slope_45_Right(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision
-Cleanup	.\EQ.cpp	/^void EQ::Cleanup()$/;"	f	class:EQ
-Cleanup	.\Light.cpp	/^void Light::Cleanup()$/;"	f	class:Light
-Cleanup	.\Player.cpp	/^void Player::Cleanup()$/;"	f	class:Player
-Climb	.\Player.cpp	/^void Player::Climb(int Movement, Tile* tiles[])$/;"	f	class:Player
-Cloud	.\Collision.cpp	/^bool Collision::Cloud(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision
-Collision	.\Collision.cpp	/^Collision::Collision()$/;"	f	class:Collision
+Camera::Camera	.\Camera.cpp	/^Camera::Camera()$/;"	f	class:Camera	signature:()
+Camera::Camera	.\Camera.h	/^        Camera();$/;"	p	class:Camera	access:public	signature:()
+Camera::Center	.\Camera.cpp	/^void Camera::Center(SDL_Rect* playerRect)$/;"	f	class:Camera	signature:(SDL_Rect* playerRect)
+Camera::Center	.\Camera.h	/^        void Center(SDL_Rect* playerRect);$/;"	p	class:Camera	access:public	signature:(SDL_Rect* playerRect)
+Camera::Follow	.\Camera.cpp	/^void Camera::Follow()$/;"	f	class:Camera	signature:()
+Camera::Follow	.\Camera.h	/^        void Follow();$/;"	p	class:Camera	access:public	signature:()
+Camera::Render	.\Camera.cpp	/^void Camera::Render(SDL_Renderer* Renderer)$/;"	f	class:Camera	signature:(SDL_Renderer* Renderer)
+Camera::Render	.\Camera.h	/^        void Render(SDL_Renderer* Renderer);$/;"	p	class:Camera	access:public	signature:(SDL_Renderer* Renderer)
+Camera::Update	.\Camera.h	/^        void Update(SDL_Rect* playerRect);$/;"	p	class:Camera	access:public	signature:(SDL_Rect* playerRect)
+Camera::cameraRect	.\Camera.h	/^        SDL_Rect cameraRect;$/;"	m	class:Camera	access:public
+Camera::centerRect	.\Camera.h	/^        SDL_Rect centerRect;$/;"	m	class:Camera	access:public
+Camera::test	.\Camera.h	/^        SDL_Rect test;$/;"	m	class:Camera	access:public
+Camera::~Camera	.\Camera.cpp	/^Camera::~Camera()$/;"	f	class:Camera	signature:()
+Camera::~Camera	.\Camera.h	/^        virtual ~Camera();$/;"	p	class:Camera	access:public	signature:()
+Center	.\Camera.cpp	/^void Camera::Center(SDL_Rect* playerRect)$/;"	f	class:Camera	signature:(SDL_Rect* playerRect)
+Center	.\Camera.h	/^        void Center(SDL_Rect* playerRect);$/;"	p	class:Camera	access:public	signature:(SDL_Rect* playerRect)
+Check	.\Collision.cpp	/^bool Collision::Check(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Check	.\Collision.h	/^        bool Check(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+CheckCloud	.\Collision.cpp	/^bool Collision::CheckCloud(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+CheckCloud	.\Collision.h	/^        bool CheckCloud(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Check_Slope_45_Left	.\Collision.cpp	/^bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Check_Slope_45_Left	.\Collision.h	/^	    bool Check_Slope_45_Left(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Check_Slope_45_Right	.\Collision.cpp	/^bool Collision::Check_Slope_45_Right(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Check_Slope_45_Right	.\Collision.h	/^        bool Check_Slope_45_Right(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Cleanup	.\EQ.cpp	/^void EQ::Cleanup()$/;"	f	class:EQ	signature:()
+Cleanup	.\EQ.h	/^      void Cleanup();$/;"	p	class:EQ	access:public	signature:()
+Cleanup	.\Light.cpp	/^void Light::Cleanup()$/;"	f	class:Light	signature:()
+Cleanup	.\Light.h	/^        void Cleanup();$/;"	p	class:Light	access:public	signature:()
+Cleanup	.\Player.cpp	/^void Player::Cleanup()$/;"	f	class:Player	signature:()
+Cleanup	.\Player.h	/^		void Cleanup();$/;"	p	class:Player	access:public	signature:()
+Climb	.\Player.cpp	/^void Player::Climb(int Movement, Tile* tiles[])$/;"	f	class:Player	signature:(int Movement, Tile* tiles[])
+Climb	.\Player.h	/^		void Climb(int Movement, Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(int Movement, Tile* tiles[])
+Cloud	.\Collision.cpp	/^bool Collision::Cloud(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Cloud	.\Collision.h	/^        bool Cloud(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision	.\Collision.cpp	/^Collision::Collision()$/;"	f	class:Collision	signature:()
+Collision	.\Collision.h	/^        Collision();$/;"	p	class:Collision	access:public	signature:()
 Collision	.\Collision.h	/^class Collision$/;"	c
-Connection	.\Doors.cpp	/^void Doors::Connection(SDL_Rect* player, int z)$/;"	f	class:Doors
+Collision::Check	.\Collision.cpp	/^bool Collision::Check(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Check	.\Collision.h	/^        bool Check(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Collision::CheckCloud	.\Collision.cpp	/^bool Collision::CheckCloud(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Collision::CheckCloud	.\Collision.h	/^        bool CheckCloud(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Check_Slope_45_Left	.\Collision.cpp	/^bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Check_Slope_45_Left	.\Collision.h	/^	    bool Check_Slope_45_Left(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Check_Slope_45_Right	.\Collision.cpp	/^bool Collision::Check_Slope_45_Right(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Check_Slope_45_Right	.\Collision.h	/^        bool Check_Slope_45_Right(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+Collision::Cloud	.\Collision.cpp	/^bool Collision::Cloud(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Cloud	.\Collision.h	/^        bool Cloud(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Collision	.\Collision.cpp	/^Collision::Collision()$/;"	f	class:Collision	signature:()
+Collision::Collision	.\Collision.h	/^        Collision();$/;"	p	class:Collision	access:public	signature:()
+Collision::Mob	.\Collision.cpp	/^bool Collision::Mob(SDL_Rect cBox, Mobs* mobs[], int type)$/;"	f	class:Collision	signature:(SDL_Rect cBox, Mobs* mobs[], int type)
+Collision::Mob	.\Collision.h	/^        bool Mob(SDL_Rect cBox, Mobs* mobs[], int type);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Mobs* mobs[], int type)
+Collision::Slope_45_Left	.\Collision.cpp	/^bool Collision::Slope_45_Left(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Slope_45_Left	.\Collision.h	/^        bool Slope_45_Left(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Slope_45_Right	.\Collision.cpp	/^bool Collision::Slope_45_Right(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Slope_45_Right	.\Collision.h	/^        bool Slope_45_Right(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Stick	.\Collision.cpp	/^bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Stick	.\Collision.h	/^        bool Stick(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Var	.\Collision.cpp	/^bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[], int type)
+Collision::Var	.\Collision.h	/^        bool Var(SDL_Rect cBox, Tile* tiles[], int type);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[], int type)
+Collision::Wall	.\Collision.cpp	/^bool Collision::Wall(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::Wall	.\Collision.h	/^        bool Wall(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Collision::bottomA	.\Collision.h	/^        int bottomA, bottomB;$/;"	m	class:Collision	access:private
+Collision::bottomB	.\Collision.h	/^        int bottomA, bottomB;$/;"	m	class:Collision	access:private
+Collision::leftA	.\Collision.h	/^        int leftA, leftB;$/;"	m	class:Collision	access:private
+Collision::leftB	.\Collision.h	/^        int leftA, leftB;$/;"	m	class:Collision	access:private
+Collision::rightA	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision	access:private
+Collision::rightB	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision	access:private
+Collision::topA	.\Collision.h	/^        int topA, topB;$/;"	m	class:Collision	access:private
+Collision::topB	.\Collision.h	/^        int topA, topB;$/;"	m	class:Collision	access:private
+Collision::~Collision	.\Collision.cpp	/^Collision::~Collision()$/;"	f	class:Collision	signature:()
+Collision::~Collision	.\Collision.h	/^        virtual ~Collision();$/;"	p	class:Collision	access:public	signature:()
+Connection	.\Doors.cpp	/^void Doors::Connection(SDL_Rect* player, int z)$/;"	f	class:Doors	signature:(SDL_Rect* player, int z)
+Connection	.\Doors.h	/^        void Connection(SDL_Rect* player, int z);$/;"	p	class:Doors	access:public	signature:(SDL_Rect* player, int z)
 DOORS_H	.\Doors.h	2;"	d
-Debug	.\Ai.cpp	/^void Ai::Debug()$/;"	f	class:Ai
-Debug	.\EQ.cpp	/^void EQ::Debug()$/;"	f	class:EQ
+Debug	.\Ai.cpp	/^void Ai::Debug()$/;"	f	class:Ai	signature:()
+Debug	.\Ai.h	/^        void Debug();$/;"	p	class:Ai	access:public	signature:()
+Debug	.\EQ.cpp	/^void EQ::Debug()$/;"	f	class:EQ	signature:()
+Debug	.\EQ.h	/^      void Debug();$/;"	p	class:EQ	access:public	signature:()
 DebugTexture	.\EQ.cpp	/^Textures DebugTexture;$/;"	v
-Doors	.\Doors.cpp	/^Doors::Doors()$/;"	f	class:Doors
+Doors	.\Doors.cpp	/^Doors::Doors()$/;"	f	class:Doors	signature:()
+Doors	.\Doors.h	/^        Doors();$/;"	p	class:Doors	access:public	signature:()
 Doors	.\Doors.h	/^class Doors$/;"	c
-DrawShadows	.\Light.cpp	/^int Light::DrawShadows(int locationX,int locationY, SDL_Rect cube)$/;"	f	class:Light
-EQ	.\EQ.cpp	/^EQ::EQ()$/;"	f	class:EQ
+Doors::Connection	.\Doors.cpp	/^void Doors::Connection(SDL_Rect* player, int z)$/;"	f	class:Doors	signature:(SDL_Rect* player, int z)
+Doors::Connection	.\Doors.h	/^        void Connection(SDL_Rect* player, int z);$/;"	p	class:Doors	access:public	signature:(SDL_Rect* player, int z)
+Doors::Doors	.\Doors.cpp	/^Doors::Doors()$/;"	f	class:Doors	signature:()
+Doors::Doors	.\Doors.h	/^        Doors();$/;"	p	class:Doors	access:public	signature:()
+Doors::doorA	.\Doors.h	/^        SDL_Rect doorA[TOTAL_DOORS];$/;"	m	class:Doors	access:private
+Doors::doorB	.\Doors.h	/^        SDL_Rect doorB[TOTAL_DOORS];$/;"	m	class:Doors	access:private
+Doors::~Doors	.\Doors.cpp	/^Doors::~Doors()$/;"	f	class:Doors	signature:()
+Doors::~Doors	.\Doors.h	/^        virtual ~Doors();$/;"	p	class:Doors	access:public	signature:()
+DrawShadows	.\Light.cpp	/^int Light::DrawShadows(int locationX,int locationY, SDL_Rect cube)$/;"	f	class:Light	signature:(int locationX,int locationY, SDL_Rect cube)
+DrawShadows	.\Light.h	/^        int DrawShadows(int locationX,int locationY, SDL_Rect cube);$/;"	p	class:Light	access:public	signature:(int locationX,int locationY, SDL_Rect cube)
+EQ	.\EQ.cpp	/^EQ::EQ()$/;"	f	class:EQ	signature:()
+EQ	.\EQ.h	/^      EQ();$/;"	p	class:EQ	access:public	signature:()
 EQ	.\EQ.h	/^class EQ$/;"	c
+EQ::Cleanup	.\EQ.cpp	/^void EQ::Cleanup()$/;"	f	class:EQ	signature:()
+EQ::Cleanup	.\EQ.h	/^      void Cleanup();$/;"	p	class:EQ	access:public	signature:()
+EQ::Debug	.\EQ.cpp	/^void EQ::Debug()$/;"	f	class:EQ	signature:()
+EQ::Debug	.\EQ.h	/^      void Debug();$/;"	p	class:EQ	access:public	signature:()
+EQ::EQ	.\EQ.cpp	/^EQ::EQ()$/;"	f	class:EQ	signature:()
+EQ::EQ	.\EQ.h	/^      EQ();$/;"	p	class:EQ	access:public	signature:()
+EQ::Event	.\EQ.cpp	/^void EQ::Event(SDL_Event* event)$/;"	f	class:EQ	signature:(SDL_Event* event)
+EQ::Event	.\EQ.h	/^      void Event(SDL_Event* Event);$/;"	p	class:EQ	access:public	signature:(SDL_Event* Event)
+EQ::Execute	.\EQ.cpp	/^int EQ::Execute()$/;"	f	class:EQ	signature:()
+EQ::Execute	.\EQ.h	/^      int Execute();$/;"	p	class:EQ	access:public	signature:()
+EQ::Font	.\EQ.h	/^      TTF_Font* Font;$/;"	m	class:EQ	access:private
+EQ::Fps	.\EQ.cpp	/^void EQ::Fps()$/;"	f	class:EQ	signature:()
+EQ::Fps	.\EQ.h	/^      void Fps();$/;"	p	class:EQ	access:public	signature:()
+EQ::FpsCap	.\EQ.cpp	/^void EQ::FpsCap()$/;"	f	class:EQ	signature:()
+EQ::FpsCap	.\EQ.h	/^      void FpsCap();$/;"	p	class:EQ	access:public	signature:()
+EQ::Init	.\EQ.cpp	/^bool EQ::Init()$/;"	f	class:EQ	signature:()
+EQ::Init	.\EQ.h	/^      bool Init();$/;"	p	class:EQ	access:public	signature:()
+EQ::InitKeys	.\EQ.h	/^      bool InitKeys();$/;"	p	class:EQ	access:public	signature:()
+EQ::Input	.\EQ.cpp	/^void EQ::Input()$/;"	f	class:EQ	signature:()
+EQ::Input	.\EQ.h	/^      void Input();$/;"	p	class:EQ	access:public	signature:()
+EQ::Lighting	.\EQ.cpp	/^void EQ::Lighting()$/;"	f	class:EQ	signature:()
+EQ::Lighting	.\EQ.h	/^      void Lighting();$/;"	p	class:EQ	access:public	signature:()
+EQ::LoadMedia	.\EQ.cpp	/^bool EQ::LoadMedia()$/;"	f	class:EQ	signature:()
+EQ::LoadMedia	.\EQ.h	/^      bool LoadMedia();$/;"	p	class:EQ	access:public	signature:()
+EQ::Loop	.\EQ.cpp	/^void EQ::Loop()$/;"	f	class:EQ	signature:()
+EQ::Loop	.\EQ.h	/^      void Loop();$/;"	p	class:EQ	access:public	signature:()
+EQ::Render	.\EQ.cpp	/^void EQ::Render()$/;"	f	class:EQ	signature:()
+EQ::Render	.\EQ.h	/^      void Render();$/;"	p	class:EQ	access:public	signature:()
+EQ::Renderer	.\EQ.h	/^      SDL_Renderer* Renderer;$/;"	m	class:EQ	access:private
+EQ::Running	.\EQ.h	/^      bool Running;$/;"	m	class:EQ	access:private
+EQ::Texture	.\EQ.h	/^      SDL_Texture* Texture;$/;"	m	class:EQ	access:private
+EQ::Window	.\EQ.h	/^      SDL_Window* Window;$/;"	m	class:EQ	access:private
+EQ::avgFPS	.\EQ.h	/^      float avgFPS;$/;"	m	class:EQ	access:private
+EQ::countedFrames	.\EQ.h	/^      int countedFrames;$/;"	m	class:EQ	access:private
+EQ::frameTicks	.\EQ.h	/^      int frameTicks;$/;"	m	class:EQ	access:private
+EQ::loadTexture	.\EQ.h	/^      SDL_Texture* loadTexture(std::string path);$/;"	p	class:EQ	access:public	signature:(std::string path)
+EQ::textColor	.\EQ.h	/^      SDL_Color textColor;$/;"	m	class:EQ	access:private
+EQ::timeStep	.\EQ.h	/^      float timeStep;$/;"	m	class:EQ	access:private
 EQ_H	.\EQ.h	2;"	d
-EndFrameLeft	.\Player.h	/^		int EndFrameLeft;$/;"	m	class:Player
-EndFrameRight	.\Player.h	/^		int EndFrameRight;$/;"	m	class:Player
-Energy	.\Player.cpp	/^int Player::Energy(int action)$/;"	f	class:Player
-Event	.\EQ.cpp	/^void EQ::Event(SDL_Event* event)$/;"	f	class:EQ
-Execute	.\EQ.cpp	/^int EQ::Execute()$/;"	f	class:EQ
+EndFrameLeft	.\Player.h	/^		int EndFrameLeft;$/;"	m	class:Player	access:private
+EndFrameRight	.\Player.h	/^		int EndFrameRight;$/;"	m	class:Player	access:private
+Energy	.\Player.cpp	/^int Player::Energy(int action)$/;"	f	class:Player	signature:(int action)
+Energy	.\Player.h	/^		int Energy(int action);$/;"	p	class:Player	access:public	signature:(int action)
+Event	.\EQ.cpp	/^void EQ::Event(SDL_Event* event)$/;"	f	class:EQ	signature:(SDL_Event* event)
+Event	.\EQ.h	/^      void Event(SDL_Event* Event);$/;"	p	class:EQ	access:public	signature:(SDL_Event* Event)
+Execute	.\EQ.cpp	/^int EQ::Execute()$/;"	f	class:EQ	signature:()
+Execute	.\EQ.h	/^      int Execute();$/;"	p	class:EQ	access:public	signature:()
 FPS	.\Constants.h	/^const int FPS = 60;$/;"	v
 FPStimer	.\EQ.cpp	/^Timer FPStimer;$/;"	v
-FacingLeft	.\Player.h	/^		bool FacingLeft;$/;"	m	class:Player
-FacingRight	.\Player.h	/^		bool FacingRight;$/;"	m	class:Player
-Falling	.\Player.cpp	/^void Player::Falling(Tile* tiles[])$/;"	f	class:Player
-Follow	.\Camera.cpp	/^void Camera::Follow()$/;"	f	class:Camera
-Font	.\EQ.h	/^      TTF_Font* Font;$/;"	m	class:EQ
-Fps	.\EQ.cpp	/^void EQ::Fps()$/;"	f	class:EQ
-FpsCap	.\EQ.cpp	/^void EQ::FpsCap()$/;"	f	class:EQ
-Free	.\Textures.cpp	/^void Textures::Free()$/;"	f	class:Textures
+FacingLeft	.\Player.h	/^		bool FacingLeft;$/;"	m	class:Player	access:public
+FacingRight	.\Player.h	/^		bool FacingRight;$/;"	m	class:Player	access:public
+Falling	.\Player.cpp	/^void Player::Falling(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
+Falling	.\Player.h	/^		void Falling(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
+Follow	.\Camera.cpp	/^void Camera::Follow()$/;"	f	class:Camera	signature:()
+Follow	.\Camera.h	/^        void Follow();$/;"	p	class:Camera	access:public	signature:()
+Font	.\EQ.h	/^      TTF_Font* Font;$/;"	m	class:EQ	access:private
+Fps	.\EQ.cpp	/^void EQ::Fps()$/;"	f	class:EQ	signature:()
+Fps	.\EQ.h	/^      void Fps();$/;"	p	class:EQ	access:public	signature:()
+FpsCap	.\EQ.cpp	/^void EQ::FpsCap()$/;"	f	class:EQ	signature:()
+FpsCap	.\EQ.h	/^      void FpsCap();$/;"	p	class:EQ	access:public	signature:()
+Free	.\Textures.cpp	/^void Textures::Free()$/;"	f	class:Textures	signature:()
+Free	.\Textures.h	/^        void Free();$/;"	p	class:Textures	access:public	signature:()
 GRAVITY	.\Constants.h	/^const int GRAVITY = 12;$/;"	v
-GoTroughDoor	.\Player.cpp	/^void Player::GoTroughDoor(Tile* tiles[])$/;"	f	class:Player
-Gravity	.\Physics.cpp	/^bool Physics::Gravity(SDL_Rect a, Tile* tiles[])$/;"	f	class:Physics
-Health	.\Ai.cpp	/^int Ai:: Health(Mobs* mobs[], int i)$/;"	f	class:Ai
-Health	.\Player.cpp	/^int Player::Health(int damage)$/;"	f	class:Player
-HealthBar	.\Player.h	/^		SDL_Rect HealthBar;$/;"	m	class:Player
-IdleFrameLeft	.\Player.h	/^		int IdleFrameLeft;$/;"	m	class:Player
-IdleFrameRight	.\Player.h	/^		int IdleFrameRight;$/;"	m	class:Player
-Init	.\EQ.cpp	/^bool EQ::Init()$/;"	f	class:EQ
-InitShadows	.\Light.cpp	/^void Light::InitShadows(int locationX,int locationY)$/;"	f	class:Light
-Input	.\Ai.cpp	/^int Ai::Input(int i)$/;"	f	class:Ai
-Input	.\EQ.cpp	/^void EQ::Input()$/;"	f	class:EQ
-Input	.\Player.cpp	/^void Player::Input(Tile* tiles[])$/;"	f	class:Player
-Jump	.\Player.cpp	/^void Player::Jump(Tile* tiles[])$/;"	f	class:Player
+GoTroughDoor	.\Player.cpp	/^void Player::GoTroughDoor(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
+GoTroughDoor	.\Player.h	/^		void GoTroughDoor(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
+Gravity	.\Physics.cpp	/^bool Physics::Gravity(SDL_Rect a, Tile* tiles[])$/;"	f	class:Physics	signature:(SDL_Rect a, Tile* tiles[])
+Gravity	.\Physics.h	/^		bool Gravity(SDL_Rect a, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, Tile* tiles[])
+Health	.\Ai.cpp	/^int Ai:: Health(Mobs* mobs[], int i)$/;"	f	class:Ai	signature:(Mobs* mobs[], int i)
+Health	.\Ai.h	/^        int Health(Mobs* mobs[], int i);$/;"	p	class:Ai	access:public	signature:(Mobs* mobs[], int i)
+Health	.\Player.cpp	/^int Player::Health(int damage)$/;"	f	class:Player	signature:(int damage)
+Health	.\Player.h	/^		int Health(int damage);$/;"	p	class:Player	access:public	signature:(int damage)
+HealthBar	.\Player.h	/^		SDL_Rect HealthBar;$/;"	m	class:Player	access:private
+IdleFrameLeft	.\Player.h	/^		int IdleFrameLeft;$/;"	m	class:Player	access:private
+IdleFrameRight	.\Player.h	/^		int IdleFrameRight;$/;"	m	class:Player	access:private
+Init	.\EQ.cpp	/^bool EQ::Init()$/;"	f	class:EQ	signature:()
+Init	.\EQ.h	/^      bool Init();$/;"	p	class:EQ	access:public	signature:()
+InitKeys	.\EQ.h	/^      bool InitKeys();$/;"	p	class:EQ	access:public	signature:()
+InitShadows	.\Light.cpp	/^void Light::InitShadows(int locationX,int locationY)$/;"	f	class:Light	signature:(int locationX,int locationY)
+InitShadows	.\Light.h	/^        void InitShadows(int locationX,int locationY);$/;"	p	class:Light	access:public	signature:(int locationX,int locationY)
+Input	.\Ai.cpp	/^int Ai::Input(int i)$/;"	f	class:Ai	signature:(int i)
+Input	.\Ai.h	/^        int Input(int i);$/;"	p	class:Ai	access:public	signature:(int i)
+Input	.\EQ.cpp	/^void EQ::Input()$/;"	f	class:EQ	signature:()
+Input	.\EQ.h	/^      void Input();$/;"	p	class:EQ	access:public	signature:()
+Input	.\Player.cpp	/^void Player::Input(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
+Input	.\Player.h	/^		void Input(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
+Jump	.\Player.cpp	/^void Player::Jump(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
+Jump	.\Player.h	/^		void Jump(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
 LEVEL_HEIGHT	.\Constants.h	/^const int LEVEL_HEIGHT = 30;$/;"	v
 LEVEL_WIDTH	.\Constants.h	/^const int LEVEL_WIDTH = 30;$/;"	v
 LIGHT_H	.\Light.h	2;"	d
-Light	.\Light.cpp	/^Light::Light()$/;"	f	class:Light
+Light	.\Light.cpp	/^Light::Light()$/;"	f	class:Light	signature:()
+Light	.\Light.h	/^        Light();$/;"	p	class:Light	access:public	signature:()
 Light	.\Light.h	/^class Light$/;"	c
-Lighting	.\EQ.cpp	/^void EQ::Lighting()$/;"	f	class:EQ
-LoadFromFile	.\Textures.cpp	/^bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)$/;"	f	class:Textures
-LoadFromRenderedText	.\Textures.cpp	/^bool Textures::LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)$/;"	f	class:Textures
-LoadMedia	.\EQ.cpp	/^bool EQ::LoadMedia()$/;"	f	class:EQ
-LoadMedia	.\Light.cpp	/^int Light::LoadMedia(SDL_Renderer* Renderer)$/;"	f	class:Light
-LoadMedia	.\Player.cpp	/^int Player::LoadMedia(SDL_Renderer* Renderer)$/;"	f	class:Player
-LoadMedia	.\World.cpp	/^int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])$/;"	f	class:World
-Loop	.\EQ.cpp	/^void EQ::Loop()$/;"	f	class:EQ
+Light::Cleanup	.\Light.cpp	/^void Light::Cleanup()$/;"	f	class:Light	signature:()
+Light::Cleanup	.\Light.h	/^        void Cleanup();$/;"	p	class:Light	access:public	signature:()
+Light::DrawShadows	.\Light.cpp	/^int Light::DrawShadows(int locationX,int locationY, SDL_Rect cube)$/;"	f	class:Light	signature:(int locationX,int locationY, SDL_Rect cube)
+Light::DrawShadows	.\Light.h	/^        int DrawShadows(int locationX,int locationY, SDL_Rect cube);$/;"	p	class:Light	access:public	signature:(int locationX,int locationY, SDL_Rect cube)
+Light::InitShadows	.\Light.cpp	/^void Light::InitShadows(int locationX,int locationY)$/;"	f	class:Light	signature:(int locationX,int locationY)
+Light::InitShadows	.\Light.h	/^        void InitShadows(int locationX,int locationY);$/;"	p	class:Light	access:public	signature:(int locationX,int locationY)
+Light::Light	.\Light.cpp	/^Light::Light()$/;"	f	class:Light	signature:()
+Light::Light	.\Light.h	/^        Light();$/;"	p	class:Light	access:public	signature:()
+Light::LoadMedia	.\Light.cpp	/^int Light::LoadMedia(SDL_Renderer* Renderer)$/;"	f	class:Light	signature:(SDL_Renderer* Renderer)
+Light::LoadMedia	.\Light.h	/^        int LoadMedia(SDL_Renderer* Renderer);$/;"	p	class:Light	access:public	signature:(SDL_Renderer* Renderer)
+Light::Render	.\Light.cpp	/^void Light::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Light	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
+Light::Render	.\Light.h	/^        void Render(SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Light	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
+Light::cube	.\Light.h	/^        SDL_Rect cube[TOTAL_TILES];$/;"	m	class:Light	access:private
+Light::screenEnd	.\Light.cpp	/^void Light::screenEnd(int x, int y, int x2, int y2, int*qx,int*qy,int startx,int starty, int endx,int endy)$/;"	f	class:Light	signature:(int x, int y, int x2, int y2, int*qx,int*qy,int startx,int starty, int endx,int endy)
+Light::screenEnd	.\Light.h	/^		void screenEnd(int x, int y, int x2, int y2, int*qx,int*qy,int startx,int starty, int endx,int endy);$/;"	p	class:Light	access:public	signature:(int x, int y, int x2, int y2, int*qx,int*qy,int startx,int starty, int endx,int endy)
+Light::~Light	.\Light.cpp	/^Light::~Light()$/;"	f	class:Light	signature:()
+Light::~Light	.\Light.h	/^        virtual ~Light();$/;"	p	class:Light	access:public	signature:()
+Lighting	.\EQ.cpp	/^void EQ::Lighting()$/;"	f	class:EQ	signature:()
+Lighting	.\EQ.h	/^      void Lighting();$/;"	p	class:EQ	access:public	signature:()
+LoadFromFile	.\Textures.cpp	/^bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)$/;"	f	class:Textures	signature:(SDL_Renderer* Renderer, std::string path)
+LoadFromFile	.\Textures.h	/^        bool LoadFromFile(SDL_Renderer* Renderer, std::string path);$/;"	p	class:Textures	access:public	signature:(SDL_Renderer* Renderer, std::string path)
+LoadFromRenderedText	.\Textures.cpp	/^bool Textures::LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)$/;"	f	class:Textures	signature:(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)
+LoadFromRenderedText	.\Textures.h	/^        bool LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor);$/;"	p	class:Textures	access:public	signature:(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)
+LoadMedia	.\EQ.cpp	/^bool EQ::LoadMedia()$/;"	f	class:EQ	signature:()
+LoadMedia	.\EQ.h	/^      bool LoadMedia();$/;"	p	class:EQ	access:public	signature:()
+LoadMedia	.\Light.cpp	/^int Light::LoadMedia(SDL_Renderer* Renderer)$/;"	f	class:Light	signature:(SDL_Renderer* Renderer)
+LoadMedia	.\Light.h	/^        int LoadMedia(SDL_Renderer* Renderer);$/;"	p	class:Light	access:public	signature:(SDL_Renderer* Renderer)
+LoadMedia	.\Player.cpp	/^int Player::LoadMedia(SDL_Renderer* Renderer)$/;"	f	class:Player	signature:(SDL_Renderer* Renderer)
+LoadMedia	.\Player.h	/^		int LoadMedia(SDL_Renderer* Renderer);$/;"	p	class:Player	access:public	signature:(SDL_Renderer* Renderer)
+LoadMedia	.\World.cpp	/^int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])$/;"	f	class:World	signature:(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
+LoadMedia	.\World.h	/^        int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[]);$/;"	p	class:World	access:public	signature:(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
+Loop	.\EQ.cpp	/^void EQ::Loop()$/;"	f	class:EQ	signature:()
+Loop	.\EQ.h	/^      void Loop();$/;"	p	class:EQ	access:public	signature:()
 MOBS_H	.\Mobs.h	2;"	d
 MOB_CLEAR	.\Constants.h	/^const int MOB_CLEAR = 0;$/;"	v
 MOB_TYPE_1	.\Constants.h	/^const int MOB_TYPE_1 = 1;$/;"	v
 MOB_TYPE_2	.\Constants.h	/^const int MOB_TYPE_2 = 2;$/;"	v
-Mob	.\Collision.cpp	/^bool Collision::Mob(SDL_Rect cBox, Mobs* mobs[], int type)$/;"	f	class:Collision
-MobBox	.\Mobs.h	/^ 		SDL_Rect MobBox;$/;"	m	class:Mobs
-MobClips	.\World.h	/^        SDL_Rect MobClips[TOTAL_MOB_SPRITES];$/;"	m	class:World
+Mob	.\Collision.cpp	/^bool Collision::Mob(SDL_Rect cBox, Mobs* mobs[], int type)$/;"	f	class:Collision	signature:(SDL_Rect cBox, Mobs* mobs[], int type)
+Mob	.\Collision.h	/^        bool Mob(SDL_Rect cBox, Mobs* mobs[], int type);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Mobs* mobs[], int type)
+MobBox	.\Mobs.h	/^ 		SDL_Rect MobBox;$/;"	m	class:Mobs	access:public
+MobClips	.\World.h	/^        SDL_Rect MobClips[TOTAL_MOB_SPRITES];$/;"	m	class:World	access:public
 MobSheetTexture	.\World.cpp	/^Textures MobSheetTexture;$/;"	v
-MobType	.\Mobs.h	/^ 		int MobType;$/;"	m	class:Mobs
-Mobs	.\Mobs.cpp	/^Mobs::Mobs(int x, int y, int Type)$/;"	f	class:Mobs
+MobType	.\Mobs.h	/^ 		int MobType;$/;"	m	class:Mobs	access:public
+Mobs	.\Mobs.cpp	/^Mobs::Mobs(int x, int y, int Type)$/;"	f	class:Mobs	signature:(int x, int y, int Type)
+Mobs	.\Mobs.h	/^        Mobs(int x, int y, int Type);$/;"	p	class:Mobs	access:public	signature:(int x, int y, int Type)
 Mobs	.\Mobs.h	/^class Mobs$/;"	c
-MobsCollision	.\Player.cpp	/^void Player::MobsCollision(Mobs* mobs[])$/;"	f	class:Player
-Move	.\Ai.cpp	/^int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai
-Move	.\Player.cpp	/^void Player::Move(int Movement, Tile* tiles[])$/;"	f	class:Player
-Movement	.\Ai.h	/^        enum Movement$/;"	g	class:Ai
-Movement	.\Player.h	/^		enum Movement$/;"	g	class:Player
+Mobs::MobBox	.\Mobs.h	/^ 		SDL_Rect MobBox;$/;"	m	class:Mobs	access:public
+Mobs::MobType	.\Mobs.h	/^ 		int MobType;$/;"	m	class:Mobs	access:public
+Mobs::Mobs	.\Mobs.cpp	/^Mobs::Mobs(int x, int y, int Type)$/;"	f	class:Mobs	signature:(int x, int y, int Type)
+Mobs::Mobs	.\Mobs.h	/^        Mobs(int x, int y, int Type);$/;"	p	class:Mobs	access:public	signature:(int x, int y, int Type)
+Mobs::Render	.\Mobs.cpp	/^void Mobs::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Mobs	signature:(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
+Mobs::Render	.\Mobs.h	/^ 		void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Mobs	access:public	signature:(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
+Mobs::Update	.\Mobs.h	/^        void Update();$/;"	p	class:Mobs	access:public	signature:()
+Mobs::getMobBox	.\Mobs.cpp	/^SDL_Rect Mobs::getMobBox()$/;"	f	class:Mobs	signature:()
+Mobs::getMobBox	.\Mobs.h	/^ 		SDL_Rect getMobBox();$/;"	p	class:Mobs	access:public	signature:()
+Mobs::getType	.\Mobs.cpp	/^int Mobs::getType()$/;"	f	class:Mobs	signature:()
+Mobs::getType	.\Mobs.h	/^ 		int getType();$/;"	p	class:Mobs	access:public	signature:()
+MobsCollision	.\Player.cpp	/^void Player::MobsCollision(Mobs* mobs[])$/;"	f	class:Player	signature:(Mobs* mobs[])
+MobsCollision	.\Player.h	/^		void MobsCollision(Mobs* mobs[]);$/;"	p	class:Player	access:public	signature:(Mobs* mobs[])
+Move	.\Ai.cpp	/^int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)$/;"	f	class:Ai	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+Move	.\Ai.h	/^        int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);$/;"	p	class:Ai	access:public	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+Move	.\Player.cpp	/^void Player::Move(int Movement, Tile* tiles[])$/;"	f	class:Player	signature:(int Movement, Tile* tiles[])
+Move	.\Player.h	/^		void Move(int Movement, Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(int Movement, Tile* tiles[])
+Movement	.\Ai.h	/^        enum Movement$/;"	g	class:Ai	access:private
+Movement	.\Player.h	/^		enum Movement$/;"	g	class:Player	access:private
 PHYSICS_H	.\Physics.h	2;"	d
+PI	.\Light.cpp	5;"	d	file:
 PLAYER_H	.\Player.h	2;"	d
-Pause	.\Timer.cpp	/^void Timer::Pause()$/;"	f	class:Timer
-PauseTicks	.\Timer.h	/^        Uint32 PauseTicks;$/;"	m	class:Timer
-Paused	.\Timer.h	/^        bool Paused;$/;"	m	class:Timer
+Pause	.\Timer.cpp	/^void Timer::Pause()$/;"	f	class:Timer	signature:()
+Pause	.\Timer.h	/^        void Pause();$/;"	p	class:Timer	access:public	signature:()
+PauseTicks	.\Timer.h	/^        Uint32 PauseTicks;$/;"	m	class:Timer	access:private
+Paused	.\Timer.h	/^        bool Paused;$/;"	m	class:Timer	access:private
 PhCollision	.\Physics.cpp	/^Collision PhCollision;$/;"	v
-Physics	.\Ai.cpp	/^int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])$/;"	f	class:Ai
-Physics	.\Physics.cpp	/^Physics::Physics()$/;"	f	class:Physics
+Physics	.\Ai.cpp	/^int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])$/;"	f	class:Ai	signature:(Mobs* mobs[], int i, Tile* tiles[])
+Physics	.\Ai.h	/^        int Physics(Mobs* mobs[], int i, Tile* tiles[]);$/;"	p	class:Ai	access:public	signature:(Mobs* mobs[], int i, Tile* tiles[])
+Physics	.\Physics.cpp	/^Physics::Physics()$/;"	f	class:Physics	signature:()
+Physics	.\Physics.h	/^		Physics();$/;"	p	class:Physics	access:public	signature:()
 Physics	.\Physics.h	/^class Physics$/;"	c
-Player	.\Player.cpp	/^Player::Player()$/;"	f	class:Player
+Physics::Gravity	.\Physics.cpp	/^bool Physics::Gravity(SDL_Rect a, Tile* tiles[])$/;"	f	class:Physics	signature:(SDL_Rect a, Tile* tiles[])
+Physics::Gravity	.\Physics.h	/^		bool Gravity(SDL_Rect a, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, Tile* tiles[])
+Physics::Physics	.\Physics.cpp	/^Physics::Physics()$/;"	f	class:Physics	signature:()
+Physics::Physics	.\Physics.h	/^		Physics();$/;"	p	class:Physics	access:public	signature:()
+Physics::StickToFloor	.\Physics.cpp	/^int Physics::StickToFloor(SDL_Rect a, SDL_Rect b, Tile* tiles[])$/;"	f	class:Physics	signature:(SDL_Rect a, SDL_Rect b, Tile* tiles[])
+Physics::StickToFloor	.\Physics.h	/^		int StickToFloor(SDL_Rect a, SDL_Rect b, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, SDL_Rect b, Tile* tiles[])
+Physics::~Physics	.\Physics.cpp	/^Physics::~Physics()$/;"	f	class:Physics	signature:()
+Physics::~Physics	.\Physics.h	/^		virtual ~Physics();$/;"	p	class:Physics	access:public	signature:()
+Player	.\Player.cpp	/^Player::Player()$/;"	f	class:Player	signature:()
+Player	.\Player.h	/^		Player();$/;"	p	class:Player	access:public	signature:()
 Player	.\Player.h	/^class Player$/;"	c
-PlayerClips	.\Player.h	/^		SDL_Rect PlayerClips[18];$/;"	m	class:Player
-Render	.\Camera.cpp	/^void Camera::Render(SDL_Renderer* Renderer)$/;"	f	class:Camera
-Render	.\EQ.cpp	/^void EQ::Render()$/;"	f	class:EQ
-Render	.\Light.cpp	/^void Light::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Light
-Render	.\Mobs.cpp	/^void Mobs::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Mobs
-Render	.\Player.cpp	/^void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Player
-Render	.\Textures.cpp	/^void Textures::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)$/;"	f	class:Textures
-Render	.\Tile.cpp	/^void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Tile
-Render	.\World.cpp	/^void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)$/;"	f	class:World
-Renderer	.\EQ.h	/^      SDL_Renderer* Renderer;$/;"	m	class:EQ
-Running	.\EQ.h	/^      bool Running;$/;"	m	class:EQ
-SetMobs	.\World.cpp	/^bool World::SetMobs(Mobs* mobs[])$/;"	f	class:World
-SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[], Mobs* mobs[])$/;"	f	class:World
+Player::Attack	.\Player.cpp	/^void Player::Attack()$/;"	f	class:Player	signature:()
+Player::Attack	.\Player.h	/^		void Attack();$/;"	p	class:Player	access:public	signature:()
+Player::Block	.\Player.cpp	/^void Player::Block()$/;"	f	class:Player	signature:()
+Player::Block	.\Player.h	/^		void Block();$/;"	p	class:Player	access:public	signature:()
+Player::Cleanup	.\Player.cpp	/^void Player::Cleanup()$/;"	f	class:Player	signature:()
+Player::Cleanup	.\Player.h	/^		void Cleanup();$/;"	p	class:Player	access:public	signature:()
+Player::Climb	.\Player.cpp	/^void Player::Climb(int Movement, Tile* tiles[])$/;"	f	class:Player	signature:(int Movement, Tile* tiles[])
+Player::Climb	.\Player.h	/^		void Climb(int Movement, Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(int Movement, Tile* tiles[])
+Player::EndFrameLeft	.\Player.h	/^		int EndFrameLeft;$/;"	m	class:Player	access:private
+Player::EndFrameRight	.\Player.h	/^		int EndFrameRight;$/;"	m	class:Player	access:private
+Player::Energy	.\Player.cpp	/^int Player::Energy(int action)$/;"	f	class:Player	signature:(int action)
+Player::Energy	.\Player.h	/^		int Energy(int action);$/;"	p	class:Player	access:public	signature:(int action)
+Player::FacingLeft	.\Player.h	/^		bool FacingLeft;$/;"	m	class:Player	access:public
+Player::FacingRight	.\Player.h	/^		bool FacingRight;$/;"	m	class:Player	access:public
+Player::Falling	.\Player.cpp	/^void Player::Falling(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
+Player::Falling	.\Player.h	/^		void Falling(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
+Player::GoTroughDoor	.\Player.cpp	/^void Player::GoTroughDoor(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
+Player::GoTroughDoor	.\Player.h	/^		void GoTroughDoor(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
+Player::Health	.\Player.cpp	/^int Player::Health(int damage)$/;"	f	class:Player	signature:(int damage)
+Player::Health	.\Player.h	/^		int Health(int damage);$/;"	p	class:Player	access:public	signature:(int damage)
+Player::HealthBar	.\Player.h	/^		SDL_Rect HealthBar;$/;"	m	class:Player	access:private
+Player::IdleFrameLeft	.\Player.h	/^		int IdleFrameLeft;$/;"	m	class:Player	access:private
+Player::IdleFrameRight	.\Player.h	/^		int IdleFrameRight;$/;"	m	class:Player	access:private
+Player::Input	.\Player.cpp	/^void Player::Input(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
+Player::Input	.\Player.h	/^		void Input(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
+Player::Jump	.\Player.cpp	/^void Player::Jump(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
+Player::Jump	.\Player.h	/^		void Jump(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
+Player::LoadMedia	.\Player.cpp	/^int Player::LoadMedia(SDL_Renderer* Renderer)$/;"	f	class:Player	signature:(SDL_Renderer* Renderer)
+Player::LoadMedia	.\Player.h	/^		int LoadMedia(SDL_Renderer* Renderer);$/;"	p	class:Player	access:public	signature:(SDL_Renderer* Renderer)
+Player::MobsCollision	.\Player.cpp	/^void Player::MobsCollision(Mobs* mobs[])$/;"	f	class:Player	signature:(Mobs* mobs[])
+Player::MobsCollision	.\Player.h	/^		void MobsCollision(Mobs* mobs[]);$/;"	p	class:Player	access:public	signature:(Mobs* mobs[])
+Player::Move	.\Player.cpp	/^void Player::Move(int Movement, Tile* tiles[])$/;"	f	class:Player	signature:(int Movement, Tile* tiles[])
+Player::Move	.\Player.h	/^		void Move(int Movement, Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(int Movement, Tile* tiles[])
+Player::Movement	.\Player.h	/^		enum Movement$/;"	g	class:Player	access:private
+Player::Player	.\Player.cpp	/^Player::Player()$/;"	f	class:Player	signature:()
+Player::Player	.\Player.h	/^		Player();$/;"	p	class:Player	access:public	signature:()
+Player::PlayerClips	.\Player.h	/^		SDL_Rect PlayerClips[18];$/;"	m	class:Player	access:private
+Player::Render	.\Player.cpp	/^void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Player	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
+Player::Render	.\Player.h	/^		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Player	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
+Player::Shield	.\Player.h	/^		SDL_Rect Shield;$/;"	m	class:Player	access:public
+Player::ShieldBox	.\Player.h	/^		SDL_Rect ShieldBox;$/;"	m	class:Player	access:private
+Player::StaminBar	.\Player.h	/^		SDL_Rect StaminBar;$/;"	m	class:Player	access:private
+Player::StartFrameLeft	.\Player.h	/^		int StartFrameLeft;$/;"	m	class:Player	access:private
+Player::StartFrameRight	.\Player.h	/^		int StartFrameRight;$/;"	m	class:Player	access:private
+Player::State	.\Player.h	/^		enum State$/;"	g	class:Player	access:private
+Player::Sword	.\Player.h	/^		SDL_Rect Sword;$/;"	m	class:Player	access:public
+Player::SwordBox	.\Player.h	/^		SDL_Rect SwordBox;$/;"	m	class:Player	access:private
+Player::Update	.\Player.cpp	/^void Player::Update(Mobs* mobs[])$/;"	f	class:Player	signature:(Mobs* mobs[])
+Player::Update	.\Player.h	/^		void Update(Mobs* mobs[]);$/;"	p	class:Player	access:public	signature:(Mobs* mobs[])
+Player::WalkingLeft	.\Player.h	/^		bool WalkingLeft;$/;"	m	class:Player	access:private
+Player::WalkingRight	.\Player.h	/^		bool WalkingRight;$/;"	m	class:Player	access:private
+Player::Xvel	.\Player.h	/^		int Xvel, Yvel;$/;"	m	class:Player	access:public
+Player::Yvel	.\Player.h	/^		int Xvel, Yvel;$/;"	m	class:Player	access:public
+Player::_state	.\Player.h	/^		int _state;$/;"	m	class:Player	access:public
+Player::attack	.\Player.h	/^		bool attack;$/;"	m	class:Player	access:private
+Player::attackEnergy	.\Player.h	/^		int attackEnergy;$/;"	m	class:Player	access:private
+Player::block	.\Player.h	/^		bool block;$/;"	m	class:Player	access:private
+Player::blockEnergy	.\Player.h	/^		int blockEnergy;$/;"	m	class:Player	access:private
+Player::bottomCollisionBox	.\Player.h	/^		SDL_Rect bottomCollisionBox;$/;"	m	class:Player	access:private
+Player::canEnterDoor	.\Player.h	/^		bool canEnterDoor;$/;"	m	class:Player	access:private
+Player::canJump	.\Player.h	/^		bool canJump;$/;"	m	class:Player	access:private
+Player::canRun	.\Player.h	/^		bool canRun;$/;"	m	class:Player	access:private
+Player::climbingSpeed	.\Player.h	/^		int climbingSpeed;$/;"	m	class:Player	access:private
+Player::currentHealth	.\Player.h	/^		int currentHealth;$/;"	m	class:Player	access:private
+Player::down	.\Player.h	/^			down,$/;"	e	enum:Player::Movement
+Player::energy	.\Player.h	/^		int energy;$/;"	m	class:Player	access:private
+Player::energyRecover	.\Player.h	/^		bool energyRecover;$/;"	m	class:Player	access:private
+Player::frame	.\Player.h	/^		int frame;$/;"	m	class:Player	access:private
+Player::frameCounter	.\Player.h	/^		int frameCounter;$/;"	m	class:Player	access:private
+Player::frameSpeed	.\Player.h	/^		int frameSpeed;$/;"	m	class:Player	access:private
+Player::frameSwitch	.\Player.h	/^		int frameSwitch;$/;"	m	class:Player	access:private
+Player::health	.\Player.h	/^		int health;$/;"	m	class:Player	access:private
+Player::horizontal	.\Player.h	/^			horizontal,$/;"	e	enum:Player::Movement
+Player::isAttacking	.\Player.h	/^		bool isAttacking;$/;"	m	class:Player	access:private
+Player::isBlocking	.\Player.h	/^		bool isBlocking;$/;"	m	class:Player	access:private
+Player::isClimbing	.\Player.h	/^		bool isClimbing;$/;"	m	class:Player	access:private
+Player::isDucking	.\Player.h	/^		bool isDucking;$/;"	m	class:Player	access:private
+Player::isFalling	.\Player.h	/^		bool isFalling;$/;"	m	class:Player	access:private
+Player::isJumping	.\Player.h	/^		bool isJumping;$/;"	m	class:Player	access:private
+Player::isRunning	.\Player.h	/^		bool isRunning;$/;"	m	class:Player	access:private
+Player::jump	.\Player.h	/^			jump$/;"	e	enum:Player::Movement
+Player::jumpCount	.\Player.h	/^		int jumpCount;$/;"	m	class:Player	access:private
+Player::jumpEnergy	.\Player.h	/^		int jumpEnergy;$/;"	m	class:Player	access:private
+Player::jumpHeight	.\Player.h	/^		int jumpHeight;$/;"	m	class:Player	access:private
+Player::jumpingSpeed	.\Player.h	/^		int jumpingSpeed;$/;"	m	class:Player	access:private
+Player::keyState	.\Player.h	/^		const Uint8* keyState;$/;"	m	class:Player	access:private
+Player::left	.\Player.h	/^			left,$/;"	e	enum:Player::Movement
+Player::maxEnergy	.\Player.h	/^		int maxEnergy;$/;"	m	class:Player	access:private
+Player::maxHealth	.\Player.h	/^		int maxHealth;$/;"	m	class:Player	access:private
+Player::playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player	access:public
+Player::playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player	access:public
+Player::right	.\Player.h	/^			right,$/;"	e	enum:Player::Movement
+Player::runEnergy	.\Player.h	/^		int runEnergy;$/;"	m	class:Player	access:private
+Player::runningSpeed	.\Player.h	/^		int runningSpeed;$/;"	m	class:Player	access:private
+Player::state_attacking	.\Player.h	/^			state_attacking, \/\/4$/;"	e	enum:Player::State
+Player::state_blocking	.\Player.h	/^			state_blocking, \/\/ 5$/;"	e	enum:Player::State
+Player::state_climbing	.\Player.h	/^			state_climbing \/\/ 6$/;"	e	enum:Player::State
+Player::state_idle	.\Player.h	/^			state_idle, \/\/ 0$/;"	e	enum:Player::State
+Player::state_jumping	.\Player.h	/^			state_jumping, \/\/ 1$/;"	e	enum:Player::State
+Player::state_running	.\Player.h	/^			state_running, \/\/ 3$/;"	e	enum:Player::State
+Player::state_walking	.\Player.h	/^			state_walking, \/\/ 2$/;"	e	enum:Player::State
+Player::up	.\Player.h	/^			up,$/;"	e	enum:Player::Movement
+Player::vertCenterCollisionBox	.\Player.h	/^		SDL_Rect vertCenterCollisionBox;$/;"	m	class:Player	access:public
+Player::vertical	.\Player.h	/^			vertical,$/;"	e	enum:Player::Movement
+Player::walkingSpeed	.\Player.h	/^		int walkingSpeed;$/;"	m	class:Player	access:private
+Player::~Player	.\Player.cpp	/^Player::~Player()$/;"	f	class:Player	signature:()
+Player::~Player	.\Player.h	/^		virtual ~Player();$/;"	p	class:Player	access:public	signature:()
+PlayerClips	.\Player.h	/^		SDL_Rect PlayerClips[18];$/;"	m	class:Player	access:private
+Render	.\Camera.cpp	/^void Camera::Render(SDL_Renderer* Renderer)$/;"	f	class:Camera	signature:(SDL_Renderer* Renderer)
+Render	.\Camera.h	/^        void Render(SDL_Renderer* Renderer);$/;"	p	class:Camera	access:public	signature:(SDL_Renderer* Renderer)
+Render	.\EQ.cpp	/^void EQ::Render()$/;"	f	class:EQ	signature:()
+Render	.\EQ.h	/^      void Render();$/;"	p	class:EQ	access:public	signature:()
+Render	.\Light.cpp	/^void Light::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Light	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
+Render	.\Light.h	/^        void Render(SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Light	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
+Render	.\Mobs.cpp	/^void Mobs::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Mobs	signature:(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
+Render	.\Mobs.h	/^ 		void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Mobs	access:public	signature:(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
+Render	.\Player.cpp	/^void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Player	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
+Render	.\Player.h	/^		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Player	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
+Render	.\Textures.cpp	/^void Textures::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)$/;"	f	class:Textures	signature:(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)
+Render	.\Textures.h	/^		void Render(SDL_Renderer* Renderer, int x, int y, SDL_Rect* clip = NULL);$/;"	p	class:Textures	access:public	signature:(SDL_Renderer* Renderer, int x, int y, SDL_Rect* clip = NULL)
+Render	.\Tile.cpp	/^void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Tile	signature:(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
+Render	.\Tile.h	/^        void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Tile	access:public	signature:(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
+Render	.\World.cpp	/^void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)$/;"	f	class:World	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)
+Render	.\World.h	/^        void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player);$/;"	p	class:World	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)
+RenderTexture	.\Textures.h	/^		void RenderTexture(SDL_Rect ls_rect)$/;"	f	class:Textures	access:public	signature:(SDL_Rect ls_rect)
+Renderer	.\EQ.h	/^      SDL_Renderer* Renderer;$/;"	m	class:EQ	access:private
+Running	.\EQ.h	/^      bool Running;$/;"	m	class:EQ	access:private
+SetMobs	.\World.cpp	/^bool World::SetMobs(Mobs* mobs[])$/;"	f	class:World	signature:(Mobs* mobs[])
+SetMobs	.\World.h	/^        bool SetMobs(Mobs* mobs[]);$/;"	p	class:World	access:public	signature:(Mobs* mobs[])
+SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[], Mobs* mobs[])$/;"	f	class:World	signature:(Tile* tiles[], Mobs* mobs[])
+SetTiles	.\World.h	/^        bool SetTiles(Tile* tiles[], Mobs* mobs[]);$/;"	p	class:World	access:public	signature:(Tile* tiles[], Mobs* mobs[])
 Shadow2Texture	.\Light.cpp	/^Textures Shadow2Texture;$/;"	v
 Shadow3Texture	.\Light.cpp	/^Textures Shadow3Texture;$/;"	v
 ShadowTexture	.\Light.cpp	/^Textures ShadowTexture;$/;"	v
-Shield	.\Player.h	/^		SDL_Rect Shield;$/;"	m	class:Player
-ShieldBox	.\Player.h	/^		SDL_Rect ShieldBox;$/;"	m	class:Player
-Slope_45_Left	.\Collision.cpp	/^bool Collision::Slope_45_Left(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision
-Slope_45_Right	.\Collision.cpp	/^bool Collision::Slope_45_Right(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision
+Shield	.\Player.h	/^		SDL_Rect Shield;$/;"	m	class:Player	access:public
+ShieldBox	.\Player.h	/^		SDL_Rect ShieldBox;$/;"	m	class:Player	access:private
+Slope_45_Left	.\Collision.cpp	/^bool Collision::Slope_45_Left(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Slope_45_Left	.\Collision.h	/^        bool Slope_45_Left(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Slope_45_Right	.\Collision.cpp	/^bool Collision::Slope_45_Right(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Slope_45_Right	.\Collision.h	/^        bool Slope_45_Right(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 SpriteSheetTexture	.\Player.cpp	/^Textures SpriteSheetTexture;$/;"	v
-StaminBar	.\Player.h	/^		SDL_Rect StaminBar;$/;"	m	class:Player
-Start	.\Timer.cpp	/^void Timer::Start()$/;"	f	class:Timer
-StartFrameLeft	.\Player.h	/^		int StartFrameLeft;$/;"	m	class:Player
-StartFrameRight	.\Player.h	/^		int StartFrameRight;$/;"	m	class:Player
-StartTicks	.\Timer.h	/^        Uint32 StartTicks;$/;"	m	class:Timer
-Started	.\Timer.h	/^        bool Started;$/;"	m	class:Timer
-State	.\Player.h	/^		enum State$/;"	g	class:Player
-Stick	.\Collision.cpp	/^bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision
-StickToFloor	.\Physics.cpp	/^int Physics::StickToFloor(SDL_Rect a, SDL_Rect b, Tile* tiles[])$/;"	f	class:Physics
-Stop	.\Timer.cpp	/^void Timer::Stop()$/;"	f	class:Timer
-Sword	.\Player.h	/^		SDL_Rect Sword;$/;"	m	class:Player
-SwordBox	.\Player.h	/^		SDL_Rect SwordBox;$/;"	m	class:Player
+StaminBar	.\Player.h	/^		SDL_Rect StaminBar;$/;"	m	class:Player	access:private
+Start	.\Timer.cpp	/^void Timer::Start()$/;"	f	class:Timer	signature:()
+Start	.\Timer.h	/^        void Start();$/;"	p	class:Timer	access:public	signature:()
+StartFrameLeft	.\Player.h	/^		int StartFrameLeft;$/;"	m	class:Player	access:private
+StartFrameRight	.\Player.h	/^		int StartFrameRight;$/;"	m	class:Player	access:private
+StartTicks	.\Timer.h	/^        Uint32 StartTicks;$/;"	m	class:Timer	access:private
+Started	.\Timer.h	/^        bool Started;$/;"	m	class:Timer	access:private
+State	.\Player.h	/^		enum State$/;"	g	class:Player	access:private
+Stick	.\Collision.cpp	/^bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Stick	.\Collision.h	/^        bool Stick(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+StickToFloor	.\Physics.cpp	/^int Physics::StickToFloor(SDL_Rect a, SDL_Rect b, Tile* tiles[])$/;"	f	class:Physics	signature:(SDL_Rect a, SDL_Rect b, Tile* tiles[])
+StickToFloor	.\Physics.h	/^		int StickToFloor(SDL_Rect a, SDL_Rect b, Tile* tiles[]);$/;"	p	class:Physics	access:public	signature:(SDL_Rect a, SDL_Rect b, Tile* tiles[])
+Stop	.\Timer.cpp	/^void Timer::Stop()$/;"	f	class:Timer	signature:()
+Stop	.\Timer.h	/^        void Stop();$/;"	p	class:Timer	access:public	signature:()
+Sword	.\Player.h	/^		SDL_Rect Sword;$/;"	m	class:Player	access:public
+SwordBox	.\Player.h	/^		SDL_Rect SwordBox;$/;"	m	class:Player	access:private
 TEXTURES_H	.\Textures.h	2;"	d
 TICK_PER_FRAME	.\Constants.h	/^const int TICK_PER_FRAME = 1000 \/ FPS;$/;"	v
 TILE_CLEAR	.\Constants.h	/^const int TILE_CLEAR = 0;$/;"	v
@@ -167,131 +509,244 @@ TOTAL_MOB_SPRITES	.\Constants.h	/^const int TOTAL_MOB_SPRITES = 2;$/;"	v
 TOTAL_TILES	.\Constants.h	/^const int TOTAL_TILES = 900;$/;"	v
 TOTAL_TILE_SPRITES	.\Constants.h	/^const int TOTAL_TILE_SPRITES = 15;$/;"	v
 TextTexture	.\EQ.cpp	/^Textures TextTexture;$/;"	v
-Texture	.\EQ.h	/^      SDL_Texture* Texture;$/;"	m	class:EQ
-Textures	.\Textures.cpp	/^Textures::Textures()$/;"	f	class:Textures
+Texture	.\EQ.h	/^      SDL_Texture* Texture;$/;"	m	class:EQ	access:private
+Textures	.\Textures.cpp	/^Textures::Textures()$/;"	f	class:Textures	signature:()
+Textures	.\Textures.h	/^        Textures();$/;"	p	class:Textures	access:public	signature:()
 Textures	.\Textures.h	/^class Textures$/;"	c
-Tile	.\Tile.cpp	/^Tile::Tile(int x, int y, int Type)$/;"	f	class:Tile
+Textures::Free	.\Textures.cpp	/^void Textures::Free()$/;"	f	class:Textures	signature:()
+Textures::Free	.\Textures.h	/^        void Free();$/;"	p	class:Textures	access:public	signature:()
+Textures::LoadFromFile	.\Textures.cpp	/^bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)$/;"	f	class:Textures	signature:(SDL_Renderer* Renderer, std::string path)
+Textures::LoadFromFile	.\Textures.h	/^        bool LoadFromFile(SDL_Renderer* Renderer, std::string path);$/;"	p	class:Textures	access:public	signature:(SDL_Renderer* Renderer, std::string path)
+Textures::LoadFromRenderedText	.\Textures.cpp	/^bool Textures::LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)$/;"	f	class:Textures	signature:(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)
+Textures::LoadFromRenderedText	.\Textures.h	/^        bool LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor);$/;"	p	class:Textures	access:public	signature:(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)
+Textures::Render	.\Textures.cpp	/^void Textures::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)$/;"	f	class:Textures	signature:(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)
+Textures::Render	.\Textures.h	/^		void Render(SDL_Renderer* Renderer, int x, int y, SDL_Rect* clip = NULL);$/;"	p	class:Textures	access:public	signature:(SDL_Renderer* Renderer, int x, int y, SDL_Rect* clip = NULL)
+Textures::RenderTexture	.\Textures.h	/^		void RenderTexture(SDL_Rect ls_rect)$/;"	f	class:Textures	access:public	signature:(SDL_Rect ls_rect)
+Textures::Textures	.\Textures.cpp	/^Textures::Textures()$/;"	f	class:Textures	signature:()
+Textures::Textures	.\Textures.h	/^        Textures();$/;"	p	class:Textures	access:public	signature:()
+Textures::flip	.\Textures.h	/^        SDL_RendererFlip flip;Uint32 *myPixels;$/;"	m	class:Textures	access:private
+Textures::flipTexture	.\Textures.h	/^		void flipTexture(SDL_RendererFlip flp) { CTexture::flip = flp; };$/;"	f	class:Textures	access:public	signature:(SDL_RendererFlip flp)
+Textures::gRenderer	.\Textures.h	/^        SDL_Renderer* gRenderer;$/;"	m	class:Textures	access:private
+Textures::getHeight	.\Textures.cpp	/^int Textures::getHeight()$/;"	f	class:Textures	signature:()
+Textures::getHeight	.\Textures.h	/^        int getHeight();$/;"	p	class:Textures	access:public	signature:()
+Textures::getRect	.\Textures.cpp	/^void Textures::getRect(SDL_Rect*rect)$/;"	f	class:Textures	signature:(SDL_Rect*rect)
+Textures::getRect	.\Textures.h	/^		void getRect(SDL_Rect*rect);$/;"	p	class:Textures	access:public	signature:(SDL_Rect*rect)
+Textures::getTexture	.\Textures.h	/^		SDL_Texture*getTexture() { return Textures::texture; }$/;"	f	class:Textures	access:public	signature:()
+Textures::getWidth	.\Textures.cpp	/^int Textures::getWidth()$/;"	f	class:Textures	signature:()
+Textures::getWidth	.\Textures.h	/^        int getWidth();$/;"	p	class:Textures	access:public	signature:()
+Textures::mHeight	.\Textures.h	/^        int mHeight;$/;"	m	class:Textures	access:private
+Textures::mWidth	.\Textures.h	/^        int mWidth;$/;"	m	class:Textures	access:private
+Textures::myPixels	.\Textures.h	/^        SDL_RendererFlip flip;Uint32 *myPixels;$/;"	m	class:Textures	access:private
+Textures::radius	.\Textures.h	/^        int radius;$/;"	m	class:Textures	access:private
+Textures::setRect	.\Textures.cpp	/^void Textures::setRect(SDL_Rect r)$/;"	f	class:Textures	signature:(SDL_Rect r)
+Textures::setRect	.\Textures.h	/^		void setRect(SDL_Rect r);$/;"	p	class:Textures	access:public	signature:(SDL_Rect r)
+Textures::texture	.\Textures.h	/^        SDL_Texture* texture;$/;"	m	class:Textures	access:private
+Textures::textureRect	.\Textures.h	/^        SDL_Rect textureRect;$/;"	m	class:Textures	access:private
+Textures::~Textures	.\Textures.cpp	/^Textures::~Textures()$/;"	f	class:Textures	signature:()
+Textures::~Textures	.\Textures.h	/^        virtual ~Textures();$/;"	p	class:Textures	access:public	signature:()
+Tile	.\Tile.cpp	/^Tile::Tile(int x, int y, int Type)$/;"	f	class:Tile	signature:(int x, int y, int Type)
+Tile	.\Tile.h	/^        Tile(int x, int y, int Type);$/;"	p	class:Tile	access:public	signature:(int x, int y, int Type)
 Tile	.\Tile.h	/^class Tile$/;"	c
-TileBox	.\Tile.h	/^        SDL_Rect TileBox;$/;"	m	class:Tile
-TileClips	.\World.h	/^        SDL_Rect TileClips[TOTAL_TILE_SPRITES];$/;"	m	class:World
+Tile::Render	.\Tile.cpp	/^void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Tile	signature:(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
+Tile::Render	.\Tile.h	/^        void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Tile	access:public	signature:(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
+Tile::Tile	.\Tile.cpp	/^Tile::Tile(int x, int y, int Type)$/;"	f	class:Tile	signature:(int x, int y, int Type)
+Tile::Tile	.\Tile.h	/^        Tile(int x, int y, int Type);$/;"	p	class:Tile	access:public	signature:(int x, int y, int Type)
+Tile::TileBox	.\Tile.h	/^        SDL_Rect TileBox;$/;"	m	class:Tile	access:public
+Tile::TileType	.\Tile.h	/^        int TileType;$/;"	m	class:Tile	access:public
+Tile::getTileBox	.\Tile.cpp	/^SDL_Rect Tile::getTileBox()$/;"	f	class:Tile	signature:()
+Tile::getTileBox	.\Tile.h	/^        SDL_Rect getTileBox();$/;"	p	class:Tile	access:public	signature:()
+Tile::getType	.\Tile.cpp	/^int Tile::getType()$/;"	f	class:Tile	signature:()
+Tile::getType	.\Tile.h	/^        int getType();$/;"	p	class:Tile	access:public	signature:()
+Tile::~Tile	.\Tile.cpp	/^Tile::~Tile()$/;"	f	class:Tile	signature:()
+Tile::~Tile	.\Tile.h	/^        virtual ~Tile();$/;"	p	class:Tile	access:public	signature:()
+TileBox	.\Tile.h	/^        SDL_Rect TileBox;$/;"	m	class:Tile	access:public
+TileClips	.\World.h	/^        SDL_Rect TileClips[TOTAL_TILE_SPRITES];$/;"	m	class:World	access:public
 TileSheetTexture	.\World.cpp	/^Textures TileSheetTexture;$/;"	v
-TileType	.\Tile.h	/^        int TileType;$/;"	m	class:Tile
-Timer	.\Timer.cpp	/^Timer::Timer()$/;"	f	class:Timer
+TileType	.\Tile.h	/^        int TileType;$/;"	m	class:Tile	access:public
+Timer	.\Timer.cpp	/^Timer::Timer()$/;"	f	class:Timer	signature:()
+Timer	.\Timer.h	/^        Timer();$/;"	p	class:Timer	access:public	signature:()
 Timer	.\Timer.h	/^class Timer$/;"	c
-Type_Mobs	.\World.h	/^        int Type_Mobs;$/;"	m	class:World
-Type_Tiles	.\World.h	/^        int Type_Tiles;$/;"	m	class:World
-Unpause	.\Timer.cpp	/^void Timer::Unpause()$/;"	f	class:Timer
-Update	.\Ai.cpp	/^int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)$/;"	f	class:Ai
-Update	.\Player.cpp	/^void Player::Update(Mobs* mobs[])$/;"	f	class:Player
-UpdateMobs	.\World.cpp	/^void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)$/;"	f	class:World
-Var	.\Collision.cpp	/^bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision
+Timer::Pause	.\Timer.cpp	/^void Timer::Pause()$/;"	f	class:Timer	signature:()
+Timer::Pause	.\Timer.h	/^        void Pause();$/;"	p	class:Timer	access:public	signature:()
+Timer::PauseTicks	.\Timer.h	/^        Uint32 PauseTicks;$/;"	m	class:Timer	access:private
+Timer::Paused	.\Timer.h	/^        bool Paused;$/;"	m	class:Timer	access:private
+Timer::Start	.\Timer.cpp	/^void Timer::Start()$/;"	f	class:Timer	signature:()
+Timer::Start	.\Timer.h	/^        void Start();$/;"	p	class:Timer	access:public	signature:()
+Timer::StartTicks	.\Timer.h	/^        Uint32 StartTicks;$/;"	m	class:Timer	access:private
+Timer::Started	.\Timer.h	/^        bool Started;$/;"	m	class:Timer	access:private
+Timer::Stop	.\Timer.cpp	/^void Timer::Stop()$/;"	f	class:Timer	signature:()
+Timer::Stop	.\Timer.h	/^        void Stop();$/;"	p	class:Timer	access:public	signature:()
+Timer::Timer	.\Timer.cpp	/^Timer::Timer()$/;"	f	class:Timer	signature:()
+Timer::Timer	.\Timer.h	/^        Timer();$/;"	p	class:Timer	access:public	signature:()
+Timer::Unpause	.\Timer.cpp	/^void Timer::Unpause()$/;"	f	class:Timer	signature:()
+Timer::Unpause	.\Timer.h	/^        void Unpause();$/;"	p	class:Timer	access:public	signature:()
+Timer::getTicks	.\Timer.cpp	/^Uint32 Timer::getTicks()$/;"	f	class:Timer	signature:()
+Timer::getTicks	.\Timer.h	/^        Uint32 getTicks();$/;"	p	class:Timer	access:public	signature:()
+Timer::isPaused	.\Timer.cpp	/^bool Timer::isPaused()$/;"	f	class:Timer	signature:()
+Timer::isPaused	.\Timer.h	/^        bool isPaused();$/;"	p	class:Timer	access:public	signature:()
+Timer::isStarted	.\Timer.cpp	/^bool Timer::isStarted()$/;"	f	class:Timer	signature:()
+Timer::isStarted	.\Timer.h	/^        bool isStarted();$/;"	p	class:Timer	access:public	signature:()
+Timer::~Timer	.\Timer.cpp	/^Timer::~Timer()$/;"	f	class:Timer	signature:()
+Timer::~Timer	.\Timer.h	/^        virtual ~Timer();$/;"	p	class:Timer	access:public	signature:()
+Type_Mobs	.\World.h	/^        int Type_Mobs;$/;"	m	class:World	access:public
+Type_Tiles	.\World.h	/^        int Type_Tiles;$/;"	m	class:World	access:public
+Unpause	.\Timer.cpp	/^void Timer::Unpause()$/;"	f	class:Timer	signature:()
+Unpause	.\Timer.h	/^        void Unpause();$/;"	p	class:Timer	access:public	signature:()
+Update	.\Ai.cpp	/^int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)$/;"	f	class:Ai	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)
+Update	.\Ai.h	/^        int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis);$/;"	p	class:Ai	access:public	signature:(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)
+Update	.\Camera.h	/^        void Update(SDL_Rect* playerRect);$/;"	p	class:Camera	access:public	signature:(SDL_Rect* playerRect)
+Update	.\Mobs.h	/^        void Update();$/;"	p	class:Mobs	access:public	signature:()
+Update	.\Player.cpp	/^void Player::Update(Mobs* mobs[])$/;"	f	class:Player	signature:(Mobs* mobs[])
+Update	.\Player.h	/^		void Update(Mobs* mobs[]);$/;"	p	class:Player	access:public	signature:(Mobs* mobs[])
+UpdateMobs	.\World.cpp	/^void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)$/;"	f	class:World	signature:(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
+UpdateMobs	.\World.h	/^        void UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect);$/;"	p	class:World	access:public	signature:(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
+Var	.\Collision.cpp	/^bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[], int type)
+Var	.\Collision.h	/^        bool Var(SDL_Rect cBox, Tile* tiles[], int type);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[], int type)
 WINDOW_HEIGHT	.\Constants.h	/^const int WINDOW_HEIGHT = 576;$/;"	v
 WINDOW_WIDTH	.\Constants.h	/^const int WINDOW_WIDTH = 1024;$/;"	v
 WORLD_H	.\World.h	2;"	d
-WalkingLeft	.\Player.h	/^		bool WalkingLeft;$/;"	m	class:Player
-WalkingRight	.\Player.h	/^		bool WalkingRight;$/;"	m	class:Player
-Wall	.\Collision.cpp	/^bool Collision::Wall(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision
-Window	.\EQ.h	/^      SDL_Window* Window ;$/;"	m	class:EQ
-World	.\World.cpp	/^World::World()$/;"	f	class:World
+WalkingLeft	.\Player.h	/^		bool WalkingLeft;$/;"	m	class:Player	access:private
+WalkingRight	.\Player.h	/^		bool WalkingRight;$/;"	m	class:Player	access:private
+Wall	.\Collision.cpp	/^bool Collision::Wall(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
+Wall	.\Collision.h	/^        bool Wall(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
+Window	.\EQ.h	/^      SDL_Window* Window;$/;"	m	class:EQ	access:private
+World	.\World.cpp	/^World::World()$/;"	f	class:World	signature:()
+World	.\World.h	/^        World();$/;"	p	class:World	access:public	signature:()
 World	.\World.h	/^class World$/;"	c
+World::LoadMedia	.\World.cpp	/^int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])$/;"	f	class:World	signature:(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
+World::LoadMedia	.\World.h	/^        int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[]);$/;"	p	class:World	access:public	signature:(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
+World::MobClips	.\World.h	/^        SDL_Rect MobClips[TOTAL_MOB_SPRITES];$/;"	m	class:World	access:public
+World::Render	.\World.cpp	/^void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)$/;"	f	class:World	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)
+World::Render	.\World.h	/^        void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player);$/;"	p	class:World	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)
+World::SetMobs	.\World.cpp	/^bool World::SetMobs(Mobs* mobs[])$/;"	f	class:World	signature:(Mobs* mobs[])
+World::SetMobs	.\World.h	/^        bool SetMobs(Mobs* mobs[]);$/;"	p	class:World	access:public	signature:(Mobs* mobs[])
+World::SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[], Mobs* mobs[])$/;"	f	class:World	signature:(Tile* tiles[], Mobs* mobs[])
+World::SetTiles	.\World.h	/^        bool SetTiles(Tile* tiles[], Mobs* mobs[]);$/;"	p	class:World	access:public	signature:(Tile* tiles[], Mobs* mobs[])
+World::TileClips	.\World.h	/^        SDL_Rect TileClips[TOTAL_TILE_SPRITES];$/;"	m	class:World	access:public
+World::Type_Mobs	.\World.h	/^        int Type_Mobs;$/;"	m	class:World	access:public
+World::Type_Tiles	.\World.h	/^        int Type_Tiles;$/;"	m	class:World	access:public
+World::UpdateMobs	.\World.cpp	/^void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)$/;"	f	class:World	signature:(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
+World::UpdateMobs	.\World.h	/^        void UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect);$/;"	p	class:World	access:public	signature:(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
+World::World	.\World.cpp	/^World::World()$/;"	f	class:World	signature:()
+World::World	.\World.h	/^        World();$/;"	p	class:World	access:public	signature:()
+World::~World	.\World.cpp	/^World::~World()$/;"	f	class:World	signature:()
+World::~World	.\World.h	/^        virtual ~World();$/;"	p	class:World	access:public	signature:()
 X_AXIS	.\Constants.h	/^const int X_AXIS = 0;$/;"	v
-Xvel	.\Ai.h	/^        int Xvel[TOTAL_TILES];$/;"	m	class:Ai
-Xvel	.\Player.h	/^		int Xvel, Yvel;$/;"	m	class:Player
+Xvel	.\Ai.h	/^        int Xvel[TOTAL_TILES];$/;"	m	class:Ai	access:private
+Xvel	.\Player.h	/^		int Xvel, Yvel;$/;"	m	class:Player	access:public
 Y_AXIS	.\Constants.h	/^const int Y_AXIS = 1;$/;"	v
-Yvel	.\Ai.h	/^        int Yvel[TOTAL_TILES];$/;"	m	class:Ai
-Yvel	.\Player.h	/^		int Xvel, Yvel;$/;"	m	class:Player
-_state	.\Player.h	/^		int _state;$/;"	m	class:Player
+Yvel	.\Ai.h	/^        int Yvel[TOTAL_TILES];$/;"	m	class:Ai	access:private
+Yvel	.\Player.h	/^		int Xvel, Yvel;$/;"	m	class:Player	access:public
+_state	.\Player.h	/^		int _state;$/;"	m	class:Player	access:public
 ai	.\EQ.cpp	/^Ai ai;$/;"	v
 aiCollision	.\Ai.cpp	/^Collision aiCollision;$/;"	v
 aiPhysics	.\Ai.cpp	/^Physics aiPhysics;$/;"	v
-attack	.\Player.h	/^		bool attack;$/;"	m	class:Player
-attackEnergy	.\Player.h	/^		int attackEnergy;$/;"	m	class:Player
-avgFPS	.\EQ.h	/^      float avgFPS;$/;"	m	class:EQ
-block	.\Player.h	/^		bool block;$/;"	m	class:Player
-blockEnergy	.\Player.h	/^		int blockEnergy;$/;"	m	class:Player
-bottomA	.\Collision.h	/^        int bottomA, bottomB;$/;"	m	class:Collision
-bottomB	.\Collision.h	/^        int bottomA, bottomB;$/;"	m	class:Collision
-bottomCollisionBox	.\Ai.h	/^        SDL_Rect bottomCollisionBox;$/;"	m	class:Ai
-bottomCollisionBox	.\Player.h	/^		SDL_Rect bottomCollisionBox;$/;"	m	class:Player
+attack	.\Player.h	/^		bool attack;$/;"	m	class:Player	access:private
+attackEnergy	.\Player.h	/^		int attackEnergy;$/;"	m	class:Player	access:private
+avgFPS	.\EQ.h	/^      float avgFPS;$/;"	m	class:EQ	access:private
+block	.\Player.h	/^		bool block;$/;"	m	class:Player	access:private
+blockEnergy	.\Player.h	/^		int blockEnergy;$/;"	m	class:Player	access:private
+bottomA	.\Collision.h	/^        int bottomA, bottomB;$/;"	m	class:Collision	access:private
+bottomB	.\Collision.h	/^        int bottomA, bottomB;$/;"	m	class:Collision	access:private
+bottomCollisionBox	.\Ai.h	/^        SDL_Rect bottomCollisionBox;$/;"	m	class:Ai	access:private
+bottomCollisionBox	.\Player.h	/^		SDL_Rect bottomCollisionBox;$/;"	m	class:Player	access:private
 camera	.\EQ.cpp	/^Camera camera;$/;"	v
-cameraRect	.\Camera.h	/^        SDL_Rect cameraRect;$/;"	m	class:Camera
-canEnterDoor	.\Player.h	/^		bool canEnterDoor;$/;"	m	class:Player
-canJump	.\Player.h	/^		bool canJump;$/;"	m	class:Player
-canRun	.\Player.h	/^		bool canRun;$/;"	m	class:Player
-centerRect	.\Camera.h	/^        SDL_Rect centerRect;$/;"	m	class:Camera
-climbingSpeed	.\Player.h	/^		int climbingSpeed;$/;"	m	class:Player
+cameraRect	.\Camera.h	/^        SDL_Rect cameraRect;$/;"	m	class:Camera	access:public
+canEnterDoor	.\Player.h	/^		bool canEnterDoor;$/;"	m	class:Player	access:private
+canJump	.\Player.h	/^		bool canJump;$/;"	m	class:Player	access:private
+canRun	.\Player.h	/^		bool canRun;$/;"	m	class:Player	access:private
+centerRect	.\Camera.h	/^        SDL_Rect centerRect;$/;"	m	class:Camera	access:public
+climbingSpeed	.\Player.h	/^		int climbingSpeed;$/;"	m	class:Player	access:private
 collision	.\EQ.cpp	/^Collision collision;$/;"	v
-countedFrames	.\EQ.h	/^      int countedFrames;$/;"	m	class:EQ
-cube	.\Light.h	/^        SDL_Rect cube[TOTAL_TILES];$/;"	m	class:Light
-currentHealth	.\Player.h	/^		int currentHealth;$/;"	m	class:Player
+countedFrames	.\EQ.h	/^      int countedFrames;$/;"	m	class:EQ	access:private
+cube	.\Light.h	/^        SDL_Rect cube[TOTAL_TILES];$/;"	m	class:Light	access:private
+currentHealth	.\Player.h	/^		int currentHealth;$/;"	m	class:Player	access:private
 debugText	.\EQ.h	/^std::stringstream debugText;$/;"	v
-doorA	.\Doors.h	/^        SDL_Rect doorA[TOTAL_DOORS];$/;"	m	class:Doors
-doorB	.\Doors.h	/^        SDL_Rect doorB[TOTAL_DOORS];$/;"	m	class:Doors
+doorA	.\Doors.h	/^        SDL_Rect doorA[TOTAL_DOORS];$/;"	m	class:Doors	access:private
+doorB	.\Doors.h	/^        SDL_Rect doorB[TOTAL_DOORS];$/;"	m	class:Doors	access:private
 down	.\Player.h	/^			down,$/;"	e	enum:Player::Movement
-energy	.\Player.h	/^		int energy;$/;"	m	class:Player
-energyRecover	.\Player.h	/^		bool energyRecover;$/;"	m	class:Player
-flip	.\Textures.h	/^        SDL_RendererFlip flip;Uint32 *myPixels;$/;"	m	class:Textures
-frame	.\Player.h	/^		int frame;$/;"	m	class:Player
-frameCounter	.\Player.h	/^		int frameCounter;$/;"	m	class:Player
-frameSpeed	.\Player.h	/^		int frameSpeed;$/;"	m	class:Player
-frameSwitch	.\Player.h	/^		int frameSwitch;$/;"	m	class:Player
-frameTicks	.\EQ.h	/^      int frameTicks;$/;"	m	class:EQ
-gRenderer	.\Textures.h	/^        SDL_Renderer* gRenderer;$/;"	m	class:Textures
-getHeight	.\Textures.cpp	/^int Textures::getHeight()$/;"	f	class:Textures
-getMobBox	.\Mobs.cpp	/^SDL_Rect Mobs::getMobBox()$/;"	f	class:Mobs
-getTicks	.\Timer.cpp	/^Uint32 Timer::getTicks()$/;"	f	class:Timer
-getTileBox	.\Tile.cpp	/^SDL_Rect Tile::getTileBox()$/;"	f	class:Tile
-getType	.\Mobs.cpp	/^int Mobs::getType()$/;"	f	class:Mobs
-getType	.\Tile.cpp	/^int Tile::getType()$/;"	f	class:Tile
-getWidth	.\Textures.cpp	/^int Textures::getWidth()$/;"	f	class:Textures
-health	.\Player.h	/^		int health;$/;"	m	class:Player
+energy	.\Player.h	/^		int energy;$/;"	m	class:Player	access:private
+energyRecover	.\Player.h	/^		bool energyRecover;$/;"	m	class:Player	access:private
+flip	.\Textures.h	/^        SDL_RendererFlip flip;Uint32 *myPixels;$/;"	m	class:Textures	access:private
+flipTexture	.\Textures.h	/^		void flipTexture(SDL_RendererFlip flp) { CTexture::flip = flp; };$/;"	f	class:Textures	access:public	signature:(SDL_RendererFlip flp)
+frame	.\Player.h	/^		int frame;$/;"	m	class:Player	access:private
+frameCounter	.\Player.h	/^		int frameCounter;$/;"	m	class:Player	access:private
+frameSpeed	.\Player.h	/^		int frameSpeed;$/;"	m	class:Player	access:private
+frameSwitch	.\Player.h	/^		int frameSwitch;$/;"	m	class:Player	access:private
+frameTicks	.\EQ.h	/^      int frameTicks;$/;"	m	class:EQ	access:private
+gRenderer	.\Textures.h	/^        SDL_Renderer* gRenderer;$/;"	m	class:Textures	access:private
+getHeight	.\Textures.cpp	/^int Textures::getHeight()$/;"	f	class:Textures	signature:()
+getHeight	.\Textures.h	/^        int getHeight();$/;"	p	class:Textures	access:public	signature:()
+getMobBox	.\Mobs.cpp	/^SDL_Rect Mobs::getMobBox()$/;"	f	class:Mobs	signature:()
+getMobBox	.\Mobs.h	/^ 		SDL_Rect getMobBox();$/;"	p	class:Mobs	access:public	signature:()
+getRect	.\Textures.cpp	/^void Textures::getRect(SDL_Rect*rect)$/;"	f	class:Textures	signature:(SDL_Rect*rect)
+getRect	.\Textures.h	/^		void getRect(SDL_Rect*rect);$/;"	p	class:Textures	access:public	signature:(SDL_Rect*rect)
+getTexture	.\Textures.h	/^		SDL_Texture*getTexture() { return Textures::texture; }$/;"	f	class:Textures	access:public	signature:()
+getTicks	.\Timer.cpp	/^Uint32 Timer::getTicks()$/;"	f	class:Timer	signature:()
+getTicks	.\Timer.h	/^        Uint32 getTicks();$/;"	p	class:Timer	access:public	signature:()
+getTileBox	.\Tile.cpp	/^SDL_Rect Tile::getTileBox()$/;"	f	class:Tile	signature:()
+getTileBox	.\Tile.h	/^        SDL_Rect getTileBox();$/;"	p	class:Tile	access:public	signature:()
+getType	.\Mobs.cpp	/^int Mobs::getType()$/;"	f	class:Mobs	signature:()
+getType	.\Mobs.h	/^ 		int getType();$/;"	p	class:Mobs	access:public	signature:()
+getType	.\Tile.cpp	/^int Tile::getType()$/;"	f	class:Tile	signature:()
+getType	.\Tile.h	/^        int getType();$/;"	p	class:Tile	access:public	signature:()
+getWidth	.\Textures.cpp	/^int Textures::getWidth()$/;"	f	class:Textures	signature:()
+getWidth	.\Textures.h	/^        int getWidth();$/;"	p	class:Textures	access:public	signature:()
+health	.\Player.h	/^		int health;$/;"	m	class:Player	access:private
 horizontal	.\Player.h	/^			horizontal,$/;"	e	enum:Player::Movement
 idle	.\Ai.h	/^                idle,$/;"	e	enum:Ai::Movement
-isAttacking	.\Player.h	/^		bool isAttacking;$/;"	m	class:Player
-isBlocking	.\Player.h	/^		bool isBlocking;$/;"	m	class:Player
-isClimbing	.\Player.h	/^		bool isClimbing;$/;"	m	class:Player
-isDead	.\Ai.h	/^        bool isDead[TOTAL_TILES];$/;"	m	class:Ai
-isDucking	.\Player.h	/^		bool isDucking;$/;"	m	class:Player
-isFalling	.\Ai.h	/^        bool isFalling[TOTAL_TILES];$/;"	m	class:Ai
-isFalling	.\Player.h	/^		bool isFalling;$/;"	m	class:Player
-isJumping	.\Player.h	/^		bool isJumping;$/;"	m	class:Player
-isPaused	.\Timer.cpp	/^bool Timer::isPaused()$/;"	f	class:Timer
-isRunning	.\Player.h	/^		bool isRunning;$/;"	m	class:Player
-isStarted	.\Timer.cpp	/^bool Timer::isStarted()$/;"	f	class:Timer
+isAttacking	.\Player.h	/^		bool isAttacking;$/;"	m	class:Player	access:private
+isBlocking	.\Player.h	/^		bool isBlocking;$/;"	m	class:Player	access:private
+isClimbing	.\Player.h	/^		bool isClimbing;$/;"	m	class:Player	access:private
+isDead	.\Ai.h	/^        bool isDead[TOTAL_TILES];$/;"	m	class:Ai	access:private
+isDucking	.\Player.h	/^		bool isDucking;$/;"	m	class:Player	access:private
+isFalling	.\Ai.h	/^        bool isFalling[TOTAL_TILES];$/;"	m	class:Ai	access:private
+isFalling	.\Player.h	/^		bool isFalling;$/;"	m	class:Player	access:private
+isJumping	.\Player.h	/^		bool isJumping;$/;"	m	class:Player	access:private
+isPaused	.\Timer.cpp	/^bool Timer::isPaused()$/;"	f	class:Timer	signature:()
+isPaused	.\Timer.h	/^        bool isPaused();$/;"	p	class:Timer	access:public	signature:()
+isRunning	.\Player.h	/^		bool isRunning;$/;"	m	class:Player	access:private
+isStarted	.\Timer.cpp	/^bool Timer::isStarted()$/;"	f	class:Timer	signature:()
+isStarted	.\Timer.h	/^        bool isStarted();$/;"	p	class:Timer	access:public	signature:()
 jump	.\Player.h	/^			jump$/;"	e	enum:Player::Movement
-jumpCount	.\Player.h	/^		int jumpCount;$/;"	m	class:Player
-jumpEnergy	.\Player.h	/^		int jumpEnergy;$/;"	m	class:Player
-jumpHeight	.\Player.h	/^		int jumpHeight;$/;"	m	class:Player
-jumpingSpeed	.\Player.h	/^		int jumpingSpeed;$/;"	m	class:Player
-keyState	.\Player.h	/^		const Uint8* keyState;$/;"	m	class:Player
+jumpCount	.\Player.h	/^		int jumpCount;$/;"	m	class:Player	access:private
+jumpEnergy	.\Player.h	/^		int jumpEnergy;$/;"	m	class:Player	access:private
+jumpHeight	.\Player.h	/^		int jumpHeight;$/;"	m	class:Player	access:private
+jumpingSpeed	.\Player.h	/^		int jumpingSpeed;$/;"	m	class:Player	access:private
+keyState	.\Player.h	/^		const Uint8* keyState;$/;"	m	class:Player	access:private
 left	.\Ai.h	/^                left,$/;"	e	enum:Ai::Movement
 left	.\Player.h	/^			left,$/;"	e	enum:Player::Movement
-leftA	.\Collision.h	/^        int leftA, leftB;$/;"	m	class:Collision
-leftB	.\Collision.h	/^        int leftA, leftB;$/;"	m	class:Collision
+leftA	.\Collision.h	/^        int leftA, leftB;$/;"	m	class:Collision	access:private
+leftB	.\Collision.h	/^        int leftA, leftB;$/;"	m	class:Collision	access:private
 light	.\EQ.cpp	/^Light light;$/;"	v
+loadTexture	.\EQ.h	/^      SDL_Texture* loadTexture(std::string path);$/;"	p	class:EQ	access:public	signature:(std::string path)
 mCollision	.\Mobs.cpp	/^Collision mCollision;$/;"	v
-mHeight	.\Textures.h	/^        int mHeight;$/;"	m	class:Textures
-mWidth	.\Textures.h	/^        int mWidth;$/;"	m	class:Textures
-main	.\EQ.cpp	/^int main(int argc, char* argv[])$/;"	f
-maxEnergy	.\Player.h	/^		int maxEnergy;$/;"	m	class:Player
-maxHealth	.\Player.h	/^		int maxHealth;$/;"	m	class:Player
+mHeight	.\Textures.h	/^        int mHeight;$/;"	m	class:Textures	access:private
+mWidth	.\Textures.h	/^        int mWidth;$/;"	m	class:Textures	access:private
+main	.\EQ.cpp	/^int main(int argc, char* argv[])$/;"	f	signature:(int argc, char* argv[])
+maxEnergy	.\Player.h	/^		int maxEnergy;$/;"	m	class:Player	access:private
+maxHealth	.\Player.h	/^		int maxHealth;$/;"	m	class:Player	access:private
 mobs	.\EQ.cpp	/^Mobs* mobs[TOTAL_TILES];$/;"	v
-movement	.\Ai.h	/^        Movement movement[TOTAL_TILES] = {};$/;"	m	class:Ai
-myPixels	.\Textures.h	/^        SDL_RendererFlip flip;Uint32 *myPixels;$/;"	m	class:Textures
+movement	.\Ai.h	/^        Movement movement[TOTAL_TILES] = {};$/;"	m	class:Ai	access:private
+myPixels	.\Textures.h	/^        SDL_RendererFlip flip;Uint32 *myPixels;$/;"	m	class:Textures	access:private
 pCollision	.\Player.cpp	/^Collision pCollision;$/;"	v
 pDoors	.\Player.cpp	/^Doors pDoors;$/;"	v
 pPhysics	.\Player.cpp	/^Physics pPhysics;$/;"	v
 physics	.\EQ.cpp	/^Physics physics;$/;"	v
 player	.\EQ.cpp	/^Player player;$/;"	v
-playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player
-playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player
-radius	.\Textures.h	/^        int radius;$/;"	m	class:Textures
+playerBox	.\Player.h	/^		SDL_Rect playerBox;$/;"	m	class:Player	access:public
+playerRect	.\Player.h	/^		SDL_Rect playerRect;$/;"	m	class:Player	access:public
+radius	.\Textures.h	/^        int radius;$/;"	m	class:Textures	access:private
 right	.\Ai.h	/^                right,$/;"	e	enum:Ai::Movement
 right	.\Player.h	/^			right,$/;"	e	enum:Player::Movement
-rightA	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision
-rightB	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision
-runEnergy	.\Player.h	/^		int runEnergy;$/;"	m	class:Player
-runningSpeed	.\Player.h	/^		int runningSpeed;$/;"	m	class:Player
+rightA	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision	access:private
+rightB	.\Collision.h	/^        int rightA, rightB;$/;"	m	class:Collision	access:private
+runEnergy	.\Player.h	/^		int runEnergy;$/;"	m	class:Player	access:private
+runningSpeed	.\Player.h	/^		int runningSpeed;$/;"	m	class:Player	access:private
+screenEnd	.\Light.cpp	/^void Light::screenEnd(int x, int y, int x2, int y2, int*qx,int*qy,int startx,int starty, int endx,int endy)$/;"	f	class:Light	signature:(int x, int y, int x2, int y2, int*qx,int*qy,int startx,int starty, int endx,int endy)
+screenEnd	.\Light.h	/^		void screenEnd(int x, int y, int x2, int y2, int*qx,int*qy,int startx,int starty, int endx,int endy);$/;"	p	class:Light	access:public	signature:(int x, int y, int x2, int y2, int*qx,int*qy,int startx,int starty, int endx,int endy)
+setRect	.\Textures.cpp	/^void Textures::setRect(SDL_Rect r)$/;"	f	class:Textures	signature:(SDL_Rect r)
+setRect	.\Textures.h	/^		void setRect(SDL_Rect r);$/;"	p	class:Textures	access:public	signature:(SDL_Rect r)
 state_attacking	.\Player.h	/^			state_attacking, \/\/4$/;"	e	enum:Player::State
 state_blocking	.\Player.h	/^			state_blocking, \/\/ 5$/;"	e	enum:Player::State
 state_climbing	.\Player.h	/^			state_climbing \/\/ 6$/;"	e	enum:Player::State
@@ -300,29 +755,40 @@ state_jumping	.\Player.h	/^			state_jumping, \/\/ 1$/;"	e	enum:Player::State
 state_running	.\Player.h	/^			state_running, \/\/ 3$/;"	e	enum:Player::State
 state_walking	.\Player.h	/^			state_walking, \/\/ 2$/;"	e	enum:Player::State
 tCollision	.\Tile.cpp	/^Collision tCollision;$/;"	v
-test	.\Camera.h	/^        SDL_Rect test;$/;"	m	class:Camera
-textColor	.\EQ.h	/^      SDL_Color textColor;$/;"	m	class:EQ
-texture	.\Textures.h	/^        SDL_Texture* texture;$/;"	m	class:Textures
-textureRect	.\Textures.h	/^        SDL_Rect textureRect;$/;"	m	class:Textures
+test	.\Camera.h	/^        SDL_Rect test;$/;"	m	class:Camera	access:public
+textColor	.\EQ.h	/^      SDL_Color textColor;$/;"	m	class:EQ	access:private
+texture	.\Textures.h	/^        SDL_Texture* texture;$/;"	m	class:Textures	access:private
+textureRect	.\Textures.h	/^        SDL_Rect textureRect;$/;"	m	class:Textures	access:private
 tileSet	.\EQ.cpp	/^Tile* tileSet[TOTAL_TILES];$/;"	v
-timeStep	.\EQ.h	/^      float timeStep;$/;"	m	class:EQ
-topA	.\Collision.h	/^        int topA, topB;$/;"	m	class:Collision
-topB	.\Collision.h	/^        int topA, topB;$/;"	m	class:Collision
+timeStep	.\EQ.h	/^      float timeStep;$/;"	m	class:EQ	access:private
+topA	.\Collision.h	/^        int topA, topB;$/;"	m	class:Collision	access:private
+topB	.\Collision.h	/^        int topA, topB;$/;"	m	class:Collision	access:private
 up	.\Player.h	/^			up,$/;"	e	enum:Player::Movement
-vertCenterCollisionBox	.\Player.h	/^		SDL_Rect vertCenterCollisionBox;$/;"	m	class:Player
+vertCenterCollisionBox	.\Player.h	/^		SDL_Rect vertCenterCollisionBox;$/;"	m	class:Player	access:public
 vertical	.\Player.h	/^			vertical,$/;"	e	enum:Player::Movement
 wAi	.\World.cpp	/^Ai wAi;$/;"	v
-walkingSpeed	.\Player.h	/^		int walkingSpeed;$/;"	m	class:Player
+walkingSpeed	.\Player.h	/^		int walkingSpeed;$/;"	m	class:Player	access:private
 wallpaperTexture	.\EQ.cpp	/^Textures wallpaperTexture;$/;"	v
 world	.\EQ.cpp	/^World world;$/;"	v
-~Ai	.\Ai.cpp	/^Ai::~Ai()$/;"	f	class:Ai
-~Camera	.\Camera.cpp	/^Camera::~Camera()$/;"	f	class:Camera
-~Collision	.\Collision.cpp	/^Collision::~Collision()$/;"	f	class:Collision
-~Doors	.\Doors.cpp	/^Doors::~Doors()$/;"	f	class:Doors
-~Light	.\Light.cpp	/^Light::~Light()$/;"	f	class:Light
-~Physics	.\Physics.cpp	/^Physics::~Physics()$/;"	f	class:Physics
-~Player	.\Player.cpp	/^Player::~Player()$/;"	f	class:Player
-~Textures	.\Textures.cpp	/^Textures::~Textures()$/;"	f	class:Textures
-~Tile	.\Tile.cpp	/^Tile::~Tile()$/;"	f	class:Tile
-~Timer	.\Timer.cpp	/^Timer::~Timer()$/;"	f	class:Timer
-~World	.\World.cpp	/^World::~World()$/;"	f	class:World
+~Ai	.\Ai.cpp	/^Ai::~Ai()$/;"	f	class:Ai	signature:()
+~Ai	.\Ai.h	/^        virtual ~Ai();$/;"	p	class:Ai	access:public	signature:()
+~Camera	.\Camera.cpp	/^Camera::~Camera()$/;"	f	class:Camera	signature:()
+~Camera	.\Camera.h	/^        virtual ~Camera();$/;"	p	class:Camera	access:public	signature:()
+~Collision	.\Collision.cpp	/^Collision::~Collision()$/;"	f	class:Collision	signature:()
+~Collision	.\Collision.h	/^        virtual ~Collision();$/;"	p	class:Collision	access:public	signature:()
+~Doors	.\Doors.cpp	/^Doors::~Doors()$/;"	f	class:Doors	signature:()
+~Doors	.\Doors.h	/^        virtual ~Doors();$/;"	p	class:Doors	access:public	signature:()
+~Light	.\Light.cpp	/^Light::~Light()$/;"	f	class:Light	signature:()
+~Light	.\Light.h	/^        virtual ~Light();$/;"	p	class:Light	access:public	signature:()
+~Physics	.\Physics.cpp	/^Physics::~Physics()$/;"	f	class:Physics	signature:()
+~Physics	.\Physics.h	/^		virtual ~Physics();$/;"	p	class:Physics	access:public	signature:()
+~Player	.\Player.cpp	/^Player::~Player()$/;"	f	class:Player	signature:()
+~Player	.\Player.h	/^		virtual ~Player();$/;"	p	class:Player	access:public	signature:()
+~Textures	.\Textures.cpp	/^Textures::~Textures()$/;"	f	class:Textures	signature:()
+~Textures	.\Textures.h	/^        virtual ~Textures();$/;"	p	class:Textures	access:public	signature:()
+~Tile	.\Tile.cpp	/^Tile::~Tile()$/;"	f	class:Tile	signature:()
+~Tile	.\Tile.h	/^        virtual ~Tile();$/;"	p	class:Tile	access:public	signature:()
+~Timer	.\Timer.cpp	/^Timer::~Timer()$/;"	f	class:Timer	signature:()
+~Timer	.\Timer.h	/^        virtual ~Timer();$/;"	p	class:Timer	access:public	signature:()
+~World	.\World.cpp	/^World::~World()$/;"	f	class:World	signature:()
+~World	.\World.h	/^        virtual ~World();$/;"	p	class:World	access:public	signature:()

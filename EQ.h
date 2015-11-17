@@ -19,7 +19,7 @@ class EQ
 {
     private:
       bool Running;
-      SDL_Window* Window ;
+      SDL_Window* Window;
       SDL_Renderer* Renderer;
       SDL_Texture* Texture;
       TTF_Font* Font;

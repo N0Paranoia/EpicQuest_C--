@@ -7,14 +7,12 @@
 class Light
 {
     private:
-        SDL_Rect cube[TOTAL_TILES];
+        SDL_Rect cube[1];
 
     public:
         Light();
         virtual ~Light();
         int LoadMedia(SDL_Renderer* Renderer);
-        void InitShadows(int locationX,int locationY);
-        int DrawShadows(int locationX,int locationY, SDL_Rect cube);
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
         void Cleanup();
 
