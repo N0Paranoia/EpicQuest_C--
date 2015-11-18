@@ -10,10 +10,11 @@ Ai wAi;
 
 Textures MobSheetTexture;
 Textures TileSheetTexture;
+Textures ShadowTexture;
 
 World::World()
 {
-    Type_Tiles = 0;
+    Type = 0;
     Type_Mobs = 1;
 }
 
@@ -34,6 +35,30 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
     {
         cout << "Unable to load Mobs! SDL_Error: " << SDL_GetError() << endl;
         return false;
+    }
+    //Load PNG Shadow texture
+    if((ShadowTexture.LoadFromFile(Renderer, "assets/shadows.png")) == 0)
+    {
+        cout << "Unable to Load texture image! SDL_Error: " << SDL_GetError() << endl;
+        return false;
+	} 
+	else
+    {
+        //All mob textures
+        ShadowClips[0].x = 0;
+        ShadowClips[0].y = 0;
+        ShadowClips[0].w = 500;
+        ShadowClips[0].h = 500;
+        
+        ShadowClips[1].x = 500;
+        ShadowClips[1].y = 0;
+        ShadowClips[1].w = 500;
+        ShadowClips[1].h = 500;
+ 
+        ShadowClips[2].x = 1000;
+        ShadowClips[2].y = 0;
+        ShadowClips[2].w = 5;
+        ShadowClips[2].h = 5;
     }
     //Load mobSheet
     if((MobSheetTexture.LoadFromFile(Renderer, "assets/mobSheet.png")) == 0)
@@ -251,14 +276,14 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
     //Render Tiles
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-        tiles[i]->Render(&TileSheetTexture, &TileClips[Type_Tiles], Renderer, camera);
+        tiles[i]->Render(&TileSheetTexture, &TileClips[Type], Renderer, camera);
     }
     //Render Mobs
     for(int i = 0; i < TOTAL_TILES; i++)
     {
         if(wAi.Health(mobs, i) == false)
         {
-            mobs[i]->Render(&MobSheetTexture, &MobClips[Type_Tiles], Renderer, camera);
+            mobs[i]->Render(&MobSheetTexture, &MobClips[Type], Renderer, camera);
         }
     }
 }

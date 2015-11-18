@@ -31,6 +31,8 @@ const int TILE_LADDER_TOP = 12;
 const int TILE_SLOPE_RIGHT = 13;
 const int TILE_SLOPE_LEFT = 14;
 
+const int TOTAL_SHADOW_SPRITES = 3;
+
 const int TOTAL_MOBS = 3;
 
 const int TOTAL_MOB_SPRITES = 2;

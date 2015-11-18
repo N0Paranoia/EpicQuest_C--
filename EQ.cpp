@@ -24,7 +24,7 @@ Player player;
 Mobs* mobs[TOTAL_TILES];
 World world;
 Camera camera;
-Light light;
+Light* light[TOTAL_TILES];
 Tile* tileSet[TOTAL_TILES];
 
 Textures wallpaperTexture;

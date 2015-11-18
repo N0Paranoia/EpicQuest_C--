@@ -24,7 +24,8 @@ class World
     public:
         SDL_Rect TileClips[TOTAL_TILE_SPRITES];
         SDL_Rect MobClips[TOTAL_MOB_SPRITES];
-        int Type_Tiles;
+		SDL_Rect ShadowClips[TOTAL_SHADOW_SPRITES];
+        int Type;
         int Type_Mobs;
 };
 

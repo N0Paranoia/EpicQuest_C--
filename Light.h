@@ -3,19 +3,17 @@
 
 #include <SDL.h>
 #include "Constants.h"
+#include "Textures.h"
 
 class Light
 {
-    private:
-        SDL_Rect cube[1];
-
     public:
-        Light();
+        Light(int x, int y);
         virtual ~Light();
-        int LoadMedia(SDL_Renderer* Renderer);
-        void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
+        void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera);
         void Cleanup();
 
+		SDL_Rect ShadowBox;
     protected:
 
 };
