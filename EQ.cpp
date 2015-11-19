@@ -7,7 +7,7 @@
 #include "Textures.h"
 #include "Camera.h"
 #include "World.h"
-#include "Light.h"
+#include "Shadows.h"
 #include "Constants.h"
 #include <fstream>
 
@@ -24,7 +24,7 @@ Player player;
 Mobs* mobs[TOTAL_TILES];
 World world;
 Camera camera;
-Light* light[TOTAL_TILES];
+Shadows* shadows[TOTAL_TILES];
 Tile* tileSet[TOTAL_TILES];
 
 Textures wallpaperTexture;
@@ -160,6 +160,7 @@ void EQ::Loop()
     camera.Center(&player.playerRect);
     player.Update(mobs);
     player.Falling(tileSet);
+	world.GenerateShadows(shadows);	
     world.UpdateMobs(mobs, tileSet, &player.playerRect);
     // FPStimer.Start();
 }
@@ -182,7 +183,7 @@ void EQ::Render()
 	//Render Texture to screen
 	wallpaperTexture.Render(Renderer, 0, 0);
 	// Render Tiles
-	world.Render(Renderer, &camera.cameraRect, tileSet, mobs, &player.playerRect);
+	world.Render(Renderer, &camera.cameraRect, tileSet, mobs, shadows, &player.playerRect);
     //Render Camara outline
     camera.Render(Renderer);
 	// Render Player data

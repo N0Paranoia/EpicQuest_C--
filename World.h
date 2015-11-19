@@ -5,6 +5,7 @@
 #include "Constants.h"
 #include "Tile.h"
 #include "Mobs.h"
+#include "Shadows.h"
 #include <iostream>
 
 using namespace std;
@@ -17,8 +18,9 @@ class World
         int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[]);
         bool SetTiles(Tile* tiles[], Mobs* mobs[]);
         bool SetMobs(Mobs* mobs[]);
+		bool GenerateShadows(Shadows* shadows[]);
         void UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect);
-        void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player);
+        void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], Shadows* shadows[], SDL_Rect* player);
     protected:
     private:
     public:
@@ -27,6 +29,7 @@ class World
 		SDL_Rect ShadowClips[TOTAL_SHADOW_SPRITES];
         int Type;
         int Type_Mobs;
+		int Type_Shadows;
 };
 
 #endif // WORLD_H

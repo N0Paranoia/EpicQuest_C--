@@ -4,6 +4,7 @@
 #include "Tile.h"
 #include "Mobs.h"
 #include "Ai.h"
+#include "Shadows.h"
 #include <fstream>
 
 Ai wAi;
@@ -16,6 +17,7 @@ World::World()
 {
     Type = 0;
     Type_Mobs = 1;
+	Type_Shadows = 1;
 }
 
 World::~World()
@@ -258,6 +260,15 @@ bool World::SetMobs(Mobs* mobs[])
     return true;
 }
 
+bool World::GenerateShadows(Shadows* shadows[])
+{
+	int x = 1;
+	int y += 1;
+	shadows[1] = new Shadows(x, y, Type_Shadows);
+
+	return true;
+}
+
 void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
 {
     for(int i = 0; i < TOTAL_TILES; i++)
@@ -271,7 +282,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
         }
     }
 }
-void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)
+void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], Shadows* shadows[], SDL_Rect* player)
 {
     //Render Tiles
     for(int i = 0; i < TOTAL_TILES; i++)
@@ -284,6 +295,7 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
         if(wAi.Health(mobs, i) == false)
         {
             mobs[i]->Render(&MobSheetTexture, &MobClips[Type], Renderer, camera);
-        }
+	    }
     }
+	shadows[1]->Render(&ShadowTexture, &ShadowClips[Type], Renderer, camera);
 }
