@@ -160,7 +160,7 @@ void EQ::Loop()
     camera.Center(&player.playerRect);
     player.Update(mobs);
     player.Falling(tileSet);
-	world.GenerateShadows(shadows);	
+	world.GenerateShadows(&player.playerRect, shadows);	
     world.UpdateMobs(mobs, tileSet, &player.playerRect);
     // FPStimer.Start();
 }

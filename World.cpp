@@ -260,10 +260,10 @@ bool World::SetMobs(Mobs* mobs[])
     return true;
 }
 
-bool World::GenerateShadows(Shadows* shadows[])
+bool World::GenerateShadows(SDL_Rect* source_rect, Shadows* shadows[])
 {
-	int x = 1;
-	int y += 1;
+	int x = 0;
+	int y = 0;
 	shadows[1] = new Shadows(x, y, Type_Shadows);
 
 	return true;
