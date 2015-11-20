@@ -260,12 +260,22 @@ bool World::SetMobs(Mobs* mobs[])
     return true;
 }
 
-bool World::GenerateShadows(SDL_Rect* source_rect, Shadows* shadows[])
+bool World::GenerateShadows(SDL_Rect* source_rect, Tile* tiles[], Shadows* shadows[])
 {
 	int x = 0;
 	int y = 0;
-	shadows[1] = new Shadows(x, y, Type_Shadows);
+	
+	SDL_Rect shadowR1 = tiles[0]->getTileBox();
+	SDL_Rect shadowR2 = tiles[0]->getTileBox();
+	SDL_Rect cubeR = {0,0,0,0};
+	bool finish = false;
+	int draw = 0;
 
+	if(source_rect->x < tiles[0]->getTileBox().x && source_rect->y < tiles[0]->getTileBox().y)
+	{
+
+	}
+	shadows[1] = new Shadows(shadowR1.x, shadowR1.y, Type_Shadows);
 	return true;
 }
 
