@@ -6,6 +6,7 @@
 #include "Ai.h"
 #include "Shadows.h"
 #include <fstream>
+#include <math.h>
 
 Ai wAi;
 
@@ -260,6 +261,41 @@ bool World::SetMobs(Mobs* mobs[])
     return true;
 }
 
+//function for calculating the end point from one location, to specific end location
+//like a bullet moving forward in a line
+//x,y start location(mouse), x2,y2(rect point location one of the 4) mid point, qx,qy end point(shadow or triangle draw location)
+//startx, starty, endx, endy window in which calculate everything
+void World::ScreenEnd(int x, int y, int x2, int y2, int*qx,int*qy,int startx,int starty, int endx,int endy)
+{
+	x = x2-x;
+	y = y2-y;
+
+	float tx = x2,ty = y2;
+
+	float result = atan2((float)y,(float)x) * 180 / PI;
+
+	float tempx = cos ( result * PI / 180.0 );
+	float tempy = sin ( result * PI / 180.0 );
+
+	bool check = true;
+	//this part needs optimization
+	while(check)
+	{
+		if(tx < startx || ty < starty || tx > endx || ty > endy)
+		{
+			check = false;
+		}
+		else
+		{
+			tx += tempx;
+			ty += tempy;
+		}
+	}
+
+	*qx = tx;
+	*qy = ty;
+}
+
 bool World::GenerateShadows(SDL_Rect* source_rect, Tile* tiles[], Shadows* shadows[])
 {
 	int x = 0;
@@ -273,7 +309,12 @@ bool World::GenerateShadows(SDL_Rect* source_rect, Tile* tiles[], Shadows* shado
 
 	if(source_rect->x < tiles[0]->getTileBox().x && source_rect->y < tiles[0]->getTileBox().y)
 	{
-
+		//calculate up to where calculate the end location
+		// I reuse the old info of the triangle
+		if(shadowR2.x+shadowR2.w >= WINDOW_WIDTH)
+		{
+			this->ScreenEnd(source_rect->x ,source_rect->y, tiles[0]->getTileBox().x, tiles[0]->getTileBox().x + tiles[0]->getTileBox().h, &x, &y, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+		}
 	}
 	shadows[1] = new Shadows(shadowR1.x, shadowR1.y, Type_Shadows);
 	return true;

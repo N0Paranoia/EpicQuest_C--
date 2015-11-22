@@ -4,6 +4,8 @@
 const int FPS = 60;
 const int TICK_PER_FRAME = 1000 / FPS;
 
+const int PI = 3.14159265; // PI
+
 const int WINDOW_WIDTH = 1024;
 const int WINDOW_HEIGHT = 576;
 
