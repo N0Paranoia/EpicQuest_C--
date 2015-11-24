@@ -25,10 +25,7 @@ SDL_Rect Shadows::getShadowBox()
 	return ShadowBox;
 }
 
-void Shadows::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
+void Shadows::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer)
 {
-	if(sCollision.Check(ShadowBox, *camera))
-	{
-		textures->Render(Renderer, ShadowBox.x - camera->x, ShadowBox.y - camera->y, &clips[ShadowType]);
-	}
+	textures->Render(Renderer, ShadowBox.x, ShadowBox.y, &clips[ShadowType]);
 }

@@ -160,8 +160,8 @@ void EQ::Loop()
     camera.Center(&player.playerRect);
     player.Update(mobs);
     player.Falling(tileSet);
-	world.GenerateShadows(&player.playerRect, tileSet, shadows);	
     world.UpdateMobs(mobs, tileSet, &player.playerRect);
+//	world.GenerateShadows(Renderer, tileSet, mobs, shadows, &player.playerRect);
     // FPStimer.Start();
 }
 
@@ -179,6 +179,9 @@ void EQ::Render()
     camera.Render(Renderer);
 	// Render Player data
 	player.Render(Renderer, &camera.cameraRect);
+
+	world.GenerateShadows(Renderer, tileSet, mobs, shadows, &player.playerRect);
+
     //Render FPS text
 	TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
 	//Render Debug text

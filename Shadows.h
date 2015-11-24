@@ -14,7 +14,7 @@ class Shadows
  		int getType();
  		SDL_Rect getShadowBox();
         void Update();
- 		void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera);
+ 		void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer);
 
  		int ShadowType;
  		SDL_Rect ShadowBox;

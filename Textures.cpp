@@ -5,6 +5,8 @@ Textures::Textures()
     texture = nullptr;
     mWidth = 0;
     mHeight = 0;
+
+	flip = SDL_FLIP_NONE;
 }
 
 Textures::~Textures()

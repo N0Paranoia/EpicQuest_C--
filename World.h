@@ -18,8 +18,8 @@ class World
         int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[]);
         bool SetTiles(Tile* tiles[], Mobs* mobs[]);
         bool SetMobs(Mobs* mobs[]);
+        void GenerateShadows(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[], Shadows* shadows[], SDL_Rect* Source);
 		void ScreenEnd(int x, int y, int x2, int y2, int*qx,int*qy,int startx,int starty, int endx,int endy);
-		bool GenerateShadows(SDL_Rect* source_rect, Tile* tiels[], Shadows* shadows[]);
         void UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect);
         void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], Shadows* shadows[], SDL_Rect* player);
     protected:

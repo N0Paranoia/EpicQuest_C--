@@ -17,7 +17,12 @@ class Textures
         //image dimensions
         int mWidth;
         int mHeight;
+		int radius();
+		SDL_Renderer* gRenderer;
 		SDL_Texture* texture;
+		SDL_Rect textureRect;
+		SDL_RendererFlip flip;
+		Uint32* myPixels;
 	public:        
 		Textures();
         virtual ~Textures();

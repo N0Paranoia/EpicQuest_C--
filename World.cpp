@@ -261,63 +261,25 @@ bool World::SetMobs(Mobs* mobs[])
     return true;
 }
 
-//function for calculating the end point from one location, to specific end location
-//like a bullet moving forward in a line
-//x,y start location(mouse), x2,y2(rect point location one of the 4) mid point, qx,qy end point(shadow or triangle draw location)
-//startx, starty, endx, endy window in which calculate everything
-void World::ScreenEnd(int x, int y, int x2, int y2, int*qx,int*qy,int startx,int starty, int endx,int endy)
-{
-	x = x2-x;
-	y = y2-y;
-
-	float tx = x2,ty = y2;
-
-	float result = atan2((float)y,(float)x) * 180 / PI;
-
-	float tempx = cos ( result * PI / 180.0 );
-	float tempy = sin ( result * PI / 180.0 );
-
-	bool check = true;
-	//this part needs optimization
-	while(check)
-	{
-		if(tx < startx || ty < starty || tx > endx || ty > endy)
-		{
-			check = false;
-		}
-		else
-		{
-			tx += tempx;
-			ty += tempy;
-		}
-	}
-
-	*qx = tx;
-	*qy = ty;
-}
-
-bool World::GenerateShadows(SDL_Rect* source_rect, Tile* tiles[], Shadows* shadows[])
+void World::GenerateShadows(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[], Shadows* shadows[], SDL_Rect* Source)
 {
 	int x = 0;
 	int y = 0;
-	
-	SDL_Rect shadowR1 = tiles[0]->getTileBox();
-	SDL_Rect shadowR2 = tiles[0]->getTileBox();
-	SDL_Rect cubeR = {0,0,0,0};
-	bool finish = false;
-	int draw = 0;
 
-	if(source_rect->x < tiles[0]->getTileBox().x && source_rect->y < tiles[0]->getTileBox().y)
+	for(int i = 0; i < 3; i++)
 	{
-		//calculate up to where calculate the end location
-		// I reuse the old info of the triangle
-		if(shadowR2.x+shadowR2.w >= WINDOW_WIDTH)
-		{
-			this->ScreenEnd(source_rect->x ,source_rect->y, tiles[0]->getTileBox().x, tiles[0]->getTileBox().x + tiles[0]->getTileBox().h, &x, &y, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+		Type_Shadows = i;
+		if(Source->x > TILE_SIZE)
+		{	
+			x = TILE_SIZE;
 		}
+		else
+		{
+			x = 0;
+		}
+		shadows[i] = new Shadows(x, y, Type_Shadows);
 	}
-	shadows[1] = new Shadows(shadowR1.x, shadowR1.y, Type_Shadows);
-	return true;
+	shadows[0]->Render(&ShadowTexture, &ShadowClips[Type_Shadows], Renderer);
 }
 
 void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
@@ -333,6 +295,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
         }
     }
 }
+
 void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], Shadows* shadows[], SDL_Rect* player)
 {
     //Render Tiles
@@ -348,5 +311,4 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
             mobs[i]->Render(&MobSheetTexture, &MobClips[Type], Renderer, camera);
 	    }
     }
-	shadows[1]->Render(&ShadowTexture, &ShadowClips[Type], Renderer, camera);
 }
