@@ -17,18 +17,21 @@ std::stringstream debugText;
 
 class EQ
 {
-    private:
-      bool Running;
-      SDL_Window* Window;
-      SDL_Renderer* Renderer;
-      SDL_Texture* Texture;
-      TTF_Font* Font;
-      SDL_Color textColor;
-      int countedFrames;
+	private:
+    	bool Running;
+      	SDL_Window* Window;
+		SDL_Renderer* Renderer;
+	    SDL_Texture* Texture;
+      	TTF_Font* Font;
+     	SDL_Color textColor;
+      	int countedFrames;
 
-      float avgFPS;
-      float timeStep;
-      int frameTicks;
+      	float avgFPS;
+      	float timeStep;
+      	int frameTicks;
+	  
+		int xMouse;
+		int yMouse;
 
     public:
       EQ();

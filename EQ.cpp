@@ -7,7 +7,6 @@
 #include "Textures.h"
 #include "Camera.h"
 #include "World.h"
-#include "Shadows.h"
 #include "Constants.h"
 #include <fstream>
 
@@ -24,7 +23,6 @@ Player player;
 Mobs* mobs[TOTAL_TILES];
 World world;
 Camera camera;
-Shadows* shadows[TOTAL_TILES];
 Tile* tileSet[TOTAL_TILES];
 
 Textures wallpaperTexture;
@@ -41,6 +39,7 @@ EQ::EQ()
 
     textColor = {255,0,0};
     countedFrames  = 0;
+
 }
 
 bool EQ::Init()
@@ -121,6 +120,7 @@ void EQ::Event(SDL_Event* event)
             break;
         }
     }
+	SDL_GetMouseState(&xMouse,&yMouse);// mouse location
 }
 
 void EQ::Fps()
@@ -161,7 +161,6 @@ void EQ::Loop()
     player.Update(mobs);
     player.Falling(tileSet);
     world.UpdateMobs(mobs, tileSet, &player.playerRect);
-//	world.GenerateShadows(Renderer, tileSet, mobs, shadows, &player.playerRect);
     // FPStimer.Start();
 }
 
@@ -174,14 +173,11 @@ void EQ::Render()
 	//Render Texture to screen
 	wallpaperTexture.Render(Renderer, 0, 0);
 	// Render Tiles
-	world.Render(Renderer, &camera.cameraRect, tileSet, mobs, shadows, &player.playerRect);
+	world.Render(Renderer, &camera.cameraRect, tileSet, mobs, &player.playerRect);
     //Render Camara outline
     camera.Render(Renderer);
 	// Render Player data
 	player.Render(Renderer, &camera.cameraRect);
-
-	world.GenerateShadows(Renderer, tileSet, mobs, shadows, &player.playerRect);
-
     //Render FPS text
 	TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
 	//Render Debug text

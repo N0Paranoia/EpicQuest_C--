@@ -4,21 +4,17 @@
 #include "Tile.h"
 #include "Mobs.h"
 #include "Ai.h"
-#include "Shadows.h"
 #include <fstream>
-#include <math.h>
 
 Ai wAi;
 
 Textures MobSheetTexture;
 Textures TileSheetTexture;
-Textures ShadowTexture;
 
 World::World()
 {
     Type = 0;
     Type_Mobs = 1;
-	Type_Shadows = 1;
 }
 
 World::~World()
@@ -38,30 +34,6 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[])
     {
         cout << "Unable to load Mobs! SDL_Error: " << SDL_GetError() << endl;
         return false;
-    }
-    //Load PNG Shadow texture
-    if((ShadowTexture.LoadFromFile(Renderer, "assets/shadows.png")) == 0)
-    {
-        cout << "Unable to Load texture image! SDL_Error: " << SDL_GetError() << endl;
-        return false;
-	} 
-	else
-    {
-        //All mob textures
-        ShadowClips[0].x = 0;
-        ShadowClips[0].y = 0;
-        ShadowClips[0].w = 500;
-        ShadowClips[0].h = 500;
-        
-        ShadowClips[1].x = 500;
-        ShadowClips[1].y = 0;
-        ShadowClips[1].w = 500;
-        ShadowClips[1].h = 500;
- 
-        ShadowClips[2].x = 1000;
-        ShadowClips[2].y = 0;
-        ShadowClips[2].w = 5;
-        ShadowClips[2].h = 5;
     }
     //Load mobSheet
     if((MobSheetTexture.LoadFromFile(Renderer, "assets/mobSheet.png")) == 0)
@@ -261,27 +233,6 @@ bool World::SetMobs(Mobs* mobs[])
     return true;
 }
 
-void World::GenerateShadows(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[], Shadows* shadows[], SDL_Rect* Source)
-{
-	int x = 0;
-	int y = 0;
-
-	for(int i = 0; i < 3; i++)
-	{
-		Type_Shadows = i;
-		if(Source->x > TILE_SIZE)
-		{	
-			x = TILE_SIZE;
-		}
-		else
-		{
-			x = 0;
-		}
-		shadows[i] = new Shadows(x, y, Type_Shadows);
-	}
-	shadows[0]->Render(&ShadowTexture, &ShadowClips[Type_Shadows], Renderer);
-}
-
 void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
 {
     for(int i = 0; i < TOTAL_TILES; i++)
@@ -296,7 +247,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
     }
 }
 
-void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], Shadows* shadows[], SDL_Rect* player)
+void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)
 {
     //Render Tiles
     for(int i = 0; i < TOTAL_TILES; i++)
