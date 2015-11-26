@@ -237,7 +237,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect)
 {
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-        if(wAi.Health(mobs, i) == false)
+        if(wAi.Health(mobs, i) > 0)
         {
             if(mobs[i]->getType() == MOB_TYPE_1)
             {
@@ -251,15 +251,15 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
 {
     //Render Tiles
     for(int i = 0; i < TOTAL_TILES; i++)
-    {
+	{
         tiles[i]->Render(&TileSheetTexture, &TileClips[Type], Renderer, camera);
     }
     //Render Mobs
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-        if(wAi.Health(mobs, i) == false)
-        {
-            mobs[i]->Render(&MobSheetTexture, &MobClips[Type], Renderer, camera);
-	    }
-    }
+        if(wAi.Health(mobs, i) > 0)
+		{
+			mobs[i]->Render(&MobSheetTexture, &MobClips[Type], Renderer, camera);
+    	}
+	}
 }

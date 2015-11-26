@@ -30,5 +30,6 @@ void Mobs::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, S
 	if(mCollision.Check(MobBox, *camera))
 	{
     	textures->Render(Renderer, MobBox.x - camera->x, MobBox.y - camera->y, &clips[MobType]);
+
 	}
 }

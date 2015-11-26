@@ -11,6 +11,7 @@ Ai::Ai()
     for(int i = 0; i < TOTAL_TILES; i++)
     {
         isFalling[i] = true;
+		health[i] = 100;
     }
 }
 
@@ -82,8 +83,9 @@ int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])
 
 int Ai:: Health(Mobs* mobs[], int i)
 {
+	
     isDead[i] = false;
-    return isDead[i];
+    return health[i];
 }
 
 int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
