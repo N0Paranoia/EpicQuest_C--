@@ -115,10 +115,10 @@ bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)
 	topB = b.y;
 	bottomB = b.y + b.h;
 	//[/]
-    	if(bottomA <= (TILE_SIZE - (rightA % TILE_SIZE) + topB))
-    	{
-	       	return false;
-    	}
+	if(bottomA <= (TILE_SIZE - (rightA % TILE_SIZE) + topB))
+	{
+     	return false;
+	}
 	if(topA >= bottomB)
 	{
 		return false;
@@ -243,7 +243,7 @@ bool Collision::Stick(SDL_Rect cBox, Tile* tiles[])
     	{
         		if(this->Check_Slope_45_Right(cBox, tiles[i]->getTileBox()))
         		{
-               			return true;
+                return true;
         		}
     	}
 	}

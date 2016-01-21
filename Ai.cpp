@@ -83,7 +83,6 @@ int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])
 
 int Ai:: Health(Mobs* mobs[], int i)
 {
-	
     isDead[i] = false;
     return health[i];
 }

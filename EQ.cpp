@@ -39,7 +39,6 @@ EQ::EQ()
 
     textColor = {255,0,0};
     countedFrames  = 0;
-
 }
 
 bool EQ::Init()
@@ -174,11 +173,11 @@ void EQ::Render()
 	wallpaperTexture.Render(Renderer, 0, 0);
 	// Render Tiles
 	world.Render(Renderer, &camera.cameraRect, tileSet, mobs, &player.playerRect);
-    //Render Camara outline
-    camera.Render(Renderer);
+  //Render Camara outline
+  camera.Render(Renderer);
 	// Render Player data
 	player.Render(Renderer, &camera.cameraRect);
-    //Render FPS text
+  //Render FPS text
 	TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
 	//Render Debug text
 	DebugTexture.Render(Renderer, 3*TILE_SIZE, 0);
@@ -196,16 +195,16 @@ void EQ::Debug()
     debugText.str("");
     debugText << "State = " << player._state;
     debugText << "|Xvel = " << player.Xvel;
-	debugText << "|Left = " << player.playerRect.x;
-	debugText << "|Right = " << player.playerRect.x + player.playerRect.w;
-	debugText << "|Top = " << player.playerRect.y;
-	debugText << "|Bottom = " << player.playerRect.y + player.playerRect.h;
-	debugText << "|left on tile = " << player.playerRect.x % TILE_SIZE;
-	debugText << "|right on tile = " << (player.playerRect.x + player.playerRect.w) % TILE_SIZE;
+    debugText << "|Left = " << player.playerRect.x;
+    debugText << "|Right = " << player.playerRect.x + player.playerRect.w;
+	  debugText << "|Top = " << player.playerRect.y;
+	  debugText << "|Bottom = " << player.playerRect.y + player.playerRect.h;
+	  debugText << "|left on tile = " << player.playerRect.x % TILE_SIZE;
+    debugText << "|right on tile = " << (player.playerRect.x + player.playerRect.w) % TILE_SIZE;
 
 	if(!DebugTexture.LoadFromRenderedText(Renderer, Font, debugText.str().c_str(), textColor))
 	{
-        	cout << "Failed to render text texture!" << endl;
+    cout << "Failed to render text texture!" << endl;
 	}
 }
 
@@ -247,7 +246,7 @@ int EQ::Execute()
     FPStimer.Start();
 
     while(Running)
-    {;
+    {
         CAPtimer.Start();
         while(SDL_PollEvent(&event))
         {
@@ -258,7 +257,7 @@ int EQ::Execute()
         this->Loop();
         this->Render();
 
-	this->Debug();
+	      this->Debug();
     }
     this->Cleanup();
     return 0;
