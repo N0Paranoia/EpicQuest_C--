@@ -134,6 +134,15 @@ bool Collision::Check_Slope_45_Left(SDL_Rect a, SDL_Rect b)
 	return true;
 }
 
+bool Collision::Rect(SDL_Rect cBox1, SDL_Rect cBox2)
+{
+  if(this->Check(cBox1, cBox2))
+  {
+    return true;
+  }
+  return false;
+}
+
 bool Collision::Var(SDL_Rect cBox, Tile* tiles[], int type)
 {
     for(int i = 0; i < TOTAL_TILES; i++)

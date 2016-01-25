@@ -11,7 +11,7 @@ Ai::Ai()
     for(int i = 0; i < TOTAL_TILES; i++)
     {
         isFalling[i] = true;
-		health[i] = 100;
+		    health[i] = 100;
     }
 }
 
@@ -63,7 +63,7 @@ void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type
 int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])
 {
 
-    bottomCollisionBox = { mobs[i]->getMobBox().x, ( mobs[i]->getMobBox().y +  mobs[i]->getMobBox().h),  mobs[i]->getMobBox().w, 1};
+    bottomCollisionBox = { mobs[i]->getMobBox().x, (mobs[i]->getMobBox().y +  mobs[i]->getMobBox().h),  mobs[i]->getMobBox().w, 1};
 
     if(!aiCollision.Stick(bottomCollisionBox, tiles))
     {
@@ -81,16 +81,16 @@ int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])
     return mobs[i]->getMobBox().y;
 }
 
-int Ai:: Health(Mobs* mobs[], int i)
+int Ai::Health(Mobs* mobs[], int i, double damage)
 {
     isDead[i] = false;
     return health[i];
 }
 
-int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type)
 {
-    //----Basic Wallcollision Ai----//
-    if(aiCollision.Wall(mobs[i]->getMobBox(), tiles))
+    //----Basic Wallcollision Ai----(or bounce of shield)----(or sword knockback)----//
+    if(aiCollision.Wall(mobs[i]->getMobBox(), tiles) || aiCollision.Rect(mobs[i]->getMobBox(), *SwordBox) || aiCollision.Rect(mobs[i]->getMobBox(), *ShieldBox))
     {
         if(movement[i] == left)
         {
@@ -105,7 +105,7 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
     return mobs[i]->getMobBox().x + this->Input(i);
 }
 
-int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis)
+int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type, int axis)
 {
     //---- Basic Ai "input"----//
     this->Input(i);
@@ -116,11 +116,11 @@ int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int typ
     {
         case X_AXIS:
         //----Basic Ai Horizontal Movement and collision ----//
-        return this->Move(mobs, i, tiles, playerRect, type);
+        return this->Move(mobs, i, tiles, playerRect, SwordBox, ShieldBox, type);
         break;
 
         case Y_AXIS:
-        return this->Physics(mobs, i , tiles);
+        return this->Physics(mobs, i, tiles);
         break;
     }
     return 0;

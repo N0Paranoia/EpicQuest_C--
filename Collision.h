@@ -15,6 +15,7 @@ class Collision
         bool CheckCloud(SDL_Rect a, SDL_Rect b);
 	      bool Check_Slope_45_Left(SDL_Rect a, SDL_Rect b);
         bool Check_Slope_45_Right(SDL_Rect a, SDL_Rect b);
+        bool Rect(SDL_Rect cBox1, SDL_Rect cBox2);
         bool Var(SDL_Rect cBox, Tile* tiles[], int type);
         bool Wall(SDL_Rect cBox, Tile* tiles[]);
         bool Cloud(SDL_Rect cBox, Tile* tiles[]);

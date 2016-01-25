@@ -13,10 +13,10 @@ class Ai
         virtual ~Ai();
         int Input(int i);
         void Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
-        int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type);
-     	  int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type, int axis);
+        int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type);
+     	  int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type, int axis);
         int Physics(Mobs* mobs[], int i, Tile* tiles[]);
-        int Health(Mobs* mobs[], int i);
+        int Health(Mobs* mobs[], int i, double damage);
         void Debug();
     protected:
     private:
@@ -30,12 +30,12 @@ class Ai
         };
         Movement movement[TOTAL_TILES] = {};
 
-		int health[TOTAL_TILES];
+		    double health[TOTAL_TILES];
         int Xvel[TOTAL_TILES];
         int Yvel[TOTAL_TILES];
 
         bool isFalling[TOTAL_TILES];
-		bool isDead[TOTAL_TILES];
+		    bool isDead[TOTAL_TILES];
 };
 
 #endif // AI_H

@@ -86,8 +86,7 @@ class Player
 		int frameSwitch;
 
 		SDL_Rect PlayerClips[18];
-		SDL_Rect ShieldBox;
-		SDL_Rect SwordBox;
+
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;
 		SDL_Rect bottomCollisionBox;
@@ -100,6 +99,9 @@ class Player
 		SDL_Rect playerRect;
 		SDL_Rect vertCenterCollisionBox;
 		SDL_Rect playerBox;
+		SDL_Rect SwordBox;
+		SDL_Rect ShieldBox;
+
 		SDL_Rect Shield;
 		SDL_Rect Sword;
 
