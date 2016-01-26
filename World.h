@@ -26,9 +26,9 @@ public:
     SDL_Rect MobClips[TOTAL_MOB_SPRITES];
     SDL_Rect ShadowClips[TOTAL_SHADOW_SPRITES];
     SDL_Rect HealthBar[TOTAL_TILES];
+
     int Type;
     int Type_Mobs;
-    int Type_Shadows;
 };
 
 #endif // WORLD_H
