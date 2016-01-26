@@ -192,220 +192,220 @@ void Player::Input(Tile* tiles[])
 	switch(_state)
 	{
 		case state_idle:
-			Xvel = 0;
-			if(keyState[SDL_SCANCODE_A])
-			{
-				_state = state_walking;
-			}
-			else if(keyState[SDL_SCANCODE_D])
-			{
-				_state = state_walking;
-			}
-			if(keyState[SDL_SCANCODE_S])
-			{
-				isDucking = true;
-				Yvel = walkingSpeed;
-				this->Move(vertical, tiles);
-				this->Climb(down, tiles);
-			}
-			if(!keyState[SDL_SCANCODE_S])
-			{
-				isDucking = false;
-			}
-			if(keyState[SDL_SCANCODE_W])
-			{
-				this->GoTroughDoor(tiles);
-				this->Climb(up, tiles);
-			}
-			if(!keyState[SDL_SCANCODE_W])
-			{
-				canEnterDoor = true;
-			}
-			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
-			{
-				_state = state_running;
-			}
-			if(keyState[SDL_SCANCODE_L])
-			{
-				_state = state_attacking;
-			}
-			if(!keyState[SDL_SCANCODE_L])
-			{
-				isAttacking = false;
-			}
-			if(keyState[SDL_SCANCODE_K])
-			{
-				_state = state_blocking;
-			}
-			break;
+		Xvel = 0;
+		if(keyState[SDL_SCANCODE_A])
+		{
+			_state = state_walking;
+		}
+		else if(keyState[SDL_SCANCODE_D])
+		{
+			_state = state_walking;
+		}
+		if(keyState[SDL_SCANCODE_S])
+		{
+			isDucking = true;
+			Yvel = walkingSpeed;
+			this->Move(vertical, tiles);
+			this->Climb(down, tiles);
+		}
+		if(!keyState[SDL_SCANCODE_S])
+		{
+			isDucking = false;
+		}
+		if(keyState[SDL_SCANCODE_W])
+		{
+			this->GoTroughDoor(tiles);
+			this->Climb(up, tiles);
+		}
+		if(!keyState[SDL_SCANCODE_W])
+		{
+			canEnterDoor = true;
+		}
+		if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
+		{
+			_state = state_running;
+		}
+		if(keyState[SDL_SCANCODE_L])
+		{
+			_state = state_attacking;
+		}
+		if(!keyState[SDL_SCANCODE_L])
+		{
+			isAttacking = false;
+		}
+		if(keyState[SDL_SCANCODE_K])
+		{
+			_state = state_blocking;
+		}
+		break;
 
 		case state_walking:
-			this->Move(horizontal, tiles);
-			if(keyState[SDL_SCANCODE_A])
-			{
-				Xvel = -walkingSpeed;
-				WalkingLeft = true;
-				FacingRight = false;
-				FacingLeft = true;
-			}
-			else if(keyState[SDL_SCANCODE_D])
-			{
+		this->Move(horizontal, tiles);
+		if(keyState[SDL_SCANCODE_A])
+		{
+			Xvel = -walkingSpeed;
+			WalkingLeft = true;
+			FacingRight = false;
+			FacingLeft = true;
+		}
+		else if(keyState[SDL_SCANCODE_D])
+		{
 
-				Xvel = walkingSpeed;
-				WalkingRight = true;
-				FacingLeft = false;
-				FacingRight = true;
-			}
-			else
-			{
-				_state = state_idle;
-			}
-			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
-			{
-				_state = state_running;
-			}
-			if(keyState[SDL_SCANCODE_L])
-			{
-				_state = state_attacking;
-			}
-			if(keyState[SDL_SCANCODE_K])
-			{
-				_state = state_blocking;
-			}
-			break;
+			Xvel = walkingSpeed;
+			WalkingRight = true;
+			FacingLeft = false;
+			FacingRight = true;
+		}
+		else
+		{
+			_state = state_idle;
+		}
+		if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
+		{
+			_state = state_running;
+		}
+		if(keyState[SDL_SCANCODE_L])
+		{
+			_state = state_attacking;
+		}
+		if(keyState[SDL_SCANCODE_K])
+		{
+			_state = state_blocking;
+		}
+		break;
 
 		case state_running:
-			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
+		if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
+		{
+			if(Energy(0) > runEnergy && canRun)
 			{
-				if(Energy(0) > runEnergy && canRun)
-				{
-					if(keyState[SDL_SCANCODE_A])
-					{
-						Xvel = -runningSpeed;
-						this->Move(horizontal, tiles);
-						this->Energy(runEnergy);
-						WalkingLeft = true;
-						FacingRight = false;
-						FacingLeft = true;
-					}
-					else if(keyState[SDL_SCANCODE_D])
-					{
-						Xvel = runningSpeed;
-						this->Move(horizontal, tiles);
-						this->Energy(runEnergy);
-						WalkingRight = true;
-						FacingLeft = false;
-						FacingRight = true;
-					}
-					if(keyState[SDL_SCANCODE_SPACE])
-					{
-						_state = state_jumping;
-					}
-					isRunning = true;
-				}
-				else
-				{
-					canRun = false;
-					if(keyState[SDL_SCANCODE_A])
-					{
-						Xvel = -walkingSpeed;
-						this->Move(horizontal, tiles);
-						this->Energy(runEnergy);
-						WalkingLeft = true;
-						FacingRight = false;
-						FacingLeft = true;
-					}
-					else if(keyState[SDL_SCANCODE_D])
-					{
-						Xvel = walkingSpeed;
-						this->Move(horizontal, tiles);
-						this->Energy(runEnergy);
-						WalkingRight = true;
-						FacingLeft = false;
-						FacingRight = true;
-					}
-					else
-					{
-						isRunning = false;
-						canRun = false;
-					}
-				}
-			}
-			else
-			{
-				isRunning = false;
-				canRun = true;
-				_state = state_idle;
-			}
-			break;
-
-		case state_jumping:
-			if(keyState[SDL_SCANCODE_SPACE])
-			{
-				this->Jump(tiles);
-			}
-			else
-			{
-				_state = state_idle;
-			}
-
-			break;
-
-		case state_climbing:
-			if(keyState[SDL_SCANCODE_W])
-			{
-				Yvel = -walkingSpeed;
-				this->Move(vertical, tiles);
-				this->Climb(up, tiles);
-			}
-			else if(keyState[SDL_SCANCODE_S])
-			{
-				Yvel = walkingSpeed;
-				this->Move(vertical, tiles);
-				this->Climb(down, tiles);
-			}
-			else if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D])
-			{
-				isClimbing = false;
-				_state = state_idle;
-			}
-			break;
-
-		case state_attacking:
-			if(keyState[SDL_SCANCODE_L])
-			{
-				attack = true;
-				this->Attack();
-			}
-			else
-			{
-				attack = false;
-				this->Attack();
-			}
-			break;
-
-		case state_blocking:
-			if(keyState[SDL_SCANCODE_K])
-			{
-				block = true;
-				this->Block();
 				if(keyState[SDL_SCANCODE_A])
 				{
-					Xvel = -walkingSpeed/2;
+					Xvel = -runningSpeed;
 					this->Move(horizontal, tiles);
+					this->Energy(runEnergy);
+					WalkingLeft = true;
+					FacingRight = false;
+					FacingLeft = true;
 				}
 				else if(keyState[SDL_SCANCODE_D])
 				{
-					Xvel = walkingSpeed/2;
+					Xvel = runningSpeed;
 					this->Move(horizontal, tiles);
+					this->Energy(runEnergy);
+					WalkingRight = true;
+					FacingLeft = false;
+					FacingRight = true;
 				}
+				if(keyState[SDL_SCANCODE_SPACE])
+				{
+					_state = state_jumping;
+				}
+				isRunning = true;
 			}
 			else
 			{
-				block = false;
-				this->Block();
+				canRun = false;
+				if(keyState[SDL_SCANCODE_A])
+				{
+					Xvel = -walkingSpeed;
+					this->Move(horizontal, tiles);
+					this->Energy(runEnergy);
+					WalkingLeft = true;
+					FacingRight = false;
+					FacingLeft = true;
+				}
+				else if(keyState[SDL_SCANCODE_D])
+				{
+					Xvel = walkingSpeed;
+					this->Move(horizontal, tiles);
+					this->Energy(runEnergy);
+					WalkingRight = true;
+					FacingLeft = false;
+					FacingRight = true;
+				}
+				else
+				{
+					isRunning = false;
+					canRun = false;
+				}
 			}
-			break;
+		}
+		else
+		{
+			isRunning = false;
+			canRun = true;
+			_state = state_idle;
+		}
+		break;
+
+		case state_jumping:
+		if(keyState[SDL_SCANCODE_SPACE])
+		{
+			this->Jump(tiles);
+		}
+		else
+		{
+			_state = state_idle;
+		}
+
+		break;
+
+		case state_climbing:
+		if(keyState[SDL_SCANCODE_W])
+		{
+			Yvel = -walkingSpeed;
+			this->Move(vertical, tiles);
+			this->Climb(up, tiles);
+		}
+		else if(keyState[SDL_SCANCODE_S])
+		{
+			Yvel = walkingSpeed;
+			this->Move(vertical, tiles);
+			this->Climb(down, tiles);
+		}
+		else if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D])
+		{
+			isClimbing = false;
+			_state = state_idle;
+		}
+		break;
+
+		case state_attacking:
+		if(keyState[SDL_SCANCODE_L])
+		{
+			attack = true;
+			this->Attack();
+		}
+		else
+		{
+			attack = false;
+			this->Attack();
+		}
+		break;
+
+		case state_blocking:
+		if(keyState[SDL_SCANCODE_K])
+		{
+			block = true;
+			this->Block();
+			if(keyState[SDL_SCANCODE_A])
+			{
+				Xvel = -walkingSpeed/2;
+				this->Move(horizontal, tiles);
+			}
+			else if(keyState[SDL_SCANCODE_D])
+			{
+				Xvel = walkingSpeed/2;
+				this->Move(horizontal, tiles);
+			}
+		}
+		else
+		{
+			block = false;
+			this->Block();
+		}
+		break;
 	}
 }
 
@@ -642,14 +642,14 @@ void Player::Move(int Movement, Tile* tiles[])
 		}
 		// Vertical movement
 		if(Movement == vertical  || Movement == jump)
-			playerRect.y += Yvel;
+		playerRect.y += Yvel;
 		// Vertical collision handling
 		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||
 			pCollision.Wall(playerRect, tiles) ||
 			pCollision.Slope_45_Right(playerRect, tiles) ||
 			pCollision.Slope_45_Left(playerRect, tiles)
-		  )
-			playerRect.y -= Yvel;
+		)
+		playerRect.y -= Yvel;
 	}
 }
 

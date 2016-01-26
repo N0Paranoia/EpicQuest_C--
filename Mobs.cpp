@@ -31,10 +31,10 @@ void Mobs::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, S
 	HealthBar = {MobBox.x - camera->x, MobBox.y - camera->y - 10, ((health/100)*MobBox.w), 5};
 	if(mCollision.Check(MobBox, *camera))
 	{
-			if(MobType > 0)
-			{
-				SDL_RenderFillRect(Renderer, &HealthBar);
-			}
-    	textures->Render(Renderer, MobBox.x - camera->x, MobBox.y - camera->y, &clips[MobType]);
+		if(MobType > 0)
+		{
+			SDL_RenderFillRect(Renderer, &HealthBar);
+		}
+		textures->Render(Renderer, MobBox.x - camera->x, MobBox.y - camera->y, &clips[MobType]);
 	}
 }

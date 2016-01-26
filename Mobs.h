@@ -9,19 +9,19 @@ using namespace std;
 
 class Mobs
 {
-    public:
+public:
     Mobs(int x, int y, int Type);
- 		int getType();
- 		SDL_Rect getMobBox();
+    int getType();
+    SDL_Rect getMobBox();
     void Update();
- 		void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera, double health);
-
- 		int MobType;
- 		SDL_Rect MobBox;
+    void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera, double health);
+    
+    int MobType;
+    SDL_Rect MobBox;
     SDL_Rect HealthBar;
 
-    protected:
-    private:
+protected:
+private:
 };
 
 #endif // MOBS_H

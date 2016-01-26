@@ -164,19 +164,19 @@ bool World::SetTiles(Tile* tiles[], Mobs* mobs[])
             }
             else
             {
-               cout << "Error loading map: Invalid tile type!" << endl;
-               return false;
-               break;
+                cout << "Error loading map: Invalid tile type!" << endl;
+                return false;
+                break;
             }
             x += TILE_SIZE;
-			//If we've gone too far
-			if(x >= LEVEL_WIDTH*TILE_SIZE)
-			{
+            //If we've gone too far
+            if(x >= LEVEL_WIDTH*TILE_SIZE)
+            {
                 //Move back
-				x = 0;
-				//Move to the next row
-				y += TILE_SIZE;
-			}
+                x = 0;
+                //Move to the next row
+                y += TILE_SIZE;
+            }
         }
     }
     return true;
@@ -215,19 +215,19 @@ bool World::SetMobs(Mobs* mobs[])
             }
             else
             {
-               cout << "Error loading mobmap: Invalid tile type!" << endl;
-               return false;
-               break;
+                cout << "Error loading mobmap: Invalid tile type!" << endl;
+                return false;
+                break;
             }
             x += TILE_SIZE;
-			//If we've gone too far
-			if(x >= LEVEL_WIDTH*TILE_SIZE)
-			{
+            //If we've gone too far
+            if(x >= LEVEL_WIDTH*TILE_SIZE)
+            {
                 //Move back
-				x = 0;
-				//Move to the next row
-				y += TILE_SIZE;
-			}
+                x = 0;
+                //Move to the next row
+                y += TILE_SIZE;
+            }
         }
     }
     return true;
@@ -247,19 +247,19 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_R
     }
 }
 
-void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player)
+void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player, SDL_Rect* SwordBox)
 {
     //Render Tiles
     for(int i = 0; i < TOTAL_TILES; i++)
-	{
+    {
         tiles[i]->Render(&TileSheetTexture, &TileClips[Type], Renderer, camera);
     }
     //Render Mobs
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-      if(wAi.Health(mobs, i, 0) > 0)
-		{
-			mobs[i]->Render(&MobSheetTexture, &MobClips[Type], Renderer, camera, wAi.Health(mobs, i, 0));
+        if(wAi.Health(mobs, i, 0) > 0)
+        {
+            mobs[i]->Render(&MobSheetTexture, &MobClips[Type], Renderer, camera, wAi.Health(mobs, i, wAi.Damage(mobs, i, SwordBox, Type_Mobs)));
+        }
     }
-	}
 }

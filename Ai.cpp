@@ -11,7 +11,7 @@ Ai::Ai()
     for(int i = 0; i < TOTAL_TILES; i++)
     {
         isFalling[i] = true;
-		    health[i] = 100;
+        health[i] = 100;
     }
 }
 
@@ -57,12 +57,26 @@ void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type
                 movement[i] = idle;
             }
         }
+        break;
     }
+}
+
+double Ai::Damage(Mobs* mobs[], int i, SDL_Rect* SwordBox, int type)
+{
+    switch(type)
+    {
+        case MOB_TYPE_1:
+        if(aiCollision.Rect(mobs[i]->getMobBox(), *SwordBox))
+        {
+            return 10;
+        }
+        break;
+    }
+    return 0;
 }
 
 int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])
 {
-
     bottomCollisionBox = { mobs[i]->getMobBox().x, (mobs[i]->getMobBox().y +  mobs[i]->getMobBox().h),  mobs[i]->getMobBox().w, 1};
 
     if(!aiCollision.Stick(bottomCollisionBox, tiles))
@@ -84,6 +98,7 @@ int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])
 int Ai::Health(Mobs* mobs[], int i, double damage)
 {
     isDead[i] = false;
+    health[i] = (health[i] - damage);
     return health[i];
 }
 
@@ -111,6 +126,8 @@ int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rec
     this->Input(i);
     //----Basic Agro Ai----//
     this->Agro(mobs, i, tiles, playerRect, type);
+    //----Basix Damage taking Ai----//
+    this->Damage(mobs, i, SwordBox, type);
 
     switch(axis)
     {
