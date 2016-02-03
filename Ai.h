@@ -17,7 +17,7 @@ public:
     int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type);
     int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type, int axis);
     int Physics(Mobs* mobs[], int i, Tile* tiles[]);
-    int Health(Mobs* mobs[], int i, double damage);
+    int Health(int i, double damage);
     void Debug();
 protected:
 private:
@@ -36,7 +36,6 @@ private:
     int Yvel[TOTAL_TILES];
 
     bool isFalling[TOTAL_TILES];
-    bool isDead[TOTAL_TILES];
 };
 
 #endif // AI_H

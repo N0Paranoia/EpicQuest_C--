@@ -95,9 +95,9 @@ int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])
     return mobs[i]->getMobBox().y;
 }
 
-int Ai::Health(Mobs* mobs[], int i, double damage)
+int Ai::Health(int i, double damage)
 {
-    isDead[i] = false;
+    // isDead[i] = false;
     health[i] = (health[i] - damage);
     return health[i];
 }
