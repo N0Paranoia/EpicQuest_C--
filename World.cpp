@@ -237,7 +237,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_R
 {
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-        if(wAi.Health(i, 0) > 0)
+        if(wAi.Alive(i))
         {
             if(mobs[i]->getType() == MOB_TYPE_1)
             {
@@ -257,7 +257,7 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
     //Render Mobs
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-        if(wAi.Health(i, 0) > 0)
+        if(wAi.Alive(i))
         {
             mobs[i]->Render(&MobSheetTexture, &MobClips[Type], Renderer, camera, wAi.Health(i, wAi.Damage(mobs, i, SwordBox, Type_Mobs)));
         }

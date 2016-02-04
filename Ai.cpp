@@ -102,6 +102,18 @@ int Ai::Health(int i, double damage)
     return health[i];
 }
 
+bool Ai::Alive(int i)
+{
+    if(this->Health(i, 0) > 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type)
 {
     //----Basic Wallcollision Ai----(or bounce of shield)----(or sword knockback)----//
