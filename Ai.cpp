@@ -37,17 +37,20 @@ int Ai::Input(int i)
     return 0;
 }
 
-void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type)
+void Ai::Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type)
 {
     switch(type)
     {
         case MOB_TYPE_1:
+        // Check vertical alighnement
         if(playerRect->y > (mobs[i]->getMobBox().y - AGRO_RANGE) && playerRect->y < ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + AGRO_RANGE))
         {
+            // Check Horizontal alighnment
             if(playerRect->x + playerRect->w < mobs[i]->getMobBox().x && playerRect->x + playerRect->w > mobs[i]->getMobBox().x - AGRO_RANGE)
             {
                 movement[i] = left;
             }
+            // Check Horizontal alighnment
             else if(playerRect->x > (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) && playerRect->x < (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + AGRO_RANGE)
             {
                 movement[i] = right;
@@ -55,6 +58,24 @@ void Ai::Agro(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, int type
             else
             {
                 movement[i] = idle;
+            }
+        }
+        break;
+    }
+}
+
+void Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, int type)
+{
+    switch(type)
+    {
+        case MOB_TYPE_1:
+        // Check vertical alighnment
+        if(playerRect->y > (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y < ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE))
+        {
+            // Check Horizontal alighnment
+            if(playerRect->x + playerRect->w < mobs[i]->getMobBox().x && playerRect->x + playerRect->w > mobs[i]->getMobBox().x - ATTACK_RANGE_MELEE)
+            {
+                cout << "Attack" << endl;
             }
         }
         break;
@@ -137,9 +158,11 @@ int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rec
     //---- Basic Ai "input"----//
     this->Input(i);
     //----Basic Agro Ai----//
-    this->Agro(mobs, i, tiles, playerRect, type);
-    //----Basix Damage taking Ai----//
+    this->Agro(mobs, i, playerRect, type);
+    //----Basic Damage taking Ai----//
     this->Damage(mobs, i, SwordBox, type);
+    //----Basic AI attack ----//
+    this->Attack(mobs, i, playerRect, type);
 
     switch(axis)
     {

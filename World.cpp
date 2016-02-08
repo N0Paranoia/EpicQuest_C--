@@ -244,6 +244,14 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_R
                 mobs[i] = new Mobs(wAi.Update(mobs, i, tiles, playerRect, SwordBox, ShieldBox, Type_Mobs, X_AXIS), wAi.Update(mobs, i, tiles, playerRect, SwordBox, ShieldBox, Type_Mobs, Y_AXIS), Type_Mobs);
             }
         }
+        else
+        {
+            //Makes a mob realy die
+            if(mobs[i]->getType() == MOB_TYPE_1)
+            {
+                mobs[i] = new Mobs(NULL, NULL, Type_Mobs);
+            }
+        }
     }
 }
 
