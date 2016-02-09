@@ -36,6 +36,7 @@ private:
     double health[TOTAL_TILES];
     int Xvel[TOTAL_TILES];
     int Yvel[TOTAL_TILES];
+    SDL_Rect SpearBox;
 
     bool isFalling[TOTAL_TILES];
 };

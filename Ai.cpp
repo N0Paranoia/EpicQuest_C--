@@ -75,6 +75,7 @@ void Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, int type)
             // Check Horizontal alighnment
             if(playerRect->x + playerRect->w < mobs[i]->getMobBox().x && playerRect->x + playerRect->w > mobs[i]->getMobBox().x - ATTACK_RANGE_MELEE)
             {
+                SpearBox = {0, 0, 100, 100};
                 cout << "Attack" << endl;
             }
         }
