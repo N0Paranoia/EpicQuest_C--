@@ -249,7 +249,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_R
             //Makes a mob realy die
             if(mobs[i]->getType() == MOB_TYPE_1)
             {
-                mobs[i] = new Mobs(NULL, NULL, Type_Mobs);
+                mobs[i] = new Mobs(0, 0, Type_Mobs);
             }
         }
     }
@@ -268,7 +268,7 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
         if(wAi.Alive(i))
         {
             mobs[i]->Render(&MobSheetTexture, &MobClips[Type], Renderer, camera, wAi.Health(i, wAi.Damage(mobs, i, SwordBox, Type_Mobs)));
-
+			SDL_RenderFillRect(Renderer, &wAi.SpearBox);
         }
     }
 }

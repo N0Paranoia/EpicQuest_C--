@@ -21,6 +21,8 @@ public:
     int Health(int i, double damage);
     bool Alive(int i);
     void Debug();
+
+    SDL_Rect SpearBox;
 protected:
 private:
     SDL_Rect bottomCollisionBox;
@@ -36,7 +38,6 @@ private:
     double health[TOTAL_TILES];
     int Xvel[TOTAL_TILES];
     int Yvel[TOTAL_TILES];
-    SDL_Rect SpearBox;
 
     bool isFalling[TOTAL_TILES];
 };
