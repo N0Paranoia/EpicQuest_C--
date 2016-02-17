@@ -22,7 +22,7 @@ public:
     bool Alive(int i);
     void Debug();
 
-    SDL_Rect SpearBox;
+    SDL_Rect WeaponBox[TOTAL_TILES];
 protected:
 private:
     SDL_Rect bottomCollisionBox;

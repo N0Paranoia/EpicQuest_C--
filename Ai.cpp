@@ -73,12 +73,26 @@ void Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, int type)
         if(playerRect->y > (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y < ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE))
         {
             // Check Horizontal alighnment
-            if(playerRect->x + playerRect->w < mobs[i]->getMobBox().x && playerRect->x + playerRect->w > mobs[i]->getMobBox().x - ATTACK_RANGE_MELEE)
-            {
-                SpearBox = {100, 100, 100, 100};
-                cout << "Attack" << endl;
-            }
+			if(playerRect->x <= mobs[i]->getMobBox().x && (playerRect->x + playerRect->w) > mobs[i]->getMobBox().x - ATTACK_RANGE_MELEE)
+			{
+                	WeaponBox[i] = {mobs[i]->getMobBox().x - mobs[i]->getMobBox().w, mobs[i]->getMobBox().y + mobs[i]->getMobBox().h/2, mobs[i]->getMobBox().w, 10};
+	                cout << i << " = " << "Attack Left" << endl;
+			}
+			else if((playerRect->x + playerRect->w) >= mobs[i]->getMobBox().x && playerRect->x < (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE)
+			{
+             	WeaponBox[i] = {mobs[i]->getMobBox().x + mobs[i]->getMobBox().w, mobs[i]->getMobBox().y + mobs[i]->getMobBox().h/2, mobs[i]->getMobBox().w, 10};
+                cout << i << " = " << "Attack Right" << endl;
+			}
+			else
+			{
+				WeaponBox[i] = {0,0,0,0};
+				cout << i << " = " << "Stoped Attacking" << endl;
+			}
         }
+		else
+		{
+			WeaponBox[i] = {0,0,0,0};
+		}
         break;
     }
 }
