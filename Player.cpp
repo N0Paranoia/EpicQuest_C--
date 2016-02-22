@@ -743,7 +743,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	HealthBar = {10, 10, this->Health(0), 10};
 	StaminBar = {10, 25, this->Energy(0), 10};
 	SDL_RenderFillRect(Renderer, &HealthBar);
-	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
+	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF);
 	SDL_RenderFillRect(Renderer, &StaminBar);
 	//Render Frame
 	SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);

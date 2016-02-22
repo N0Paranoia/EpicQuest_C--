@@ -13,6 +13,9 @@ Ai::Ai()
         isFalling[i] = true;
         health[i] = 100;
     }
+	AttackCounter[TOTAL_TILES] = 0;
+	AttackDuration = 60;
+	AttackDelay = 120;
 }
 
 Ai::~Ai()
@@ -64,7 +67,7 @@ void Ai::Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type)
     }
 }
 
-void Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, int type)
+void Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* ShieldBox, int type)
 {
     switch(type)
     {
@@ -75,18 +78,33 @@ void Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, int type)
             // Check Horizontal alighnment
 			if(playerRect->x <= mobs[i]->getMobBox().x && (playerRect->x + playerRect->w) > mobs[i]->getMobBox().x - ATTACK_RANGE_MELEE)
 			{
-                	WeaponBox[i] = {mobs[i]->getMobBox().x - mobs[i]->getMobBox().w, mobs[i]->getMobBox().y + mobs[i]->getMobBox().h/2, mobs[i]->getMobBox().w, 10};
-	                cout << i << " = " << "Attack Left" << endl;
+				if(AttackCounter[i] > AttackDuration)
+				{
+	               	WeaponBox[i] = {mobs[i]->getMobBox().x - mobs[i]->getMobBox().w, mobs[i]->getMobBox().y + mobs[i]->getMobBox().h/2, mobs[i]->getMobBox().w, 10};
+					if(aiCollision.Rect(*ShieldBox, WeaponBox[i]))
+					{
+            	   		WeaponBox[i] = {mobs[i]->getMobBox().x, mobs[i]->getMobBox().y, 10, mobs[i]->getMobBox().w};
+					}
+					AttackCounter[i] = 0;
+				}
+				AttackCounter[i] += 1;
 			}
 			else if((playerRect->x + playerRect->w) >= mobs[i]->getMobBox().x && playerRect->x < (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE)
 			{
-             	WeaponBox[i] = {mobs[i]->getMobBox().x + mobs[i]->getMobBox().w, mobs[i]->getMobBox().y + mobs[i]->getMobBox().h/2, mobs[i]->getMobBox().w, 10};
-                cout << i << " = " << "Attack Right" << endl;
+				if(AttackCounter[i] > AttackDuration)
+				{
+             		WeaponBox[i] = {mobs[i]->getMobBox().x + mobs[i]->getMobBox().w, mobs[i]->getMobBox().y + mobs[i]->getMobBox().h/2, mobs[i]->getMobBox().w, 10};
+					if(aiCollision.Rect(*ShieldBox, WeaponBox[i]))
+					{
+    	         		WeaponBox[i] = {mobs[i]->getMobBox().x + (mobs[i]->getMobBox().w - 10), mobs[i]->getMobBox().y, 10, mobs[i]->getMobBox().w};
+					}
+					AttackCounter[i] = 0;
+				}
+				AttackCounter[i] += 1;
 			}
 			else
 			{
 				WeaponBox[i] = {0,0,0,0};
-				cout << i << " = " << "Stoped Attacking" << endl;
 			}
         }
 		else
@@ -177,7 +195,7 @@ int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rec
     //----Basic Damage taking Ai----//
     this->Damage(mobs, i, SwordBox, type);
     //----Basic AI attack ----//
-    this->Attack(mobs, i, playerRect, type);
+    this->Attack(mobs, i, playerRect, ShieldBox, type);
 
     switch(axis)
     {

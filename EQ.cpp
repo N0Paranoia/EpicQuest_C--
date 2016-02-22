@@ -1,3 +1,4 @@
+#include <fstream>
 #include "EQ.h"
 #include "Physics.h"
 #include "Timer.h"
@@ -8,13 +9,9 @@
 #include "Camera.h"
 #include "World.h"
 #include "Constants.h"
-#include <fstream>
-
-//------------------For debugging-------------
 #include "Ai.h"
-Ai ai;
-//--------------------------------------------
 
+Ai ai;
 Timer FPStimer;
 Timer CAPtimer;
 Physics physics;
@@ -37,7 +34,7 @@ EQ::EQ()
 
     Texture = nullptr;
 
-    textColor = {255,0,0};
+    textColor = {0xff,0x00,0x00, 0x00};
     countedFrames  = 0;
 }
 
