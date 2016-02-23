@@ -268,7 +268,7 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs
         if(wAi.Alive(i))
         {
             mobs[i]->Render(&MobSheetTexture, &MobClips[Type], Renderer, camera, wAi.Health(i, wAi.Damage(mobs, i, SwordBox, Type_Mobs)));
-			SDL_RenderFillRect(Renderer, &wAi.WeaponBox[i]);
+//			SDL_RenderFillRect(Renderer, &wAi.WeaponBox[i]);
         }
     }
 }

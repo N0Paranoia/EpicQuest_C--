@@ -13,6 +13,7 @@ public:
     Mobs(int x, int y, int Type);
     int getType();
     SDL_Rect getMobBox();
+    SDL_Rect getWeaponBox();
     void Update();
     void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera, double health);
 
@@ -20,6 +21,9 @@ public:
     int MobStatus;
     SDL_Rect MobBox;
     SDL_Rect HealthBar;
+	SDL_Rect WeaponBox;
+	//Created to compensate for camera movement
+	SDL_Rect WeaponSprite;
 
 protected:
 private:

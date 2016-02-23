@@ -35,6 +35,7 @@ private:
     };
     Movement movement[TOTAL_TILES] = {};
 
+	bool isAttacking[TOTAL_TILES];
 	int AttackCounter[TOTAL_TILES];
 	int AttackDuration;
 	int AttackDelay;

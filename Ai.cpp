@@ -12,6 +12,7 @@ Ai::Ai()
     {
         isFalling[i] = true;
         health[i] = 100;
+		isAttacking[i] = false;
     }
 	AttackCounter[TOTAL_TILES] = 0;
 	AttackDuration = 60;
@@ -80,6 +81,7 @@ void Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* ShieldBox, 
 			{
 				if(AttackCounter[i] > AttackDuration)
 				{
+					isAttacking[i] = true;
 	               	WeaponBox[i] = {mobs[i]->getMobBox().x - mobs[i]->getMobBox().w, mobs[i]->getMobBox().y + mobs[i]->getMobBox().h/2, mobs[i]->getMobBox().w, 10};
 					if(aiCollision.Rect(*ShieldBox, WeaponBox[i]))
 					{
@@ -93,6 +95,7 @@ void Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* ShieldBox, 
 			{
 				if(AttackCounter[i] > AttackDuration)
 				{
+					isAttacking[i] = true;
              		WeaponBox[i] = {mobs[i]->getMobBox().x + mobs[i]->getMobBox().w, mobs[i]->getMobBox().y + mobs[i]->getMobBox().h/2, mobs[i]->getMobBox().w, 10};
 					if(aiCollision.Rect(*ShieldBox, WeaponBox[i]))
 					{
@@ -104,11 +107,13 @@ void Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* ShieldBox, 
 			}
 			else
 			{
+				isAttacking[i] = false;
 				WeaponBox[i] = {0,0,0,0};
 			}
         }
 		else
 		{
+			isAttacking[i] = false;
 			WeaponBox[i] = {0,0,0,0};
 		}
         break;
