@@ -5,20 +5,20 @@
 
 Collision mCollision;
 
-Mobs::Mobs(int x, int y, int Type)
+Mobs::Mobs(int mobX, int mobY, int mobType, int weaponX, int weaponY, int weaponType)
 {
-	MobBox.x = x;
-	MobBox.y = y;
+	MobBox.x = mobX;
+	MobBox.y = mobY;
 	MobBox.w = TILE_SIZE;
 	MobBox.h = 2*TILE_SIZE;
 
-	MobType = Type;
+	MobType = mobType;
 
-	switch(Type)
+	switch(mobType)
 	{
 		case MOB_TYPE_1:
-			WeaponBox.x = x;
-			WeaponBox.y = y + (MobBox.h/2);
+			WeaponBox.x = weaponX;
+			WeaponBox.y = weaponY;
 			WeaponBox.w = TILE_SIZE;
 			WeaponBox.h = 10;
 			break;

@@ -13,14 +13,15 @@ public:
     virtual ~Ai();
     int Input(int i);
     void Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type);
-    void Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* ShieldBox, int type);
+	int Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, int axis);
     double Damage(Mobs* mobs[], int i, SDL_Rect* SwordBox, int type);
     int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type);
-    int Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type, int axis);
+    int UpdateMovement(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type, int axis);
+	int UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, int i, int axis);    
     int Physics(Mobs* mobs[], int i, Tile* tiles[]);
     int Health(int i, double damage);
     bool Alive(int i);
-    void Debug();
+	void Debug();
 
     SDL_Rect WeaponBox[TOTAL_TILES];
 protected:

@@ -68,56 +68,56 @@ void Ai::Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type)
     }
 }
 
-void Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* ShieldBox, int type)
+int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, int axis)
 {
-    switch(type)
-    {
-        case MOB_TYPE_1:
-        // Check vertical alighnment
-        if(playerRect->y > (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y < ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE))
-        {
-            // Check Horizontal alighnment
-			if(playerRect->x <= mobs[i]->getMobBox().x && (playerRect->x + playerRect->w) > mobs[i]->getMobBox().x - ATTACK_RANGE_MELEE)
-			{
-				if(AttackCounter[i] > AttackDuration)
+    // Check vertical alighnment
+    if(playerRect->y > (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y < ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE))
+	{
+		//Check horizontal alignment
+    	if(playerRect->y > (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y < ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE))
+		{
+			switch(axis)
+			{		
+				case X_AXIS:
+        		if(playerRect->x <= mobs[i]->getMobBox().x && (playerRect->x + playerRect->w) > mobs[i]->getMobBox().x - ATTACK_RANGE_MELEE)
 				{
-					isAttacking[i] = true;
-	               	WeaponBox[i] = {mobs[i]->getMobBox().x - mobs[i]->getMobBox().w, mobs[i]->getMobBox().y + mobs[i]->getMobBox().h/2, mobs[i]->getMobBox().w, 10};
-					if(aiCollision.Rect(*ShieldBox, WeaponBox[i]))
-					{
-            	   		WeaponBox[i] = {mobs[i]->getMobBox().x, mobs[i]->getMobBox().y, 10, mobs[i]->getMobBox().w};
-					}
-					AttackCounter[i] = 0;
+					return mobs[i]->getMobBox().x - TILE_SIZE;
 				}
-				AttackCounter[i] += 1;
-			}
-			else if((playerRect->x + playerRect->w) >= mobs[i]->getMobBox().x && playerRect->x < (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE)
-			{
-				if(AttackCounter[i] > AttackDuration)
+				else if((playerRect->x + playerRect->w) >= mobs[i]->getMobBox().x && playerRect->x < (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE)
 				{
-					isAttacking[i] = true;
-             		WeaponBox[i] = {mobs[i]->getMobBox().x + mobs[i]->getMobBox().w, mobs[i]->getMobBox().y + mobs[i]->getMobBox().h/2, mobs[i]->getMobBox().w, 10};
-					if(aiCollision.Rect(*ShieldBox, WeaponBox[i]))
-					{
-    	         		WeaponBox[i] = {mobs[i]->getMobBox().x + (mobs[i]->getMobBox().w - 10), mobs[i]->getMobBox().y, 10, mobs[i]->getMobBox().w};
-					}
-					AttackCounter[i] = 0;
+					return mobs[i]->getMobBox().x + TILE_SIZE;
 				}
-				AttackCounter[i] += 1;
+				else
+				{
+					return -TILE_SIZE;
+				}
+				break;
+	
+				case Y_AXIS:
+        		if(playerRect->y <= mobs[i]->getMobBox().y && (playerRect->y + playerRect->h) > mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE)
+				{
+					return mobs[i]->getMobBox().y + ((mobs[i]->getMobBox().h/2)-10);
+				}
+				else if((playerRect->y + playerRect->h) >= mobs[i]->getMobBox().y && playerRect->y < (mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE)
+				{
+					return mobs[i]->getMobBox().y + (mobs[i]->getMobBox().h/2);
+				}
+				else
+				{
+					return -TILE_SIZE;
+				}
+				break;				
 			}
-			else
-			{
-				isAttacking[i] = false;
-				WeaponBox[i] = {0,0,0,0};
-			}
-        }
+		}
 		else
 		{
-			isAttacking[i] = false;
-			WeaponBox[i] = {0,0,0,0};
+			return -TILE_SIZE;
 		}
-        break;
-    }
+	}
+	else
+	{
+		return -TILE_SIZE;
+	}
 }
 
 double Ai::Damage(Mobs* mobs[], int i, SDL_Rect* SwordBox, int type)
@@ -191,7 +191,21 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect*
     return mobs[i]->getMobBox().x + this->Input(i);
 }
 
-int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type, int axis)
+int Ai::UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, int i, int axis)
+{	
+	switch(axis)
+	{
+		case X_AXIS:
+		return this->Attack(mobs, i, playerRect, X_AXIS);
+		break;
+
+		case Y_AXIS:
+		return this->Attack(mobs, i, playerRect, Y_AXIS);
+		break;
+	}
+}
+
+int Ai::UpdateMovement(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type, int axis)
 {
     //---- Basic Ai "input"----//
     this->Input(i);
@@ -200,7 +214,7 @@ int Ai::Update(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rec
     //----Basic Damage taking Ai----//
     this->Damage(mobs, i, SwordBox, type);
     //----Basic AI attack ----//
-    this->Attack(mobs, i, playerRect, ShieldBox, type);
+//    this->Attack(mobs, i, playerRect, ShieldBox, type);
 
     switch(axis)
     {

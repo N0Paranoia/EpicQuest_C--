@@ -10,7 +10,7 @@ using namespace std;
 class Mobs
 {
 public:
-    Mobs(int x, int y, int Type);
+    Mobs(int mobX, int mobY, int mobType, int weaponX, int weaponY, int weaponType);
     int getType();
     SDL_Rect getMobBox();
     SDL_Rect getWeaponBox();
