@@ -68,7 +68,7 @@ void Ai::Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type)
     }
 }
 
-int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, int axis)
+int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, int axis)
 {
     // Check vertical alighnment
     if(playerRect->y > (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y < ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE))
@@ -81,10 +81,24 @@ int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, int axis)
 				case X_AXIS:
         		if(playerRect->x <= mobs[i]->getMobBox().x && (playerRect->x + playerRect->w) > mobs[i]->getMobBox().x - ATTACK_RANGE_MELEE)
 				{
+					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) 
+					{
+						cout << "shield bounce" << endl;
+					}
+					else
+					{
+					}	
 					return mobs[i]->getMobBox().x - TILE_SIZE;
 				}
 				else if((playerRect->x + playerRect->w) >= mobs[i]->getMobBox().x && playerRect->x < (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE)
 				{
+					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) 
+					{
+						cout << "shield bounce" << endl;
+					}
+					else
+					{
+					}
 					return mobs[i]->getMobBox().x + TILE_SIZE;
 				}
 				else
@@ -120,12 +134,12 @@ int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, int axis)
 	}
 }
 
-double Ai::Damage(Mobs* mobs[], int i, SDL_Rect* SwordBox, int type)
+double Ai::Damage(Mobs* mobs[], int i, SDL_Rect* swordRect, int type)
 {
     switch(type)
     {
         case MOB_TYPE_1:
-        if(aiCollision.Rect(mobs[i]->getMobBox(), *SwordBox))
+        if(aiCollision.Rect(mobs[i]->getMobBox(), *swordRect))
         {
             return 10;
         }
@@ -173,10 +187,10 @@ bool Ai::Alive(int i)
     }
 }
 
-int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type)
+int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect, int type)
 {
     //----Basic Wallcollision Ai----(or bounce of shield)----(or sword knockback)----//
-    if(aiCollision.Wall(mobs[i]->getMobBox(), tiles) || aiCollision.Rect(mobs[i]->getMobBox(), *SwordBox) || aiCollision.Rect(mobs[i]->getMobBox(), *ShieldBox))
+    if(aiCollision.Wall(mobs[i]->getMobBox(), tiles) || aiCollision.Rect(mobs[i]->getMobBox(), *swordRect) || aiCollision.Rect(mobs[i]->getMobBox(), *shieldRect))
     {
         if(movement[i] == left)
         {
@@ -191,28 +205,28 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect*
     return mobs[i]->getMobBox().x + this->Input(i);
 }
 
-int Ai::UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, int i, int axis)
+int Ai::UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, SDL_Rect* shieldRect, int i, int axis)
 {	
 	switch(axis)
 	{
 		case X_AXIS:
-		return this->Attack(mobs, i, playerRect, X_AXIS);
+		return this->Attack(mobs, i, playerRect, shieldRect, X_AXIS);
 		break;
 
 		case Y_AXIS:
-		return this->Attack(mobs, i, playerRect, Y_AXIS);
+		return this->Attack(mobs, i, playerRect, shieldRect, Y_AXIS);
 		break;
 	}
 }
 
-int Ai::UpdateMovement(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type, int axis)
+int Ai::UpdateMovement(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect, int type, int axis)
 {
     //---- Basic Ai "input"----//
     this->Input(i);
     //----Basic Agro Ai----//
     this->Agro(mobs, i, playerRect, type);
     //----Basic Damage taking Ai----//
-    this->Damage(mobs, i, SwordBox, type);
+    this->Damage(mobs, i, swordRect, type);
     //----Basic AI attack ----//
 //    this->Attack(mobs, i, playerRect, ShieldBox, type);
 
@@ -220,7 +234,7 @@ int Ai::UpdateMovement(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect,
     {
         case X_AXIS:
         //----Basic Ai Horizontal Movement and collision ----//
-        return this->Move(mobs, i, tiles, playerRect, SwordBox, ShieldBox, type);
+        return this->Move(mobs, i, tiles, playerRect, swordRect, shieldRect, type);
         break;
 
         case Y_AXIS:

@@ -17,7 +17,7 @@ public:
     int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[]);
     bool SetTiles(Tile* tiles[], Mobs* mobs[]);
     bool SetMobs(Mobs* mobs[]);
-    void UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox);
+    void UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect);
     void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player, SDL_Rect* SwordBox);
 protected:
 private:

@@ -13,11 +13,11 @@ public:
     virtual ~Ai();
     int Input(int i);
     void Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type);
-	int Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, int axis);
-    double Damage(Mobs* mobs[], int i, SDL_Rect* SwordBox, int type);
-    int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type);
-    int UpdateMovement(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox, int type, int axis);
-	int UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, int i, int axis);    
+	int Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, int axis);
+    double Damage(Mobs* mobs[], int i, SDL_Rect* swordRect, int type);
+    int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect, int type);
+    int UpdateMovement(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect, int type, int axis);
+	int UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, SDL_Rect* shieldRect, int i, int axis);    
     int Physics(Mobs* mobs[], int i, Tile* tiles[]);
     int Health(int i, double damage);
     bool Alive(int i);

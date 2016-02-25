@@ -233,7 +233,7 @@ bool World::SetMobs(Mobs* mobs[])
     return true;
 }
 
-void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* SwordBox, SDL_Rect* ShieldBox)
+void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect)
 {
     for(int i = 0; i < TOTAL_TILES; i++)
     {
@@ -241,7 +241,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_R
         {
             if(mobs[i]->getType() == MOB_TYPE_1)
             {
-                mobs[i] = new Mobs(wAi.UpdateMovement(mobs, i, tiles, playerRect, SwordBox, ShieldBox, Type_Mobs, X_AXIS), wAi.UpdateMovement(mobs, i, tiles, playerRect, SwordBox, ShieldBox, Type_Mobs, Y_AXIS), Type_Mobs, wAi.UpdateAttack(mobs, playerRect, i, X_AXIS), wAi.UpdateAttack(mobs, playerRect, i, Y_AXIS), 0);
+                mobs[i] = new Mobs(wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, X_AXIS), wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, Y_AXIS), Type_Mobs, wAi.UpdateAttack(mobs, playerRect, shieldRect, i, X_AXIS), wAi.UpdateAttack(mobs, playerRect, shieldRect, i, Y_AXIS), 0);
             }
         }
         else
