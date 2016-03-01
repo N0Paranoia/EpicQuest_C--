@@ -12,12 +12,13 @@ Ai::Ai()
     {
         isFalling[i] = true;
         health[i] = 100;
-		isAttacking[i] = false;
+        isAttacking[i] = false;
     }
-	AttackCounter[TOTAL_TILES] = 0;
-	AttackDuration = 60;
-	AttackDelay = 120;
+    AttackCounter[TOTAL_TILES] = 0;
+    AttackDuration = 60;
+    AttackDelay = 120;
 }
+
 
 Ai::~Ai()
 {
@@ -71,56 +72,75 @@ void Ai::Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type)
 int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, int axis)
 {
     // Check vertical alighnment
-    if(playerRect->y > (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y < ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE))
+    if((playerRect->y + playerRect->h) >= (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y <= ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE))
 	{
 		//Check horizontal alignment
-    	if(playerRect->y > (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y < ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE))
+    	if((playerRect->x + playerRect->w) >= (mobs[i]->getMobBox().x- ATTACK_RANGE_MELEE) && playerRect->x <= ((mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE))
 		{
+			if(AttackCounter[i] > AttackDuration)
+			{
+				cout << "test" << endl;
+			}
 			switch(axis)
-			{		
+			{
 				case X_AXIS:
-        		if(playerRect->x <= mobs[i]->getMobBox().x && (playerRect->x + playerRect->w) > mobs[i]->getMobBox().x - ATTACK_RANGE_MELEE)
+        		if(playerRect->x <= mobs[i]->getMobBox().x)
 				{
-					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) 
+					AttackCounter[i] ++;
+					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
 					{
-						cout << "shield bounce" << endl;
+						return mobs[i]->getMobBox().x;
 					}
 					else
 					{
-					}	
-					return mobs[i]->getMobBox().x - TILE_SIZE;
+						return mobs[i]->getMobBox().x - TILE_SIZE;
+					}
 				}
-				else if((playerRect->x + playerRect->w) >= mobs[i]->getMobBox().x && playerRect->x < (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE)
+				else if(playerRect->x >= mobs[i]->getMobBox().x)
 				{
-					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) 
+					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
 					{
-						cout << "shield bounce" << endl;
+						return mobs[i]->getMobBox().x;
 					}
 					else
 					{
+						return mobs[i]->getMobBox().x + TILE_SIZE;
 					}
-					return mobs[i]->getMobBox().x + TILE_SIZE;
 				}
 				else
 				{
 					return -TILE_SIZE;
 				}
 				break;
-	
+
 				case Y_AXIS:
-        		if(playerRect->y <= mobs[i]->getMobBox().y && (playerRect->y + playerRect->h) > mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE)
+        		if(playerRect->y <= mobs[i]->getMobBox().y)
 				{
-					return mobs[i]->getMobBox().y + ((mobs[i]->getMobBox().h/2)-10);
+					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
+					{
+						return mobs[i]->getMobBox().y;
+					}
+					else
+					{
+						return mobs[i]->getMobBox().y + ((mobs[i]->getMobBox().h/2)-10);
+					}
 				}
-				else if((playerRect->y + playerRect->h) >= mobs[i]->getMobBox().y && playerRect->y < (mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE)
+				else if(playerRect->y >= mobs[i]->getMobBox().y)
 				{
-					return mobs[i]->getMobBox().y + (mobs[i]->getMobBox().h/2);
+					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
+					{
+						return mobs[i]->getMobBox().y;
+					}
+					else
+					{
+						return mobs[i]->getMobBox().y + (mobs[i]->getMobBox().h/2);
+					}
 				}
 				else
 				{
 					return -TILE_SIZE;
 				}
-				break;				
+				break;
 			}
 		}
 		else
@@ -206,7 +226,7 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect*
 }
 
 int Ai::UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, SDL_Rect* shieldRect, int i, int axis)
-{	
+{
 	switch(axis)
 	{
 		case X_AXIS:
