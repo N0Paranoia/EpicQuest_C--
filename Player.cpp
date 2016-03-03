@@ -680,10 +680,14 @@ int Player::Energy(int action)
 	return energy;
 }
 
-void Player::MobsCollision(Mobs* mobs[])
+void Player::MobsCollision(Mobs* mobs[], int i)
 {
 
 	if(pCollision.Mob(playerRect, mobs, MOB_TYPE_1))
+	{
+		this->Health(5);
+	}
+	if(pCollision.MobWeapon(playerRect, mobs, MOB_TYPE_1) && !isBlocking)
 	{
 		this->Health(5);
 	}
@@ -760,7 +764,11 @@ void Player::Update(Mobs* mobs[])
 	// initialize vertCenterCollisionBox
 	vertCenterCollisionBox = {playerRect.x + (playerRect.w/2), playerRect.y, 2, playerRect.h+1};
 	// Update the Mobcollision
-	this->MobsCollision(mobs);
+	//this->MobsCollision(mobs);
+	for(int i = 0; i < TOTAL_TILES; i++)
+	{	
+		this->MobsCollision(mobs, i);
+	}
 }
 
 void Player::Cleanup()

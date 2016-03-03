@@ -23,6 +23,10 @@ Mobs::Mobs(int mobX, int mobY, int mobType, int weaponX, int weaponY, int weapon
 			WeaponBox.h = 10;
 			break;
 		default:
+			WeaponBox.x = -TILE_SIZE;
+			WeaponBox.y = -TILE_SIZE;
+			WeaponBox.w = 0;
+			WeaponBox.h = 0;
 			break;
 	}
 

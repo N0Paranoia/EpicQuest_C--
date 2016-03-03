@@ -23,6 +23,7 @@ public:
     bool Slope_45_Left(SDL_Rect cBox, Tile* tiles[]);
     bool Stick(SDL_Rect cBox, Tile* tiles[]);
     bool Mob(SDL_Rect cBox, Mobs* mobs[], int type);
+    bool MobWeapon(SDL_Rect cBox, Mobs* mobs[], int type);
 protected:
 private:
     int leftA, leftB;

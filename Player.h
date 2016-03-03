@@ -119,7 +119,7 @@ public:
 	void GoTroughDoor(Tile* tiles[]);
 	int Health(int damage);
 	int Energy(int action);
-	void MobsCollision(Mobs* mobs[]);
+	void MobsCollision(Mobs* mobs[], int i);
 	void Update(Mobs* mobs[]);
 	void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
 	void Cleanup();

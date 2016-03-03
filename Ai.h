@@ -39,7 +39,7 @@ private:
 	bool isAttacking[TOTAL_TILES];
 	int AttackCounter[TOTAL_TILES];
 	int AttackDuration;
-	int AttackDelay;
+	int AttackAnimationDelay;
 
     double health[TOTAL_TILES];
     int Xvel[TOTAL_TILES];
