@@ -77,6 +77,7 @@ int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, 
         //Check horizontal alignment
         if((playerRect->x + playerRect->w) >= (mobs[i]->getMobBox().x- ATTACK_RANGE_MELEE) && playerRect->x <= ((mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE))
         {
+            cout << "Attack Counter mob number " << i << " = " << AttackCounter[i] << endl;
 //        	if(AttackCounter[i] > AttackDuration)
 //        	{
 //				if(AttackCounter[i] > AttackAnimationDelay)
@@ -87,84 +88,66 @@ int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, 
 //				AttackCounter[i] += 1;
 //      	    cout << "test AttackDelay" << endl;
 //        	}
-			if(AttackCounter[i] < AttackDuration)
-			{
-//				if(AttackCounter[i] > AttackAnimationDelay)
-//				{
-//					AttackCounter[i] = 0;
-//					cout << "Test Attacking" << endl;
-        			switch(axis)
-        			{
-						case X_AXIS:
-        			    	if(playerRect->x <= mobs[i]->getMobBox().x)
-        			        {
-        			            if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
-        			   	        {
-        			   	            return mobs[i]->getMobBox().x;
-        			   	        }
-        			   	        else
-        			   	        {
-        			   	            return mobs[i]->getMobBox().x - TILE_SIZE;
-        			   	        }
-        			   	    }
-        			   	    else if(playerRect->x >= mobs[i]->getMobBox().x)
-        			   	    {
-        			    	    if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
-        			    		{
-        			    	    	return mobs[i]->getMobBox().x;
-        			    	    }
-        			    	    else
-        			    	    {
-        			    	    	return mobs[i]->getMobBox().x + TILE_SIZE;
-        			    	    }
-        			   	    }
-        			   	    else
-        			   	    {
-        			   	        return -TILE_SIZE;
-        			   	    }
-        			   	    break;
+        	switch(axis)
+            {
+				case X_AXIS:
+                    if(playerRect->x <= mobs[i]->getMobBox().x)
+                    {
+                        if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
+                        {
+                            return mobs[i]->getMobBox().x;
+                        }
+                        else
+                        {
+                            return mobs[i]->getMobBox().x - TILE_SIZE;
+                        }
+                    }
+                    else if(playerRect->x >= mobs[i]->getMobBox().x)
+                    {
+                        if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
+                        {
+                            return mobs[i]->getMobBox().x;
+                        }
+                        else
+                        {
+                            return mobs[i]->getMobBox().x + TILE_SIZE;
+                        }
+                    }
+                    else
+                    {
+                        return -TILE_SIZE;
+                    }
+                    break;
 
-        			   	    case Y_AXIS:
-        			   	    if(playerRect->y <= mobs[i]->getMobBox().y)
-        			   	    {
-        			   	        if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
-        			   	        {
-        			   	            return mobs[i]->getMobBox().y;
-        			   	        }
-        			   	        else
-        			   	        {
-        			   	            return mobs[i]->getMobBox().y + ((mobs[i]->getMobBox().h/2)-10);
-        			   	        }
-        			   	    }
-        			   	    else if(playerRect->y >= mobs[i]->getMobBox().y)
-        			   	    {
-        			   	        if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
-        			   	        {
-        			   	            return mobs[i]->getMobBox().y;
-        			   	        }
-        			   	        else
-        			   	        {
-        			   	            return mobs[i]->getMobBox().y + (mobs[i]->getMobBox().h/2);
-        			   	        }
-        			   	    }
-        			   	    else
-        			   	    {
-        			   	        return -TILE_SIZE;
-        			   	    }
-        			   	    break;
-					}    
-				//}
-//				AttackCounter[i] += 1;
-  //    	    	cout << "test AttackDelay" << endl;
-			}
-			else
-			{
-				return -TILE_SIZE;
-			}
-        }
-        else
-        {
-        	return -TILE_SIZE;
+                case Y_AXIS:
+        			if(playerRect->y <= mobs[i]->getMobBox().y)
+        			{
+        			   	if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
+        			   	{
+        			   	    return mobs[i]->getMobBox().y;
+        			   	}
+        			   	else
+        			   	{
+        			   	    return mobs[i]->getMobBox().y + ((mobs[i]->getMobBox().h/2)-10);
+        			   	}
+        			}
+        			else if(playerRect->y >= mobs[i]->getMobBox().y)
+        			{
+        			   	if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
+        			   	{
+        			   	    return mobs[i]->getMobBox().y;
+        			   	}
+        			   	else
+        			   	{
+        			   	    return mobs[i]->getMobBox().y + (mobs[i]->getMobBox().h/2);
+        			   	}
+        			}
+        			else
+        			{
+        			   	return -TILE_SIZE;
+        			}
+        			break;
+            }    
         }
     }
     else
