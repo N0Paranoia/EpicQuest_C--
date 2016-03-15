@@ -74,6 +74,16 @@ int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, 
     // Check vertica and Horizontal alighnment
     if((playerRect->y + playerRect->h) >= (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y <= ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE)&&(playerRect->x + playerRect->w) >= (mobs[i]->getMobBox().x- ATTACK_RANGE_MELEE) && playerRect->x <= ((mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE))
     {
+        cout << "AttackCounter " << i << " = " << AttackCounter[i] << endl;
+        AttackCounter[i] += 1;
+        if(AttackCounter[i] > AttackAnimationDelay)
+        {
+            for(int j = 0; j < AttackDuration; j++)
+            {
+                cout << "Test = " << j << endl;
+            }
+            AttackCounter[i] = 0;
+        }
         switch(axis)
         {
             case X_AXIS:
@@ -87,12 +97,7 @@ int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, 
                     }
                     else
                     {
-                        for(int j = 0; j < 100; j++)
-                        {
                         return mobs[i]->getMobBox().x - TILE_SIZE;
-                            cout << j << endl;
-                        }
-                        //return mobs[i]->getMobBox().x - TILE_SIZE;
                     }
                 }
                 // If the Player is RIGHT of the mob
