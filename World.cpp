@@ -136,9 +136,10 @@ bool World::SetTiles(Tile* tiles[], Mobs* mobs[])
     int x = 0;
     int y = 0;
 
-    std::ifstream map("assets/level.map");
-
-    if (map == NULL)
+    std::ifstream map;
+    map.open("assets/level.map");
+    
+    if (!map)
     {
         cout << "Unable to load Tile Map file!" << endl;
         return false;
@@ -187,9 +188,10 @@ bool World::SetMobs(Mobs* mobs[])
     int x = 0;
     int y = 0;
 
-    std::ifstream mobmap("assets/mob.map");
+    std::ifstream mobmap;
+    mobmap.open("assets/mob.map");
 
-    if (mobmap == NULL)
+    if (!mobmap)
     {
         cout << "Unable to load Tile Map file!" << endl;
         return false;

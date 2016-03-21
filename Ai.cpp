@@ -19,7 +19,6 @@ Ai::Ai()
     AttackAnimationDelay = 120;
 }
 
-
 Ai::~Ai()
 {
     //dtor
