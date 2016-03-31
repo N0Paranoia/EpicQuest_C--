@@ -14,10 +14,12 @@ public:
     int Input(int i);
     void Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type);
 	int Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, int axis);
+    int Block(Mobs* mobs[], int i, int axis);
     double Damage(Mobs* mobs[], int i, SDL_Rect* swordRect, int type);
     int Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect, int type);
     int UpdateMovement(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect, int type, int axis);
 	int UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, SDL_Rect* shieldRect, int i, int axis);
+	int UpdateBlock(Mobs* mobs[], int i, int axis);
     int Physics(Mobs* mobs[], int i, Tile* tiles[]);
     int Health(int i, double damage);
     bool Alive(int i);
@@ -36,8 +38,12 @@ private:
     };
     Movement movement[TOTAL_TILES] = {};
 
+    bool facingLeft[TOTAL_TILES];
+    bool facingRight[TOTAL_TILES];
+
 	bool isAttacking[TOTAL_TILES];
 	int AttackCounter[TOTAL_TILES];
+    int AttackDelayCounter[TOTAL_TILES];
 	int AttackDuration;
 	int AttackAnimationDelay;
 

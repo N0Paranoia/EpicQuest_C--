@@ -213,7 +213,7 @@ bool World::SetMobs(Mobs* mobs[])
             //if number is valid tile number
             if((Type_Mobs >= 0) && (Type_Mobs < TOTAL_MOB_SPRITES))
             {
-                mobs[i] = new Mobs(x, y, Type_Mobs, 0, 0, 0);
+                mobs[i] = new Mobs(x, y, Type_Mobs, 0, 0, 0, 0, 0);
             }
             else
             {
@@ -243,7 +243,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_R
         {
             if(mobs[i]->getType() == MOB_TYPE_1)
             {
-                mobs[i] = new Mobs(wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, X_AXIS), wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, Y_AXIS), Type_Mobs, wAi.UpdateAttack(mobs, playerRect, shieldRect, i, X_AXIS), wAi.UpdateAttack(mobs, playerRect, shieldRect, i, Y_AXIS), 0);
+                mobs[i] = new Mobs(wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, X_AXIS), wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, Y_AXIS), Type_Mobs, wAi.UpdateAttack(mobs, playerRect, shieldRect, i, X_AXIS), wAi.UpdateAttack(mobs, playerRect, shieldRect, i, Y_AXIS), 0, wAi.UpdateBlock(mobs, i, X_AXIS), wAi.UpdateBlock(mobs, i, Y_AXIS));
             }
         }
         else
@@ -251,7 +251,7 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_R
             //Makes a mob realy die
             if(mobs[i]->getType() == MOB_TYPE_1)
             {
-                mobs[i] = new Mobs(0, 0, Type_Mobs, 0, 0, 0);
+                mobs[i] = new Mobs(0, 0, Type_Mobs, 0, 0, 0, 0, 0);
             }
         }
     }

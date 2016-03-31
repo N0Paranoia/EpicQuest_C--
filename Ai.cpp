@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include "Collision.h"
 #include "Physics.h"
+#include <random>
 
 Collision aiCollision;
 Physics aiPhysics;
@@ -13,9 +14,12 @@ Ai::Ai()
         isFalling[i] = true;
         health[i] = 100;
         isAttacking[i] = false;
+        facingLeft[i] = true;
+        facingRight[i] = false;
     }
     AttackCounter[TOTAL_TILES] = 0;
-    AttackDuration = 60;
+    AttackDelayCounter[TOTAL_TILES] = 0;
+    AttackDuration = 30;
     AttackAnimationDelay = 120;
 }
 
@@ -28,10 +32,14 @@ int Ai::Input(int i)
 {
     if(movement[i] == left)
     {
+        facingRight[i] = false;
+        facingLeft[i] = true;
         return -4;
     }
     if(movement[i] == right)
     {
+        facingLeft[i] = false;
+        facingRight[i] = true;
         return 4;
     }
     if(movement[i] == idle)
@@ -73,21 +81,11 @@ int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, 
     // Check vertica and Horizontal alighnment
     if((playerRect->y + playerRect->h) >= (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y <= ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE)&&(playerRect->x + playerRect->w) >= (mobs[i]->getMobBox().x- ATTACK_RANGE_MELEE) && playerRect->x <= ((mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE))
     {
-        cout << "AttackCounter " << i << " = " << AttackCounter[i] << endl;
-        AttackCounter[i] += 1;
-        if(AttackCounter[i] > AttackAnimationDelay)
-        {
-            for(int j = 0; j < AttackDuration; j++)
-            {
-                cout << "Test = " << j << endl;
-            }
-            AttackCounter[i] = 0;
-        }
         switch(axis)
         {
             case X_AXIS:
                 // If the player is LEFT of the mob
-                if(playerRect->x <= mobs[i]->getMobBox().x)
+                if(facingLeft[i])
                 {
                     // If mob weapon bounces of the player shield
                     if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
@@ -100,7 +98,7 @@ int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, 
                     }
                 }
                 // If the Player is RIGHT of the mob
-                else if(playerRect->x >= mobs[i]->getMobBox().x)
+                else if(facingRight[i])
                 {
                     // If mob weapon bounces of the player shield
                     if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect))
@@ -155,6 +153,26 @@ int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, 
     else
     {
         return -TILE_SIZE;
+    }
+}
+
+int Ai::Block(Mobs* mobs[], int i, int axis)
+{
+    switch(axis)
+    {
+        case X_AXIS:
+            if(facingLeft[i])
+            {
+                return mobs[i]->getMobBox().x - mobs[i]->getShieldBox().w;
+            }
+            else if(facingRight[i])
+            {
+                return mobs[i]->getMobBox().x + mobs[i]->getMobBox().w;
+            }
+            break;
+        case Y_AXIS:
+            return mobs[i]->getMobBox().y + (mobs[i]->getMobBox().h/4);
+            break;
     }
 }
 
@@ -229,17 +247,56 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect*
     return mobs[i]->getMobBox().x + this->Input(i);
 }
 
+
+int Ai::UpdateBlock(Mobs* mobs[], int i, int axis)
+{
+    if(!isAttacking[i])
+    {
+        switch(axis)
+        {
+            case X_AXIS:
+                return this->Block(mobs, i, axis);
+                break;
+            case Y_AXIS:
+                return this->Block(mobs, i, axis);
+                break;
+        }
+    }
+    else
+    {
+        return -TILE_SIZE;
+    }
+}
+
 int Ai::UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, SDL_Rect* shieldRect, int i, int axis)
 {
-    switch(axis)
+    // Creating in attack delay
+    if(AttackCounter[i] > AttackAnimationDelay) 
     {
-        case X_AXIS:
-        return this->Attack(mobs, i, playerRect, shieldRect, X_AXIS);
-        break;
+        if(AttackDelayCounter[i] > AttackDuration)
+        {
+            AttackCounter[i] = 0;
+        }
+        AttackDelayCounter[i] ++;
+        isAttacking[i] = true;
+        
+        switch(axis)
+        {
+            case X_AXIS: 
+                return this->Attack(mobs, i, playerRect, shieldRect, X_AXIS);
+                break;
 
-        case Y_AXIS:
-        return this->Attack(mobs, i, playerRect, shieldRect, Y_AXIS);
-        break;
+            case Y_AXIS:
+                return this->Attack(mobs, i, playerRect, shieldRect, Y_AXIS);
+                break;
+        }
+    }
+    else
+    {
+        isAttacking[i] = false;
+        AttackDelayCounter[i] = 0;
+        AttackCounter[i] ++;
+        return - TILE_SIZE;
     }
 }
 
@@ -270,4 +327,6 @@ int Ai::UpdateMovement(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect,
 void Ai::Debug()
 {
     cout << "Debug!" << endl;
+    // Test random number
+    cout << (rand() % 10) << endl;
 }
