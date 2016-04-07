@@ -14,6 +14,7 @@ Ai::Ai()
         isFalling[i] = true;
         health[i] = 100;
         isAttacking[i] = false;
+        isBlocking[i] = true;
         facingLeft[i] = true;
         facingRight[i] = false;
     }
@@ -81,6 +82,7 @@ int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, 
     // Check vertica and Horizontal alighnment
     if((playerRect->y + playerRect->h) >= (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y <= ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE)&&(playerRect->x + playerRect->w) >= (mobs[i]->getMobBox().x- ATTACK_RANGE_MELEE) && playerRect->x <= ((mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE))
     {
+        isAttacking[i] = true;
         switch(axis)
         {
             case X_AXIS:
@@ -152,6 +154,7 @@ int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, 
     }
     else
     {
+        isAttacking[i] = false;
         return -TILE_SIZE;
     }
 }
@@ -212,8 +215,11 @@ int Ai::Physics(Mobs* mobs[], int i, Tile* tiles[])
 
 int Ai::Health(int i, double damage)
 {
-    // isDead[i] = false;
-    health[i] = (health[i] - damage);
+    if(!isBlocking[i])
+    {
+        health[i] = (health[i] - damage);
+//        return health[i];
+    }
     return health[i];
 }
 
@@ -252,6 +258,7 @@ int Ai::UpdateBlock(Mobs* mobs[], int i, int axis)
 {
     if(!isAttacking[i])
     {
+        isBlocking[i] = true;
         switch(axis)
         {
             case X_AXIS:
@@ -264,6 +271,7 @@ int Ai::UpdateBlock(Mobs* mobs[], int i, int axis)
     }
     else
     {
+        isBlocking[i] = false;
         return -TILE_SIZE;
     }
 }
@@ -275,10 +283,10 @@ int Ai::UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, SDL_Rect* shieldRect, i
     {
         if(AttackDelayCounter[i] > AttackDuration)
         {
+            isAttacking[i] = false;
             AttackCounter[i] = 0;
         }
         AttackDelayCounter[i] ++;
-        isAttacking[i] = true;
         
         switch(axis)
         {

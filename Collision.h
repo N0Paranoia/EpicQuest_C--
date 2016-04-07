@@ -24,6 +24,7 @@ public:
     bool Stick(SDL_Rect cBox, Tile* tiles[]);
     bool Mob(SDL_Rect cBox, Mobs* mobs[], int type);
     bool MobWeapon(SDL_Rect cBox, Mobs* mobs[], int type);
+    bool MobShield(SDL_Rect cBox, Mobs* mobs[], int type);
 protected:
 private:
     int leftA, leftB;

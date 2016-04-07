@@ -288,3 +288,17 @@ bool Collision::MobWeapon(SDL_Rect cBox, Mobs* mobs[], int type)
     }
     return false;
 }
+bool Collision::MobShield(SDL_Rect cBox, Mobs* mobs[], int type)
+{
+    for(int i = 0; i < TOTAL_TILES; i++)
+    {
+        if(mobs[i]->getType() == type)
+        {
+            if(this->Check(cBox, mobs[i]->getShieldBox()))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}

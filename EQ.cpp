@@ -148,7 +148,7 @@ void EQ::FpsCap()
 
 void EQ::Input()
 {
-    player.Input(tileSet);
+    player.Input(tileSet, mobs);
 }
 
 void EQ::Loop()

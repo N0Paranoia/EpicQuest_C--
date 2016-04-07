@@ -42,6 +42,7 @@ private:
     bool facingRight[TOTAL_TILES];
 
 	bool isAttacking[TOTAL_TILES];
+    bool isBlocking[TOTAL_TILES];
 	int AttackCounter[TOTAL_TILES];
     int AttackDelayCounter[TOTAL_TILES];
 	int AttackDuration;

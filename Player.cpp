@@ -182,7 +182,7 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
 	return true;
 }
 
-void Player::Input(Tile* tiles[])
+void Player::Input(Tile* tiles[], Mobs* mobs[])
 {
 	WalkingLeft = false;
 	WalkingRight = false;
@@ -375,12 +375,12 @@ void Player::Input(Tile* tiles[])
 		if(keyState[SDL_SCANCODE_L])
 		{
 			attack = true;
-			this->Attack();
+			this->Attack(mobs);
 		}
 		else
 		{
 			attack = false;
-			this->Attack();
+			this->Attack(mobs);
 		}
 		break;
 
@@ -502,7 +502,7 @@ void Player::GoTroughDoor(Tile* tiles[])
 	}
 }
 
-void Player::Attack()
+void Player::Attack(Mobs* mobs[])
 {
 	if(attack)
 	{
@@ -510,11 +510,25 @@ void Player::Attack()
 		{
 			if(FacingLeft)
 			{
-				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
+                if(pCollision.MobShield(SwordBox, mobs, MOB_TYPE_1))
+                {
+                    cout << "ShieldHit" << endl;
+                }
+                else
+                {
+                    SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
+                }
 			}
 			else if(FacingRight)
 			{
-				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
+                if(pCollision.MobShield(SwordBox, mobs, MOB_TYPE_1))
+                {
+                    cout << "ShieldHit" << endl;
+                }
+                else
+                {
+                    SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
+                }
 			}
 			if(!isAttacking)
 			{

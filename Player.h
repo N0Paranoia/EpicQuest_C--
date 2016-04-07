@@ -108,10 +108,10 @@ public:
 	Player();
 	virtual ~Player();
 
-	void Input(Tile* tiles[]);
+	void Input(Tile* tiles[], Mobs* mobs[]);
 	int LoadMedia(SDL_Renderer* Renderer);
 	void Move(int Movement, Tile* tiles[]);
-	void Attack();
+	void Attack(Mobs* mobs[]);
 	void Block();
 	void Jump(Tile* tiles[]);
 	void Climb(int Movement, Tile* tiles[]);
