@@ -9,26 +9,25 @@
 
 using namespace std;
 
-class World
-{
+class World {
 public:
-    World();
-    virtual ~World();
-    int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[]);
-    bool SetTiles(Tile* tiles[], Mobs* mobs[]);
-    bool SetMobs(Mobs* mobs[]);
-    void UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect);
-    void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* player, SDL_Rect* SwordBox);
+  World();
+  virtual ~World();
+  int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[], Mobs* mobs[]);
+  bool SetTiles(Tile* tiles[]);
+  bool SetMobs(Mobs* mobs[]);
+  void UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect);
+  void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[], Mobs* mobs[], SDL_Rect* SwordBox);
 protected:
 private:
 public:
-    SDL_Rect TileClips[TOTAL_TILE_SPRITES];
-    SDL_Rect MobClips[TOTAL_MOB_SPRITES];
-    SDL_Rect ShadowClips[TOTAL_SHADOW_SPRITES];
-    SDL_Rect HealthBar[TOTAL_TILES];
+  SDL_Rect TileClips[TOTAL_TILE_SPRITES];
+  SDL_Rect MobClips[TOTAL_MOB_SPRITES];
+  SDL_Rect ShadowClips[TOTAL_SHADOW_SPRITES];
+  SDL_Rect HealthBar[TOTAL_TILES];
 
-    int Type;
-    int Type_Mobs;
+  int Type;
+  int Type_Mobs;
 };
 
 #endif // WORLD_H

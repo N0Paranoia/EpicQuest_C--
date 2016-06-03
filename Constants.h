@@ -2,7 +2,7 @@
 #define CONSTANTS_H_INCLUDED
 
 const int FPS = 60;
-const int TICK_PER_FRAME = 1000 / FPS;
+const int TICK_PER_FRAME = 1000 / 60; // should vbe the FPS
 
 const int PI = 3.14159265; // PI
 
@@ -50,7 +50,7 @@ const int TOTAL_DOORS = 2;
 
 const int GRAVITY = 12;
 
-const int AGRO_RANGE = 2 * TILE_SIZE;
-const int ATTACK_RANGE_MELEE = TILE_SIZE;
+const int AGRO_RANGE = 2 * 48; //Should be the same as 2x TILE_SIZE 
+const int ATTACK_RANGE_MELEE = 48; // Should be the same as TILE_SIZE
 
 #endif // CONSTANTS_H_INCLUDED
