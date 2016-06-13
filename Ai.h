@@ -11,6 +11,7 @@ public:
   Ai();
   virtual ~Ai();
   int Input(int i);
+  void Patrolling(int i, int type);
   void Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type);
   int Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, int axis);
   int Block(Mobs* mobs[], int i, int axis);
@@ -33,9 +34,12 @@ private:
     idle,
     left,
     right,
+    patrolling
   };
   Movement movement[TOTAL_TILES] = {};
 
+  bool inAgroRange[TOTAL_TILES];
+  
   bool facingLeft[TOTAL_TILES];
   bool facingRight[TOTAL_TILES];
 
@@ -51,6 +55,9 @@ private:
   int Yvel[TOTAL_TILES];
 
   bool isFalling[TOTAL_TILES];
+
+  int rnd_direction[TOTAL_TILES];
+  int test_number;
 };
 
 #endif // AI_H

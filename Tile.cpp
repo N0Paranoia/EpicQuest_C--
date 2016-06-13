@@ -27,7 +27,8 @@ SDL_Rect Tile::getTileBox() {
 }
 
 void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera) {
-  if(tCollision.Check(TileBox, *camera)) {
+
+  //  if(tCollision.Check(TileBox, *camera)) { // is commenting out because of collision errors
     textures->Render(Renderer, TileBox.x - camera->x, TileBox.y - camera->y, &clips[TileType]);
-  }
+    //}
 }

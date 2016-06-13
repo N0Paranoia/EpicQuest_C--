@@ -15,6 +15,7 @@ Ai::Ai() {
     isBlocking[i] = true;
     facingLeft[i] = true;
     facingRight[i] = false;
+    inAgroRange[i] = false;
   }
   AttackCounter[TOTAL_TILES] = 0;
   AttackDelayCounter[TOTAL_TILES] = 0;
@@ -30,17 +31,39 @@ int Ai::Input(int i) {
   if(movement[i] == left) {
     facingRight[i] = false;
     facingLeft[i] = true;
-    return -4;
+    return -3;
   }
   if(movement[i] == right) {
     facingLeft[i] = false;
     facingRight[i] = true;
-    return 4;
+    return 3;
   }
   if(movement[i] == idle) {
     return 0;
   }
   return 0;
+}
+
+void Ai::Patrolling(int i, int type) {
+  if(!inAgroRange[i]) {
+    if(test_number > FPS) {
+      rnd_direction[i] = (rand() % 3);
+      test_number = 0;
+    } else {
+      test_number ++;
+    }
+    if(rnd_direction[i] == 0) {
+      movement[i] = idle;    
+    }
+    else if(rnd_direction[i] == 1) {
+      movement[i] = left;
+    }
+    else if(rnd_direction[i] == 2 ) {
+      movement[i] = right;
+    } else {
+      movement[i] = idle;
+    }
+  }
 }
 
 void Ai::Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type) {
@@ -50,73 +73,69 @@ void Ai::Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type) {
     if(playerRect->y > (mobs[i]->getMobBox().y - AGRO_RANGE) && playerRect->y < ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + AGRO_RANGE)) {
       // Check Horizontal alighnment
       if(playerRect->x + playerRect->w + (playerRect->w/2) < mobs[i]->getMobBox().x && playerRect->x + playerRect->w > mobs[i]->getMobBox().x - AGRO_RANGE) {
-        movement[i] = left;
+	inAgroRange[i] = true;
+	movement[i] = left;
       }
       // Check Horizontal alighnment
       else if(playerRect->x - (playerRect->w/2) > (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) && playerRect->x < (mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + AGRO_RANGE) {
+	inAgroRange[i] = true;
         movement[i] = right;
-      } else {
-        movement[i] = idle;
       }
+      inAgroRange[i] = false;
     }
+    inAgroRange[i] = false;
     break;
   }
 }
 
 int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, int axis) {
-  // Check vertica and Horizontal alighnment
-  if((playerRect->y + playerRect->h) >= (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y <= ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE)&&(playerRect->x + playerRect->w) >= (mobs[i]->getMobBox().x- ATTACK_RANGE_MELEE) && playerRect->x <= ((mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE)) {
-    isAttacking[i] = true;
-    switch(axis) {
-    case X_AXIS:
-      // If the player is LEFT of the mob
-      if(facingLeft[i]) {
-        // If mob weapon bounces of the player shield
-        if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
-          return mobs[i]->getMobBox().x;
-        } else {
-          return mobs[i]->getMobBox().x - TILE_SIZE;
-        }
-      }
-      // If the Player is RIGHT of the mob
-      else if(facingRight[i]) {
-        // If mob weapon bounces of the player shield
-        if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
-          return mobs[i]->getMobBox().x;
-        } else {
-          return mobs[i]->getMobBox().x + TILE_SIZE;
-        }
+  isAttacking[i] = true;
+  switch(axis) {
+  case X_AXIS:
+    // If the player is LEFT of the mob
+    if(facingLeft[i]) {
+      // If mob weapon bounces of the player shield
+      if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
+	return mobs[i]->getMobBox().x;
       } else {
-        return -TILE_SIZE;
+	return mobs[i]->getMobBox().x - TILE_SIZE;
       }
-      break;
-
-    case Y_AXIS:
-      // If the player is OBOVE the mob
-      if(playerRect->y <= mobs[i]->getMobBox().y) {
-        // If mob weapon bounces of the player shield
-        if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
-          return mobs[i]->getMobBox().y;
-        } else {
-          return mobs[i]->getMobBox().y + ((mobs[i]->getMobBox().h/2)-10);
-        }
-      }
-      // If the plalyer is BELOW the mob
-      else if(playerRect->y >= mobs[i]->getMobBox().y) {
-        // If mob weapon bounces of the player shield
-        if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
-          return mobs[i]->getMobBox().y;
-        } else {
-          return mobs[i]->getMobBox().y + (mobs[i]->getMobBox().h/2);
-        }
-      } else {
-        return -TILE_SIZE;
-      }
-      break;
     }
-  } else {
-    isAttacking[i] = false;
-    return -TILE_SIZE;
+    // If the Player is RIGHT of the mob
+    else if(facingRight[i]) {
+      // If mob weapon bounces of the player shield
+      if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
+	return mobs[i]->getMobBox().x;
+      } else {
+	return mobs[i]->getMobBox().x + TILE_SIZE;
+      }
+    } else {
+      return -TILE_SIZE;
+    }
+    break;
+
+  case Y_AXIS:
+    // If the player is OBOVE the mob
+    if(playerRect->y <= mobs[i]->getMobBox().y) {
+      // If mob weapon bounces of the player shield
+      if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
+	return mobs[i]->getMobBox().y;
+      } else {
+	return mobs[i]->getMobBox().y + ((mobs[i]->getMobBox().h/2)-10);
+      }
+    }
+    // If the plalyer is BELOW the mob
+    else if(playerRect->y >= mobs[i]->getMobBox().y) {
+      // If mob weapon bounces of the player shield
+      if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
+	return mobs[i]->getMobBox().y;
+      } else {
+	return mobs[i]->getMobBox().y + (mobs[i]->getMobBox().h/2);
+      }
+    } else {
+      return -TILE_SIZE;
+    }
+    break;
   }
   return 0;
 }
@@ -210,36 +229,40 @@ int Ai::UpdateBlock(Mobs* mobs[], int i, int axis) {
 }
 
 int Ai::UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, SDL_Rect* shieldRect, int i, int axis) {
-  // Creating in attack delay
-  //  if(AttackCounter[i] > AttackAnimationDelay) {
-  //    if(AttackDelayCounter[i] > AttackDuration) {
-  //    isAttacking[i] = false;
-  //    AttackCounter[i] = 0;
-  //  }
-  AttackDelayCounter[i] ++;
-  cout << "Attack Delay Counter [" << i << "]  = " << AttackDelayCounter[i] << endl;
+  // Check vertica and Horizontal alighnment
+  if((playerRect->y + playerRect->h) >= (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y <= ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE)&&(playerRect->x + playerRect->w) >= (mobs[i]->getMobBox().x- ATTACK_RANGE_MELEE) && playerRect->x <= ((mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE)) {
+    // Creating attack delay
+    if(AttackCounter[i] > AttackAnimationDelay) {
+      if(AttackDelayCounter[i] > AttackDuration) {
+	isAttacking[i] = false;
+	AttackCounter[i] = 0;
+      }
+      AttackDelayCounter[i] ++;
+      
+      switch(axis) {
+      case X_AXIS:
+	return this->Attack(mobs, i, playerRect, shieldRect, X_AXIS);
+	break;
 
-    switch(axis) {
-    case X_AXIS:
-      return this->Attack(mobs, i, playerRect, shieldRect, X_AXIS);
-      break;
-
-    case Y_AXIS:
-      return this->Attack(mobs, i, playerRect, shieldRect, Y_AXIS);
-      break;
+      case Y_AXIS:
+	return this->Attack(mobs, i, playerRect, shieldRect, Y_AXIS);
+	break;
+      }
+    } else {
+      isAttacking[i] = false;
+      AttackDelayCounter[i] = 0;
+      AttackCounter[i] ++;
+      return - TILE_SIZE;
     }
-    // } else {
-    //    isAttacking[i] = false;
-    //    AttackDelayCounter[i] = 0;
-    //    AttackCounter[i] ++;
-    //    return - TILE_SIZE;
-    //  }
-    return 0;
+  }
+  return 0;
 }
 
 int Ai::UpdateMovement(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect, int type, int axis) {
   //---- Basic Ai "input"----//
   this->Input(i);
+  //---- Badic Ai Patreolling ----//
+  this->Patrolling(i, type);
   //----Basic Agro Ai----//
   this->Agro(mobs, i, playerRect, type);
   //----Basic Damage taking Ai----//
@@ -260,6 +283,7 @@ int Ai::UpdateMovement(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect,
 }
 
 void Ai::Debug() {
+  // Set breakline 260 for debugging
   cout << "Debug!" << endl;
   // Test random number
   cout << (rand() % 10) << endl;
