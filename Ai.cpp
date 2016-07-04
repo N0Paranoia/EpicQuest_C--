@@ -21,6 +21,7 @@ Ai::Ai() {
   AttackDelayCounter[TOTAL_TILES] = 0;
   AttackDuration = 30;
   AttackAnimationDelay = 120;
+  movementSpeed = 2;
 }
 
 Ai::~Ai() {
@@ -31,12 +32,12 @@ int Ai::Input(int i) {
   if(movement[i] == left) {
     facingRight[i] = false;
     facingLeft[i] = true;
-    return -3;
+    return -movementSpeed;
   }
   if(movement[i] == right) {
     facingLeft[i] = false;
     facingRight[i] = true;
-    return 3;
+    return movementSpeed;
   }
   if(movement[i] == idle) {
     return 0;

@@ -208,7 +208,8 @@ void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_R
   for(int i = 0; i < TOTAL_TILES; i++) {
     if(wAi.Alive(i)) {
       if(mobs[i]->getType() == MOB_TYPE_1) {
-        mobs[i] = new Mobs(wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, X_AXIS), wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, Y_AXIS), Type_Mobs, wAi.UpdateAttack(mobs, playerRect, shieldRect, i, X_AXIS), wAi.UpdateAttack(mobs, playerRect, shieldRect, i, Y_AXIS), 0, wAi.UpdateBlock(mobs, i, X_AXIS), wAi.UpdateBlock(mobs, i, Y_AXIS));
+	// canceled the shield functionallity for now
+        mobs[i] = new Mobs(wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, X_AXIS), wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, Y_AXIS), Type_Mobs, wAi.UpdateAttack(mobs, playerRect, shieldRect, i, X_AXIS), wAi.UpdateAttack(mobs, playerRect, shieldRect, i, Y_AXIS), 0, -TILE_SIZE, -TILE_SIZE);
       }
     } else {
       //Makes a mob realy die

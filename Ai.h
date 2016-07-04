@@ -56,8 +56,9 @@ private:
 
   bool isFalling[TOTAL_TILES];
 
-  int rnd_direction[TOTAL_TILES];
+  int rnd_direction[TOTAL_TILES]; 
   int test_number;
+  int movementSpeed;
 };
 
 #endif // AI_H
