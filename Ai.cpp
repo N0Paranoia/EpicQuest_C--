@@ -161,6 +161,7 @@ double Ai::Damage(Mobs* mobs[], int i, SDL_Rect* swordRect, int type) {
   switch(type) {
   case MOB_TYPE_1:
     if(aiCollision.Rect(mobs[i]->getMobBox(), *swordRect)) {
+      cout << "Auw" << endl;
       return 10;
     }
     break;
