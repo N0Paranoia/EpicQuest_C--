@@ -4,8 +4,7 @@
 #include <SDL.h>
 #include "Textures.h"
 
-class Tile
-{
+class Tile {
 public:
     Tile(int x, int y, int Type);
     virtual ~Tile();

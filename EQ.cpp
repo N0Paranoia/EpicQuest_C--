@@ -26,8 +26,7 @@ Textures wallpaperTexture;
 Textures TextTexture;
 Textures DebugTexture;
 
-EQ::EQ()
-{
+EQ::EQ() {
     Running = true;
     Window = nullptr;
     Renderer = nullptr;
@@ -38,80 +37,64 @@ EQ::EQ()
     countedFrames  = 0;
 }
 
-bool EQ::Init()
-{
-    if(SDL_Init(SDL_INIT_VIDEO) < 0)
-    {
+bool EQ::Init() {
+    if(SDL_Init(SDL_INIT_VIDEO) < 0) {
         cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << endl;
         return false;
     }
-    if((Window = SDL_CreateWindow("EpicQuest",SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN)) == NULL)
-    {
+    if((Window = SDL_CreateWindow("EpicQuest",SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN)) == NULL) {
         cout << "Unable to create SDL_Window! SDL_Error: " << SDL_GetError() << endl;
         return false;
     }
-    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED /*| SDL_RENDERER_PRESENTVSYNC*/)) == NULL)
-    {
+    if((Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED /*| SDL_RENDERER_PRESENTVSYNC*/)) == NULL) {
         cout << "Unable to create Renderer! SDL_Error: " << SDL_GetError() << endl;
         return false;
     }
     // initialize image loading for PNG
-    if(!(IMG_Init(IMG_INIT_PNG)& IMG_INIT_PNG))
-    {
+    if(!(IMG_Init(IMG_INIT_PNG)& IMG_INIT_PNG)) {
         cout << "Unable to initialize SDL_Image! SDL_Error: " << SDL_GetError() << endl;
         return false;
     }
-    if(TTF_Init() == -1)
-    {
+    if(TTF_Init() == -1) {
         cout << "Unable to initialize SDL_TTF! SDL_Error: " << TTF_GetError() << endl;
         return false;
     }
     return true;
 }
 
-bool EQ::LoadMedia()
-{
+bool EQ::LoadMedia() {
     //Load Player texture
-    if((player.LoadMedia(Renderer)) == 0)
-    {
+    if((player.LoadMedia(Renderer)) == 0) {
         return false;
     }
     //Load Tile Sheet
-    if((world.LoadMedia(Renderer, tileSet, mobs)) == 0)
-    {
+    if((world.LoadMedia(Renderer, tileSet, mobs)) == 0) {
         return false;
     }
     //Load PNG background texture
-    if((wallpaperTexture.LoadFromFile(Renderer, "assets/background.png")) == 0)
-    {
+    if((wallpaperTexture.LoadFromFile(Renderer, "assets/background.png")) == 0) {
         cout << "Unable to Load texture image! SDL_Error: " << SDL_GetError() << endl;
         return false;
     }
     Font = TTF_OpenFont("assets/FreePixel.ttf", 14);
-    if(Font == NULL)
-    {
+    if(Font == NULL) {
         cout << "Unable to Load font! SDL_Error: " << TTF_GetError() << endl;
         return false;
     }
     return true;
 }
 
-void EQ::Event(SDL_Event* event)
-{
-    if(event->type == SDL_QUIT)
-    {
+void EQ::Event(SDL_Event* event) {
+    if(event->type == SDL_QUIT) {
         Running = false;
-    }
-    else if(event->type == SDL_KEYDOWN)
-    {
-        switch(event->key.keysym.sym)
-        {
-            case SDLK_ESCAPE:
+    } else if(event->type == SDL_KEYDOWN) {
+        switch(event->key.keysym.sym) {
+        case SDLK_ESCAPE:
             Running = false;
             cout << "Quit by keyboard(Esc)" << endl;
             break;
-            // Key For debug purpose
-            case SDLK_BACKQUOTE:
+        // Key For debug purpose
+        case SDLK_BACKQUOTE:
             ai.Debug();
             break;
         }
@@ -119,40 +102,33 @@ void EQ::Event(SDL_Event* event)
     SDL_GetMouseState(&xMouse,&yMouse);// mouse location
 }
 
-void EQ::Fps()
-{
+void EQ::Fps() {
     // Calculate FPS
     avgFPS = countedFrames / (FPStimer.getTicks() / 1000.f);
 
-    if(avgFPS > 2000000)
-    {
+    if(avgFPS > 2000000) {
         avgFPS = 0;
     }
 
     timeText.str("");
     timeText << avgFPS;
-    if(!TextTexture.LoadFromRenderedText(Renderer, Font, timeText.str().c_str(), textColor))
-    {
+    if(!TextTexture.LoadFromRenderedText(Renderer, Font, timeText.str().c_str(), textColor)) {
         cout << "Failed to render text texture!" << endl;
     }
 }
 
-void EQ::FpsCap()
-{
+void EQ::FpsCap() {
     frameTicks = CAPtimer.getTicks();
-    if(frameTicks < TICK_PER_FRAME)
-    {
+    if(frameTicks < TICK_PER_FRAME) {
         SDL_Delay( TICK_PER_FRAME - frameTicks);
     }
 }
 
-void EQ::Input()
-{
+void EQ::Input() {
     player.Input(tileSet);
 }
 
-void EQ::Loop()
-{
+void EQ::Loop() {
     camera.Center(&player.playerRect);
     player.Update(mobs);
     player.Falling(tileSet);
@@ -160,8 +136,7 @@ void EQ::Loop()
     // FPStimer.Start();
 }
 
-void EQ::Render()
-{
+void EQ::Render() {
     //Set Default colors
     SDL_SetRenderDrawColor(Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     //Clear screen
@@ -187,8 +162,7 @@ void EQ::Render()
     this->FpsCap();
 }
 
-void EQ::Debug()
-{
+void EQ::Debug() {
     debugText.str("");
     debugText << "State = " << player._state;
     debugText << "|Xvel = " << player.Xvel;
@@ -199,26 +173,21 @@ void EQ::Debug()
     debugText << "|left on tile = " << player.playerRect.x % TILE_SIZE;
     debugText << "|right on tile = " << (player.playerRect.x + player.playerRect.w) % TILE_SIZE;
 
-    if(!DebugTexture.LoadFromRenderedText(Renderer, Font, debugText.str().c_str(), textColor))
-    {
+    if(!DebugTexture.LoadFromRenderedText(Renderer, Font, debugText.str().c_str(), textColor)) {
         cout << "Failed to render text texture!" << endl;
     }
 }
 
-void EQ::Cleanup()
-{
-    if(Renderer)
-    {
+void EQ::Cleanup() {
+    if(Renderer) {
         SDL_DestroyRenderer(Renderer);
         Renderer = nullptr;
     }
-    if(Texture)
-    {
+    if(Texture) {
         SDL_DestroyTexture(Texture);
         Texture = nullptr;
     }
-    if(Window)
-    {
+    if(Window) {
         SDL_DestroyWindow(Window);
         Window = nullptr;
     }
@@ -228,25 +197,20 @@ void EQ::Cleanup()
     SDL_Quit();
 }
 
-int EQ::Execute()
-{
-    if(this->Init() == false)
-    {
+int EQ::Execute() {
+    if(this->Init() == false) {
         return -1;
     }
-    if(this->LoadMedia() == false)
-    {
+    if(this->LoadMedia() == false) {
         return -1;
     }
     SDL_Event event;
     //start FPS timer
     FPStimer.Start();
 
-    while(Running)
-    {
+    while(Running) {
         CAPtimer.Start();
-        while(SDL_PollEvent(&event))
-        {
+        while(SDL_PollEvent(&event)) {
             this->Event(&event);
         }
         this->Fps();
@@ -261,8 +225,7 @@ int EQ::Execute()
 }
 
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
     EQ EpicQuest;
     return EpicQuest.Execute();
 }

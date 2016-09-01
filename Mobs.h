@@ -7,8 +7,7 @@
 
 using namespace std;
 
-class Mobs
-{
+class Mobs {
 public:
     Mobs(int mobX, int mobY, int mobType, int weaponX, int weaponY, int weaponType);
     int getType();
@@ -19,11 +18,12 @@ public:
 
     int MobType;
     int MobStatus;
+    int MovementSpeed;
     SDL_Rect MobBox;
     SDL_Rect HealthBar;
-	SDL_Rect WeaponBox;
-	//Created to compensate for camera movement
-	SDL_Rect WeaponSprite;
+    SDL_Rect WeaponBox;
+    //Created to compensate for camera movement
+    SDL_Rect WeaponSprite;
 
 protected:
 private:

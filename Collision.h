@@ -6,8 +6,7 @@
 #include <SDL.h>
 
 
-class Collision
-{
+class Collision {
 public:
     Collision();
     virtual ~Collision();

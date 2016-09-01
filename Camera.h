@@ -5,8 +5,7 @@
 
 using namespace std;
 
-class Camera
-{
+class Camera {
 public:
     SDL_Rect cameraRect;
     SDL_Rect centerRect;

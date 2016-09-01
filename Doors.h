@@ -7,8 +7,7 @@
 
 using namespace std;
 
-class Doors
-{
+class Doors {
 public:
     Doors();
     virtual ~Doors();

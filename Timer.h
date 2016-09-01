@@ -3,8 +3,7 @@
 #include <stdint.h>
 #include <SDL.h>
 
-class Timer
-{
+class Timer {
 public:
     Timer();
     virtual ~Timer();
@@ -18,7 +17,7 @@ public:
     //check status
     bool isStarted();
     bool isPaused();
-    
+
 protected:
 private:
     //time when timer started

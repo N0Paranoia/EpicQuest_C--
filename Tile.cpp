@@ -5,8 +5,7 @@
 
 Collision tCollision;
 
-Tile::Tile(int x, int y, int Type)
-{
+Tile::Tile(int x, int y, int Type) {
     TileBox.x = x;
     TileBox.y = y;
     TileBox.w = TILE_SIZE;
@@ -15,25 +14,20 @@ Tile::Tile(int x, int y, int Type)
     TileType = Type;
 }
 
-Tile::~Tile()
-{
+Tile::~Tile() {
     //dtor
 }
 
-int Tile::getType()
-{
+int Tile::getType() {
     return TileType;
 }
 
-SDL_Rect Tile::getTileBox()
-{
+SDL_Rect Tile::getTileBox() {
     return TileBox;
 }
 
-void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
-{
-    if(tCollision.Check(TileBox, *camera))
-    {
+void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera) {
+    if(tCollision.Check(TileBox, *camera)) {
         textures->Render(Renderer, TileBox.x - camera->x, TileBox.y - camera->y, &clips[TileType]);
     }
 }

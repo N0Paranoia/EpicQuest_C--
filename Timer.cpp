@@ -1,7 +1,6 @@
 #include "Timer.h"
 
-Timer::Timer()
-{
+Timer::Timer() {
     StartTicks = 0;
     PauseTicks = 0;
 
@@ -9,13 +8,11 @@ Timer::Timer()
     Started = false;
 }
 
-Timer::~Timer()
-{
+Timer::~Timer() {
     //dtor
 }
 
-void Timer::Start()
-{
+void Timer::Start() {
     Started = true;
     Paused = false;
 
@@ -23,8 +20,7 @@ void Timer::Start()
     PauseTicks = 0;
 }
 
-void Timer::Stop()
-{
+void Timer::Stop() {
     Started = false;
     Paused = true;
 
@@ -32,10 +28,8 @@ void Timer::Stop()
     PauseTicks = 0;
 }
 
-void Timer::Pause()
-{
-    if(Started && !Paused)
-    {
+void Timer::Pause() {
+    if(Started && !Paused) {
         Paused = true;
 
         PauseTicks = SDL_GetTicks() - StartTicks;
@@ -43,10 +37,8 @@ void Timer::Pause()
     }
 }
 
-void Timer::Unpause()
-{
-    if(Started && Paused)
-    {
+void Timer::Unpause() {
+    if(Started && Paused) {
         Paused = false;
 
         StartTicks = SDL_GetTicks() - PauseTicks;
@@ -54,30 +46,23 @@ void Timer::Unpause()
     }
 }
 
-Uint32 Timer::getTicks()
-{
+Uint32 Timer::getTicks() {
     Uint32 time = 0;
 
-    if(Started)
-    {
-        if(Paused)
-        {
+    if(Started) {
+        if(Paused) {
             time = PauseTicks;
-        }
-        else
-        {
+        } else {
             time = SDL_GetTicks() - StartTicks;
         }
     }
     return time;
 }
 
-bool Timer::isStarted()
-{
+bool Timer::isStarted() {
     return Started;
 }
 
-bool Timer::isPaused()
-{
+bool Timer::isPaused() {
     return Paused;
 }

@@ -10,8 +10,7 @@
 
 using namespace std;
 
-class Textures
-{
+class Textures {
 private:
     //Actual hardware texture
     //image dimensions
