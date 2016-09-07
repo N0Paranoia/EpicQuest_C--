@@ -206,14 +206,12 @@ bool World::SetMobs(Mobs* mobs[]) {
 
 void  World::UpdateMobs(Mobs* mobs[], Tile* tiles[], SDL_Rect* playerRect, SDL_Rect* swordRect, SDL_Rect* shieldRect) {
     for(int i = 0; i < TOTAL_TILES; i++) {
-        if(wAi.Alive(i)) {
-            if(mobs[i]->getType() == MOB_TYPE_1) {
-                mobs[i] = new Mobs(wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, X_AXIS), wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, Y_AXIS), Type_Mobs, wAi.UpdateAttack(mobs, playerRect, shieldRect, i, X_AXIS), wAi.UpdateAttack(mobs, playerRect, shieldRect, i, Y_AXIS), 0);
-            }
-        } else {
-            //Makes a mob realy die
-            if(mobs[i]->getType() == MOB_TYPE_1) {
-                mobs[i] = new Mobs(0, 0, Type_Mobs, 0, 0, 0);
+	if(mobs[i]->getType() == MOB_TYPE_1) {
+	    if(wAi.Alive(i)) {
+		mobs[i] = new Mobs(wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, X_AXIS), wAi.UpdateMovement(mobs, i, tiles, playerRect, swordRect, shieldRect, Type_Mobs, Y_AXIS), Type_Mobs, wAi.UpdateAttack(mobs, playerRect, shieldRect, i, Type_Mobs, X_AXIS), wAi.UpdateAttack(mobs, playerRect, shieldRect, i, Type_Mobs, Y_AXIS), 0);
+            } else {
+		//Makes a mob realy die
+		mobs[i] = new Mobs(0, 0, Type_Mobs, 0, 0, 0);
             }
         }
     }

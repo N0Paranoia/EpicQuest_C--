@@ -14,7 +14,10 @@ Player::Player() {
     playerRect.x = 1*TILE_SIZE;
     playerRect.y = 2*TILE_SIZE;
     playerRect.w = TILE_SIZE;
-    playerRect.h = 2*TILE_SIZE;
+	playerRect.h = 2*TILE_SIZE;
+
+	dagger_size = TILE_SIZE/2;
+	sword_size = TILE_SIZE;
 
     Xvel = 0;
     Yvel = 0;
@@ -71,6 +74,7 @@ Player::Player() {
     blockEnergy = 25;
 
     // int _state = state_idle;
+	_weapon = weapon_dagger;
 }
 
 Player::~Player() {
@@ -423,27 +427,58 @@ void Player::GoTroughDoor(Tile* tiles[]) {
 }
 
 void Player::Attack() {
-    if(attack) {
-        if(Energy(0) > attackEnergy) {
-            if(FacingLeft) {
-                SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
-            } else if(FacingRight) {
-                SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
-            }
-            if(!isAttacking) {
-                Energy(attackEnergy);
-                isAttacking = true;
-                energyRecover = false;
-            }
-        } else {
-            if(FacingLeft) {
-                SwordBox = {this->playerRect.x - 10, this->playerRect.y + TILE_SIZE, 10, 10};
-            } else if(FacingRight) {
-                SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE, 10, 10};
-            }
-        }
-    } else {
-        SwordBox = {0, 0, 0, 0};
+	 if(attack) {
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		 switch (_weapon) {
+		 case weapon_none:
+			 cout << "weapon = " << _weapon << endl;
+			 break;
+		 case weapon_dagger:
+			 if(Energy(0) > attackEnergy) {
+				 if(FacingLeft) {
+					 WeaponBox = {this->playerRect.x - dagger_size, this->playerRect.y + (this->playerRect.h/2), dagger_size, 10};
+				 } else if(FacingRight) {
+					 WeaponBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (this->playerRect.h/2), dagger_size, 10};
+				 }
+				 if(!isAttacking) {
+					 Energy(attackEnergy);
+					 isAttacking = true;
+					 energyRecover = false;
+				 }
+			 } else {
+				 if(FacingLeft) {
+					 WeaponBox = {this->playerRect.x - 10, this->playerRect.y + (this->playerRect.h/2), 10, 10};
+				 } else if(FacingRight) {
+					 WeaponBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (this->playerRect.h/2), 10, 10};
+				 }
+			 }
+			 break;
+		 case weapon_sword:
+			 cout << _weapon << endl;
+			 if(Energy(0) > attackEnergy) {
+				 if(FacingLeft) {
+					 WeaponBox = {this->playerRect.x - sword_size, this->playerRect.y + (this->playerRect.h/2), sword_size, 10};
+				 } else if(FacingRight) {
+					 WeaponBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (this->playerRect.h/2), sword_size, 10};
+				 }
+				 if(!isAttacking) {
+					 Energy(attackEnergy);
+					 isAttacking = true;
+					 energyRecover = false;
+				 }
+			 } else {
+				 if(FacingLeft) {
+					 WeaponBox = {this->playerRect.x - 10, this->playerRect.y + (this->playerRect.h/2), 10, 10};
+				 } else if(FacingRight) {
+					 WeaponBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (this->playerRect.h/2), 10, 10};
+				 }
+			 }
+ 		default:
+			break;
+		 }
+		 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	 } else {
+        WeaponBox = {0, 0, 0, 0};
         isAttacking = false;
         _state = state_idle;
         energyRecover = true;
@@ -595,8 +630,8 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera) {
     SDL_RenderFillRect(Renderer, &playerBox);
 
     //Create New Rectangle for sword for the camera compisation
-    Sword = {SwordBox.x - camera->x, SwordBox.y - camera->y, SwordBox.w, SwordBox.h};
-    SDL_RenderFillRect(Renderer, &Sword);
+    Weapon = {WeaponBox.x - camera->x, WeaponBox.y - camera->y, WeaponBox.w, WeaponBox.h};
+    SDL_RenderFillRect(Renderer, &Weapon);
 
     HealthBar = {10, 10, this->Health(0), 10};
     StaminBar = {10, 25, this->Energy(0), 10};

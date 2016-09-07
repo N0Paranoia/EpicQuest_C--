@@ -132,7 +132,7 @@ void EQ::Loop() {
     camera.Center(&player.playerRect);
     player.Update(mobs);
     player.Falling(tileSet);
-    world.UpdateMobs(mobs, tileSet, &player.playerRect, &player.SwordBox, &player.ShieldBox);
+    world.UpdateMobs(mobs, tileSet, &player.playerRect, &player.WeaponBox, &player.ShieldBox);
     // FPStimer.Start();
 }
 
@@ -144,7 +144,7 @@ void EQ::Render() {
     //Render Texture to screen
     wallpaperTexture.Render(Renderer, 0, 0);
     // Render Tiles
-    world.Render(Renderer, &camera.cameraRect, tileSet, mobs, &player.playerRect, &player.SwordBox);
+    world.Render(Renderer, &camera.cameraRect, tileSet, mobs, &player.playerRect, &player.WeaponBox);
     //Render Camara outline
     camera.Render(Renderer);
     // Render Player data

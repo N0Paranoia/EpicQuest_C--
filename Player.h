@@ -31,6 +31,12 @@ private:
         jump
     };
 
+    enum Weapon {
+		weapon_none, //0
+		weapon_dagger, //1
+		weapon_sword //2
+    };
+	
     const Uint8* keyState;
 
     int walkingSpeed;
@@ -82,6 +88,10 @@ private:
     int frameSpeed;
     int frameSwitch;
 
+	int equiped_weapon;
+	int dagger_size;
+	int sword_size;
+
     SDL_Rect PlayerClips[18];
 
     SDL_Rect HealthBar;
@@ -91,16 +101,17 @@ public:
     bool FacingLeft;
     bool FacingRight;
     int _state;
+	int _weapon;
     int Xvel, Yvel;
     //Collision box
     SDL_Rect playerRect;
     SDL_Rect vertCenterCollisionBox;
     SDL_Rect playerBox;
-    SDL_Rect SwordBox;
+    SDL_Rect WeaponBox;
     SDL_Rect ShieldBox;
 
     SDL_Rect Shield;
-    SDL_Rect Sword;
+    SDL_Rect Weapon;
 
     Player();
     virtual ~Player();

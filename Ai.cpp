@@ -54,67 +54,73 @@ void Ai::Agro(Mobs* mobs[], int i, SDL_Rect* playerRect, int type) {
     }
 }
 
-int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, int axis) {
-    // Check vertica and Horizontal alighnment
-    if((playerRect->y + playerRect->h) >= (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y <= ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE)&&(playerRect->x + playerRect->w) >= (mobs[i]->getMobBox().x- ATTACK_RANGE_MELEE) && playerRect->x <= ((mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE)) {
-        cout << "AttackCounter " << i << " = " << AttackCounter[i] << endl;
-        AttackCounter[i] += 1;
-        if(AttackCounter[i] > AttackAnimationDelay) {
-            for(int j = 0; j < AttackDuration; j++) {
-                cout << "Test = " << j << endl;
-            }
-            AttackCounter[i] = 0;
-        }
-        switch(axis) {
-        case X_AXIS:
-            // If the player is LEFT of the mob
-            if(playerRect->x <= mobs[i]->getMobBox().x) {
+int Ai::Attack(Mobs* mobs[], int i, SDL_Rect* playerRect, SDL_Rect* shieldRect, int type, int axis) {
+	switch(type) {
+	case MOB_TYPE_1: 
+		
+		break;
+	case MOB_TYPE_2:
+		// Check vertica and Horizontal alighnment
+		if((playerRect->y + playerRect->h) >= (mobs[i]->getMobBox().y - ATTACK_RANGE_MELEE) && playerRect->y <= ((mobs[i]->getMobBox().y + mobs[i]->getMobBox().h) + ATTACK_RANGE_MELEE)&&(playerRect->x + playerRect->w) >= (mobs[i]->getMobBox().x- ATTACK_RANGE_MELEE) && playerRect->x <= ((mobs[i]->getMobBox().x + mobs[i]->getMobBox().w) + ATTACK_RANGE_MELEE)) {
+			cout << "AttackCounter " << i << " = " << AttackCounter[i] << endl;
+			AttackCounter[i] += 1;
+			if(AttackCounter[i] > AttackAnimationDelay) {
+				for(int j = 0; j < AttackDuration; j++) {
+					cout << "Test = " << j << endl;
+				}
+				AttackCounter[i] = 0;
+			}
+			switch(axis) {
+			case X_AXIS:
+				// If the player is LEFT of the mob
+				if(playerRect->x <= mobs[i]->getMobBox().x) {
+					// If mob weapon bounces of the player shield
+					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
+						return mobs[i]->getMobBox().x;
+					} else {
+						return mobs[i]->getMobBox().x - TILE_SIZE;
+					}
+				}
+				// If the Player is RIGHT of the mob
+				else if(playerRect->x >= mobs[i]->getMobBox().x) {
+					// If mob weapon bounces of the player shield
+					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
+						return mobs[i]->getMobBox().x;
+					} else {
+						return mobs[i]->getMobBox().x + TILE_SIZE;
+					}
+				} else {
+					return -TILE_SIZE;
+				}
+				break;
+				
+			case Y_AXIS:
+				// If the player is OBOVE the mob
+				if(playerRect->y <= mobs[i]->getMobBox().y) {
+					// If mob weapon bounces of the player shield
+					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
+						return mobs[i]->getMobBox().y;
+					} else {
+						return mobs[i]->getMobBox().y + ((mobs[i]->getMobBox().h/2)-10);
+					}
+				}
+				// If the plalyer is BELOW the mob
+				else if(playerRect->y >= mobs[i]->getMobBox().y) {
                 // If mob weapon bounces of the player shield
-                if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
-                    return mobs[i]->getMobBox().x;
-                } else {
-                    return mobs[i]->getMobBox().x - TILE_SIZE;
-                }
-            }
-            // If the Player is RIGHT of the mob
-            else if(playerRect->x >= mobs[i]->getMobBox().x) {
-                // If mob weapon bounces of the player shield
-                if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
-                    return mobs[i]->getMobBox().x;
-                } else {
-                    return mobs[i]->getMobBox().x + TILE_SIZE;
-                }
-            } else {
-                return -TILE_SIZE;
-            }
-            break;
-
-        case Y_AXIS:
-            // If the player is OBOVE the mob
-            if(playerRect->y <= mobs[i]->getMobBox().y) {
-                // If mob weapon bounces of the player shield
-                if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
-                    return mobs[i]->getMobBox().y;
-                } else {
-                    return mobs[i]->getMobBox().y + ((mobs[i]->getMobBox().h/2)-10);
-                }
-            }
-            // If the plalyer is BELOW the mob
-            else if(playerRect->y >= mobs[i]->getMobBox().y) {
-                // If mob weapon bounces of the player shield
-                if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
-                    return mobs[i]->getMobBox().y;
-                } else {
-                    return mobs[i]->getMobBox().y + (mobs[i]->getMobBox().h/2);
-                }
-            } else {
-                return -TILE_SIZE;
-            }
-            break;
-        }
-    } else {
-        return -TILE_SIZE;
-    }
+					if(aiCollision.Check(mobs[i]->getWeaponBox(), *shieldRect)) {
+						return mobs[i]->getMobBox().y;
+					} else {
+						return mobs[i]->getMobBox().y + (mobs[i]->getMobBox().h/2);
+					}
+				} else {
+					return -TILE_SIZE;
+				}
+				break;
+			}
+		} else {
+			return -TILE_SIZE;
+		}
+	}
 }
 
 double Ai::Damage(Mobs* mobs[], int i, SDL_Rect* swordRect, int type) {
@@ -169,14 +175,14 @@ int Ai::Move(Mobs* mobs[], int i, Tile* tiles[], SDL_Rect* playerRect, SDL_Rect*
     return mobs[i]->getMobBox().x + this->Input(mobs, i);
 }
 
-int Ai::UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, SDL_Rect* shieldRect, int i, int axis) {
+int Ai::UpdateAttack(Mobs* mobs[], SDL_Rect* playerRect, SDL_Rect* shieldRect, int i, int type, int axis) {
     switch(axis) {
     case X_AXIS:
-        return this->Attack(mobs, i, playerRect, shieldRect, X_AXIS);
+      return this->Attack(mobs, i, playerRect, shieldRect, type, X_AXIS);
         break;
 
     case Y_AXIS:
-        return this->Attack(mobs, i, playerRect, shieldRect, Y_AXIS);
+      return this->Attack(mobs, i, playerRect, shieldRect, type, Y_AXIS);
         break;
     }
 }
