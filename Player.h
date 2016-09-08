@@ -11,126 +11,126 @@ using namespace std;
 
 class Player {
 private:
-    enum State {
-        state_idle, // 0
-        state_jumping, // 1
-        state_walking, // 2
-        state_running, // 3
-        state_attacking, //4
-        state_blocking, // 5
-        state_climbing // 6
-    };
+	enum State {
+		state_idle, // 0
+		state_jumping, // 1
+		state_walking, // 2
+		state_running, // 3
+		state_attacking, //4
+		state_blocking, // 5
+		state_climbing // 6
+	};
 
-    enum Movement {
-        horizontal,
-        vertical,
-        left,
-        right,
-        up,
-        down,
-        jump
-    };
+	enum Movement {
+		horizontal,
+		vertical,
+		left,
+		right,
+		up,
+		down,
+		jump
+	};
 
-    enum Weapon {
+	enum Weapon {
 		weapon_none, //0
 		weapon_dagger, //1
 		weapon_sword //2
-    };
-	
-    const Uint8* keyState;
+	};
 
-    int walkingSpeed;
-    int runningSpeed;
-    int jumpingSpeed;
+	const Uint8* keyState;
 
-    int jumpCount;
-    int jumpHeight;
-    int climbingSpeed;
+	int walkingSpeed;
+	int runningSpeed;
+	int jumpingSpeed;
 
-    bool WalkingLeft;
-    bool WalkingRight;
+	int jumpCount;
+	int jumpHeight;
+	int climbingSpeed;
 
-    bool isRunning;
-    bool canRun;
-    bool isFalling;
-    bool canJump;
-    bool isJumping;
-    bool isDucking;
+	bool WalkingLeft;
+	bool WalkingRight;
 
-    bool canEnterDoor;
-    bool isClimbing;
+	bool isRunning;
+	bool canRun;
+	bool isFalling;
+	bool canJump;
+	bool isJumping;
+	bool isDucking;
 
-    bool attack;
-    bool isAttacking;
-    bool block;
-    bool isBlocking;
+	bool canEnterDoor;
+	bool isClimbing;
 
-    int runEnergy;
-    int jumpEnergy;
-    int attackEnergy;
-    int blockEnergy;
+	bool attack;
+	bool isAttacking;
+	bool block;
+	bool isBlocking;
 
-    int maxEnergy;
-    int energy;
-    bool energyRecover;
-    int maxHealth;
-    int currentHealth;
-    int health;
+	int runEnergy;
+	int jumpEnergy;
+	int attackEnergy;
+	int blockEnergy;
 
-    int frame;
-    int StartFrameLeft;
-    int EndFrameLeft;
-    int StartFrameRight;
-    int EndFrameRight;
-    int IdleFrameLeft;
-    int IdleFrameRight;
-    int frameCounter;
-    int frameSpeed;
-    int frameSwitch;
+	int maxEnergy;
+	int energy;
+	bool energyRecover;
+	int maxHealth;
+	int currentHealth;
+	int health;
+
+	int frame;
+	int StartFrameLeft;
+	int EndFrameLeft;
+	int StartFrameRight;
+	int EndFrameRight;
+	int IdleFrameLeft;
+	int IdleFrameRight;
+	int frameCounter;
+	int frameSpeed;
+	int frameSwitch;
 
 	int equiped_weapon;
 	int dagger_size;
 	int sword_size;
 
-    SDL_Rect PlayerClips[18];
+	SDL_Rect PlayerClips[18];
 
-    SDL_Rect HealthBar;
-    SDL_Rect StaminBar;
-    SDL_Rect bottomCollisionBox;
+	SDL_Rect HealthBar;
+	SDL_Rect StaminBar;
+	SDL_Rect bottomCollisionBox;
 public:
-    bool FacingLeft;
-    bool FacingRight;
-    int _state;
+	bool FacingLeft;
+	bool FacingRight;
+	int _state;
 	int _weapon;
-    int Xvel, Yvel;
-    //Collision box
-    SDL_Rect playerRect;
-    SDL_Rect vertCenterCollisionBox;
-    SDL_Rect playerBox;
-    SDL_Rect WeaponBox;
-    SDL_Rect ShieldBox;
+	int Xvel, Yvel;
+	//Collision box
+	SDL_Rect playerRect;
+	SDL_Rect vertCenterCollisionBox;
+	SDL_Rect playerBox;
+	SDL_Rect WeaponBox;
+	SDL_Rect ShieldBox;
 
-    SDL_Rect Shield;
-    SDL_Rect Weapon;
+	SDL_Rect Shield;
+	SDL_Rect Weapon;
 
-    Player();
-    virtual ~Player();
+	Player();
+	virtual ~Player();
 
-    void Input(Tile* tiles[]);
-    int LoadMedia(SDL_Renderer* Renderer);
-    void Move(int Movement, Tile* tiles[]);
-    void Attack();
-    void Block();
-    void Jump(Tile* tiles[]);
-    void Climb(int Movement, Tile* tiles[]);
-    void Falling(Tile* tiles[]);
-    void GoTroughDoor(Tile* tiles[]);
-    int Health(int damage);
-    int Energy(int action);
-    void MobsCollision(Mobs* mobs[], int i);
-    void Update(Mobs* mobs[]);
-    void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
-    void Cleanup();
+	void Input(Tile* tiles[]);
+	int LoadMedia(SDL_Renderer* Renderer);
+	void Move(int Movement, Tile* tiles[]);
+	void Attack();
+	void Block();
+	void Jump(Tile* tiles[]);
+	void Climb(int Movement, Tile* tiles[]);
+	void Falling(Tile* tiles[]);
+	void GoTroughDoor(Tile* tiles[]);
+	int Health(int damage);
+	int Energy(int action);
+	void MobsCollision(Mobs* mobs[], int i);
+	void Update(Mobs* mobs[]);
+	void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
+	void Cleanup();
 
 protected:
 };
