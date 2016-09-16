@@ -9,21 +9,21 @@ using namespace std;
 
 class Mobs {
 public:
-	Mobs(int mobX, int mobY, int mobType, int weaponX, int weaponY, int weaponType);
-	int getType();
-	SDL_Rect getMobBox();
-	SDL_Rect getWeaponBox();
-	void Update();
-	void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera, double health);
+    Mobs(int mobX, int mobY, int mobType, int weaponX, int weaponY, int weaponType);
+    int getType();
+    SDL_Rect getMobBox();
+    SDL_Rect getWeaponBox();
+    void Update();
+    void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera, double health);
 
-	int MobType;
-	int MobStatus;
-	int MovementSpeed;
-	SDL_Rect MobBox;
-	SDL_Rect HealthBar;
-	SDL_Rect WeaponBox;
-	//Created to compensate for camera movement
-	SDL_Rect WeaponSprite;
+    int MobType;
+    int MobStatus;
+    int MovementSpeed;
+    SDL_Rect MobBox;
+    SDL_Rect HealthBar;
+    SDL_Rect WeaponBox;
+    //Created to compensate for camera movement
+    SDL_Rect WeaponSprite;
 
 protected:
 private:

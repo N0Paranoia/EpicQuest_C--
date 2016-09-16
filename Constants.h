@@ -43,6 +43,12 @@ const int MOB_CLEAR = 0;
 const int MOB_TYPE_1 = 1;
 const int MOB_TYPE_2 = 2;
 
+const int TOTAL_OBJECT_SPRITES = 2;
+
+const int OBJECT_WEAPON_NONE = 1;
+const int OBJECT_WEAPON_DAGGER = 1;
+const int OBJECT_WEAPON_SWORD = 2;
+
 const int X_AXIS = 0;
 const int Y_AXIS = 1;
 
